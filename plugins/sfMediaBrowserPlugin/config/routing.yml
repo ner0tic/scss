@@ -1,0 +1,43 @@
+sf_media_browser_rename:
+  url:    sf_media_browser/rename
+  param:  { module: sfMediaBrowser, action: rename }
+  
+sf_media_browser_move:
+  url:    sf_media_browser/move
+  param:  { module: sfMediaBrowser, action: move }
+
+sf_media_browser_edit:
+  url:    sf_media_browser/edit
+  params: { module: sfMediaBrowser, action: edit }
+
+sf_media_browser:
+  url:    sf_media_browser
+  params: { module: sfMediaBrowser, action: list }
+
+sf_media_browser_dir_create:
+  url:    sf_media_browser/dir_create
+  class:  sfRequestRoute
+  params: { module: sfMediaBrowser, action: createDirectory }
+  requirements: { sf_method: post }
+
+sf_media_browser_dir_delete:
+  url:    sf_media_browser/dir_delete
+  class:  sfRequestRoute
+  params: { module: sfMediaBrowser, action: deleteDirectory }
+  requirements: { sf_method: get }
+
+sf_media_browser_file_create:
+  url:    sf_media_browser/file_create
+  class:  sfRequestRoute
+  params: { module: sfMediaBrowser, action: createFile }
+  requirements: { sf_method: post }
+
+sf_media_browser_file_delete:
+  url:    sf_media_browser/file_delete
+  class:  sfRequestRoute
+  params: { module: sfMediaBrowser, action: deleteFile }
+  requirements: { sf_method: get }
+
+sf_media_browser_select:
+  url:    sf_media_browser/select
+  params: { module: sfMediaBrowser, action: select }

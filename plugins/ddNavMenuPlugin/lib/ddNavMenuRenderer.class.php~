@@ -1,0 +1,24 @@
+<?php // lib/ddNavMenuRenderer.class.php
+  class ddNavMenuRenderer implements ddNavMenuRendererInterface {
+    public function render (ddNavMenuItem $menu) {
+      if(!$menu->isAuthorized()) return null;
+      $_menu = '<ul class="menu">';
+      foreach($menu->getChildren() as $i) {
+        if($i->isAuthorized()) {
+          $_menu .= '<li class="menu-item '.($i->hasChildren()?'has-sub-menu':'').'" id="'.Scss::slugify($i->getLabel()).'-menu-item">';
+          $_menu .= link_to($i->getLabel(),$i->getRoute(),$i->getParameters());
+          if($menu->hasChildren()) {
+            $_menu .= '<ul class="sub-menu">';
+            foreach($i->getChildren() as $child) {
+              if($child->isAuthorized())
+                $_menu .= '<li class="menu-item">'.link_to($child->getLabel(),$child->getRoute(),$child->getParameters()).'</li>';
+            }
+            $_menu .= '</ul>';
+          }
+          $_menu .= '</li>';
+        }
+      }
+      $_menu .= '</ul>';
+      return $_menu;
+    }
+  }

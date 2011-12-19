@@ -1,0 +1,1009 @@
+ScssMeritBadge:
+  ScssMeritBadge_1:
+    name: 'American Business'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: american-business
+  ScssMeritBadge_2:
+    name: 'American Cultures'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: american-cultures
+  ScssMeritBadge_3:
+    name: 'American Heritage'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: american-heritage
+  ScssMeritBadge_4:
+    name: 'American Labor'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: american-labor
+  ScssMeritBadge_5:
+    name: 'Animal Science'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: animal-science
+  ScssMeritBadge_6:
+    name: Archaeology
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: archaeology
+  ScssMeritBadge_7:
+    name: Archery
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: archery
+  ScssMeritBadge_8:
+    name: Architecture
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: architecture
+  ScssMeritBadge_9:
+    name: Art
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: art
+  ScssMeritBadge_10:
+    name: Astronomy
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: astronomy
+  ScssMeritBadge_11:
+    name: Athletics
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: athletics
+  ScssMeritBadge_12:
+    name: 'Automotive Maintenance'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: automotive-maintenance
+  ScssMeritBadge_13:
+    name: Aviation
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: aviation
+  ScssMeritBadge_14:
+    name: Backpacking
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: backpacking
+  ScssMeritBadge_15:
+    name: Basketry
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: basketry
+  ScssMeritBadge_16:
+    name: 'Bird Study'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: bird-study
+  ScssMeritBadge_17:
+    name: Bugling
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: bugling
+  ScssMeritBadge_18:
+    name: Camping
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: camping
+  ScssMeritBadge_19:
+    name: Canoeing
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: canoeing
+  ScssMeritBadge_20:
+    name: Chemistry
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: chemistry
+  ScssMeritBadge_21:
+    name: Cinematography
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: cinematography
+  ScssMeritBadge_22:
+    name: 'Citizenship in the Community'
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: citizenship-in-the-community
+  ScssMeritBadge_23:
+    name: 'Citizenship in the Nation'
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: citizenship-in-the-nation
+  ScssMeritBadge_24:
+    name: 'Citizenship in the World'
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: citizenship-in-the-world
+  ScssMeritBadge_25:
+    name: Climbing
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: climbing
+  ScssMeritBadge_26:
+    name: 'Coin Collecting'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: coin-collecting
+  ScssMeritBadge_27:
+    name: Collections
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: collections
+  ScssMeritBadge_28:
+    name: Communications
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: communications
+  ScssMeritBadge_29:
+    name: 'Composite Materials'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: composite-materials
+  ScssMeritBadge_30:
+    name: Computers
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: computers
+  ScssMeritBadge_31:
+    name: Cooking
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: cooking
+  ScssMeritBadge_32:
+    name: 'Crime Prevention'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: crime-prevention
+  ScssMeritBadge_33:
+    name: Cycling
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: cycling
+  ScssMeritBadge_34:
+    name: Dentistry
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: dentistry
+  ScssMeritBadge_35:
+    name: 'Disabilities Awareness'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: disabilities-awareness
+  ScssMeritBadge_36:
+    name: 'Dog Care'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: dog-care
+  ScssMeritBadge_37:
+    name: Drafting
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: drafting
+  ScssMeritBadge_38:
+    name: Electricity
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: electricity
+  ScssMeritBadge_39:
+    name: Electronics
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: electronics
+  ScssMeritBadge_40:
+    name: 'Emergency Preparedness'
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:05'
+    updated_at: '2011-09-24 06:30:05'
+    slug: emergency-preparedness
+  ScssMeritBadge_41:
+    name: Energy
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: energy
+  ScssMeritBadge_42:
+    name: Engineering
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: engineering
+  ScssMeritBadge_43:
+    name: Entrepreneurship
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: entrepreneurship
+  ScssMeritBadge_44:
+    name: 'Environmental Science'
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: environmental-science
+  ScssMeritBadge_45:
+    name: 'Family Life'
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: family-life
+  ScssMeritBadge_46:
+    name: 'Farm Mechanics'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: farm-mechanics
+  ScssMeritBadge_47:
+    name: Fingerprinting
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: fingerprinting
+  ScssMeritBadge_48:
+    name: 'Fire Safety'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: fire-safety
+  ScssMeritBadge_49:
+    name: 'First Aid'
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: first-aid
+  ScssMeritBadge_50:
+    name: 'Fish and Wildlife Management'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: fish-and-wildlife-management
+  ScssMeritBadge_51:
+    name: Fishing
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: fishing
+  ScssMeritBadge_52:
+    name: 'Fly Fishing'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: fly-fishing
+  ScssMeritBadge_53:
+    name: Forestry
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: forestry
+  ScssMeritBadge_54:
+    name: Gardening
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: gardening
+  ScssMeritBadge_55:
+    name: Genealogy
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: genealogy
+  ScssMeritBadge_56:
+    name: Geocaching
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: geocaching
+  ScssMeritBadge_57:
+    name: Geology
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: geology
+  ScssMeritBadge_58:
+    name: Golf
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: golf
+  ScssMeritBadge_59:
+    name: 'Graphic Arts'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: graphic-arts
+  ScssMeritBadge_60:
+    name: Hiking
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: hiking
+  ScssMeritBadge_61:
+    name: 'Home Repairs'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: home-repairs
+  ScssMeritBadge_62:
+    name: Horsemanship
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: horsemanship
+  ScssMeritBadge_63:
+    name: 'Indian Lore'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: indian-lore
+  ScssMeritBadge_64:
+    name: 'Insect Study'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: insect-study
+  ScssMeritBadge_65:
+    name: Inventing
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: inventing
+  ScssMeritBadge_66:
+    name: Journalism
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: journalism
+  ScssMeritBadge_67:
+    name: 'Landscape Architecture'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: landscape-architecture
+  ScssMeritBadge_68:
+    name: Law
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: law
+  ScssMeritBadge_69:
+    name: Leatherwork
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: leatherwork
+  ScssMeritBadge_70:
+    name: Lifesaving
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:06'
+    updated_at: '2011-09-24 06:30:06'
+    slug: lifesaving
+  ScssMeritBadge_71:
+    name: 'Mammal Study'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: mammal-study
+  ScssMeritBadge_72:
+    name: Medicine
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: medicine
+  ScssMeritBadge_73:
+    name: Metalwork
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: metalwork
+  ScssMeritBadge_74:
+    name: 'Model Design and Building'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: model-design-and-building
+  ScssMeritBadge_75:
+    name: Motorboating
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: motorboating
+  ScssMeritBadge_76:
+    name: Music
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: music
+  ScssMeritBadge_77:
+    name: Nature
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: nature
+  ScssMeritBadge_78:
+    name: 'Nuclear Science'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: nuclear-science
+  ScssMeritBadge_79:
+    name: Oceanography
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: oceanography
+  ScssMeritBadge_80:
+    name: Orienteering
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: orienteering
+  ScssMeritBadge_81:
+    name: Painting
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: painting
+  ScssMeritBadge_82:
+    name: 'Personal Fitness'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: personal-fitness
+  ScssMeritBadge_83:
+    name: 'Personal Management'
+    num_reqs: null
+    tte: true
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: personal-management
+  ScssMeritBadge_84:
+    name: Pets
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:07'
+    updated_at: '2011-09-24 06:30:07'
+    slug: pets
+  ScssMeritBadge_85:
+    name: Photography
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: photography
+  ScssMeritBadge_86:
+    name: Pioneering
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: pioneering
+  ScssMeritBadge_87:
+    name: 'Plant Science'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: plant-science
+  ScssMeritBadge_88:
+    name: Plumbing
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: plumbing
+  ScssMeritBadge_89:
+    name: Pottery
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: pottery
+  ScssMeritBadge_90:
+    name: 'Public Health'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: public-health
+  ScssMeritBadge_91:
+    name: 'Public Speaking'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: public-speaking
+  ScssMeritBadge_92:
+    name: 'Pulp and Paper'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: pulp-and-paper
+  ScssMeritBadge_93:
+    name: Radio
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: radio
+  ScssMeritBadge_94:
+    name: Railroading
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: railroading
+  ScssMeritBadge_95:
+    name: Reading
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: reading
+  ScssMeritBadge_96:
+    name: 'Reptile and Amphibian Study'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: reptile-and-amphibian-study
+  ScssMeritBadge_97:
+    name: 'Rifle Shooting'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:08'
+    updated_at: '2011-09-24 06:30:08'
+    slug: rifle-shooting
+  ScssMeritBadge_98:
+    name: Rowing
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: rowing
+  ScssMeritBadge_99:
+    name: Safety
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: safety
+  ScssMeritBadge_100:
+    name: Salesmanship
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: salesmanship
+  ScssMeritBadge_101:
+    name: 'Scouting Heritage'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: scouting-heritage
+  ScssMeritBadge_102:
+    name: Scholarship
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: scholarship
+  ScssMeritBadge_103:
+    name: 'Scuba Diving'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: scuba-diving
+  ScssMeritBadge_104:
+    name: Sculpture
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: sculpture
+  ScssMeritBadge_105:
+    name: 'Shotgun Shooting'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: shotgun-shooting
+  ScssMeritBadge_106:
+    name: Skating
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: skating
+  ScssMeritBadge_107:
+    name: 'Small-Boat Sailing'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: small-boat-sailing
+  ScssMeritBadge_108:
+    name: 'Snow Sports'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: snow-sports
+  ScssMeritBadge_109:
+    name: 'Soil and Water Conservation'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: soil-and-water-conservation
+  ScssMeritBadge_110:
+    name: 'Space Exploration'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: space-exploration
+  ScssMeritBadge_111:
+    name: Sports
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:09'
+    updated_at: '2011-09-24 06:30:09'
+    slug: sports
+  ScssMeritBadge_112:
+    name: 'Stamp Collecting'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: stamp-collecting
+  ScssMeritBadge_113:
+    name: Surveying
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: surveying
+  ScssMeritBadge_114:
+    name: Swimming
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: swimming
+  ScssMeritBadge_115:
+    name: Textile
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: textile
+  ScssMeritBadge_116:
+    name: Theater
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: theater
+  ScssMeritBadge_117:
+    name: Tracking
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: tracking
+  ScssMeritBadge_118:
+    name: 'Traffic Safety'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: traffic-safety
+  ScssMeritBadge_119:
+    name: 'Truck Transportation'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: truck-transportation
+  ScssMeritBadge_120:
+    name: 'Veterinary Medicine'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: veterinary-medicine
+  ScssMeritBadge_121:
+    name: 'Water Sports'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: water-sports
+  ScssMeritBadge_122:
+    name: Weather
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: weather
+  ScssMeritBadge_123:
+    name: Whitewater
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:10'
+    updated_at: '2011-09-24 06:30:10'
+    slug: whitewater
+  ScssMeritBadge_124:
+    name: 'Wilderness Survival'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: wilderness-survival
+  ScssMeritBadge_125:
+    name: 'Wood Carving'
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: wood-carving
+  ScssMeritBadge_126:
+    name: Woodwork
+    num_reqs: null
+    tte: false
+    img: tba.gif
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: woodwork

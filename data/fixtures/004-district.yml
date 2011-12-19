@@ -1,0 +1,89 @@
+ScssDistrict:
+  ScssDistrict_1:
+    name: 'Casco Bay'
+    code: CB
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: casco-bay
+  ScssDistrict_2:
+    name: York
+    code: YK
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: york
+  ScssDistrict_3:
+    name: 'Abnaki District'
+    code: AB
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: abnaki-district
+  ScssDistrict_4:
+    name: 'Downeast District'
+    code: DE
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: downeast-district
+  ScssDistrict_5:
+    name: 'Kennebec Valley District'
+    code: KV
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: kennebec-valley-district
+  ScssDistrict_6:
+    name: 'Hancock District'
+    code: HC
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: hancock-district
+  ScssDistrict_7:
+    name: 'North Star District'
+    code: NS
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: north-star-district
+  ScssDistrict_8:
+    name: 'Penquis District'
+    code: PQ
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: penquis-district
+  ScssDistrict_9:
+    name: 'PV District'
+    code: PV
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: pv-district
+  ScssDistrict_10:
+    name: 'Waldo District'
+    code: WD
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: waldo-district
+  ScssDistrict_11:
+    name: 'Washington District'
+    code: WA
+    img: null
+    zone_id: '29'
+    created_at: '2011-09-24 06:30:04'
+    updated_at: '2011-09-24 06:30:04'
+    slug: washington-district    

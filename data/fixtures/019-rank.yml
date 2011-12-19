@@ -1,0 +1,28 @@
+ScssRank:
+  Adult:
+    name: Adult Leader
+    slug: adult-leader
+  Ranger:
+    name: Lone Ranger
+    slug: lone-ranger
+  Basic:
+    name: Basic
+    slug: basic
+  Tenderfoot:
+    name: Tenderfoot
+    slug: tenderfoot
+  FirstClass:
+    name: First Class
+    slug: first-class
+  SecondClass:
+    name: Second Class
+    slug: second-class
+  Star:
+    name: Star
+    slug: star
+  Life:
+    name: life
+    slug: life
+  Eagle:
+    name: eagle
+    slug: eagle

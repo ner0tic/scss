@@ -1,0 +1,1268 @@
+ScssZone:
+  ScssZone_1:
+    country_id: '223'
+    code: AL
+    name: Alabama
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: alabama
+  ScssZone_2:
+    country_id: '223'
+    code: AK
+    name: Alaska
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: alaska
+  ScssZone_3:
+    country_id: '223'
+    code: AS
+    name: 'American Samoa'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: american-samoa
+  ScssZone_4:
+    country_id: '223'
+    code: AZ
+    name: Arizona
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: arizona
+  ScssZone_5:
+    country_id: '223'
+    code: AR
+    name: Arkansas
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: arkansas
+  ScssZone_6:
+    country_id: '223'
+    code: AF
+    name: 'Armed Forces Africa'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: armed-forces-africa
+  ScssZone_7:
+    country_id: '223'
+    code: AA
+    name: 'Armed Forces Americas'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: armed-forces-americas
+  ScssZone_8:
+    country_id: '223'
+    code: AC
+    name: 'Armed Forces Canada'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: armed-forces-canada
+  ScssZone_9:
+    country_id: '223'
+    code: AE
+    name: 'Armed Forces Europe'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: armed-forces-europe
+  ScssZone_10:
+    country_id: '223'
+    code: AM
+    name: 'Armed Forces Middle East'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: armed-forces-middle-east
+  ScssZone_11:
+    country_id: '223'
+    code: AP
+    name: 'Armed Forces Pacific'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: armed-forces-pacific
+  ScssZone_12:
+    country_id: '223'
+    code: CA
+    name: California
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: california
+  ScssZone_13:
+    country_id: '223'
+    code: CO
+    name: Colorado
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: colorado
+  ScssZone_14:
+    country_id: '223'
+    code: CT
+    name: Connecticut
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: connecticut
+  ScssZone_15:
+    country_id: '223'
+    code: DE
+    name: Delaware
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: delaware
+  ScssZone_16:
+    country_id: '223'
+    code: DC
+    name: 'District of Columbia'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: district-of-columbia
+  ScssZone_17:
+    country_id: '223'
+    code: FM
+    name: 'Federated States Of Micronesia'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: federated-states-of-micronesia
+  ScssZone_18:
+    country_id: '223'
+    code: FL
+    name: Florida
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: florida
+  ScssZone_19:
+    country_id: '223'
+    code: GA
+    name: Georgia
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: georgia
+  ScssZone_20:
+    country_id: '223'
+    code: GU
+    name: Guam
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: guam
+  ScssZone_21:
+    country_id: '223'
+    code: HI
+    name: Hawaii
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: hawaii
+  ScssZone_22:
+    country_id: '223'
+    code: ID
+    name: Idaho
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: idaho
+  ScssZone_23:
+    country_id: '223'
+    code: IL
+    name: Illinois
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: illinois
+  ScssZone_24:
+    country_id: '223'
+    code: IN
+    name: Indiana
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: indiana
+  ScssZone_25:
+    country_id: '223'
+    code: IA
+    name: Iowa
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: iowa
+  ScssZone_26:
+    country_id: '223'
+    code: KS
+    name: Kansas
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: kansas
+  ScssZone_27:
+    country_id: '223'
+    code: KY
+    name: Kentucky
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: kentucky
+  ScssZone_28:
+    country_id: '223'
+    code: LA
+    name: Louisiana
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: louisiana
+  ScssZone_29:
+    country_id: '223'
+    code: ME
+    name: Maine
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: maine
+  ScssZone_30:
+    country_id: '223'
+    code: MH
+    name: 'Marshall Islands'
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: marshall-islands
+  ScssZone_31:
+    country_id: '223'
+    code: MD
+    name: Maryland
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: maryland
+  ScssZone_32:
+    country_id: '223'
+    code: MA
+    name: Massachusetts
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: massachusetts
+  ScssZone_33:
+    country_id: '223'
+    code: MI
+    name: Michigan
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: michigan
+  ScssZone_34:
+    country_id: '223'
+    code: MN
+    name: Minnesota
+    created_at: '2011-09-24 06:29:59'
+    updated_at: '2011-09-24 06:29:59'
+    slug: minnesota
+  ScssZone_35:
+    country_id: '223'
+    code: MS
+    name: Mississippi
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: mississippi
+  ScssZone_36:
+    country_id: '223'
+    code: MO
+    name: Missouri
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: missouri
+  ScssZone_37:
+    country_id: '223'
+    code: MT
+    name: Montana
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: montana
+  ScssZone_38:
+    country_id: '223'
+    code: NE
+    name: Nebraska
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: nebraska
+  ScssZone_39:
+    country_id: '223'
+    code: NV
+    name: Nevada
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: nevada
+  ScssZone_40:
+    country_id: '223'
+    code: NH
+    name: 'New Hampshire'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: new-hampshire
+  ScssZone_41:
+    country_id: '223'
+    code: NJ
+    name: 'New Jersey'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: new-jersey
+  ScssZone_42:
+    country_id: '223'
+    code: NM
+    name: 'New Mexico'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: new-mexico
+  ScssZone_43:
+    country_id: '223'
+    code: NY
+    name: 'New York'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: new-york
+  ScssZone_44:
+    country_id: '223'
+    code: NC
+    name: 'North Carolina'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: north-carolina
+  ScssZone_45:
+    country_id: '223'
+    code: ND
+    name: 'North Dakota'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: north-dakota
+  ScssZone_46:
+    country_id: '223'
+    code: MP
+    name: 'Northern Mariana Islands'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: northern-mariana-islands
+  ScssZone_47:
+    country_id: '223'
+    code: OH
+    name: Ohio
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: ohio
+  ScssZone_48:
+    country_id: '223'
+    code: OK
+    name: Oklahoma
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: oklahoma
+  ScssZone_49:
+    country_id: '223'
+    code: OR
+    name: Oregon
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: oregon
+  ScssZone_50:
+    country_id: '223'
+    code: PW
+    name: Palau
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: palau
+  ScssZone_51:
+    country_id: '223'
+    code: PA
+    name: Pennsylvania
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: pennsylvania
+  ScssZone_52:
+    country_id: '223'
+    code: PR
+    name: 'Puerto Rico'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: puerto-rico
+  ScssZone_53:
+    country_id: '223'
+    code: RI
+    name: 'Rhode Island'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: rhode-island
+  ScssZone_54:
+    country_id: '223'
+    code: SC
+    name: 'South Carolina'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: south-carolina
+  ScssZone_55:
+    country_id: '223'
+    code: SD
+    name: 'South Dakota'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: south-dakota
+  ScssZone_56:
+    country_id: '223'
+    code: TN
+    name: Tennessee
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: tennessee
+  ScssZone_57:
+    country_id: '223'
+    code: TX
+    name: Texas
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: texas
+  ScssZone_58:
+    country_id: '223'
+    code: UT
+    name: Utah
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: utah
+  ScssZone_59:
+    country_id: '223'
+    code: VT
+    name: Vermont
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: vermont
+  ScssZone_60:
+    country_id: '223'
+    code: VI
+    name: 'Virgin Islands'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: virgin-islands
+  ScssZone_61:
+    country_id: '223'
+    code: VA
+    name: Virginia
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: virginia
+  ScssZone_62:
+    country_id: '223'
+    code: WA
+    name: Washington
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: washington
+  ScssZone_63:
+    country_id: '223'
+    code: WV
+    name: 'West Virginia'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: west-virginia
+  ScssZone_64:
+    country_id: '223'
+    code: WI
+    name: Wisconsin
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: wisconsin
+  ScssZone_65:
+    country_id: '223'
+    code: WY
+    name: Wyoming
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: wyoming
+  ScssZone_66:
+    country_id: '38'
+    code: AB
+    name: Alberta
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: alberta
+  ScssZone_67:
+    country_id: '38'
+    code: BC
+    name: 'British Columbia'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: british-columbia
+  ScssZone_68:
+    country_id: '38'
+    code: MB
+    name: Manitoba
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: manitoba
+  ScssZone_69:
+    country_id: '38'
+    code: NF
+    name: Newfoundland
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: newfoundland
+  ScssZone_70:
+    country_id: '38'
+    code: NB
+    name: 'New Brunswick'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: new-brunswick
+  ScssZone_71:
+    country_id: '38'
+    code: NS
+    name: 'Nova Scotia'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: nova-scotia
+  ScssZone_72:
+    country_id: '38'
+    code: NT
+    name: 'Northwest Territories'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: northwest-territories
+  ScssZone_73:
+    country_id: '38'
+    code: NU
+    name: Nunavut
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: nunavut
+  ScssZone_74:
+    country_id: '38'
+    code: ON
+    name: Ontario
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: ontario
+  ScssZone_75:
+    country_id: '38'
+    code: PE
+    name: 'Prince Edward Island'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: prince-edward-island
+  ScssZone_76:
+    country_id: '38'
+    code: QC
+    name: Quebec
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: quebec
+  ScssZone_77:
+    country_id: '38'
+    code: SK
+    name: Saskatchewan
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: saskatchewan
+  ScssZone_78:
+    country_id: '38'
+    code: YT
+    name: 'Yukon Territory'
+    created_at: '2011-09-24 06:30:00'
+    updated_at: '2011-09-24 06:30:00'
+    slug: yukon-territory
+  ScssZone_79:
+    country_id: '81'
+    code: NDS
+    name: Niedersachsen
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: niedersachsen
+  ScssZone_80:
+    country_id: '81'
+    code: BAW
+    name: Baden-Wrttemberg
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: baden-wrttemberg
+  ScssZone_81:
+    country_id: '81'
+    code: BAY
+    name: Bayern
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: bayern
+  ScssZone_82:
+    country_id: '81'
+    code: BER
+    name: Berlin
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: berlin
+  ScssZone_83:
+    country_id: '81'
+    code: BRG
+    name: Brandenburg
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: brandenburg
+  ScssZone_84:
+    country_id: '81'
+    code: BRE
+    name: Bremen
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: bremen
+  ScssZone_85:
+    country_id: '81'
+    code: HAM
+    name: Hamburg
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: hamburg
+  ScssZone_86:
+    country_id: '81'
+    code: HES
+    name: Hessen
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: hessen
+  ScssZone_87:
+    country_id: '81'
+    code: MEC
+    name: Mecklenburg-Vorpommern
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: mecklenburg-vorpommern
+  ScssZone_88:
+    country_id: '81'
+    code: NRW
+    name: Nordrhein-Westfalen
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: nordrhein-westfalen
+  ScssZone_89:
+    country_id: '81'
+    code: RHE
+    name: Rheinland-Pfalz
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: rheinland-pfalz
+  ScssZone_90:
+    country_id: '81'
+    code: SAR
+    name: Saarland
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: saarland
+  ScssZone_91:
+    country_id: '81'
+    code: SAS
+    name: Sachsen
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: sachsen
+  ScssZone_92:
+    country_id: '81'
+    code: SAC
+    name: Sachsen-Anhalt
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: sachsen-anhalt
+  ScssZone_93:
+    country_id: '81'
+    code: SCN
+    name: Schleswig-Holstein
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: schleswig-holstein
+  ScssZone_94:
+    country_id: '81'
+    code: THE
+    name: Thringen
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: thringen
+  ScssZone_95:
+    country_id: '14'
+    code: WI
+    name: Wien
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: wien
+  ScssZone_96:
+    country_id: '14'
+    code: NO
+    name: Niedersterreich
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: niedersterreich
+  ScssZone_97:
+    country_id: '14'
+    code: OO
+    name: Obersterreich
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: obersterreich
+  ScssZone_98:
+    country_id: '14'
+    code: SB
+    name: Salzburg
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: salzburg
+  ScssZone_99:
+    country_id: '14'
+    code: KN
+    name: Krnten
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: krnten
+  ScssZone_100:
+    country_id: '14'
+    code: ST
+    name: Steiermark
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: steiermark
+  ScssZone_101:
+    country_id: '14'
+    code: TI
+    name: Tirol
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: tirol
+  ScssZone_102:
+    country_id: '14'
+    code: BL
+    name: Burgenland
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: burgenland
+  ScssZone_103:
+    country_id: '14'
+    code: VB
+    name: Voralberg
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: voralberg
+  ScssZone_104:
+    country_id: '204'
+    code: AG
+    name: Aargau
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: aargau
+  ScssZone_105:
+    country_id: '204'
+    code: AI
+    name: 'Appenzell Innerrhoden'
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: appenzell-innerrhoden
+  ScssZone_106:
+    country_id: '204'
+    code: AR
+    name: 'Appenzell Ausserrhoden'
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: appenzell-ausserrhoden
+  ScssZone_107:
+    country_id: '204'
+    code: BE
+    name: Bern
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: bern
+  ScssZone_108:
+    country_id: '204'
+    code: BL
+    name: Basel-Landschaft
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: basel-landschaft
+  ScssZone_109:
+    country_id: '204'
+    code: BS
+    name: Basel-Stadt
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: basel-stadt
+  ScssZone_110:
+    country_id: '204'
+    code: FR
+    name: Freiburg
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: freiburg
+  ScssZone_111:
+    country_id: '204'
+    code: GE
+    name: Genf
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: genf
+  ScssZone_112:
+    country_id: '204'
+    code: GL
+    name: Glarus
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: glarus
+  ScssZone_113:
+    country_id: '204'
+    code: JU
+    name: Graubnden
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: graubnden
+  ScssZone_114:
+    country_id: '204'
+    code: JU
+    name: Jura
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: jura
+  ScssZone_115:
+    country_id: '204'
+    code: LU
+    name: Luzern
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: luzern
+  ScssZone_116:
+    country_id: '204'
+    code: NE
+    name: Neuenburg
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: neuenburg
+  ScssZone_117:
+    country_id: '204'
+    code: NW
+    name: Nidwalden
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: nidwalden
+  ScssZone_118:
+    country_id: '204'
+    code: OW
+    name: Obwalden
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: obwalden
+  ScssZone_119:
+    country_id: '204'
+    code: SG
+    name: 'St. Gallen'
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: st-gallen
+  ScssZone_120:
+    country_id: '204'
+    code: SH
+    name: Schaffhausen
+    created_at: '2011-09-24 06:30:01'
+    updated_at: '2011-09-24 06:30:01'
+    slug: schaffhausen
+  ScssZone_121:
+    country_id: '204'
+    code: SO
+    name: Solothurn
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: solothurn
+  ScssZone_122:
+    country_id: '204'
+    code: SZ
+    name: Schwyz
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: schwyz
+  ScssZone_123:
+    country_id: '204'
+    code: TG
+    name: Thurgau
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: thurgau
+  ScssZone_124:
+    country_id: '204'
+    code: TI
+    name: Tessin
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: tessin
+  ScssZone_125:
+    country_id: '204'
+    code: UR
+    name: Uri
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: uri
+  ScssZone_126:
+    country_id: '204'
+    code: VD
+    name: Waadt
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: waadt
+  ScssZone_127:
+    country_id: '204'
+    code: VS
+    name: Wallis
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: wallis
+  ScssZone_128:
+    country_id: '204'
+    code: ZG
+    name: Zug
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: zug
+  ScssZone_129:
+    country_id: '204'
+    code: ZH
+    name: Zrich
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: zrich
+  ScssZone_130:
+    country_id: '195'
+    code: 'A Corua'
+    name: 'A Corua'
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: a-corua
+  ScssZone_131:
+    country_id: '195'
+    code: Alava
+    name: Alava
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: alava
+  ScssZone_132:
+    country_id: '195'
+    code: Albacete
+    name: Albacete
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: albacete
+  ScssZone_133:
+    country_id: '195'
+    code: Alicante
+    name: Alicante
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: alicante
+  ScssZone_134:
+    country_id: '195'
+    code: Almeria
+    name: Almeria
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: almeria
+  ScssZone_135:
+    country_id: '195'
+    code: Asturias
+    name: Asturias
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: asturias
+  ScssZone_136:
+    country_id: '195'
+    code: Avila
+    name: Avila
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: avila
+  ScssZone_137:
+    country_id: '195'
+    code: Badajoz
+    name: Badajoz
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: badajoz
+  ScssZone_138:
+    country_id: '195'
+    code: Baleares
+    name: Baleares
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: baleares
+  ScssZone_139:
+    country_id: '195'
+    code: Barcelona
+    name: Barcelona
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: barcelona
+  ScssZone_140:
+    country_id: '195'
+    code: Burgos
+    name: Burgos
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: burgos
+  ScssZone_141:
+    country_id: '195'
+    code: Caceres
+    name: Caceres
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: caceres
+  ScssZone_142:
+    country_id: '195'
+    code: Cadiz
+    name: Cadiz
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: cadiz
+  ScssZone_143:
+    country_id: '195'
+    code: Cantabria
+    name: Cantabria
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: cantabria
+  ScssZone_144:
+    country_id: '195'
+    code: Castellon
+    name: Castellon
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: castellon
+  ScssZone_145:
+    country_id: '195'
+    code: Ceuta
+    name: Ceuta
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: ceuta
+  ScssZone_146:
+    country_id: '195'
+    code: 'Ciudad Real'
+    name: 'Ciudad Real'
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: ciudad-real
+  ScssZone_147:
+    country_id: '195'
+    code: Cordoba
+    name: Cordoba
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: cordoba
+  ScssZone_148:
+    country_id: '195'
+    code: Cuenca
+    name: Cuenca
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: cuenca
+  ScssZone_149:
+    country_id: '195'
+    code: Girona
+    name: Girona
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: girona
+  ScssZone_150:
+    country_id: '195'
+    code: Granada
+    name: Granada
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: granada
+  ScssZone_151:
+    country_id: '195'
+    code: Guadalajara
+    name: Guadalajara
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: guadalajara
+  ScssZone_152:
+    country_id: '195'
+    code: Guipuzcoa
+    name: Guipuzcoa
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: guipuzcoa
+  ScssZone_153:
+    country_id: '195'
+    code: Huelva
+    name: Huelva
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: huelva
+  ScssZone_154:
+    country_id: '195'
+    code: Huesca
+    name: Huesca
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: huesca
+  ScssZone_155:
+    country_id: '195'
+    code: Jaen
+    name: Jaen
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: jaen
+  ScssZone_156:
+    country_id: '195'
+    code: 'La Rioja'
+    name: 'La Rioja'
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: la-rioja
+  ScssZone_157:
+    country_id: '195'
+    code: 'Las Palmas'
+    name: 'Las Palmas'
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: las-palmas
+  ScssZone_158:
+    country_id: '195'
+    code: Leon
+    name: Leon
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: leon
+  ScssZone_159:
+    country_id: '195'
+    code: Lleida
+    name: Lleida
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: lleida
+  ScssZone_160:
+    country_id: '195'
+    code: Lugo
+    name: Lugo
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: lugo
+  ScssZone_161:
+    country_id: '195'
+    code: Madrid
+    name: Madrid
+    created_at: '2011-09-24 06:30:02'
+    updated_at: '2011-09-24 06:30:02'
+    slug: madrid
+  ScssZone_162:
+    country_id: '195'
+    code: Malaga
+    name: Malaga
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: malaga
+  ScssZone_163:
+    country_id: '195'
+    code: Melilla
+    name: Melilla
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: melilla
+  ScssZone_164:
+    country_id: '195'
+    code: Murcia
+    name: Murcia
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: murcia
+  ScssZone_165:
+    country_id: '195'
+    code: Navarra
+    name: Navarra
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: navarra
+  ScssZone_166:
+    country_id: '195'
+    code: Ourense
+    name: Ourense
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: ourense
+  ScssZone_167:
+    country_id: '195'
+    code: Palencia
+    name: Palencia
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: palencia
+  ScssZone_168:
+    country_id: '195'
+    code: Pontevedra
+    name: Pontevedra
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: pontevedra
+  ScssZone_169:
+    country_id: '195'
+    code: Salamanca
+    name: Salamanca
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: salamanca
+  ScssZone_170:
+    country_id: '195'
+    code: 'Santa Cruz de Tenerife'
+    name: 'Santa Cruz de Tenerife'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: santa-cruz-de-tenerife
+  ScssZone_171:
+    country_id: '195'
+    code: Segovia
+    name: Segovia
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: segovia
+  ScssZone_172:
+    country_id: '195'
+    code: Sevilla
+    name: Sevilla
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: sevilla
+  ScssZone_173:
+    country_id: '195'
+    code: Soria
+    name: Soria
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: soria
+  ScssZone_174:
+    country_id: '195'
+    code: Tarragona
+    name: Tarragona
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: tarragona
+  ScssZone_175:
+    country_id: '195'
+    code: Teruel
+    name: Teruel
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: teruel
+  ScssZone_176:
+    country_id: '195'
+    code: Toledo
+    name: Toledo
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: toledo
+  ScssZone_177:
+    country_id: '195'
+    code: Valencia
+    name: Valencia
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: valencia
+  ScssZone_178:
+    country_id: '195'
+    code: Valladolid
+    name: Valladolid
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: valladolid
+  ScssZone_179:
+    country_id: '195'
+    code: Vizcaya
+    name: Vizcaya
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: vizcaya
+  ScssZone_180:
+    country_id: '195'
+    code: Zamora
+    name: Zamora
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: zamora
+  ScssZone_181:
+    country_id: '195'
+    code: Zaragoza
+    name: Zaragoza
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+    slug: zaragoza

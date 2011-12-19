@@ -1,0 +1,34 @@
+9
+
+dir
+33227
+http://svn.symfony-project.com/plugins/sfFacebookConnectPlugin/trunk/modules/sfFacebookConnectDemo
+http://svn.symfony-project.com
+
+
+
+2009-10-07T08:40:44.070233Z
+22850
+fabriceb
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ee427ae8-e902-0410-961c-c3ed070cd9f9
+
+actions
+dir
+
+templates
+dir
+

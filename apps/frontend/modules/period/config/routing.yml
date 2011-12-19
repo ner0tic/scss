@@ -1,0 +1,7 @@
+period:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssPeriod
+    module: period
+    prefix_path: /camps/:district_slug/:camp_slug/:week_slug
+    column: period_slug

@@ -1,0 +1,55 @@
+ScssRequirement:
+  ScssRequirement_1:
+    label: '1'
+    parent_id: '0'
+    text: 'Choose One'
+    optional: false
+    mb_id: '1'
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: '1'
+  ScssRequirement_2:
+    label: a
+    parent_id: '1'
+    text: 'option a'
+    optional: true
+    mb_id: '1'
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: a
+  ScssRequirement_3:
+    label: b
+    parent_id: '1'
+    text: 'option b'
+    optional: true
+    mb_id: '1'
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: b
+  ScssRequirement_4:
+    label: '2'
+    parent_id: '0'
+    text: 'req 2'
+    optional: false
+    mb_id: '1'
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: '2'
+  ScssRequirement_5:
+    label: '3'
+    parent_id: '0'
+    text: 'req 3'
+    optional: false
+    mb_id: '1'
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: '3'
+  ScssRequirement_6:
+    label: '1'
+    parent_id: '0'
+    text: 'req 1'
+    optional: false
+    mb_id: '2'
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: 1-1

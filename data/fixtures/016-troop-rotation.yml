@@ -1,0 +1,5 @@
+ScssTroopRotation:
+  rotation_1:
+    name: swamp romp
+    description: a treck through the swamp
+    week_id: '1'

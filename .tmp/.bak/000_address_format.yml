@@ -1,0 +1,22 @@
+# data/fixtures/address_format.yml
+ScssAddressFormat:
+  -
+#    address_format_id: 1
+    address_format: $firstname $lastname$cr$streets$cr$city, $postcode$cr$statecomma$country
+    address_summary: $city / $country
+  -
+#    address_format_id: 2
+    address_format: $firstname $lastname$cr$streets$cr$city, $state    $postcode$cr$country
+    address_summary: $city, $state / $country
+  -
+#    address_format_id: 3
+    address_format: $firstname $lastname$cr$streets$cr$city$cr$postcode - $statecomma$country
+    address_summary: $state / $country
+  -
+#    address_format_id: 4
+    address_format: $firstname $lastname$cr$streets$cr$city ($postcode)$cr$country
+    address_summary: $postcode / $country
+  -
+#    address_format_id: 5
+    address_format: $firstname $lastname$cr$streets$cr$postcode $city$cr$country
+    address_summary: $city / $country

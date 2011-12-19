@@ -1,0 +1,8 @@
+camp:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssCamp
+    module: camp
+    prefix_path: /camps/:district_slug
+    column: camp_slug
+

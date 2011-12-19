@@ -1,0 +1,69 @@
+sfGuardPermission:
+  Permission_admin:
+    name:           admin
+    description:    Administrator permission
+  Permission_camp_admin:
+    name:           camp admin
+    description:    Camp Administrator permission
+  Permission_camp_staff:
+    name:           camp staff
+    description:    Camp Staff permission
+  Permission_troop:
+    name:           troop users
+    description:    Troop scoutmasters
+  Permission_district_admin:
+    name:           district admin
+    description:    District admin
+sfGuardGroup:
+  Group_admin:
+    name:           siteAdmin
+    description:    Administrator group
+    Permissions:    [Permission_admin]
+  Group_camp_admin:
+    name:           campAdmin
+    description:    camp admin
+    Permissions:    [Permission_camp_admin]
+  Group_camp_staff:
+    name:           campStaff
+    description:    camp staff
+    Permissions:    [Permission_camp_staff]
+  Group_troop:
+    name:           troopAdmin
+    description:    Troop ScoutMasters
+    Permissions:    [Permission_troop]
+  Group_district_admin:
+    name:           districtAdmin
+    description:    District admin
+    Permissions:    [Permission_district_admin]
+sfGuardUser:
+  User_admin:
+    first_name:     David
+    last_name:      Durost
+    email_address:  david.durost@gmail.com
+    username:       ner0tic
+    password:       gatorade
+    is_super_admin: true
+    Groups:         [Group_admin]
+  Matt:
+    first_name:     Matt
+    last_name:      Farmer
+    email_address:  pos@mattfarmer.net
+    username:       m14t
+    password:       password
+    is_super_admin: false
+    Groups:         [Group_troop]
+sfGuardUserProfile:
+  Profile_admin:
+    user_id: '1'
+    access_level: 5
+    troop_id: '1'
+    first_name: david
+    last_name: durost
+    facebook_uid: 5824480
+    email: david.durost@gmail.com
+    active_troop_id: '1'
+  matt:
+    user_id: '2'
+    access_level: 1
+    troop_id: '2'
+    active_troop_id: '2'

@@ -1,0 +1,9 @@
+<?php // apps/frontend/modules/sfGuardUser/actions/components.class.php
+  class sfGuardUserComponents extends sfComponents {
+    public function executeRender() {
+      $this->user = $sf_user;
+      $this->menu = array();
+      $this->menu = sfYaml::load(sfConfig::get('sf_app_config_dir').'/'.sfConfig::get('app_menu_file'));
+    }
+  }
+

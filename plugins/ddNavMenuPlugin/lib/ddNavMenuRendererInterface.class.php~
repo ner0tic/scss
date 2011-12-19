@@ -1,0 +1,4 @@
+<?php // lib/ddNavMenuRendererInterface.class.php
+  interface ddNavMenuRendererInterface {
+    public function render(ddNavMenu $menu);
+  }

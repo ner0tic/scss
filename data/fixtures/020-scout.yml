@@ -1,0 +1,25 @@
+ScssScout:
+  ScssScout_1:
+    first_name: David
+    last_name: Durost
+    dob: '1993-05-21 00:00:00'
+    patrol_id: '1'
+    created_at: '2011-09-24 06:30:13'
+    updated_at: '2011-09-24 06:30:13'
+    slug: david-durost
+  ScssScout_2:
+    first_name: Matt
+    last_name: Farmer
+    dob: '1993-08-17 00:00:00'
+    patrol_id: '1'
+    created_at: '2011-09-24 06:30:13'
+    updated_at: '2011-09-24 06:30:13'
+    slug: matt-farmer
+  ScssScout_3:
+    first_name: Johnny
+    last_name: Scout
+    dob: '1999-01-27 00:00:00'
+    patrol_id: '2'
+    created_at: '2011-09-24 06:30:13'
+    updated_at: '2011-09-24 06:30:13'
+    slug: johnny-scout

@@ -1,0 +1,10 @@
+patrol:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssPatrol
+    module: patrol
+    prefix_path: /troops/:district_slug/:troop_slug/patrols
+    column: patrol_slug
+patrols_by_troop:
+  url: /troops/:district_slug/:troop_slug/patrols
+  param: { module: patrol, action: index }

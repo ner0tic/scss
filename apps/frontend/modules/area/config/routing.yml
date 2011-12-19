@@ -1,0 +1,8 @@
+area:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssArea
+    module: area
+    prefix_path: /camps/:district_slug/:camp_slug/areas
+    column: area_slug
+

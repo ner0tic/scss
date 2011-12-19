@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/23008/plugins/sfFacebookConnectPlugin/trunk/lib/task
+END
+registerUsersTask.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/23008/plugins/sfFacebookConnectPlugin/trunk/lib/task/registerUsersTask.class.php
+END
+facebookgeneratefeedTask.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/21385/plugins/sfFacebookConnectPlugin/trunk/lib/task/facebookgeneratefeedTask.class.php
+END

@@ -1,0 +1,5 @@
+all:
+  storage:
+    class: ddSessionStorageUploadify
+    param:
+      session_name: symfony

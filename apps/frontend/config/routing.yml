@@ -1,0 +1,366 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+########################
+# default rules
+########################
+homepage:
+  url:   /
+  param: { module: default, action: index }
+search:
+  url:  /search
+  param: { module: default, action index }
+dashboard:
+  url:  /dashboard
+  param: { module: dashboard, action: index }
+about:
+  url: /about
+  param: { module: site, action: about }
+contact:
+  url: /contact
+  param: { module: site, action : contact }
+find_user_home:
+  url: /dashboard/set-active-enrollment
+  param: { module: dashboard, action: setActiveEnrollment }
+########################
+# modules
+########################
+scout:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssScout
+    module: scout
+    prefix_path: /troops/:district_slug/:troop_slug/scouts
+    column: scout_slug
+patrol:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssPatrol
+    module: patrol
+    prefix_path: /troops/:district_slug/:troop_slug/patrols
+    column: patrol_slug
+troop:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssTroop
+    module: troop
+    prefix_path: /troops/:district_slug
+    column: troop_slug
+district:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssDistrict
+    module: district
+    prefix_path: /:country_slug/:zone_slug/districts
+    column: district_slug
+camp:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssCamp
+    module: camp
+    prefix_path: /camps/:district_slug
+    column: camp_slug
+class:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssClass
+    module: class
+    prefix_path: /camps/:district_slug/:camp_slug/:week_slug/classes
+    column: class_slug
+course:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssCourse
+    module: course
+    prefix_path: /courses
+    column: course_slug
+week:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssWeek
+    module: week
+    prefix_path: /camps/:district_slug/:camp_slug/weeks
+    column: week_slug
+period:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssPeriod
+    module: period
+    prefix_path: /camps/:district_slug/:camp_slug/:week_slug/periods
+    column: period_slug
+area:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssArea
+    module: area
+    prefix_path: /camps/:district_slug/:camp_slug/areas
+    column: area_slug
+scout_enroll:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssScoutEnrollment
+    module: scoutEnrollment
+    prefix_path: /camps/:district_slug/:camp_slug/:week_slug/scout-enroll
+staff:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssStaff
+    module: staff
+    prefix_path: /camps/:district_slug/:camp_slug/staff
+    column: staff_slug
+cabin:
+  class: sfDoctrineRouteCollection
+  options:
+    model: Scsscabin
+    module: cabin
+    prefix_path: /camps/:district_slug/:camp_slug/cabins
+    column: cabin_slug
+campsite:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssCampsite
+    module: campsite
+    prefix_path: /camps/:district_slug/:camp_slug/campsites
+    column: campsite_slug
+zone:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssZone
+    module: zone
+    prefix_path: /:country_slug/zones
+    column: zone_slug
+country:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssCountry
+    module: country
+    prefix_path: /countries
+    column: country_slug
+#######################
+# menu related
+#######################
+district_settings:
+  url: /settings/district
+  param: { module: district, action: settings }
+district_mgmt:
+  url: /settings/district
+  params: { module: district, action: settings }
+camp_mgmt:
+  url: /settings/camp
+  param: { module: camp, action: settings }
+camp_details:
+  url: /settings/:camp_slug/details
+  param: { module: camp, action: show }
+misc_settings:
+  url: /settings
+  param: { module: site, action: settings }
+reports:
+  url: /reports
+  param: { module: report, action: index }
+#######################
+# reports
+#######################
+report_alpha:
+  url: /reports/alphabetical-list
+  params: { module: report, action: show }
+report_by_patrol:
+  url: /reports/list-by-patrol
+  params: { module: report, action: show }
+report_sm_master:
+  url: /reports/master-schedule
+  params: { module: report, action: show }
+report_staff:
+  url: /reports/staff-list
+  params: { module: reports, action: show }
+report_class:
+  url: /reports/class-list
+  params: { module: reports, action: show }
+report_class_enroll:
+  url: /reports/class-enrollment-list
+  params: { module: reports, action: show }
+#######################
+# * by country
+#######################
+scouts_by_country:
+  url: /:country_slug/scouts
+  params: { module: scout, action: index }
+patrols_by_country:
+  url: /:country_slug/patrols
+  params: { module: patrol, action: index }
+troops_by_country:
+  url: /:country_slug/troops
+  params: { module: troop, action: index }
+districts_by_country:
+  url: /:country_slug/districts
+  params: { module: district, action: index }
+zones_by_country:
+  url: /:country_slug/zones
+  params: { modules: zone, action: index }
+#######################
+# * by zone
+#######################
+#######################
+# * by district
+#######################
+camps_by_district:
+  url: /camps/:district_slug
+  params: { module: camp, action: index }
+#######################
+# * by camp
+#######################
+classes_by_camp:
+  url: /camps/:district_slug/:camp_slug/:week_slug/classes
+  params: { module: class, action: index }
+campsites_by_camp:
+  url: /camps/:district_slug/:camp_slug/campsites
+  params: { module: campsite, action: index }
+cabins_by_camp:
+  url: /camps/:district_slug/:camp_slug/cabins
+  params: { modules: cabin, action: index }
+areas_by_camp:
+  url: /camps/:district_slug/:camp_slug/areas
+  params: { module: area, action: index }
+staff_by_camp:
+  url: /camps/:district_slug/:camp_slug/staff
+  params: { module: staff, action: index }
+#######################
+# * by troop
+#######################
+patrols_by_troop:
+  url: /troops/:district_slug/:troop_slug/patrols
+  params: { module: patrol, action: index }
+scouts_by_troop:
+  url: /troops/:district_slug/:troop_slug/scouts
+  params: { module: scout, action: index }
+#######################
+# * by patrol
+#######################
+scouts_by_patrol:
+  url: /troops/:district_slug/:troop_slug/:patrol_slug/scouts
+  params: { module: scout, action: index }
+#######################
+# staff actions
+#######################
+class_mgmt:
+  url: /camps/:district_slug/:camp_slug/:week_slug/staff/classes
+  param: { module: staff, action: classMgmt }
+staff_info:
+  url: /camps/:district_slug/:camp_slug/:week_slug/staff/info
+  param: { module: staff, action: staffInfo }
+class_mgmt:
+  url: /camps/:district_slug/:camp_slug/:week_slug/class-mgmt
+  params: { module: staff, action: classMgmtSelect }
+class_list:
+  url: /camps/:district_slug/:camp_slug/:week_slug/class-list
+  params: { module: staff, action: classListSelect }
+class_attendance:
+  url: /camps/:district_slug/:camp_slug/:week_slug/:class_slug/attendance
+  params: { module: class, action: attendance }
+#######################
+# troop actions
+#######################
+troop_register:
+  url: /camps/:district_slug/:camp_slug/next-season
+  param: { module: troopEnrollment, action: index }
+sm_info:
+  url: /troops/:district_slug/:troop_slug/sm-info
+  param: { module: troop, action: smInfo }
+troop_mgmt:
+  url: /settings/troop
+  param: { module: troop, action: settings }
+troop_photo:
+  url: /settings/troop/photos
+  param: { module: troop, action: photo }
+upload_troop_photo:
+  url: /settings/troop/photos/upload
+  param: { module: troop, action: upload }
+#######################
+# profile related
+#######################
+edit_profile:
+  url: /accout/settings/profile/edit
+district_settings:
+  url: /settings/district
+  param: { module: district, action: settings }
+camp_mgmt:
+  url: /settings/camp
+  param: { module: camp, action: settings }
+camp_details:
+  url: /settings/:camp_slug/details
+  param: { module: camp, action: show }
+#######################
+# course related
+#######################
+course_grid:
+  url: /courses/grid
+  param: { module: course, action: grid }
+ajaxGrid:
+  url: /courses/ajaxGrid
+  param: { module: course, action: ajaxToggle }
+#######################
+# class related
+#######################
+classes_by_period:
+  url: /:camps/:district_slug/:camp_slug/:week_slug/:period_slug/classes
+  param: { module: class, action: index }
+class_week_list:
+  url: /:camps/:district_slug/:camp_slug/:week_slug/classes
+  param: { module: class, action: index }
+class_search_ajax:
+  url: /:camps/:district_slug/:camp_slug/classes/search/ajax
+  param: { module: class, action: searchAjax }
+#######################
+# forms
+#######################
+form_mb:
+  url: /forms/mb/:mb_slug
+  param: { module: meritBadge, action: form }
+forms_mb:
+  url: /forms/mb
+  param: { module: meritBadge, action: formSelect }
+form_night_out:
+  url: /forms/night-out-request
+form_cabin_change:
+  url: /forms/cabin-change-request
+# Troop
+troop_mgmt:
+  url: /settings/troop
+  param: { module: troop, action: settings }
+troop_photo:
+  url: /settings/troop/photos
+  param: { module: troop, action: photo }
+upload_troop_photo:
+  url: /settings/troop/photos/upload
+  param: { module: troop, action: upload }
+########################
+# auth
+########################
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+sf_guard_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }
+sf_guard_signup:
+  url:  /signup
+  param: { module: sfGuardAuth, action: signup }
+fb_connect:
+  url: /fbc
+  param: { module: dashboard, action: connectFb }
+tw_connect:
+  url: /twc
+  param: { module: dashboard, action: connectTw }
+info_popup:
+  url: /info-popup
+  param: { module: popup, action: info }
+########################
+# generic rules
+########################
+default_index:
+  url:   /:module
+  param: { action: index }
+default:
+  url:   /:module/:action/*

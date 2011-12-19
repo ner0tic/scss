@@ -1,0 +1,358 @@
+ScssCourse:
+  ScssCourse_1:
+    label: 'American Business'
+    meritbadge_id: '1'
+    camp_id: '1'
+    created_at: '2011-09-24 06:30:11'
+    updated_at: '2011-09-24 06:30:11'
+    slug: ''
+  ScssCourse_2:
+    label: 'American Cultures'
+    meritbadge_id: '2'
+    camp_id: '1'
+    created_at: '2011-09-24 06:30:12'
+    updated_at: '2011-09-24 06:30:12'
+    slug: '1'
+  ScssCourse_3:
+    label: 'American Heritage'
+    meritbadge_id: '3'
+    camp_id: '1'
+    created_at: '2011-09-24 06:30:12'
+    updated_at: '2011-09-24 06:30:12'
+    slug: '2'
+  ScssCourse_4:
+    label: 'American Business'
+    meritbadge_id: '1'
+    camp_id: 2
+    created_at: '2011-09-24 06:30:12'
+    updated_at: '2011-09-24 06:30:12'
+    slug: '3'
+  ScssCourse_9:
+    label: Backpacking
+    meritbadge_id: '14'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:16'
+    updated_at: '2011-09-27 17:22:16'
+    slug: backpacking
+  ScssCourse_10:
+    label: Camping
+    meritbadge_id: '18'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:27'
+    updated_at: '2011-09-27 17:22:27'
+    slug: camping
+  ScssCourse_11:
+    label: Canoeing
+    meritbadge_id: '19'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:30'
+    updated_at: '2011-09-27 17:22:30'
+    slug: canoeing
+  ScssCourse_12:
+    label: Cinematography
+    meritbadge_id: '21'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:32'
+    updated_at: '2011-09-27 17:22:32'
+    slug: cinematography
+  ScssCourse_13:
+    label: 'Citizenship in the Community'
+    meritbadge_id: '22'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:36'
+    updated_at: '2011-09-27 17:22:36'
+    slug: citizenship-in-the-community
+  ScssCourse_14:
+    label: 'Citizenship in the Nation'
+    meritbadge_id: '23'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:36'
+    updated_at: '2011-09-27 17:22:36'
+    slug: citizenship-in-the-nation
+  ScssCourse_15:
+    label: 'Citizenship in the World'
+    meritbadge_id: '24'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:38'
+    updated_at: '2011-09-27 17:22:38'
+    slug: citizenship-in-the-world
+  ScssCourse_16:
+    label: Communications
+    meritbadge_id: '28'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:48'
+    updated_at: '2011-09-27 17:22:48'
+    slug: communications
+  ScssCourse_17:
+    label: Computers
+    meritbadge_id: '30'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:50'
+    updated_at: '2011-09-27 17:22:50'
+    slug: computers
+  ScssCourse_18:
+    label: Cooking
+    meritbadge_id: '31'
+    camp_id: '1'
+    created_at: '2011-09-27 17:22:53'
+    updated_at: '2011-09-27 17:22:53'
+    slug: cooking
+  ScssCourse_19:
+    label: 'Emergency Preparedness'
+    meritbadge_id: '40'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:00'
+    updated_at: '2011-09-27 17:23:00'
+    slug: emergency-preparedness
+  ScssCourse_20:
+    label: 'Environmental Science'
+    meritbadge_id: '44'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:04'
+    updated_at: '2011-09-27 17:23:04'
+    slug: environmental-science
+  ScssCourse_21:
+    label: Fingerprinting
+    meritbadge_id: '47'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:09'
+    updated_at: '2011-09-27 17:23:09'
+    slug: fingerprinting
+  ScssCourse_22:
+    label: 'First Aid'
+    meritbadge_id: '49'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:12'
+    updated_at: '2011-09-27 17:23:12'
+    slug: first-aid
+  ScssCourse_23:
+    label: Hiking
+    meritbadge_id: '60'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:30'
+    updated_at: '2011-09-27 17:23:30'
+    slug: hiking
+  ScssCourse_24:
+    label: Lifesaving
+    meritbadge_id: '70'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:35'
+    updated_at: '2011-09-27 17:23:35'
+    slug: lifesaving
+  ScssCourse_25:
+    label: Leatherwork
+    meritbadge_id: '69'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:36'
+    updated_at: '2011-09-27 17:23:36'
+    slug: leatherwork
+  ScssCourse_26:
+    label: 'Mammal Study'
+    meritbadge_id: '71'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:46'
+    updated_at: '2011-09-27 17:23:46'
+    slug: mammal-study
+  ScssCourse_27:
+    label: Motorboating
+    meritbadge_id: '75'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:55'
+    updated_at: '2011-09-27 17:23:55'
+    slug: motorboating
+  ScssCourse_28:
+    label: Metalwork
+    meritbadge_id: '73'
+    camp_id: '1'
+    created_at: '2011-09-27 17:23:57'
+    updated_at: '2011-09-27 17:23:57'
+    slug: metalwork
+  ScssCourse_29:
+    label: Orienteering
+    meritbadge_id: '80'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:03'
+    updated_at: '2011-09-27 17:24:03'
+    slug: orienteering
+  ScssCourse_30:
+    label: Nature
+    meritbadge_id: '77'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:07'
+    updated_at: '2011-09-27 17:24:07'
+    slug: nature
+  ScssCourse_31:
+    label: 'Personal Fitness'
+    meritbadge_id: '82'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:11'
+    updated_at: '2011-09-27 17:24:11'
+    slug: personal-fitness
+  ScssCourse_32:
+    label: 'Personal Management'
+    meritbadge_id: '83'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:14'
+    updated_at: '2011-09-27 17:24:14'
+    slug: personal-management
+  ScssCourse_33:
+    label: Pioneering
+    meritbadge_id: '86'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:17'
+    updated_at: '2011-09-27 17:24:17'
+    slug: pioneering
+  ScssCourse_34:
+    label: Reading
+    meritbadge_id: '95'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:26'
+    updated_at: '2011-09-27 17:24:26'
+    slug: reading
+  ScssCourse_35:
+    label: 'Rifle Shooting'
+    meritbadge_id: '97'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:31'
+    updated_at: '2011-09-27 17:24:31'
+    slug: rifle-shooting
+  ScssCourse_36:
+    label: Rowing
+    meritbadge_id: '98'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:33'
+    updated_at: '2011-09-27 17:24:33'
+    slug: rowing
+  ScssCourse_37:
+    label: Safety
+    meritbadge_id: '99'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:34'
+    updated_at: '2011-09-27 17:24:34'
+    slug: safety
+  ScssCourse_38:
+    label: 'Shotgun Shooting'
+    meritbadge_id: '105'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:38'
+    updated_at: '2011-09-27 17:24:38'
+    slug: shotgun-shooting
+  ScssCourse_39:
+    label: 'Small-Boat Sailing'
+    meritbadge_id: '107'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:42'
+    updated_at: '2011-09-27 17:24:42'
+    slug: small-boat-sailing
+  ScssCourse_40:
+    label: Sports
+    meritbadge_id: '111'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:48'
+    updated_at: '2011-09-27 17:24:48'
+    slug: sports
+  ScssCourse_41:
+    label: 'Water Sports'
+    meritbadge_id: '121'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:55'
+    updated_at: '2011-09-27 17:24:55'
+    slug: water-sports
+  ScssCourse_42:
+    label: Weather
+    meritbadge_id: '122'
+    camp_id: '1'
+    created_at: '2011-09-27 17:24:57'
+    updated_at: '2011-09-27 17:24:57'
+    slug: weather
+  ScssCourse_43:
+    label: 'Wilderness Survival'
+    meritbadge_id: '124'
+    camp_id: '1'
+    created_at: '2011-09-27 17:25:01'
+    updated_at: '2011-09-27 17:25:01'
+    slug: wilderness-survival
+  ScssCourse_44:
+    label: 'Wood Carving'
+    meritbadge_id: '125'
+    camp_id: '1'
+    created_at: '2011-09-27 17:25:02'
+    updated_at: '2011-09-27 17:25:02'
+    slug: wood-carving
+  ScssCourse_45:
+    label: Woodwork
+    meritbadge_id: '126'
+    camp_id: '1'
+    created_at: '2011-09-27 17:25:03'
+    updated_at: '2011-09-27 17:25:03'
+    slug: woodwork
+  ScssCourse_46:
+    label: Fishing
+    meritbadge_id: '51'
+    camp_id: '1'
+    created_at: '2011-09-27 17:25:14'
+    updated_at: '2011-09-27 17:25:14'
+    slug: fishing
+  ScssCourse_47:
+    label: Archery
+    meritbadge_id: '7'
+    camp_id: '1'
+    created_at: '2011-09-28 15:43:08'
+    updated_at: '2011-09-28 15:43:08'
+    slug: archery
+  ScssCourse_48:
+    label: Astronomy
+    meritbadge_id: '10'
+    camp_id: '1'
+    created_at: '2011-09-28 15:43:11'
+    updated_at: '2011-09-28 15:43:11'
+    slug: astronomy
+  ScssCourse_49:
+    label: Basketry
+    meritbadge_id: '15'
+    camp_id: '1'
+    created_at: '2011-09-28 15:43:16'
+    updated_at: '2011-09-28 15:43:16'
+    slug: basketry
+  ScssCourse_50:
+    label: Climbing
+    meritbadge_id: '25'
+    camp_id: '1'
+    created_at: '2011-09-28 15:43:22'
+    updated_at: '2011-09-28 15:43:22'
+    slug: climbing
+  ScssCourse_51:
+    label: Entrepreneurship
+    meritbadge_id: '43'
+    camp_id: '1'
+    created_at: '2011-09-28 15:43:35'
+    updated_at: '2011-09-28 15:43:35'
+    slug: entrepreneurship
+  ScssCourse_52:
+    label: 'Fire Safety'
+    meritbadge_id: '48'
+    camp_id: '1'
+    created_at: '2011-09-28 15:43:41'
+    updated_at: '2011-09-28 15:43:41'
+    slug: fire-safety
+  ScssCourse_53:
+    label: Journalism
+    meritbadge_id: '66'
+    camp_id: '1'
+    created_at: '2011-09-28 15:43:55'
+    updated_at: '2011-09-28 15:43:55'
+    slug: journalism
+  ScssCourse_54:
+    label: Oceanography
+    meritbadge_id: '79'
+    camp_id: '1'
+    created_at: '2011-09-28 15:44:09'
+    updated_at: '2011-09-28 15:44:09'
+    slug: oceanography
+  ScssCourse_55:
+    label: 'Public Speaking'
+    meritbadge_id: '91'
+    camp_id: '1'
+    created_at: '2011-09-28 15:44:19'
+    updated_at: '2011-09-28 15:44:19'
+    slug: public-speaking

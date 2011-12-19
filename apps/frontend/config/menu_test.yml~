@@ -1,0 +1,10 @@
+#all:
+#menus:
+navbar:
+  name: navbar
+  children:
+    home:
+      label: home
+      route: @homepage
+      attributes:
+        class: menu-item

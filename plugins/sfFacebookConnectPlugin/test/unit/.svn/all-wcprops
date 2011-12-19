@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/21687/plugins/sfFacebookConnectPlugin/trunk/test/unit
+END
+sfFacebookDoctrineGuardAdapterTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/21687/plugins/sfFacebookConnectPlugin/trunk/test/unit/sfFacebookDoctrineGuardAdapterTest.php
+END
+sfFacebookPropelGuardAdapterTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/!svn/ver/21385/plugins/sfFacebookConnectPlugin/trunk/test/unit/sfFacebookPropelGuardAdapterTest.php
+END

@@ -1,0 +1,27 @@
+<?php
+// lib/form/scoutEnrollForm.class.php
+    class ScoutEnrollForm extends sfForm {
+        public function configure() {
+            $q = Doctrine_Core::getTable('ScssScout')->createQuery('s')->
+                leftJoin('s.Patrol p')->
+                where('p.troop_id = ?',sfContext::getInstance()->getUser()->getProfile()->getActiveEnrollment()->getTroop()->getId())->
+                orderBy('s.last_name, s.first_name ASC');
+            $this->widgetSchema['scout_id'] = new sfWidgetFormDoctrineChoice(
+                array(
+                    'model' => 'ScssScout',
+                    'query' => $q
+            ));
+
+            $scout = new ScssScout();
+            $sForm = new sfForm();
+            $pMax = sfContext::getInstance()->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getPeriods();
+            for($i = 0; $i < $pMax->count(); $i++) {
+                $enroll = new ScssScoutEnrollment();
+                $enroll->Scout = $scout;
+
+                $form = new ScssScoutEnrollmentForm($enroll,array('period'=>$pMax[$i]));
+                $sForm->embedForm($i,$form);
+            }
+            $this->embedForm('ClassesByPeriod',$sForm);
+        }
+    }

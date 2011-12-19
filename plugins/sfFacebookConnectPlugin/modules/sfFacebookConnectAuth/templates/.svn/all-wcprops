@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/!svn/ver/21687/plugins/sfFacebookConnectPlugin/trunk/modules/sfFacebookConnectAuth/templates
+END
+secureSuccess.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/21385/plugins/sfFacebookConnectPlugin/trunk/modules/sfFacebookConnectAuth/templates/secureSuccess.php
+END
+signinSuccess.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/21687/plugins/sfFacebookConnectPlugin/trunk/modules/sfFacebookConnectAuth/templates/signinSuccess.php
+END

@@ -1,0 +1,28 @@
+ScssAddressBook:
+  ScssAddressBook_1:
+    label: 'Physical Address'
+    street: 'Plains Rd'
+    suburb: null
+    city: Raymond
+    zone_id: '29'
+    postal_code: '262'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+  ScssAddressBook_2:
+    label: 'Physical Address'
+    street: '656 Horsepoint Rd'
+    suburb: null
+    city: Belgrade
+    zone_id: '29'
+    postal_code: '271'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'
+  ScssAddressBook_3:
+    label: 'Mailing Address'
+    street: '45 Camp Roosevelt Rd'
+    suburb: null
+    city: Eddington
+    zone_id: '29'
+    postal_code: '290'
+    created_at: '2011-09-24 06:30:03'
+    updated_at: '2011-09-24 06:30:03'

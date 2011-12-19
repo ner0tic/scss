@@ -1,0 +1,17 @@
+#/data/fixtures/camp.yml
+
+ScssCamp:
+  1:
+    name: William Hinds
+    address_id: 1
+    district_id: 1
+    slug: william-hinds
+  2:
+    name: Bomazeen
+    address_id: 2
+    district_id: 1
+  3:
+    name: Roosevelt
+    address_id: 3
+    district_id: 6
+    fax: 2078663283

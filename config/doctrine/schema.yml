@@ -1,0 +1,576 @@
+## Location
+ScssAddressFormat:
+  actAs:
+    Timestampable: ~
+  columns:
+    address_format:
+      type: string(128)
+      notnull: true
+    address_summary:
+      type: string(48)
+ScssCountry:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      unique: true
+      type: string(64)
+      notnull: true
+    iso_code2:
+      unique: true
+      type: string(2)
+    iso_code3:
+      unique: true
+      type: string(3)
+    address_format_id:
+      type: integer
+      notnull: true
+  relations:
+    AddressFormat:
+      class: ScssAddressFormat
+      foreign: id
+      local: address_format_id
+ScssZone:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    country_id:
+      type: integer
+      notnull: true
+    code:
+      type: string(32)
+    name:
+      type: string(64)
+      notnull: true
+  relations:
+    Country:
+      class: ScssCountry
+      local: country_id
+      foreign: id
+ScssDistrict:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      type: string(60)
+      notnull: true
+    code:
+      type: string(2)
+    img:
+      type: string(200)
+    zone_id:
+      type: integer
+      notnull: true
+  relations:
+    Zone:
+      class: ScssZone
+      local: zone_id
+      foreign: id
+ScssAddressBook:
+  actAs:
+    Timestampable: ~
+  columns:
+    label:
+      type: string(30)
+    street:
+      type: string(50)
+      notnull: true
+    suburb:
+      type: string(50)
+    city:
+      type: string(30)
+      notnull: true
+    zone_id:
+      type: integer
+      notnull: true
+    postal_code:
+      type: string(10)
+      notnull: true
+  relations:
+    Zone:
+      class: ScssZone
+      local: zone_id
+      foreign: id
+ScssCamp:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      type: string(150)
+      notnull: true
+    address_id:
+      type: integer
+      notnull: true
+    district_id:
+      type: integer
+      notnull: true
+    phone:
+      type:     string(40)
+    fax:
+      type:     string(40)
+    email:
+      type:     string(200)
+    url:
+      type:     string(200)      
+      extra:    link 
+  relations:
+    Address:
+      class: ScssAddressBook
+      local: address_id
+      foreign: id
+    District:
+      class: ScssDistrict
+      local: district_id
+      foreign: id
+ScssArea:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      type: string(150)
+      notnull: true
+    parent_id:
+      type: integer
+      default: 0
+    camp_id:
+      type: integer
+      notnull: true
+    staff_id:
+      type: integer
+  relations:
+    Camp:
+      class: ScssCamp
+      local: camp_id
+      foreign: id
+    Staff:
+      class: ScssStaff
+      local: staff_id
+      foreign: id
+ScssSubArea:
+  inheritance:
+    type:             column_aggregation
+    extends:          ScssArea
+    keyField:         parent_id
+ScssCampsite:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      type: string(60)
+      notnull: true
+    max:
+      type: integer
+    camp_id:
+      type: integer
+      notnull: true
+  relations:
+    Camp:
+      class: ScssCamp
+      local: camp_id
+      foreign: id
+ScssCabin:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      type: string(60)
+      notnull: true
+    max:
+      type: integer
+    camp_id:
+      type: integer
+      notnull: true
+  relations:
+    Camp:
+      class: ScssCamp
+      local: camp_id
+      foreign: id
+## Date / Time
+ScssWeek:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [label]
+  columns:
+    label:
+      type: string(50)
+      notnull: true
+    start_date:
+      type: timestamp
+      notnull: true
+    end_date:
+      type: timestamp
+      notnull: true
+    tte:
+      type: boolean
+      default: false
+    camp_id:
+      type: integer
+      notnull: true
+  relations:
+    Camp:
+      class: ScssCamp
+      local: camp_id
+      foreign: id
+ScssPeriod:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [label]
+  columns:
+    label:
+      type: string(25)
+      notnull: true
+    start_time:
+      type: time
+      notnull: true
+    end_time:
+      type: time
+      notnull: true
+    tte:
+      type: boolean
+      default: false
+    week_id:
+      type: integer
+      notnull: true
+  relations:
+    Week:
+      class: ScssWeek
+      local: week_id
+      foreign: id
+ScssCourse:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [label]
+  columns:
+    label:
+      type: string(200)
+    meritbadge_id:
+      type: integer
+      notnull: true
+    camp_id:
+      type: integer
+      notnull: true
+  relations:
+    MeritBadge:
+      class: ScssMeritBadge
+      local: meritbadge_id
+      foreign: id
+    Camp:
+      class: ScssCamp
+      local: camp_id
+      foreign: id
+ScssClass:
+  actAs:
+    Timestampable: ~
+  columns:
+    course_id:
+      type: integer
+      notnull: true
+    area_id:
+      type: integer
+      notnull: true
+    period_id:
+      type: integer
+      notnull: true
+    staff_id:
+      type: integer
+      default: 0
+  relations:
+    Course:
+      class: ScssCourse
+      local: course_id
+      foreign: id
+    Area:
+      class: ScssArea
+      local: area_id
+      foreign: id
+    Period:
+      class: ScssPeriod
+      local: period_id
+      foreign: id
+    Staff:
+      class: ScssStaff
+      local: staff_id
+      foreign: id
+## Peoples
+ScssRank:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      type: string
+      notnull: true
+    img:
+      type: string
+    description:
+      type: string
+ScssStaff:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [first_name, last_name]
+  columns:
+    first_name:
+      type: string(60)
+      notnull: true
+    last_name:
+      type: string(100)
+      notnull: true
+    dob:
+      type: timestamp
+    cabin_id:
+      type: integer
+      default: 0
+  relations:
+    Cabin:
+      class: ScssCabin
+      local: cabin_id
+      foreign: id
+ScssTroop:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [number]
+  columns:
+    number:
+      type: string(5)
+      notnull: true
+    img:
+      type: string(200)
+    district_id:
+      type: integer
+      notnull: true
+  relations:
+    District:
+      class: ScssDistrict
+      local: district_id
+      foreign: id
+ScssPatrol:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      type: string(60)
+      notnull: true
+    img:
+      type: string(200)
+    color:
+      type: string(6)
+    troop_id:
+      type: integer
+      notnull: true
+  relations:
+    Troop:
+      class: ScssTroop
+      local: troop_id
+      foreign: id
+ScssScout:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [first_name,last_name]
+  columns:
+    first_name:
+      type: string(60)
+      notnull: true
+    last_name:
+      type: string(100)
+      notnull: true
+    dob:
+      type: timestamp
+      notnull: true
+    patrol_id:
+      type: integer
+      notnull: true
+    rank_id:
+      type: integer
+      default: 1 # basic
+  relations:
+    Patrol:
+      class: ScssPatrol
+      local: patrol_id
+      foreign: id
+    Rank:
+      class: ScssRank
+      local: rank_id
+      foreign: id
+ScssTroopRotation:
+  columns:
+    name:
+      type: string
+      notnull: true
+    description:
+      type: string
+    week_id:
+      type: integer
+  relations:
+    Week:
+      class: ScssWeek
+      local: week_id
+      foreign: id
+      foreignType: one
+ScssTroopEnrollment:
+  actAs:
+    Timestampable: ~
+  columns:
+    troop_id:
+      type: integer
+      notnull: true
+    week_id:
+      type: integer
+      default: 0
+    site_id:
+      type: integer
+      default: 0
+    rotation_id:
+      type: integer
+      default: 0
+  relations:
+    Troop:
+      class: ScssTroop
+      local: troop_id
+      foreign: id
+    Week:
+      class: ScssWeek
+      local: week_id
+      foreign: id
+    Campsite:
+      class: ScssCampsite
+      local: site_id
+      foreign: id
+    Rotation:
+      class: ScssTroopRotation
+      local: rotation_id
+      foreign: id
+ScssScoutEnrollment:
+  actAs:
+    Timestampable: ~
+  columns:
+    scout_id:
+      type: integer
+      notnull: true
+    class_id:
+      type: integer
+      notnull: true
+  relations:
+    Scout:
+      class: ScssScout
+      local: scout_id
+      foreign: id
+    Class:
+      class: ScssClass
+      local: class_id
+      foreign: id
+## Items
+ScssMeritBadge:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:
+      type: string(150)
+      notnull: true
+    num_reqs:
+      type: int
+    tte:
+      type: boolean
+      default: false
+    img:
+      type: string
+      default: 'tba.gif'
+ScssRequirement:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [label]
+  columns:
+    label:
+      type: string(10)
+      notnull: true
+    parent_id:
+      type: int
+      notnull: true
+      default: 0
+    text:
+      type: string(500)
+      notnull: true
+    optional:
+      type: boolean
+      default: false
+    mb_id:
+      type: integer
+      notnull: true
+  relations:
+    MeritBadge:
+      class: ScssMeritBadge
+      local: mb_id
+      foreign: id
+ScssSubRequirement:
+  inheritance:
+    type: column_aggregation
+    extends: ScssRequirement
+    keyField: parent_id  
+## User Mgmt
+sfGuardUserProfile:
+  columns:
+    user_id:
+      type: integer
+    access_level:
+      type: integer
+      notnull: true
+      default: 1 # 0 deactivated | 1 Troop User | 2 Camp Staff | 3 Camp admin | 4 Site Admin | 5 Root Admin
+    troop_id:
+      type: integer
+    avatar:
+      type: string
+      notnull: true
+      default: /images/user_files/logos/avatar/default.png # hardcoded for now...
+    first_name: 
+      type: varchar(20)
+    last_name: 
+      type: varchar(20)
+    facebook_uid: 
+      type: integer(4)
+    email: 
+      type: varchar(255)
+    email_hash: 
+      type: varchar(255)
+    active_troop_id:
+      type: integer
+      notnull: false
+  relations:
+    User:
+      class: sfGuardUser
+      local: user_id
+      foreign: id
+      foreignType: one
+      foreignAlias: Profile
+    Troop: 
+      class: ScssTroop
+      local: troop_id
+      foreign: id
+    ActiveTroop:
+      class: ScssTroop
+      local: active_troop_id
+      foreign: id

@@ -1,0 +1,9 @@
+#/data/fixtures/troop.yml
+
+ScssTroop:
+  -
+    number: 805
+    district_id: 1
+  -
+    number: 500
+    district_id: 3
