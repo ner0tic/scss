@@ -1,4 +1,0 @@
-config/menu.yml
-  class:  sfDefineEnvironmentConfigHandler
-  param:
-    prefix: menu_

@@ -1,7 +1,0 @@
-district:
-  class: sfDoctrineRouteCollection
-  options:
-    model: ScssDistrict
-    module: district
-    prefix_path: /:country_slug/:zone_slug
-    column: district_slug

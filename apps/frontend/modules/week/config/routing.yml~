@@ -1,7 +1,0 @@
-week:
-  class: sfDoctrineRouteCollection
-  options:
-    model: ScssWeek
-    module: week
-    prefix_path: /camps/:district_slug/:camp_slug
-    column: week_slug
