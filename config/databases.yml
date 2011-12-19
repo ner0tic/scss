@@ -1,7 +1,0 @@
-all:
-  doctrine:
-    class: sfDoctrineDatabase
-    param:
-      dsn: 'mysql:host=mysql.daviddurost.net;dbname=dd_scss2'
-      username: ner0tic
-      password: gatorade
