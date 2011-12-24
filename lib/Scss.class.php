@@ -21,6 +21,7 @@ class Scss {
         if($ucwords)    $text = ucwords($text);
         return $text;
     }
+
     static public function genSlugArray($slugs=array(),$yaml=false) {
       $arr = array(); $user = sfContext::getInstance()->getUser();
       foreach($slugs as $slug) {

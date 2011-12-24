@@ -18,8 +18,11 @@ class classActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->classes = Doctrine_Core::getTable('ScssClass')
-      ->createQuery('a')
-      ->execute();
+            ->createQuery('c')
+            ->leftJoin('c.Period p')
+            ->leftJoin('p.Week w')
+            ->where('w.slug = ?',$request->getParameter('week_slug'))
+            ->execute();
   }
 
   public function executeShow(sfWebRequest $request)
@@ -30,8 +33,14 @@ class classActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $route = sfContext::getInstance()->getRouting()->getObject();
-    $this->form = new ScssClassForm(null,array("route"=>$route));
+    if($this->getUser()->getProfile()->getAccessLevel()<Scss::CAMP_ADMIN) {
+      $sf_user->setFlash('notice','You do not have access to this section.');
+      $this->form = '';
+    }    
+    else {
+      $route = sfContext::getInstance()->getRouting()->getObject();
+      $this->form = new ScssClassForm(null,array("route"=>$route));
+    }
   }
 
   public function executeCreate(sfWebRequest $request)

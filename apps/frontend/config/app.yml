@@ -4,6 +4,7 @@ all:
   avatar_height: 50px
   avatar_width: 50px
   max_items_on_index: 10
+  max_items_on_dashboard: 4
   min_periods_per_week: 3
   tte_periods_per_week: 7
   patrol_upload_logo_dir: /images/user_files/logos/patrol

@@ -19,8 +19,13 @@ class campActions extends sfActions
       $q = Doctrine::getTable('ScssCamp')->createQuery('c');
       if($request->hasParameter('country_slug') &&
         $request->hasParameter('zone_slug'))
-      $q->leftJoin('c.District d')->leftJoin('d.Zone z')->leftJoin('z.Country y')->where('z.slug = ?',$request->getParameter('zone_slug'))->andWhere('y.slug= ?', $request->getParameter('country_slug'))->andWhere('d.slug = ?',$request->getParameter('district_slug'));
-      $q->orderBy('d.name ASC');
+      $q->leftJoin('c.District d')
+        ->leftJoin('d.Zone z')
+        ->leftJoin('z.Country y')
+        ->where('z.slug = ?',$request->getParameter('zone_slug'))
+        ->andWhere('y.slug= ?', $request->getParameter('country_slug'))
+        ->andWhere('d.slug = ?',$request->getParameter('district_slug'))
+        ->orderBy('d.name ASC');
       $this->pager->setQuery($q);
       $this->pager->setPage($curr_pg);
       $this->pager->init();

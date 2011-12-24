@@ -8,12 +8,13 @@ class ProjectConfiguration extends sfProjectConfiguration
   public function setup()
   {
     $this->enablePlugins('sfDoctrinePlugin');
+    $this->enablePlugins('sfDoctrineGuardPlugin');
     $this->enablePlugins('sfFacebookConnectPlugin');
     $this->enablePlugins('sfDependentSelectPlugin');
     $this->enablePlugins('sfDoctrineActAsTaggablePlugin');
     $this->enablePlugins('sfFormExtraPlugin');
     //$this->enablePlugins('sfMediaBrowserPlugin');
-    $this->enablePlugins('sfJqueryReloadedPlugin');
+    //$this->enablePlugins('sfJqueryReloadedPlugin');
     $this->enablePlugins('sfAssetsManagerPlugin');
     $this->enablePlugins('sfDoctrineOAuthPlugin');
     //$this->enablePlugins('sfMelodyPlugin');
@@ -21,6 +22,5 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('ddNavMenuPlugin');
     //$this->enablePlugins('stPhpConsolePlugin');
     //$this->enablePlugins('sfToolsPlugin');
-    $this->enablePlugins('sfDoctrineGuardPlugin');
   }
 }

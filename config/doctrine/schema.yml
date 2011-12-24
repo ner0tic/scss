@@ -556,9 +556,9 @@ sfGuardUserProfile:
       type: varchar(255)
     email_hash: 
       type: varchar(255)
-    active_troop_id:
+    active_troop_enrollment_id:
       type: integer
-      notnull: false
+      notnull: false      
   relations:
     User:
       class: sfGuardUser
@@ -570,7 +570,7 @@ sfGuardUserProfile:
       class: ScssTroop
       local: troop_id
       foreign: id
-    ActiveTroop:
-      class: ScssTroop
-      local: active_troop_id
+    ActiveEnrollment:
+      class: ScssTroopEnrollment
+      local: active_troop_enrollment_id
       foreign: id

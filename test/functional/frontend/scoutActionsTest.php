@@ -17,3 +17,13 @@ $browser->
     checkElement('body', '!/This is a temporary page/')->
   end()
 ;
+
+$browser->info('3 - Post a Scout page')->
+  info('  3.1 - Submit a Scout')->
+ 
+  get('/scout/new')->
+  with('request')->begin()->
+    isParameter('module', 'scout')->
+    isParameter('action', 'new')->
+  end()
+;

@@ -2,6 +2,41 @@
     include_once 'scheme.css.php';
     header("Content-Type: text/css");
 ?>
+@font-face { font-family: Alexa; src: url('AlexaStd.otf'); }
+.text-input, .select-input {
+    -webkit-box-shadow: #D0D0D0 0px 1px 2px;
+    background: <?php echo $white ?>;
+    border: 1px solid <?php echo $black ?>;
+    color: <?php echo $black ?>;
+    font-size: 1.16667em;
+    padding: 3px 4px 3px;
+    display: block;
+}
+.select-input {
+    color: <?php echo $black ?>;
+}
+.radio-input {
+    padding: 3px 4px 3px;
+    font-size: 1.16667em;
+    -webkit-box-shadow: #D0D0D0 0px 1px 2px;
+}
+.radio-input:after,
+.radio-input:before {
+    display: block;
+}
+.radio-input < label {
+    display: block;
+}
+input[type=text], textarea, select { border-radius: 5px; width: 400px !important;}
+select { width: 410px !important; }
+input[type=submit] {}
+.date-select-input { width: 123px !important; display: inline-block; padding-left: 4px; padding-right: 4px; }
+
+#scout-form-wrapper form { /*background: <?php echo $ltGreen ?>; border-top: 1px solid #cccccc;*/ display: block; margin: 0 auto; padding: 20px; width: 450px; overflow: hidden; }
+#scout-form-wrapper h2 { color: #444; font-size: 62px; font-weight: bold; left: 5px; margin: 0 auto; margin-bottom: 25px; position: relative; font-family: Alexa, Veranda; }
+#scout-form label { font-weight: normal !important; color: <?php echo $black ?>; position: absolute; top: 16px !important; left: 14px !important; }
+#scout-form .greenButton, #scout-form-wrapper .orangeButton, #scout-form-wrapper input[type=submit] { float: right; }
+
 /*******************************************************************************
     login
 *******************************************************************************/

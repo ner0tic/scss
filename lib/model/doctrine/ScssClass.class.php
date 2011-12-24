@@ -13,9 +13,9 @@
 class ScssClass extends BaseScssClass
 {
     public function getName() {
-        return $this->getCourse()->getMeritBadge()->getName();
+        return $this->getCourse()->getLabel();
     }
     public function __toString() {
-        return $this->getName();
+        return $this->getCourse()->getLabel();
     }
 }

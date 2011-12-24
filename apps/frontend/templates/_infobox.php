@@ -2,18 +2,25 @@
 <div class="page-margin-offset sidebar multiple">
   <div class="sidebar">
     <div class="custom-ui-stats user-stats module clearfix">
-      <a class="scouts first" href="#">
-        <span>Scouts</span>
-        <span class="scouts count"><?php echo $sf_user->getProfile()->getActiveEnrollment()->getTroop()->getScoutCount() ?></span>
+      <?php echo link_to('<span>Scouts</span>
+        <span class="scouts count">'.$sf_user->getProfile()->getActiveEnrollment()->getTroop()->getScoutCount().'</span>',
+        @scouts_by_troop, array(
+                  'district_slug' => $sf_user->getProfile()->getActiveEnrollment()->getTroop()->getDistrict()->getSlug(),
+                  'troop_slug'    => $sf_user->getProfile()->getActiveEnrollment()->getTroop()->getSlug()),
+                  array('class'         => 'scouts first'    
+              )) ?>
       </a>
       <a class="messages" href="#">
         <span>Messages</span>
         <span class="messages count">2</span>
       </a>
-      <a class="patrols last" href="#">
-        <span>Patrols</span>
-        <span class="Patrols count"><?php echo $sf_user->getProfile()->getActiveEnrollment()->getTroop()->getPatrolCount() ?></span>
-      </a>
+      <?php echo link_to('<span>Patrols</span>
+        <span class="Patrols count">'.$sf_user->getProfile()->getActiveEnrollment()->getTroop()->getPatrolCount().'</span>',
+              @patrols_by_troop, array(
+                  'district_slug' => $sf_user->getProfile()->getActiveEnrollment()->getTroop()->getDistrict()->getSlug(),
+                  'troop_slug'    => $sf_user->getProfile()->getActiveEnrollment()->getTroop()->getSlug()),
+                  array('class'         => 'patrol count last'    
+              )) ?>
     </div>
   </div>
 </div>
@@ -25,7 +32,7 @@
     <strong>
       Camp <u><?php echo $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getName() ?></u> Week: <u><?php echo $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getLabel() ?></u>
     </strong>
-    <h2>Welcome <?php echo link_to($sf_user->getGuardUser()->getUsername(),'user/:id',array('id'=>$sf_user->getGuardUser()->getId())) ?></h2>
+    <h2>Welcome <?php echo link_to($sf_user->getGuardUser()->getUsername(),'@profile',array('user_id'=>$sf_user->getGuardUser()->getId())) ?></h2>
     <hr />
     <p class="breadcrum">
       <span>scss</span>
@@ -36,4 +43,11 @@
     </p>
   </div>
 </div>
+<?php if ($sf_user->hasFlash('notice')): ?>
+  <div class="flash_notice"><?php echo $sf_user->getFlash('notice') ?></div>
+<?php endif ?>
+ 
+<?php if ($sf_user->hasFlash('error')): ?>
+  <div class="flash_error"><?php echo $sf_user->getFlash('error') ?></div>
+<?php endif ?>
 <!-- END :: _infobox.php -->

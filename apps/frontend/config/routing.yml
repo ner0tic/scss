@@ -22,6 +22,10 @@ contact:
 find_user_home:
   url: /dashboard/set-active-enrollment
   param: { module: dashboard, action: setActiveEnrollment }
+profile:
+  url: /users
+#  param: { module: sfGuardUser, action: profileShow }
+#  requirements:   { sf_method: get }  
 ########################
 # modules
 ########################
@@ -223,6 +227,9 @@ areas_by_camp:
 staff_by_camp:
   url: /camps/:district_slug/:camp_slug/staff
   params: { module: staff, action: index }
+weeks_by_camp:
+  url: /camps/:district_slug/:camp_slug/weeks
+  params: { module: week, action: index }  
 #######################
 # * by troop
 #######################

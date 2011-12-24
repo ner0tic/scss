@@ -61,9 +61,8 @@ sfGuardUserProfile:
     last_name: durost
     facebook_uid: 5824480
     email: david.durost@gmail.com
-    active_troop_id: '1'
+    active_troop_enrollment_id: '1'
   matt:
     user_id: '2'
     access_level: 1
     troop_id: '2'
-    active_troop_id: '2'

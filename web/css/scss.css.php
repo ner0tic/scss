@@ -75,6 +75,10 @@ h3 { font-size : 18px; color : #888888; font-weight : normal; line-height: 20pt;
     max-width: 350px;
     float: left;
 }
+
+div.pagination a.page { height: 37px; width: 37px; background: url('/images/pagination/page.png') no-repeat 0 0; text-align: center; font-size: 13px; color: <?php echo $black ?>; }
+div.pagination a.active { background: url('/images/pagination/page.png') no-repeat 0 0 !important; color: <?php echo $white ?> !important; }
+
 <?php //include_once('footer.css.php'); ?>
 /************************************************
 **              Buttons                        **

@@ -9,6 +9,7 @@
     $color[6]   =   $dkGreen    =   '#5c872e';
     $color[7]   =   $offWhite   =   '#f8f8f5';
     $color[8]   =   $white      =   '#ffffff';
+    $color[9]   =   $black      =   '#000000';
 
 /*
     $ltOrange           =   '#FF9933';

@@ -22,22 +22,20 @@ class dashboardActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
-  public function executeIndex(sfWebRequest $request)
-  {
+  public function executeIndex(sfWebRequest $request) {
+    $cur_pg['scout'] = $request->getParameter('s_page',1);
+    $cur_pg['patrol'] = $request->getParameter('p_page',1);
+    $max_pg = sfConfig::get('app_max_items_on_dashboard');
     // scouts
-      $q = Doctrine_Query::create()
-        ->from('ScssScout s')
-        ->leftJoin('s.Patrol p')
-        ->where('p.troop_id = ?',$this->getUser()->getProfile()->getTroop()->getID());
-   
-      $this->scouts = $q/*->addEnrolledQuery($this->getUSer->getProfile()->getActiveEnrollment()->getWeek()->getId(),$q)*/->execute();
-
-      // patrols
-      $q = Doctrine_Query::create()
-        ->from('ScssPatrol p')
-        ->where('p.troop_id = ?',$this->getUser()->getProfile()->getTroop()->getID());
-
-      $this->patrols = $q->execute();
+    $this->s_pager = new sfDoctrinePager('ScssScout',$max_pg);
+    $this->s_pager->setQuery(Doctrine::getTable('ScssScout')->createQuery('a')->leftJoin('a.Patrol p')->where('p.troop_id = ?',$this->getUser()->getProfile()->getTroop()->getID())->orderBy('a.last_name, a.first_name ASC'));
+    $this->s_pager->setPage($cur_pg['scout']);
+    $this->s_pager->init();    
+    // patrols
+    $this->p_pager = new sfDoctrinePager('ScssPatrol',$max_pg);
+    $this->p_pager->setQuery(Doctrine::getTable('ScssPatrol')->createQuery('p')->where('p.troop_id = ?',$this->getUser()->getProfile()->getTroop()->getID())->orderBy('p.name ASC'));
+    $this->p_pager->setPage($cur_pg['patrol']);
+    $this->p_pager->init();       
   }
   
   public function executeSetActiveEnrollment(sfWebRequest $request) {
