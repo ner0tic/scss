@@ -7,6 +7,12 @@
  */
 class ScssTroopEnrollmentTable extends Doctrine_Table
 {
+  /**
+   * Use custom query class
+   */  
+  public function construct() {
+      $this->setAttribute(Doctrine::ATTR_QUERY_CLASS, 'ScssTroopEnrollmentQuery');
+    }
     /**
      * Returns an instance of this class.
      *
@@ -17,15 +23,5 @@ class ScssTroopEnrollmentTable extends Doctrine_Table
         return Doctrine_Core::getTable('ScssTroopEnrollment');
     }
     
-    public function addActiveCampQuery(Doctrine_Query $q = null) {
-      if(is_null($q)) $q = Doctrine_Query::create()->from('ScssTroopEnrollment te');
-      $alias = $q->getRootAlias();
-      $q->leftJoin($alias.'.Week w')->andWhere('w.camp_id = ?',sfContext::getInstance()->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId());
-      return $q;
-    }
-    
-    public function getBySeason($yr = null, Doctrine_Query $q = null) {
-      if(is_null($yr))  $yr = date('Y');
-      return $this->addActiveCampQuery($q)->andWhere("date_format('%Y',w.start_date) = ?",$yr)->execute();
-    }
+
 }

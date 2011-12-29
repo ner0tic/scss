@@ -33,31 +33,12 @@
 <?php endforeach; ?>
             </tr>
             </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="4">
-<?php if ($s_pager->haveToPaginate()): ?>
-                    <div class="pagination"> 
-<?php echo link_to(image_tag('/images/pagination/prev.png',array('alt'=>'Previous page','title'=>'Previous page')),@dashboard,array('s_page'=>$s_pager->getPreviousPage())) ?>
-<?php foreach ($s_pager->getLinks() as $page): ?>
-  <?php if ($page == $s_pager->getPage()): ?>
-    <a href="#" class="page active"><?php echo $page ?></a>
-  <?php else: ?>
-    <?php echo link_to($page,@dashboard,array('s_page'=>$page)) ?>
-  <?php endif; ?>
-<?php endforeach; ?>
-<?php echo link_to(image_tag('/images/pagination/next.png',array('alt'=>'Next page','title'=>'Next page')),@dashboard,array('s_page'=>$s_pager->getNextPage())) ?>
-                    </div>
-<?php endif; ?>
-                    <div class="pagination_desc">
-                      <strong><?php echo count($s_pager) ?></strong> scouts found.
-<?php if ($s_pager->haveToPaginate()): ?>
-    - page <strong><?php echo $s_pager->getPage() ?>/<?php echo $s_pager->getLastPage() ?></strong>
-<?php endif; ?>
-                    </div>
-                </td>
-              </tr>
-            </tfoot>
+            <?php include_partial('global/pager',array(
+                'numColumns'      =>  4,
+                'prefix'          =>  's_',
+                'module'          =>  'scout',
+                'pager'           =>  $s_pager
+            )) ?>
         </table>
     </div>
 </div>
@@ -88,31 +69,12 @@
                 </tr>
 <?php endforeach ?>
             </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="4">
-<?php if ($p_pager->haveToPaginate()): ?>
-                    <div class="pagination"> 
-<?php echo link_to(image_tag('/images/pagination/prev.png',array('alt'=>'Previous page','title'=>'Previous page')),@dashboard,array('p_page'=>$p_pager->getPreviousPage())) ?>
-<?php foreach ($p_pager->getLinks() as $page): ?>
-  <?php if ($page == $p_pager->getPage()): ?>
-    <a href="#" class="page active"><?php echo $page ?></a>
-  <?php else: ?>
-    <?php echo link_to($page,@dashboard,array('p_page'=>$page)) ?>
-  <?php endif; ?>
-<?php endforeach; ?>
-<?php echo link_to(image_tag('/images/pagination/next.png',array('alt'=>'Next page','title'=>'Next page')),@dashboard,array('p_page'=>$p_pager->getNextPage())) ?>
-                    </div>
-<?php endif; ?>
-                    <div class="pagination_desc">
-                      <strong><?php echo count($p_pager) ?></strong> patrols found.
-<?php if ($p_pager->haveToPaginate()): ?>
-    - page <strong><?php echo $p_pager->getPage() ?>/<?php echo $p_pager->getLastPage() ?></strong>
-<?php endif; ?>
-                    </div>
-                </td>
-              </tr>
-            </tfoot>            
+            <?php include_partial('global/pager',array(
+                'numColumns'      =>  4,
+                'prefix'          =>  'p_',
+                'module'          =>  'patrol',
+                'pager'           =>  $p_pager
+            )) ?>     
         </table>
     </div>
 </div>
