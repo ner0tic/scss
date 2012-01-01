@@ -14,12 +14,12 @@ class ScssClassForm extends BaseScssClassForm
   {
     unset($this['created_at'], $this['updated_at'],$this['slug']);
 
-    $camp = $this->getOption('route')->getObject();
-
-
-    $this->widgetSchema['course_id'] = new sfWidgetFormChoice(
-      array(
-        'choices' => $camp->getCourses()
-    ));
+    $this->widgetSchema['course_id'] = new sfWidgetFormDoctrineChoice(
+        array(
+          'model'     => 'ScssCourse',
+          'add_empty' => false,
+          'query'     => Doctrine::getTable('ScssCourse')->createQuery('crs')->filterByCamp(sfContext::getInstance()->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp())
+        )
+    );
   }
 }

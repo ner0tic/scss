@@ -16,6 +16,9 @@ class ScssCourse extends BaseScssCourse
         return $this->getMeritBadge()->getName();
     }
     public function getName() {
-        return $this->getLabel();
+        return $this->getMeritBadge()->getName();
+    }
+    public function __toString() {
+      return $this->getMeritBadge()->getName();
     }
 }

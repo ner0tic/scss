@@ -34,12 +34,11 @@ class classActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     if($this->getUser()->getProfile()->getAccessLevel()<Scss::CAMP_ADMIN) {
-      $sf_user->setFlash('notice','You do not have access to this section.');
+      $this->getUser()->setFlash('notice','You do not have access to this section.');
       $this->form = '';
     }    
     else {
-      $route = sfContext::getInstance()->getRouting()->getObject();
-      $this->form = new ScssClassForm(null,array("route"=>$route));
+      $this->form = new ScssClassForm();
     }
   }
 
@@ -56,15 +55,15 @@ class classActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($scss_class = Doctrine_Core::getTable('ScssClass')->find(array($request->getParameter('id'))), sprintf('Object scss_class does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ScssClassForm($scss_class);
+    $this->forward404Unless($class = Doctrine_Core::getTable('ScssClass')->find(array($request->getParameter('id'))), sprintf('Object scss_class does not exist (%s).', $request->getParameter('id')));
+    $this->form = new ScssClassForm($class);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($scss_class = Doctrine_Core::getTable('ScssClass')->find(array($request->getParameter('id'))), sprintf('Object scss_class does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ScssClassForm($scss_class);
+    $this->forward404Unless($class = Doctrine_Core::getTable('ScssClass')->find(array($request->getParameter('id'))), sprintf('Object scss_class does not exist (%s).', $request->getParameter('id')));
+    $this->form = new ScssClassForm($class);
 
     $this->processForm($request, $this->form);
 
@@ -75,8 +74,8 @@ class classActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->forward404Unless($scss_class = Doctrine_Core::getTable('ScssClass')->find(array($request->getParameter('id'))), sprintf('Object scss_class does not exist (%s).', $request->getParameter('id')));
-    $scss_class->delete();
+    $this->forward404Unless($class = Doctrine_Core::getTable('ScssClass')->find(array($request->getParameter('id'))), sprintf('Object scss_class does not exist (%s).', $request->getParameter('id')));
+    $class->delete();
 
     $this->redirect('class/index');
   }
@@ -86,9 +85,9 @@ class classActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $scss_class = $form->save();
+      $class = $form->save();
 
-      $this->redirect('class/edit?id='.$scss_class->getId());
+      $this->redirect('class/edit?id='.$class->getId());
     }
   }
 }

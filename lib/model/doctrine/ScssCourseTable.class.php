@@ -8,6 +8,12 @@
 class ScssCourseTable extends Doctrine_Table
 {
     /**
+   * Use custom query class
+   */  
+    public function construct() {
+      $this->setAttribute(Doctrine::ATTR_QUERY_CLASS, 'ScssCourseQuery');
+    }
+    /**
      * Returns an instance of this class.
      *
      * @return object ScssCourseTable

@@ -8,6 +8,13 @@
 class ScssClassTable extends Doctrine_Table
 {
     /**
+   * Use custom query class
+   */  
+    public function construct() {
+      $this->setAttribute(Doctrine::ATTR_QUERY_CLASS, 'ScssCampQuery');
+    }
+  
+    /**
      * Returns an instance of this class.
      *
      * @return object ScssClassTable
@@ -18,13 +25,12 @@ class ScssClassTable extends Doctrine_Table
     }
 
     public function retrieveForSelect($p,$q,$limit=20) {
-        $q = Doctrine_Query::create()
-            ->from('ScssClass c')
-            ->leftJoin('c.Course r')
-            ->leftJoin('r.MeritBadge m')
-            ->where('c.period_id = ?',$p)
-            ->orderBy('m.name ASC')
-            ->limit($limit);
+        $q = Doctrine_Query::getTable('ScssClass')
+                ->createQuery('c')
+                ->filterByPeriod($p)
+                ->leftJoin('c.MeritBadge m')
+                ->orderBy('m.name ASC')
+                ->limit($limit);
        $classes = array();
        foreach ($q->execute() as $class) {
            $classes[$class->getId()] = (string) $class->getCourse()->getMeritBadge()->getName();
