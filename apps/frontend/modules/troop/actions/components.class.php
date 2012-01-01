@@ -8,9 +8,12 @@
      * @param sfWebRequest $request 
      */
     public function executeWidgetCurrentEnrollment(sfWebRequest $request) {
-      $this->checks['c'] = (bool)Doctrine::getTable('ScssTroopEnrollment')->getBySeason(date('y')+1)->getByCamp($this->user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId(),$this->user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId())->execute();
-      $this->checks['w'] = (bool)Doctrine::getTable('ScssTroopEnrollment')->getBySeason(date('y')+1)->getByCampWeek($this->user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId(),$this->user->getProfile()->getActiveEnrollment()->getWeek()->getSlug())->execute();
-      $this->checks['s'] = (bool)Doctrine::getTable('ScssTroopEnrollment')->getBySeason(date('y')+1)->getByWeek($this->user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId(),$this->user->getProfile()->getActiveEnrollment()->getWeek()->getSlug())->getByCampSite($this->user->getProfile()->getActiveEnrollment()->getCampSite()->GetId())->execute();
+      //$this->checks_c = Doctrine::getTable('ScssTroopEnrollment')->createQuery()->filterBySeason(date('y')+1)->filterByCamp($this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId(), $this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId())->execute();
+      //$this->checks_w = false;//(bool)Doctrine::getTable('ScssTroopEnrollment')->createQuery()->filterBySeason(date('y')+1)->filterByCamp()->filterByWeek($this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId(), $this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getSlug())->execute();
+      $checks_s = Doctrine::getTable('ScssTroopEnrollment')->createQuery()->filterBySeason(date('y')+1)->filterByWeek($this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getId(), $this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getSlug())->filterByCampSite($this->getUser()->getProfile()->getActiveEnrollment()->getCampsite()->getId())->fetchOne();
+      
+      $this->cb_a = new ddWidgetFormInputToggle(array(),array('value'=>'checked'));
+      $this->cb_s = new ddWidgetFormInputToggle(array(),array('value'=>($checks_s) ? 'checked' : null));
     }
     
     /**
@@ -20,8 +23,10 @@
     public function executeWidgetFeeSvc(sfWebrequest $request) {
       // Widget :: feeSvcWidget
       // reservation counts
-      $this->enrollments['incomplete']  = Doctrine::getTable('ScssTroopEnrollment')->createQuery('te')->getBySeason(date('Y')+1)->getByRegistrationStatus(false)->execute;
-      $this->enrollments['complete']    = Doctrine::getTable('ScssTroopEnrollment')->createQuery('te')->getBySeason(date('Y')+1)->getByRegistrationStatus(true)->execute;
+      //$this->enrollments['incomplete']  = Doctrine::getTable('ScssTroopEnrollment')->createQuery()->filterBySeason(date('Y')+1)->filterByRegistrationStatus(false)->execute;
+      //$this->enrollments['complete']    = Doctrine::getTable('ScssTroopEnrollment')->createQuery()->filterBySeason(date('Y')+1)->filterByRegistrationStatus(true)->execute;
+      $this->active_res = Doctrine::getTable('ScssTroopEnrollment')->createQuery('e')->select('count(*) as count')->filterBySeason()->filterByTroop($this->getUser()->getProfile()->getActiveEnrollment()->getTroopId())->fetchOne();
+      $this->complete_res = 0;
     }
     
     /**
@@ -29,13 +34,12 @@
      * @param sfWebRequest $request 
      */
     public function executeWidgetLeaderList(sfWebRequest $request) {
-      // Widget :: leader list
+      // leader list
+      
       // autocomplete form
       
       // add form
-      //$this->LeaderForm = new TroopLeaderForm();
-      // attendance this season
-      $leaders = null;
+      $this->form = new TroopLeaderForm();           
     }
     
     /**
@@ -45,7 +49,7 @@
     public function executeWidgetTroopDetails(sfWebRequest $request) {
       // Widget :: troop details
       // build form
-      //$this->form = new TroopDetailForm($this->user->getProfile()->getActiveEnrollment()->getTroop()->getId());
+      //$this->form = new TroopDetailForm($this->getUser()->getProfile()->getActiveEnrollment()->getTroop()->getId());
     }
   }
 ?> 

@@ -1,5 +1,5 @@
 <?php include_partial('global/infobox',array('page'=>'troop-settings')) ?>
-<?php load_assets('data-table') ?>
+<?php load_assets('settings') ?>
 <div class="box main-content">
     <div class="box-content datagrid">
         <h2>manage&nbsp;troop&nbsp;settings</h2>

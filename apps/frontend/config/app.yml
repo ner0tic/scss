@@ -30,3 +30,7 @@ all:
   facebook_connect:
     load_routing:     true
     user_permissions: []
+  ddToggleSwitchPlugin:
+    include_js: false
+    js_path: /js
+    

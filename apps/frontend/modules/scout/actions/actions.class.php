@@ -5,7 +5,7 @@
  *
  * @package    scss
  * @subpackage scout
- * @author     Your name here
+ * @author     David Durost
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class scoutActions extends sfActions
@@ -23,8 +23,8 @@ class scoutActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->scss_scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->scss_scout);
+    $this->scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('id')));
+    $this->forward404Unless($this->scout);
   }
 
   public function executeNew(sfWebRequest $request)
@@ -45,7 +45,7 @@ class scoutActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->getFromRequest($request));
+    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->find($request->getParameter('id')));
     $this->form = new ScssScoutForm($scout);
     $this->scout = ucwords($scout->getName());
   }
@@ -65,7 +65,7 @@ class scoutActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->getFromRequest($request), sprintf('Object scss_scout does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('id'))), sprintf('Object scss_scout does not exist (%s).', $request->getParameter('id')));
     $scout->delete();
 
     $this->redirect('scout/index');

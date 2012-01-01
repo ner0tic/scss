@@ -1,5 +1,6 @@
 <?php include_partial('global/infobox',array('page'=>'troops')) ?>
-<?php use_stylesheet('datatable.css.php') ?>
+<?php load_assets('layout') ?>
+<?php load_assets('data-table') ?>
 <div class="box main-content">
   <div class="box-content datagrid">
     <h2>troops&nbsp;<?php echo link_to('<img src="/images/icons/add-icon.png" height="16" width="16" alt="Add A troop" />',@troop_add, array(

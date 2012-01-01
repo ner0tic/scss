@@ -1,7 +1,7 @@
 # config/assets_manager.yml
 packages:
   jquery:
-    js:  libs/jquery.latest.js
+    js:  libs/jquery.min.latest.js
   #jquery-ui:
   #  import: jquery
   #  js: libs/jquery-ui.latest.js
@@ -46,8 +46,16 @@ packages:
     import: data-table
     css: datagrid.css.php
     js: scss.grid.js
+  toggle-form-widget:
+    import: [jquery-ui]
+    css: form.widget.toggle-switch.css.php
+    js: form.widget.toggle-switch.js
 # pages
 #######
+  settings:
+    import: [layout, jquery-ui, data-table, toggle-form-widget]
+    js: scss.settings.js
+    css: settings.css.php
   dashboard:
     import: [layout,jquery-ui,data-table]
     css: dashboard.css.php
