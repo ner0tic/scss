@@ -544,8 +544,8 @@ sfGuardUserProfile:
       type: integer
     avatar:
       type: string
-      notnull: true
-      default: /images/user_files/logos/avatar/default.png # hardcoded for now...
+      notnull: false #true
+      #default: /images/user_files/logos/avatar/default.png # hardcoded for now...
     first_name: 
       type: varchar(20)
     last_name: 

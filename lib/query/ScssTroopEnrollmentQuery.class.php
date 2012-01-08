@@ -63,6 +63,7 @@ class ScssTroopEnrollmentQuery extends Doctrine_Query {
     else  $id = $troop;
     return $this->andWhere($this->getRootAlias().'.troop_id = ?', $id);
   }
+  
 }
 
 ?>

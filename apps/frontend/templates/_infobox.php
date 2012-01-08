@@ -27,20 +27,25 @@
 <div class="info-box-wrapper">
   <div id="info-box" class="box box-flat-left">
     <div class="avatar">
-      <?php echo link_to(image_tag($sf_user->getProfile()->getAvatar(),array('height' => sfConfig::get('app_avatar_height'), 'width' => sfConfig::get('app_avatar_height'), 'alt' => $sf_user->getName())), @misc_settings) ?>     
+      <?php echo link_to(image_tag($sf_user->getAvatar(),array('height' => sfConfig::get('app_avatar_height'), 'width' => sfConfig::get('app_avatar_height'), 'alt' => $sf_user->getName())), @misc_settings) ?>     
     </div>
-    <strong>
-      Camp <u><?php echo $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getName() ?></u> Week: <u><?php echo $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getLabel() ?></u>
-    </strong>
-    <h2>Welcome <?php echo link_to($sf_user->getGuardUser()->getUsername(),'@profile',array('user_id'=>$sf_user->getGuardUser()->getId())) ?></h2>
+    <h2>
+      Welcome <?php echo link_to($sf_user->getGuardUser()->getUsername(),'@profile',array('user_id'=>$sf_user->getGuardUser()->getId())) ?>
+      <?php include_component('troopEnrollment','renderActiveTroopList',array('request'=>$sf_request)) ?>
+    </h2>  
     <hr />
-    <p class="breadcrum">
-      <span>scss</span>
-      &raquo;
-      <span>troop <?php echo $sf_user->getProfile()->getActiveEnrollment()->getTroop()->getNumber() ?></span>
-      &raquo;
-      <span>dashboard</span>
-    </p>
+    <h2>Camp <?php echo link_to($sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp(),
+            @camp_show,
+            array(
+                'district_slug' =>  $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getDistrict()->getSlug(),
+                'camp_slug'     =>  $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getSlug())) ?> 
+        &nbsp;
+        Week: <?php echo link_to($sf_user->getProfile()->getActiveEnrollment()->getWeek()->getLabel(),
+            @week_show,
+            array(
+                'district_slug' =>  $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getDistrict()->getSlug(),
+                'camp_slug'     =>  $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getSlug(),
+                'week_slug'     =>  $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getSlug())) ?></h2>
   </div>
 </div>
 <?php if ($sf_user->hasFlash('notice')): ?>

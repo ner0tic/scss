@@ -1,14 +1,18 @@
-<div id="change-active-troop">
-  <div class="relative">
-    <a href="#" class="dropdown"><span><?php echo $sf_user->getUsername()?>&nbsp;<em>as</em>&nbsp;<?php echo $currentEnrollment['district_code'] ?>&nbsp;<?php echo $currentEnrollment['troop_number'] ?></span></a>
-    <div id="change-active-troop-content" class="dropdown-content">
-    <?php foreach($troops as $troop): ?>
-      a<br />
-        <?php echo link_to('<span>'.$troop->getDistrict()->getCode().' '.$troop->getNumber().'</span>', @change_active_troop, array(
-            'district_slug' =>  $troop->getDistrict()->getSlug(),
-            'troop_slug'    =>  $troop->getSlug(),
-            'class'         =>  'active-troop-option')) ?>
-    <?php endforeach; ?>
+<?php load_assets('change-active'); ?>
+<div id="change-active-btn">
+  <span><a href="#" class="dropdown"><?php echo $sf_user->getUsername()?>&nbsp;<em>as</em>&nbsp;<?php echo $currentEnrollment['district_code'] ?>&nbsp;<?php echo $currentEnrollment['troop_number'] ?></a></span>
+  <div id="change-active-content">
+    <div>
+      <h2></h2>
+      <fieldset>
+        <legend></legend>
+        <?php foreach($changes as $name => $select): ?>        
+        <div class="change-active-item" id="change-active-item-<?php echo $name ?>">
+          <label for="<?php echo $name ?>">Change <?php echo $name ?> to:</label>
+          <?php $select->render() ?>
+        </div>
+        <?php endforeach; ?>
+      </fieldset>
     </div>
   </div>
 </div>

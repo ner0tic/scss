@@ -35,15 +35,21 @@ table.data-table {
     height: 68px;
     vertical-align: middle;
 }
+.data-table tr:first-child {
+    border-radius: 5px;
+}
 tr.even-row {
     background-color: <?php echo $offWhite ?>;
+    border: 1px solid <?php echo $offWhite ?>;
 }
 tr.odd-row {
     background-color: <?php echo $white ?>;/*#efefef;*/
+    border: 1px solid <?php echo $white ?>;
 }
 tr.even-row:hover,
 tr.odd-row:hover {
     background-color: <?php echo $fadedGold ?>;
+    border: 1px solid <?php echo $fadedGold ?>;
     cursor: default;
 }
 .data-table thead {
@@ -65,6 +71,7 @@ th.sort {
 }
 .data-table tfoot tr {
     border-bottom: none;
+    height: auto !important;
 }
 .data-table td,
 .data-table tbody th {
@@ -75,7 +82,7 @@ th.sort {
     width: auto;
 }
 td.table-controls {
-  width: 44px;
+  width: 45px;
 }
 div.table-controls {
   position: relative;

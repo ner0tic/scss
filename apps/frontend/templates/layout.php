@@ -31,11 +31,6 @@
   <div id="header">
     <div class="container">
       <ul id="top-links">
-        <?php if($sf_user->isAuthenticated(true)): ?>
-        <li>
-          <?php include_component('troopEnrollment','renderActiveTroopList',array('request'=>$sf_request)) ?>                  
-        </li>
-        <?php endif; ?>
         <li><?php echo link_to('Help','/help/dashboard') ?></li>
         <li><?php echo link_to('Settings','/settings/account') ?></li>
         <li><?php  echo ($sf_user->isAuthenticated(true))?link_to('Log Out','@sf_guard_signout') : link_to('Sign Up','@sf_guard_signup') ?></li>

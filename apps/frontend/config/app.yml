@@ -8,6 +8,7 @@ all:
   min_periods_per_week: 3
   tte_periods_per_week: 7
   patrol_upload_logo_dir: /images/user_files/logos/patrol
+  avatar_upload_dir: /images/user_files/logos/avatar
   autofill_class_search_max: 20
   menu_file: menu.yml
   facebook:
@@ -19,7 +20,7 @@ all:
     connect_signin_url: 'sfFacebookConnectAuth/signin'
     app_url: '/scss'
     guard_adapter: ~
-    js_framework: none # none, jQuery or prototype.
+    js_framework: jQuery # none, jQuery or prototype.
     # It is highly recommended to use a js framework if you want a correct experience in IE
   sf_guard_plugin:
     profile_class: sfGuardUserProfile

@@ -68,6 +68,9 @@ packages:
     import: layout
   contact:
     import: layout
+  change-active:
+    css: change-active.css.php
+    js: change-active.js
 # modules
 #########
   geo: # country, zone
