@@ -121,12 +121,12 @@ a.active-troop { postion: relative; margin-left: 3px; }
 a.active-troop span { background-image:url("/images/toggle_down_light.png"); background-repeat:no-repeat; background-position:100% 50%; padding:4px 16px 6px 4px;}
 #top-links a.menu-open { background:<?php echo $fadedGold ?> !important; color:#666!important; outline:none; }
 a.active-troop.menu-open span { background-image:url("/images/toggle_up_dark.png"); color:#789; }
-#active-enrollment-menu { -moz-border-radius-topleft:5px; -moz-border-radius-bottomleft:5px; -moz-border-radius-bottomright:5px; -webkit-border-top-left-radius:5px; -webkit-border-bottom-left-radius:5px; -webkit-border-bottom-right-radius:5px; display:none; background-color:<?php echo $ltGold ?>; position:absolute; width:250px; z-index:1000; border:1px transparent; text-align:left; padding:12px; top: 14px; right: 7px; margin-top:5px; margin-right: 0px; *margin-right: -1px; color:#789; font-size:11px; min-height: 400px; }
+#active-enrollment-menu { -moz-border-radius-topleft:5px; -moz-border-radius-bottomleft:5px; -moz-border-radius-bottomright:5px; -webkit-border-top-left-radius:5px; -webkit-border-bottom-left-radius:5px; -webkit-border-bottom-right-radius:5px; display:none; background-color:<?php echo $activeBtn ?>; position:absolute; width:250px; z-index:1000; border:1px transparent; text-align:left; padding:12px; top: 14px; right: 7px; margin-top:5px; margin-right: 0px; *margin-right: -1px; color:#789; font-size:11px; min-height: 400px; }
 #active-enrollment-menu h3 { font-size: small; color: <?php echo $green; ?>; font-variant: small-caps; }
 
 /* change active troop */
-a.dropdown { position: relative; margin-left: 3px; background: <?php echo $logoDark ?>; padding: 4px 6px 6px; text-decoration: none; font-weight: bold; color: <?php echo $gold ?>; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
-a.dropdown:hover { background: <?php echo $green ?>; }
+a.dropdown { color: <?php echo $logoLt ?> !important; position: relative; margin-left: 3px; background: <?php echo $activeBtn ?> url('/images/toggle_down_light.png') auto right no-repeat; padding: 4px 16px 6px; text-decoration: none; font-weight: bold; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+a.dropdown:hover { color: <?php echo $offBlack ?> !important; background: <?php echo $gold ?>; }
 a.dropdown span { background: transparent url(../images/toggle_down_light.png) 100% 50% no-repeat; padding: 4px 16px 6px 0; }
 a.dropdown.dropdown-active { color: <?php echo $white ?>; background-color: <?php echo $green ?>; }
 a.dropdown.dropdown-active span { background:url(../images/toggle_up_dark.png) 100% 50% no-repeat; }

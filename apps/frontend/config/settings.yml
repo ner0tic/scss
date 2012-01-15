@@ -42,4 +42,4 @@ all:
     secure_action:          secure
 
     # Helpers
-    standard_helpers:       [Date,Partial,ScssMenu,Scss]
+    standard_helpers:       [Date,Partial,jQuery,ScssMenu,Scss]

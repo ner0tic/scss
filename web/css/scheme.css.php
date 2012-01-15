@@ -10,6 +10,8 @@
     $color[7]   =   $offWhite   =   '#f8f8f5';
     $color[8]   =   $white      =   '#ffffff';
     $color[9]   =   $black      =   '#000000';
+    $color[10]  =   $activeBtn  =   $ltGold; //'#f4f3ed';
+    $color[11]  =   $offBlack   =   '#666666';
 
 /*
     $ltOrange           =   '#FF9933';

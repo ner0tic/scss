@@ -23,7 +23,7 @@ class scoutActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('id')));
+    $this->scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('scout_slug')));
     $this->forward404Unless($this->scout);
   }
 
@@ -45,7 +45,7 @@ class scoutActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->find($request->getParameter('id')));
+    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->findOneBySlug($request->getParameter('scout_slug')));
     $this->form = new ScssScoutForm($scout);
     $this->scout = ucwords($scout->getName());
   }
@@ -53,7 +53,7 @@ class scoutActions extends sfActions
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('id'))), sprintf('Object scss_scout does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('scout_slug'))), sprintf('Object scout does not exist (%s).', $request->getParameter('scout_slug')));
     $this->form = new ScssScoutForm($scout);
 
     $this->processForm($request, $this->form);
@@ -65,7 +65,7 @@ class scoutActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('id'))), sprintf('Object scss_scout does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('scout_slug'))), sprintf('Object scss_scout does not exist (%s).', $request->getParameter('scout_slug')));
     $scout->delete();
 
     $this->redirect('scout/index');

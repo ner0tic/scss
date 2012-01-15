@@ -20,14 +20,28 @@
                 <td><?php echo ucwords($scout->getPatrol()->getName()) ?></td>
                 <td class="table-controls">
                     <div class="table-controls">
-                        <a href="<?php echo url_for('scout/edit?id='.$scout->getId())?>">
-                            <img src="/images/icons/edit-icon.png" width="16" height="16" alt="edit" />
-                            <span class="control-txt">edit</span>
-                        </a>
-                        <a href="<?php echo url_for('scout/delete?id='.$scout->getId())?>">
-                            <img src="/images/icons/delete-icon.png" width="16" height="16" alt="delete" />
-                            <span class="control-txt">delete</span>
-                        </a>
+                      <?php echo link_to(
+                              image_tag('icons/edit-icon.png', array(
+                                  'width'   =>    '16',
+                                  'height'  =>    '16',
+                                  'alt'     =>    'edit'))
+                              .'<span class="control-txt">edit</span>',
+                              @scout_edit,array(
+                                  'district_slug' =>  $scout->getPatrol()->getTroop()->getDistrict()->getSlug(),
+                                  'troop_slug'    =>  $scout->getPatrol()->getTroop()->getSlug(),
+                                  'scout_slug'    =>  $scout->getSlug()
+                              )) ?>  
+                      <?php echo link_to(
+                              image_tag('icons/delete-icon.png', array(
+                                  'width'   =>    '16',
+                                  'height'  =>    '16',
+                                  'alt'     =>    'delete'))
+                              .'<span class="control-txt">delete</span>',
+                              @scout_delete, array(
+                                  'district_slug' =>  $scout->getPatrol()->getTroop()->getDistrict()->getSlug(),
+                                  'troop_slug'    =>  $scout->getPatrol()->getTroop()->getSlug(),
+                                  'scout_slug'    =>  $scout->getSlug()
+                              )) ?>                        
                     </div>
                 </td>
 <?php endforeach; ?>

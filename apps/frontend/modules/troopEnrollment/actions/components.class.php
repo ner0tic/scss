@@ -12,11 +12,11 @@
                   'model'                       =>  'ScssWeek',
                   'query'                       =>  Doctrine::getTable('ScssWeek')
                       ->createQuery('w')
-                      ->select('DISTINCT(date_format(w.start_date,/'%Y/'))')
-                      ->orderBy('start_date DESC')
+                      ->select("DISTINCT date_format(w.start_date,'%Y') as name")
+                      ->orderBy('name DESC')
               ));
       // build troop select :: show if not troop_user level
-      $this->changes['troop']                   = new sfWidgetFormDoctrineChoice(
+/*      $this->changes['troop']                   = new sfWidgetFormDoctrineChoice(
               array(
                   'model'                       =>  'ScssTroopEnrollment',
                   'query'                       =>  Doctrine::getTable('ScssTroopEnrollment')
@@ -46,6 +46,7 @@
                       ->filterByCamp($this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp())
                       ->select('DISTINCT(cw.id as id), cw.label as name')
               ));
+*/
       $this->troops                             = Doctrine::getTable('ScssTroopEnrollment')->createQuery()->filterBySeason();
       $this->currentEnrollment                  = array();
       $this->currentEnrollment['district_code'] = $this->getUser()->getProfile()->getActiveEnrollment()->getTroop()->getDistrict()->getCode();
