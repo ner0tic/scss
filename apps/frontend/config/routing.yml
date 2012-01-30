@@ -63,7 +63,7 @@ camp:
     model: ScssCamp
     module: camp
     prefix_path: /camps/:district_slug
-    column: camp_slug
+    column: camp_slug 
 class:
   class: sfDoctrineRouteCollection
   options:
@@ -115,7 +115,7 @@ staff:
 cabin:
   class: sfDoctrineRouteCollection
   options:
-    model: Scsscabin
+    model: ScssCabin
     module: cabin
     prefix_path: /camps/:district_slug/:camp_slug/cabins
     column: cabin_slug
@@ -140,6 +140,12 @@ country:
     module: country
     prefix_path: /countries
     column: country_slug
+show_address:
+  url:     /address/:id.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: ScssAddressBook, type: object }
+  param:   { module: address, action: show, sf_format: html }
+  requirements: { sf_method: get }  
 #######################
 # menu related
 #######################

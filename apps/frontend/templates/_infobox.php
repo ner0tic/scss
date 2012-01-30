@@ -30,7 +30,7 @@
       <?php echo link_to(image_tag($sf_user->getAvatar(),array('height' => sfConfig::get('app_avatar_height'), 'width' => sfConfig::get('app_avatar_height'), 'alt' => $sf_user->getName())), @misc_settings) ?>     
     </div>
     <h2>
-      Welcome <?php echo link_to($sf_user->getGuardUser()->getUsername(),'@profile',array('user_id'=>$sf_user->getGuardUser()->getId())) ?>
+      Welcome <?php echo link_to($sf_user->getGuardUser()->getName(),'@profile',array('user_id'=>$sf_user->getGuardUser()->getId())) ?>
       <?php include_component('troopEnrollment','renderActiveTroopList',array('request'=>$sf_request)) ?>
     </h2>  
     <hr />

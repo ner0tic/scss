@@ -1,0 +1,7 @@
+all:
+  ddlightbox:
+    width:    900      # default width  - trailing p == percent, no p == px
+    height:   580      # default height - trailing p == percent, no p == px
+    js_dir:   '/ddLightboxPlugin/js/'
+    css_dir:  '/ddLightboxPlugin/css/'
+    modal:    false    # use modal

@@ -189,5 +189,16 @@ class Scss {
         return $s;
     }
     
+    
+    public static function encrypt_email($e) {
+      $r = array();
+      $r['@'] = '[at]';
+      $r['.'] = '[dot]';
+      
+      foreach($r as $k => $v) {
+        $e = str_replace($k,$v,$e);
+      }
+      return $e;
+    }
 
 }

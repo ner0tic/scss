@@ -33,8 +33,7 @@ class campActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->scss_camp = Doctrine_Core::getTable('ScssCamp')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->scss_camp);
+    $this->camp = Doctrine_Core::getTable('ScssCamp')->findOneBySlug(array($request->getParameter('camp_slug')));
   }
 
   public function executeNew(sfWebRequest $request)

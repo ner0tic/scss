@@ -20,7 +20,7 @@
     <?php endif; ?>
                 <td class="table-controls">
                     <div class="table-controls">
-                        <?php echo link_to(image_tag('/images/icons/edit-icon.png',array('width'=>16,'height'=>16,'alt'=>'edit')).'<span class="control-txt">edit</span>',@scout_edit,array(
+                        <?php echo lb_link_to(image_tag('/images/icons/edit-icon.png',array('width'=>16,'height'=>16,'alt'=>'edit')).'<span class="control-txt">edit</span>',@scout_edit,array(
                                       'district_slug' => $scout->getPatrol()->getTroop()->getDistrict()->getSlug(),
                                       'troop_slug'    => $scout->getPatrol()->getTroop()->getSlug(),
                                       'scout_slug'    => $scout->getSlug()))?>
@@ -34,7 +34,7 @@
             </tr>
             </tbody>
             <?php include_partial('global/pager',array(
-                'numColumns'      =>  4,
+                'colspan'      =>  7,
                 'prefix'          =>  's_',
                 'module'          =>  'scout',
                 'pager'           =>  $s_pager
@@ -70,7 +70,7 @@
 <?php endforeach ?>
             </tbody>
             <?php include_partial('global/pager',array(
-                'numColumns'      =>  4,
+                'colspan'      =>  4,
                 'prefix'          =>  'p_',
                 'module'          =>  'patrol',
                 'pager'           =>  $p_pager

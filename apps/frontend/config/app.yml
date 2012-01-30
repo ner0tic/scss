@@ -34,4 +34,7 @@ all:
   ddToggleSwitchPlugin:
     include_js: false
     js_path: /js
-    
+  lightbox:
+    width: 900    # default width   - trailing p == percent, no p == px
+    height: 580   # default height  - trailing p == percent, no p == px
+    modal: false  # use modal    

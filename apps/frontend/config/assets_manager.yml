@@ -30,6 +30,8 @@ packages:
     import: [layout, jquery-ui, in-field-label]
     css: form-custom.css.php
     js: form.custom.js
+  pager:
+    css: pager.css.php
   colorpicker:
     import: form
     css: colorpicker.css
@@ -40,7 +42,7 @@ packages:
   signup:
     import: [form,jquery-ui]
   data-table:
-    import: jquery-ui
+    import: [jquery-ui, pager]
     css: datatable.css.php
   grid:
     import: data-table
@@ -86,7 +88,8 @@ packages:
   enroll: # scoutEnrollment, troopRegistration
     import: form
   camp: # camp, area, campsite
-    import: layout
+    import: [layout, lightbox ]
+    js: scss.camp.js
   time: # week, period
     import: layout
   class: # course, class

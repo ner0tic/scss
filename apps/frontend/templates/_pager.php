@@ -1,7 +1,8 @@
 <?php // apps/frontend/templates/_pager.php ?>
+<?php load_assets('pager') ?>
           <tfoot>
             <tr>
-              <td colspan="<?php echo $colspan ?>">
+              <td colspan="<?php echo $colspan ?>" class="pager">
                 <?php if($pager->haveToPaginate()): ?>
                 <div class="pagination">
                   <?php echo link_to("&larr;",$sf_context->getRouting()->getCurrentRouteName(),array($prefix.'page'=>$pager->getFirstPage())) ?>

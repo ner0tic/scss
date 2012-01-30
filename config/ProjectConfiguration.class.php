@@ -20,6 +20,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     //$this->enablePlugins('sfMelodyPlugin');
     //$this->enablePlugins('csSecurityTaskExtraPlugin');
     $this->enablePlugins('ddNavMenuPlugin');
+    $this->enablePlugins('ddLightboxPlugin');
     //$this->enablePlugins('stPhpConsolePlugin');
     //$this->enablePlugins('sfToolsPlugin');
   }
