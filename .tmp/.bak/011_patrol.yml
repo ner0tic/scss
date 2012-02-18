@@ -1,0 +1,22 @@
+#/data/fixtures/patrol.yml
+
+#################################
+### TODO ########################
+#################################
+# dynamically load this fixture #
+# based on the number of troops #
+# to create a "default" patrol  #
+# for each troop                #
+#################################
+
+ScssPatrol:
+  -
+    name: Bears
+    img: bears.png
+    troop_id: 1
+  -
+    name: Panthers
+    troop_id: 1
+  -
+    name: Foxes
+    troop_id: 2

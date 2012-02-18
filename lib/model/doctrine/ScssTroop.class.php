@@ -36,4 +36,7 @@ class ScssTroop extends BaseScssTroop
     public function getName() {
 	return $this->getNumber();
     }
+    public function getTroopSlug() { return $this->getSlug(); }
+    public function getDistrictSlug() { return $this->getDistrict()->getSlug(); }
+    
 }

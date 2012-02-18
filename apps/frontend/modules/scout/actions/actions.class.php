@@ -8,32 +8,27 @@
  * @author     David Durost
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class scoutActions extends sfActions
-{
-  public function executeIndex(sfWebRequest $request)
-  {
+class scoutActions extends sfActions {
+  public function executeIndex(sfWebRequest $request) {
     $cur_pg = $request->getParameter('page',1);
     $max_pg = sfConfig::get('app_max_items_on_index');
     $this->pager = new sfDoctrinePager('ScssScout',$max_pg);
-    $this->pager->setQuery(Doctrine::getTable('ScssScout')->createQuery('a')->leftJoin('a.Patrol p')->where('p.troop_id = ?', $this->getUser()->getProfile()->getActiveEnrollment()->getTroop()->getId())->orderBy('a.last_name, a.first_name ASC'));
+    $this->pager->setQuery(Doctrine::getTable('ScssScout')->createQuery('a')->filterByTroop($this->getUser()->getProfile()->getActiveEnrollment()->getTroop())->orderBy('a.last_name, a.first_name ASC'));
     $this->pager->setPage($cur_pg);
-    $this->pager->init();
-    
+    $this->pager->init();    
   }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->scout = Doctrine_Core::getTable('ScssScout')->find(array($request->getParameter('scout_slug')));
+  public function executeShow(sfWebRequest $request) {
+    $this->scout = $this->getRoute()->getObject();
     $this->forward404Unless($this->scout);
   }
 
-  public function executeNew(sfWebRequest $request)
-  {
+  public function executeNew(sfWebRequest $request) {
+    $this->params = array('district_slug' => $request->getParameter('district_slug'),'troop_slug' => $request->getParameter('troop_slug'));
     $this->form = new ScssScoutForm();
   }
 
-  public function executeCreate(sfWebRequest $request)
-  {
+  public function executeCreate(sfWebRequest $request) {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
     $this->form = new ScssScoutForm();
@@ -45,9 +40,10 @@ class scoutActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($scout = Doctrine_Core::getTable('ScssScout')->findOneBySlug($request->getParameter('scout_slug')));
-    $this->form = new ScssScoutForm($scout);
-    $this->scout = ucwords($scout->getName());
+    $this->scout = $this->getRoute()->getObject();
+    $this->forward404Unless($this->scout);
+    $this->form = new ScssScoutForm($this->scout);
+    
   }
 
   public function executeUpdate(sfWebRequest $request)

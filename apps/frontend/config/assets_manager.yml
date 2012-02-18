@@ -87,7 +87,7 @@ packages:
     import: layout
   enroll: # scoutEnrollment, troopRegistration
     import: form
-  camp: # camp, area, campsite
+  camp: # camp, area, campsite, staff
     import: [layout, lightbox ]
     js: scss.camp.js
   time: # week, period

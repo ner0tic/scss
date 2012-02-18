@@ -18,7 +18,7 @@ class ScssClassForm extends BaseScssClassForm
         array(
           'model'     => 'ScssCourse',
           'add_empty' => false,
-          'query'     => Doctrine::getTable('ScssCourse')->createQuery('crs')->filterByCamp(sfContext::getInstance()->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp())
+          'query'     => Doctrine::getTable('ScssCourse')->createQuery('a')->selectForForm()->filterByCamp(sfContext::getInstance()->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp())
         )
     );
   }

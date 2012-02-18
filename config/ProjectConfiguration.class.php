@@ -10,18 +10,11 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfDoctrinePlugin');
     $this->enablePlugins('sfDoctrineGuardPlugin');
     $this->enablePlugins('sfFacebookConnectPlugin');
-    $this->enablePlugins('sfDependentSelectPlugin');
-    $this->enablePlugins('sfDoctrineActAsTaggablePlugin');
     $this->enablePlugins('sfFormExtraPlugin');
-    //$this->enablePlugins('sfMediaBrowserPlugin');
-    //$this->enablePlugins('sfJqueryReloadedPlugin');
     $this->enablePlugins('sfAssetsManagerPlugin');
     $this->enablePlugins('sfDoctrineOAuthPlugin');
-    //$this->enablePlugins('sfMelodyPlugin');
-    //$this->enablePlugins('csSecurityTaskExtraPlugin');
     $this->enablePlugins('ddNavMenuPlugin');
     $this->enablePlugins('ddLightboxPlugin');
-    //$this->enablePlugins('stPhpConsolePlugin');
-    //$this->enablePlugins('sfToolsPlugin');
+    $this->enablePlugins('ddWidgetFormInputToggleSwitchPlugin');
   }
 }

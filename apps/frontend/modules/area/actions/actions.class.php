@@ -8,25 +8,20 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class areaActions extends sfActions
-{
-  public function executeIndex(sfWebRequest $request)
-  {
+class areaActions extends sfActions {
+  public function executeIndex(sfWebRequest $request) {
     $curr_pg = $request->getParameter('page',1);
     $max_pg = sfConfig::get('app_max_items_on_index');
-    $this->route = $this->getContext()->getRouting()->getCurrentRouteName();
     $this->pager = new sfDoctrinePager('ScssArea', $max_pg);
-    $q = Doctrine::getTable('ScssArea')->createQuery('d');
-    $q->orderBy('d.name ASC');
-    $this->pager->setQuery($q);
+    $this->pager->setQuery(Doctrine::getTable('ScssArea')->createQuery('a')->filterByCamp($this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp()));
     $this->pager->setPage($curr_pg);
     $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->scss_area = Doctrine_Core::getTable('ScssArea')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->scss_area);
+    $this->area = $this->getRoute()->getObject();
+    $this->forward404Unless($this->area);
   }
 
   public function executeNew(sfWebRequest $request)

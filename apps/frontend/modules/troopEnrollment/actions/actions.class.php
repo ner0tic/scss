@@ -12,9 +12,13 @@ class troopEnrollmentActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->scss_troop_enrollments = Doctrine_Core::getTable('ScssTroopEnrollment')
-      ->createQuery('a')
-      ->execute();
+    $cur_pg = $request->getParameter('page',1);
+    $max_pg = sfConfig::get('app_max_items_on_index');
+    $this->pager = new sfDoctrinePager('ScssTroopEnrollment',$max_pg);
+    $this->pager->setQuery(Doctrine::getTable('ScssTroopEnrollment')->createQuery('a')->filterByTroop($this->getUser()->getProfile()->getActiveEnrollment()->getTroop()));
+    $this->pager->setPage($cur_pg);
+    $this->pager->init();
+    
   }
 
   public function executeNew(sfWebRequest $request)

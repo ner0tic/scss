@@ -1,37 +1,24 @@
 <?php load_assets('class') ?>
 <?php load_assets('data-table') ?>
 <?php include_partial('global/infobox',array('page'=>'classes')) ?>
-<script>
-  $('.nav-bar ul li').removeClass('active');
-</script>
-<div class="box main-content"?>
+<div class="box main-content">
   <div class="box-content datagrid">
-    <h2>Classes&nbsp;<?php echo link_to('<img src="/images/icons/add-icon.png" height="16" width="16" alt="Add A Class" />','class_new', array(
-      'district_slug' =>  $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getDistrict()->getSlug(),
-      'camp_slug'     =>  $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp()->getSlug(),
-      'week_slug'     =>  $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getSlug())) ?></h2>
+    <h2>Classes</h2>
     <table class="data-table" id="class-table">
       <tbody>
-<?php foreach($classes as $i => $class): ?>
+<?php foreach($courses as $i => $course): ?>
         <tr class="table-row <?php echo fmod($i,2) ? 'even-row' : 'odd-row' ?>">
-          <td><?php echo ucwords($class->getName()) ?></td>
-          <td><?php echo ucwords($class->getArea()->getName()) ?></td>
-          <td><?php echo $class->getPeriod()->getName() ?></td>
-          <td><?php echo ucwords($class->getStaff()->getName()) ?></td>
+          <td><?php echo ucwords($course->getLabel()) ?></td>
+          <?php foreach($periods as $i => $per): ?>
+          <?php include_component('class','miniform',array('course'=>$course,'period'=>$per)) ?>          
+          <?php endforeach; ?>
           <td class="table-controls">
             <div class="table-controls">
-              <a href="<?php echo url_for('class/edit?id='.$class->getId()) ?>">
-                <img src="/images/icons/edit-icon.png" width="16" height="16" alt="edit" />
-                <span class="control-txt">edit</span>
-              </a>
-              <a href="<?php echo url_for('class/delete?id='.$class->getId()) ?>">
-                <img src="/images/icons/delete-icon.png" width="16" height="16" alt="delete" />
-                <span class="control-txt">edit</span>
-              </a>
+              <?php echo link_to(image_tag('/images/icons/delete-icon.png',array('width'=>'16','height'=>'16','alt'=>'delete')).'<span class="control-txt">edit</span>',@course_delete,$course) ?>
             </div>
           </td>
-<?php endforeach; ?>
-        </tr>
+        </tr>          
+<?php break; endforeach; ?>
       </tbody>
     </table>
   </div>

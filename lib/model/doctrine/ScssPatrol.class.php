@@ -20,4 +20,19 @@ class ScssPatrol extends BaseScssPatrol
     public function getScoutCount() {
         return $this->getScouts()->count();
     }
+    public function getTroopSlug() {
+      return $this->getTroop()->getSlug();
+    }
+    public function getPatrolSlug() {
+      return $this->getSlug();
+    }
+    public function getDistrictSlug() {
+      return $this->getTroop()->getDistrict()->getSlug();
+    }
+    public function getZoneSlug() {
+      return $this->getTroop()->getDistrict()->getZone()->getSlug();
+    }
+    public function getCountrySlug() {
+      return $this->getTroop()->getDistrict()->getZone()->getCountry()->getSlug();
+    }
 }

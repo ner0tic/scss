@@ -63,6 +63,20 @@ class ScssClassQuery extends Doctrine_Query {
     else $id = $mb;
     return $this->leftJoin($this->getRootAlias().'.course cr')->andWhere('cr.meritbadge_id = ?', $id);   
   }
+  
+  public function filterByCourse($course) {
+    if(is_object($course))  $id = $course->getId();
+    elseif(is_null($course))  return null;
+    else $id = $course;
+    return $this->andWhere($this->getRootAlias().'.course_id = ?', $id);   
+  }  
+  
+  public function filterByPeriod($period) {
+    if(is_object($period))  $id = $period->getId();
+    elseif(is_null($period))  return null;
+    else $id = $period;
+    return $this->andWhere($this->getRootAlias().'.period_id = ?', $id);   
+  }
 }
 
 ?>

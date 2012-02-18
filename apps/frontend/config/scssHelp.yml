@@ -1,0 +1,9 @@
+all:
+  scss_form_help:
+    scout:
+      first_name: 'scouts first name'
+      last_name: 'scouts last name'
+      dob: 'scouts date of birth'
+      patrol_id: 'scouts patrol'
+      rank_id: 'scouts rank'
+    

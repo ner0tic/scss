@@ -1,5 +1,7 @@
 <?php // apps/frontend/templates/_pager.php ?>
 <?php load_assets('pager') ?>
+<?php $no_plural  = isset($no_plural) ? $no_plural  : false ?>
+<?php $prefix     = isset($prefix)    ? $prefix     : '' ?>
           <tfoot>
             <tr>
               <td colspan="<?php echo $colspan ?>" class="pager">
@@ -18,7 +20,7 @@
                 </div>
                 <?php endif; ?>
                  <div class="pagination_desc">                     
-                  <strong><?php echo count($pager) ?></strong> <?php echo $module ?>s found  
+                  <strong><?php echo count($pager) ?></strong> <?php echo $module . ($no_plural ? '' : 's') ?> found  
                 <?php if ($pager->haveToPaginate()): ?>
                   - page <strong><?php echo $pager->getPage() ?>/<?php echo $pager->getLastPage() ?></strong>
                 <?php endif; ?>

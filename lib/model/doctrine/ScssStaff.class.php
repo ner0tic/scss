@@ -15,4 +15,9 @@ class ScssStaff extends BaseScssStaff
 	public function getName() {
 	  return ucwords($this->getFirstName().' '.$this->getLastName());
 	}
+    
+    public function getStaffSlug() { return $this->getSlug(); }
+    public function getCabinSlug() { return $this->getCabin()->getSlug(); }
+    public function getCampSlug() { return $this->getCabin()->getCamp()->getSlug(); }
+    public function getDistrictSlug() { return $this->getCabin()->getCamp()->getDistrict()->getSlug(); }
 }

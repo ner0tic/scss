@@ -10,10 +10,17 @@
  */
 class courseActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
-  {
+  public function executeIndex(sfWebRequest $request) {
+    $cur_pg = $request->getParameter('page',1);
+    $max_pg = sfConfig::get('app_max_items_on_index');
+    $this->pager = new sfDoctrinePager('ScssMeritBadge',$max_pg);
+    $this->pager->setQuery(Doctrine::getTable('ScssMeritBadge')->createQuery('a')->orderBy('a.name ASC'));
+    $this->pager->setPage($cur_pg);
+    $this->pager->init();      
+    
     $this->courses = Doctrine_Core::getTable('ScssCourse')
-      ->createQuery('c')->leftJoin('c.MeritBadge m')->orderBy('m.name ASC')
+      ->createQuery('c')
+      ->filterByCamp($this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp())
       ->execute();
   }
 

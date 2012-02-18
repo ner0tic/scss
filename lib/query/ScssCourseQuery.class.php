@@ -30,6 +30,14 @@ class ScssCourseQuery extends Doctrine_Query {
     else $id = $mb;
     return $this->andWhere($this->getRootAlias().'.meritbadge_id = ?', $id);   
   }  
+  
+  /**
+   *
+   * @return Doctrine_Query 
+   */
+  public function selectForForm() {
+    return $this->leftJoin($this->getRootAlias().'.MeritBadge mb')->select($this->getRootAlias().'.id, mb.name');
+  }
 }
 
 ?>

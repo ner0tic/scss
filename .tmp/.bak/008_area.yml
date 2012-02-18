@@ -1,0 +1,47 @@
+#/data/fixtures/area.yml
+
+ScssArea:
+  -
+    name: Aquatics
+    parent_id: 0
+    camp_id : 1
+  -
+    name: Boating
+    parent_id: 1
+    camp_id: 1
+  -
+    name: West Beach
+    parent_id: 1
+    camp_id: 1
+  -
+    name: Main Beach
+    parent_id: 1
+    camp_id: 1
+  -
+    name: Tech Center
+    parent_id: 0
+    camp_id: 1
+  -
+    name: Shooting Sports
+    parent_id: 0
+    camp_id: 1
+  -
+    name: Archery Range
+    parent_id: 6
+    camp_id: 1
+  -
+    name: Shooting Range
+    parent_id: 6
+    camp_id: 1
+  -
+    name: Scoutcraft
+    parent_id: 0
+    camp_id: 1
+  -
+    name: Nature
+    parent_id: 0
+    camp_id: 1
+  -
+    name: Arts And Crafts
+    parent_id: 0
+    camp_id: 1

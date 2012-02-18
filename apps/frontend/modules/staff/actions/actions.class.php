@@ -12,9 +12,12 @@ class staffActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->scss_staffs = Doctrine_Core::getTable('ScssStaff')
-      ->createQuery('a')
-      ->execute();
+    $cur_pg = $request->getParameter('page',1);
+    $max_pg = sfConfig::get('app_max_items_on_index');
+    $this->pager = new sfDoctrinePager('ScssStaff',$max_pg);
+    $this->pager->setQuery(Doctrine::getTable('ScssStaff')->createQuery('a')->addAgeSelect()->filterByCamp($this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp())->orderBy('a.last_name, a.first_name ASC'));
+    $this->pager->setPage($cur_pg);
+    $this->pager->init();    
   }
   public function executeClassMgmtSelect(sfWebRequest $request) {
     $this->staff = array();
@@ -22,8 +25,8 @@ class staffActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->scss_staff = Doctrine_Core::getTable('ScssStaff')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->scss_staff);
+    $this->staff = Doctrine_Core::getTable('ScssStaff')->find(array($request->getParameter('id')));
+    $this->forward404Unless($this->staff);
   }
 
   public function executeNew(sfWebRequest $request)
@@ -44,15 +47,15 @@ class staffActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($scss_staff = Doctrine_Core::getTable('ScssStaff')->find(array($request->getParameter('id'))), sprintf('Object scss_staff does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ScssStaffForm($scss_staff);
+    $this->forward404Unless($staff = Doctrine_Core::getTable('ScssStaff')->find(array($request->getParameter('slug'))), sprintf('Object staff does not exist (%s).', $request->getParameter('slug')));
+    $this->form = new ScssStaffForm($staff);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($scss_staff = Doctrine_Core::getTable('ScssStaff')->find(array($request->getParameter('id'))), sprintf('Object scss_staff does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ScssStaffForm($scss_staff);
+    $this->forward404Unless($staff = Doctrine_Core::getTable('ScssStaff')->find(array($request->getParameter('slug'))), sprintf('Object staff does not exist (%s).', $request->getParameter('slug')));
+    $this->form = new ScssStaffForm($staff);
 
     $this->processForm($request, $this->form);
 
@@ -63,8 +66,8 @@ class staffActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->forward404Unless($scss_staff = Doctrine_Core::getTable('ScssStaff')->find(array($request->getParameter('id'))), sprintf('Object scss_staff does not exist (%s).', $request->getParameter('id')));
-    $scss_staff->delete();
+    $this->forward404Unless($staff = Doctrine_Core::getTable('ScssStaff')->find(array($request->getParameter('id'))), sprintf('Object staff does not exist (%s).', $request->getParameter('id')));
+    $staff->delete();
 
     $this->redirect('staff/index');
   }
@@ -74,9 +77,9 @@ class staffActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $scss_staff = $form->save();
+      $staff = $form->save();
 
-      $this->redirect('staff/edit?id='.$scss_staff->getId());
+      $this->redirect('staff/edit?id='.$staff->getId());
     }
   }
 }

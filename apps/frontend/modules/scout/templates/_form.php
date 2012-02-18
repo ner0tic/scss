@@ -4,16 +4,7 @@
 <?php load_assets('data-table') ?>
 <div class="form-wrapper" id="scout-form-wrapper">
   <div class="form-content-wrapper">
-    <?php //echo form_tag_for($form, '@scout',array(array('district_slug'=>$sf_request->getParameter('district_slug'),'troop_slug'=>$sf_request->getParameter('troop_slug')),'id'=>'scout-form')) ?>
-    <?php /*scss_form_remote_tag(array(
-        'url'         =>  '@scout_update',
-        'update'      =>  'scout-form',
-        'url_params'  =>  array(
-            'district_slug' =>  $sf_request->getParameter('district_slug'),
-            'troop_slug'    =>  $sf_request->getParameter('troop_slug'),
-            'scout_slug'    =>  $sf_request->getParameter('scout_slug')
-    )));*/ ?>
-    <form name="scout-form" id="scout-form" action="<?php echo is_object($sf_request->getObject()) ? '@scout_update' : '@scout_create' ?>" method="post" >
+    <form name="scout-form" id="scout-form" action="<?php echo is_object($scout) ? '@scout_update' : '@scout_create' ?>" method="post" > 
       <div>      
         <div class="form-input-wrapper" id="first_name">
           <?php echo $form['first_name']->renderLabel() ?>

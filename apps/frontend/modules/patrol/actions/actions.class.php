@@ -23,7 +23,7 @@ class patrolActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->patrol = Doctrine_Core::getTable('ScssPatrol')->find(array($request->getParameter('id')));
+    $this->patrol = $this->getRoute()->getObject();
     $this->forward404Unless($this->patrol);
   }
 
@@ -45,16 +45,17 @@ class patrolActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($patrol = Doctrine_Core::getTable('ScssPatrol')->find(array($request->getParameter('id'))), sprintf('Object patrol does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ScssPatrolForm($patrol);
-    $this->patrol = ucwords($patrol->getName());
+    
+    $this->patrol = $this->getRoute()->getObject();
+    $this->forward404Unless($this->patrol);
+    $this->form = new ScssPatrolForm($this->patrol);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($scss_patrol = Doctrine_Core::getTable('ScssPatrol')->find(array($request->getParameter('id'))), sprintf('Object patrol does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ScssPatrolForm($scss_patrol);
+    $this->forward404Unless($patrol = Doctrine_Core::getTable('ScssPatrol')->find(array($request->getParameter('id'))), sprintf('Object patrol does not exist (%s).', $request->getParameter('id')));
+    $this->form = new ScssPatrolForm($patrol);
 
     $this->processForm($request, $this->form);
 

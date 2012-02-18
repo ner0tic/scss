@@ -20,14 +20,8 @@
     <?php endif; ?>
                 <td class="table-controls">
                     <div class="table-controls">
-                        <?php echo lb_link_to(image_tag('/images/icons/edit-icon.png',array('width'=>16,'height'=>16,'alt'=>'edit')).'<span class="control-txt">edit</span>',@scout_edit,array(
-                                      'district_slug' => $scout->getPatrol()->getTroop()->getDistrict()->getSlug(),
-                                      'troop_slug'    => $scout->getPatrol()->getTroop()->getSlug(),
-                                      'scout_slug'    => $scout->getSlug()))?>
-                        <?php echo link_to(image_tag('/images/icons/delete-icon.png',array('width'=>16,'height'=>16,'alt'=>'delete')).'<span class="control-txt">delete</span>',@scout_delete,array(
-                                      'district_slug' => $scout->getPatrol()->getTroop()->getDistrict()->getSlug(),
-                                      'troop_slug'    => $scout->getPatrol()->getTroop()->getSlug(),
-                                      'scout_slug'    => $scout->getSlug()))?>
+                        <?php echo lb_link_to(image_tag('/images/icons/edit-icon.png',array('width'=>16,'height'=>16,'alt'=>'edit')).'<span class="control-txt">edit</span>',@scout_edit,$scout);?>
+                        <?php echo lb_link_to(image_tag('/images/icons/delete-icon.png',array('width'=>16,'height'=>16,'alt'=>'delete')).'<span class="control-txt">delete</span>',@scout_delete,$scout)?>
                     </div>
                 </td>
 <?php endforeach; ?>

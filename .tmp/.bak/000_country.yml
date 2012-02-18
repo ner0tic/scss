@@ -1,0 +1,1435 @@
+#/data/fixtures/country.yml
+ScssCountry:
+  1:
+#    id: 1
+    name: Afghanistan
+    iso_code2: AF
+    address_format_id: 1
+    slug: afghanistan
+  2:
+#    id: 2
+    name: Albania
+    iso_code2: AL
+    address_format_id: 1
+    slug: albania
+  3:
+#    id: 3
+    name: Algeria
+    iso_code2: DZ
+    address_format_id: 1
+    slug: algeria
+  4:
+#    id: 4
+    name: American Samoa
+    iso_code2: 'AS'
+    address_format_id: 1
+    slug: american-samoa
+  5:
+#    id: 5
+    name: Andorra
+    iso_code2: AD
+    address_format_id: 1
+    slug: andorra
+  6:
+#    id: 6
+    name: Angola
+    iso_code2: AO
+    address_format_id: 1
+    slug: angola
+  7:
+#    id: 7
+    name: Anguilla
+    iso_code2: AI
+    address_format_id: 1
+    slug: anguilla
+  8:
+#    id: 8
+    name: Antarctica
+    iso_code2: AQ
+    address_format_id: 1
+    slug: antarctica
+  9:
+#    id: 9
+    name: Antigua and Barbuda
+    iso_code2: AG
+    address_format_id: 1
+    slug: antigua-and-barbuda
+  10:
+#    id: 10
+    name: Argentina
+    iso_code2: AR
+    address_format_id: 1
+    slug: argentia
+  11:
+#    id: 11
+    name: Armenia
+    iso_code2: AM
+    address_format_id: 1
+    slug: armenia
+  12:
+#    id: 12
+    name: Aruba
+    iso_code2: AW
+    address_format_id: 1
+    slug: aruba
+  13:
+#    id: 13
+    name: Australia
+    iso_code2: AU
+    address_format_id: 1
+    slug: australia
+  14:
+#    id: 14
+    name: Austria
+    iso_code2: AT
+    address_format_id: 5
+    slug: austria
+  15:
+#    id: 15
+    name: Azerbaijan
+    iso_code2: AZ
+    address_format_id: 1
+    slug: azerbaijan
+  16:
+#    id: 16
+    name: Bahamas
+    iso_code2: BS
+    address_format_id: 1
+    slug: bahamas
+  17:
+#    id: 17
+    name: Bahrain
+    iso_code2: BH
+    address_format_id: 1
+    slug: bahrain
+  18:
+#    id: 18
+    name: Bangladesh
+    iso_code2: BD
+    address_format_id: 1
+    slug: bangladesh
+  19:
+#    id: 19
+    name: Barbados
+    iso_code2: BB
+    address_format_id: 1
+    slug: barbados
+  20:
+#    id: 20
+    name: Belarus
+    iso_code2: BY
+    address_format_id: 1
+    slug: belarus
+  21:
+#    id: 21
+    name: Belgium
+    iso_code2: BE
+    address_format_id: 1
+    slug: belgium
+  22:
+#    id: 22
+    name: Belize
+    iso_code2: BZ
+    address_format_id: 1
+    slug: belize
+  23:
+#    id: 23
+    name: Benin
+    iso_code2: BJ
+    address_format_id: 1
+    slug: benin
+  24:
+#    id: 24
+    name: Bermuda
+    iso_code2: BM
+    address_format_id: 1
+    slug: bermuda
+  25:
+#    id: 25
+    name: Bhutan
+    iso_code2: BT
+    address_format_id: 1
+    slug: bhutan
+  26:
+#    id: 26
+    name: Bolivia
+    iso_code2: BO
+    address_format_id: 1
+    slug: bolivia
+  27:
+#    id: 27
+    name: Bosnia and Herzegowina
+    iso_code2: BA
+    address_format_id: 1
+    slug: bosnia-and-herzegowina
+  28:
+#    id: 28
+    name: Botswana
+    iso_code2: BW
+    address_format_id: 1
+    slug: botswana
+  29:
+#    id: 29
+    name: Bouvet Island
+    iso_code2: BV
+    address_format_id: 1
+    slug: bouvet-island
+  30:
+#    id: 30
+    name: Brazil
+    iso_code2: BR
+    address_format_id: 1
+    slug: brazil
+  31:
+#    id: 31
+    name: British Indian Ocean Territory
+    iso_code2: IO
+    address_format_id: 1
+    slug: british-indian-ocean-territory
+  32:
+#    id: 32
+    name: Brunei Darussalam
+    iso_code2: BN
+    address_format_id: 1
+    slug: brunei-darussalam
+  33:
+#    id: 33
+    name: Bulgaria
+    iso_code2: BG
+    address_format_id: 1
+    slug: bulgaria
+  34:
+#    id: 34
+    name: Burkina Faso
+    iso_code2: BF
+    address_format_id: 1
+    slug: burkina-faso
+  35:
+#    id: 35
+    name: Burundi
+    iso_code2: BI
+    address_format_id: 1
+    slug: burundi
+  36:
+#    id: 36
+    name: Cambodia
+    iso_code2: KH
+    address_format_id: 1
+    slug: cambodia
+  37:
+#    id: 37
+    name: Cameroon
+    iso_code2: CM
+    address_format_id: 1
+    slug: cameroon
+  38:
+#    id: 38
+    name: Canada
+    iso_code2: CA
+    address_format_id: 1
+    slug: canada
+  39:
+#    id: 39
+    name: Cape Verde
+    iso_code2: CV
+    address_format_id: 1
+    slug: cape-verde
+  40:
+#    id: 40
+    name: Cayman Islands
+    iso_code2: KY
+    address_format_id: 1
+    slug: cayman-islands
+  41:
+#    id: 41
+    name: Central African Republic
+    iso_code2: CF
+    address_format_id: 1
+    slug: central-african-republic
+  42:
+#    id: 42
+    name: Chad
+    iso_code2: TD
+    address_format_id: 1
+    slug: chad
+  43:
+#    id: 43
+    name: Chile
+    iso_code2: CL
+    address_format_id: 1
+    slug: chile
+  44:
+#    id: 44
+    name: China
+    iso_code2: CN
+    address_format_id: 1
+    slug: china
+  45:
+#    id: 45
+    name: Christmas Island
+    iso_code2: CX
+    address_format_id: 1
+    slug: christmas-island
+  46:
+#    id: 46
+    name: Cocos (Keeling) Islands
+    iso_code2: CC
+    address_format_id: 1
+    slug: cocos-keeling-islands
+  47:
+#    id: 47
+    name: Colombia
+    iso_code2: CO
+    address_format_id: 1
+    slug: columbia
+  48:
+#    id: 48
+    name: Comoros
+    iso_code2: KM
+    address_format_id: 1
+    slug: comoros
+  49:
+#    id: 49
+    name: Congo
+    iso_code2: CG
+    address_format_id: 1
+    slug: congo
+  50:
+#    id: 50
+    name: Cook Islands
+    iso_code2: CK
+    address_format_id: 1
+    slug: cook-islands
+  51:
+#    id: 51
+    name: Costa Rica
+    iso_code2: CR
+    address_format_id: 1
+    slug: costa-rica
+  52:
+#    id: 52
+    name: Cote D'Ivoire
+    iso_code2: CI
+    address_format_id: 1
+    slug: cote-d-ivoire
+  53:
+#    id: 53
+    name: Croatia
+    iso_code2: HR
+    address_format_id: 1
+    slug: croatia
+  54:
+#    id: 54
+    name: Cuba
+    iso_code2: CU
+    address_format_id: 1
+    slug: cuba
+  55:
+#    id: 55
+    name: Cyprus
+    iso_code2: CY
+    address_format_id: 1
+    slug: cyprus
+  56:
+#    id: 56
+    name: Czech Republic
+    iso_code2: CZ
+    address_format_id: 1
+    slug: czech-republic
+  57:
+#    id: 57
+    name: Denmark
+    iso_code2: DK
+    address_format_id: 1
+    slug: denmark
+  58:
+#    id: 58
+    name: Djibouti
+    iso_code2: DJ
+    address_format_id: 1
+    slug: djibouti
+  59:
+#    id: 59
+    name: Dominica
+    iso_code2: DM
+    address_format_id: 1
+    slug: dominica
+  60:
+#    id: 60
+    name: Dominican Republic
+    iso_code2: 'DO'
+    address_format_id: 1
+    slug: dominican-republic
+  61:
+#    id: 61
+    name: East Timor
+    iso_code2: TP
+    address_format_id: 1
+    slug: east-timor
+  62:
+#    id: 62
+    name: Ecuador
+    iso_code2: EC
+    address_format_id: 1
+    slug: ecuador
+  63:
+#    id: 63
+    name: Egypt
+    iso_code2: EG
+    address_format_id: 1
+    slug: egypt
+  64:
+#    id: 64
+    name: El Salvador
+    iso_code2: SV
+    address_format_id: 1
+    slug: el-salvador
+  65:
+#    id: 65
+    name: Equatorial Guinea
+    iso_code2: GQ
+    address_format_id: 1
+    slug: equatorial-guinea
+  66:
+#    id: 66
+    name: Eritrea
+    iso_code2: ER
+    address_format_id: 1
+    slug: eritrea
+  67:
+#    id: 67
+    name: Estonia
+    iso_code2: EE
+    address_format_id: 1
+    slug: estonia
+  68:
+#    id: 68
+    name: Ethiopia
+    iso_code2: ET
+    address_format_id: 1
+    slug: ethiopia
+  69:
+#    id: 69
+    name: Falkland Islands (Malvinas)
+    iso_code2: FK
+    address_format_id: 1
+    slug: falkland-islands-malvinas
+  70:
+#    id: 70
+    name: Faroe Islands
+    iso_code2: FO
+    address_format_id: 1
+    slug: faroe-islands
+  71:
+#    id: 71
+    name: Fiji
+    iso_code2: FJ
+    address_format_id: 1
+    slug: fiji
+  72:
+#    id: 72
+    name: Finland
+    iso_code2: FI
+    address_format_id: 1
+    slug: finland
+  73:
+#    id: 73
+    name: France
+    iso_code2: FR
+    address_format_id: 1
+    slug: france
+  74:
+#    id: 74
+    name: France, Metropolitan
+    iso_code2: FX
+    address_format_id: 1
+    slug: france-metropoltan
+  75:
+#    id: 75
+    name: French Guiana
+    iso_code2: GF
+    address_format_id: 1
+    slug: french-guiana
+  76:
+#    id: 76
+    name: French Polynesia
+    iso_code2: PF
+    address_format_id: 1
+    slug: french-polynesia
+  77:
+#    id: 77
+    name: French Southern Territories
+    iso_code2: TF
+    address_format_id: 1
+    slug: french-southern-territories
+  78:
+#    id: 78
+    name: Gabon
+    iso_code2: GA
+    address_format_id: 1
+    slug: gabon
+  79:
+#    id: 79
+    name: Gambia
+    iso_code2: GM
+    address_format_id: 1
+    slug: gambia
+  80:
+#    id: 80
+    name: Georgia
+    iso_code2: GE
+    address_format_id: 1
+    slug: georgia
+  81:
+#    id: 81
+    name: Germany
+    iso_code2: DE
+    address_format_id: 5
+    slug: germany
+  82:
+#    id: 82
+    name: Ghana
+    iso_code2: GH
+    address_format_id: 1
+    slug: ghana
+  83:
+#    id: 83
+    name: Gibraltar
+    iso_code2: GI
+    address_format_id: 1
+    slug: gibralter
+  84:
+#    id: 84
+    name: Greece
+    iso_code2: GR
+    address_format_id: 1
+    slug: greece
+  85:
+#    id: 85
+    name: Greenland
+    iso_code2: GL
+    address_format_id: 1
+    slug: greenland
+  86:
+#    id: 86
+    name: Grenada
+    iso_code2: GD
+    address_format_id: 1
+    slug: grenada
+  87:
+#    id: 87
+    name: Guadeloupe
+    iso_code2: GP
+    address_format_id: 1
+    slug: guadeloupe
+  88:
+#    id: 88
+    name: Guam
+    iso_code2: GU
+    address_format_id: 1
+    slug: guam
+  89:
+#    id: 89
+    name: Guatemala
+    iso_code2: GT
+    address_format_id: 1
+    slug: guatemala
+  90:
+#    id: 90
+    name: Guinea
+    iso_code2: GN
+    address_format_id: 1
+    slug: guinea
+  91:
+#    id: 91
+    name: Guinea-bissau
+    iso_code2: GW
+    address_format_id: 1
+    slug: guinea-bissau
+  92:
+#    id: 92
+    name: Guyana
+    iso_code2: GY
+    address_format_id: 1
+    slug: guyana
+  93:
+#    id: 93
+    name: Haiti
+    iso_code2: HT
+    address_format_id: 1
+    slug: haiti
+  94:
+#    id: 94
+    name: Heard and Mc Donald Islands
+    iso_code2: HM
+    address_format_id: 1
+    slug: heard-and-mc-donald-islands
+  95:
+#    id: 95
+    name: Honduras
+    iso_code2: HN
+    address_format_id: 1
+    slug: honduras
+  96:
+#    id: 96
+    name: Hong Kong
+    iso_code2: HK
+    address_format_id: 1
+    slug: hong-kong
+  97:
+#    id: 97
+    name: Hungary
+    iso_code2: HU
+    address_format_id: 1
+    slug: hungary
+  98:
+#    id: 98
+    name: Iceland
+    iso_code2: 'IS'
+    address_format_id: 1
+    slug: iceland
+  99:
+#    id: 99
+    name: India
+    iso_code2: 'IN'
+    address_format_id: 1
+    slug: india
+  100:
+#    id: 100
+    name: Indonesia
+    iso_code2: ID
+    address_format_id: 1
+    slug: indonesia
+  101:
+#    id: 101
+    name: Iran (Islamic Republic of)
+    iso_code2: IR
+    address_format_id: 1
+    slug: iran-islamic-republic-of
+  102:
+#    id: 102
+    name: Iraq
+    iso_code2: IQ
+    address_format_id: 1
+    slug: iraq
+  103:
+#    id: 103
+    name: Ireland
+    iso_code2: IE
+    address_format_id: 1
+    slug: ireland
+  104:
+#    id: 104
+    name: Israel
+    iso_code2: IL
+    address_format_id: 1
+    slug: isreal
+  105:
+#    id: 105
+    name: Italy
+    iso_code2: IT
+    address_format_id: 1
+    slug: italy
+  106:
+#    id: 106
+    name: Jamaica
+    iso_code2: JM
+    address_format_id: 1
+    slug: jamaica
+  107:
+#    id: 107
+    name: Japan
+    iso_code2: JP
+    address_format_id: 1
+    slug: japan
+  108:
+#    id: 108
+    name: Jordan
+    iso_code2: JO
+    address_format_id: 1
+    slug: jordan
+  109:
+#    id: 109
+    name: Kazakhstan
+    iso_code2: KZ
+    address_format_id: 1
+    slug: kazakhstan
+  110:
+#    id: 110
+    name: Kenya
+    iso_code2: KE
+    address_format_id: 1
+    slug: kenya
+  111:
+#    id: 111
+    name: Kiribati
+    iso_code2: KI
+    address_format_id: 1
+    slug: kiribati
+  112:
+#    id: 112
+    name: Korea, Democratic People's Republic of
+    iso_code2: KP
+    address_format_id: 1
+    slug: korea-democratic-people-s-republic-of
+  113:
+#    id: 113
+    name: Korea, Republic of
+    iso_code2: KR
+    address_format_id: 1
+    slug: korea-republic of
+  114:
+#    id: 114
+    name: Kuwait
+    iso_code2: KW
+    address_format_id: 1
+    slug: kuwait
+  115:
+#    id: 115
+    name: Kyrgyzstan
+    iso_code2: KG
+    address_format_id: 1
+    slug: kyrgyzstan
+  116:
+#    id: 116
+    name: Lao People's Democratic Republic
+    iso_code2: LA
+    address_format_id: 1
+    slug: lao-people-s-democratic-republic
+  117:
+#    id: 117
+    name: Latvia
+    iso_code2: LV
+    address_format_id: 1
+    slug: latvia
+  118:
+#    id: 118
+    name: Lebanon
+    iso_code2: LB
+    address_format_id: 1
+    slug: lebanon
+  119:
+#    id: 119
+    name: Lesotho
+    iso_code2: LS
+    address_format_id: 1
+    slug: lesotho
+  120:
+#    id: 120
+    name: Liberia
+    iso_code2: LR
+    address_format_id: 1
+    slug: liberia
+  121:
+#    id: 121
+    name: Libyan Arab Jamahiriya
+    iso_code2: LY
+    address_format_id: 1
+    slug: libyan-arab-jamahiriya
+  122:
+#    id: 122
+    name: Liechtenstein
+    iso_code2: LI
+    address_format_id: 1
+    slug: liechtenstein
+  123:
+#    id: 123
+    name: Lithuania
+    iso_code2: LT
+    address_format_id: 1
+    slug: lithuania
+  124:
+#    id: 124
+    name: Luxembourg
+    iso_code2: LU
+    address_format_id: 1
+    slug: luxembourg
+  125:
+#    id: 125
+    name: Macau
+    iso_code2: MO
+    address_format_id: 1
+    slug: macau
+  126:
+#    id: 126
+    name: Macedonia, The Former Yugoslav Republic of
+    iso_code2: MK
+    address_format_id: 1
+    slug: macedonia-the-former-yugoslav-republic-of
+  127:
+#    id: 127
+    name: Madagascar
+    iso_code2: MG
+    address_format_id: 1
+    slug: madagascar
+  128:
+#    id: 128
+    name: Malawi
+    iso_code2: MW
+    address_format_id: 1
+  129:
+#    id: 129
+    name: Malaysia
+    iso_code2: MY
+    address_format_id: 1
+    slug: malaysia
+  130:
+#    id: 130
+    name: Maldives
+    iso_code2: MV
+    address_format_id: 1
+    slug: maldives
+  131:
+#    id: 131
+    name: Mali
+    iso_code2: ML
+    address_format_id: 1
+    slug: mali
+  132:
+#    id: 132
+    name: Malta
+    iso_code2: MT
+    address_format_id: 1
+    slug: malta
+  133:
+#    id: 133
+    name: Marshall Islands
+    iso_code2: MH
+    address_format_id: 1
+    slug: marshall-islands
+  134:
+#    id: 134
+    name: Martinique
+    iso_code2: MQ
+    address_format_id: 1
+    slug: martinique
+  135:
+#    id: 135
+    name: Mauritania
+    iso_code2: MR
+    address_format_id: 1
+    slug: mauritania
+  136:
+#    id: 136
+    name: Mauritius
+    iso_code2: MU
+    address_format_id: 1
+    slug: mauritius
+  137:
+#    id: 137
+    name: Mayotte
+    iso_code2: YT
+    address_format_id: 1
+    slug: mayotte
+  138:
+#    id: 138
+    name: Mexico
+    iso_code2: MX
+    address_format_id: 1
+    slug: mexico
+  139:
+#    id: 139
+    name: Micronesia, Federated States of
+    iso_code2: FM
+    address_format_id: 1
+    slug: micronesia-federated-states-of
+  140:
+#    id: 140
+    name: Moldova, Republic of
+    iso_code2: MD
+    address_format_id: 1
+    slug: moldova-republic-of
+  141:
+#    id: 141
+    name: Monaco
+    iso_code2: MC
+    address_format_id: 1
+    slug: monaco
+  142:
+#    id: 142
+    name: Mongolia
+    iso_code2: MN
+    address_format_id: 1
+    slug: mongolia
+  143:
+#    id: 143
+    name: Montserrat
+    iso_code2: MS
+    address_format_id: 1
+    slug: montserrat
+  144:
+#    id: 144
+    name: Morocco
+    iso_code2: MA
+    address_format_id: 1
+    slug: morocco
+  145:
+#    id: 145
+    name: Mozambique
+    iso_code2: MZ
+    address_format_id: 1
+    slug: mozambique
+  146:
+#    id: 146
+    name: Myanmar
+    iso_code2: MM
+    address_format_id: 1
+    slug: myanmar
+  147:
+#    id: 147
+    name: Namibia
+    iso_code2: NA
+    address_format_id: 1
+    slug: namibia
+  148:
+#    id: 148
+    name: Nauru
+    iso_code2: NR
+    address_format_id: 1
+    slug: nauru
+  149:
+#    id: 149
+    name: Nepal
+    iso_code2: NP
+    address_format_id: 1
+    slug: nepal
+  150:
+#    id: 150
+    name: Netherlands
+    iso_code2: NL
+    address_format_id: 1
+    slug: netherlands
+  151:
+#    id: 151
+    name: Netherlands Antilles
+    iso_code2: 'AN'
+    address_format_id: 1
+    slug: netherlands-antilles
+  152:
+#    id: 152
+    name: New Caledonia
+    iso_code2: NC
+    address_format_id: 1
+    slug: new-caledonia
+  153:
+#    id: 153
+    name: New Zealand
+    iso_code2: NZ
+    address_format_id: 1
+    slug: new-zealand
+  154:
+#    id: 154
+    name: Nicaragua
+    iso_code2: NI
+    address_format_id: 1
+    slug: nicaragua
+  155:
+#    id: 155
+    name: Niger
+    iso_code2: NE
+    address_format_id: 1
+    slug: niger
+  156:
+#    id: 156
+    name: Nigeria
+    iso_code2: NG
+    address_format_id: 1
+    slug: nigeria
+  157:
+#    id: 157
+    name: Niue
+    iso_code2: NU
+    address_format_id: 1
+    slug: niue
+  158:
+#    id: 158
+    name: Norfolk Island
+    iso_code2: NF
+    address_format_id: 1
+    slug: norfolk-island
+  159:
+#    id: 159
+    name: Northern Mariana Islands
+    iso_code2: MP
+    address_format_id: 1
+    slug: northern-mariana-islands
+  160:
+#    id: 160
+    name: Norway
+    iso_code2: 'NO'
+    address_format_id: 1
+    slug: norway
+  161:
+#    id: 161
+    name: Oman
+    iso_code2: OM
+    address_format_id: 1
+    slug: oman
+  162:
+#    id: 162
+    name: Pakistan
+    iso_code2: PK
+    address_format_id: 1
+    slug: pakistan
+  163:
+#    id: 163
+    name: Palau
+    iso_code2: PW
+    address_format_id: 1
+    slug: palau
+  164:
+#    id: 164
+    name: Panama
+    iso_code2: PA
+    address_format_id: 1
+    slug: panama
+  165:
+#    id: 165
+    name: Papua New Guinea
+    iso_code2: PG
+    address_format_id: 1
+    slug: papua-new-guinea
+  166:
+#    id: 166
+    name: Paraguay
+    iso_code2: PY
+    address_format_id: 1
+    slug: paraguay
+  167:
+#    id: 167
+    name: Peru
+    iso_code2: PE
+    address_format_id: 1
+    slug: peru
+  168:
+#    id: 168
+    name: Philippines
+    iso_code2: PH
+    address_format_id: 1
+    slug: philippines
+  169:
+#    id: 169
+    name: Pitcairn
+    iso_code2: PN
+    address_format_id: 1
+    slug: pitcairn
+  170:
+#    id: 170
+    name: Poland
+    iso_code2: PL
+    address_format_id: 1
+    slug: poland
+  171:
+#    id: 171
+    name: Portugal
+    iso_code2: PT
+    address_format_id: 1
+    slug: portugal
+  172:
+#    id: 172
+    name: Puerto Rico
+    iso_code2: PR
+    address_format_id: 1
+    slug: puerto-rico
+  173:
+#    id: 173
+    name: Qatar
+    iso_code2: QA
+    address_format_id: 1
+    slug: qatar
+  174:
+#    id: 174
+    name: Reunion
+    iso_code2: RE
+    address_format_id: 1
+    slug: reunion
+  175:
+#    id: 175
+    name: Romania
+    iso_code2: RO
+    address_format_id: 1
+    slug: romania
+  176:
+#    id: 176
+    name: Russian Federation
+    iso_code2: RU
+    address_format_id: 1
+    slug: russian-federation
+  177:
+#    id: 177
+    name: Rwanda
+    iso_code2: RW
+    address_format_id: 1
+    slug: rwanda
+  178:
+#    id: 178
+    name: Saint Kitts and Nevis
+    iso_code2: KN
+    address_format_id: 1
+    slug: saint-kitts-and-nevis
+  179:
+#    id: 179
+    name: Saint Lucia
+    iso_code2: LC
+    address_format_id: 1
+    slug: saint-lucia
+  180:
+#    id: 180
+    name: Saint Vincent and the Grenadines
+    iso_code2: VC
+    address_format_id: 1
+    slug: saint-vincent-and-the-grenadines
+  181:
+#    id: 181
+    name: Samoa
+    iso_code2: WS
+    address_format_id: 1
+    slug: samoa
+  182:
+#    id: 182
+    name: San Marino
+    iso_code2: SM
+    address_format_id: 1
+    slug: san-marino
+  183:
+#    id: 183
+    name: Sao Tome and Principe
+    iso_code2: ST
+    address_format_id: 1
+    slug: sao-tome-and-principe
+  184:
+#    id: 184
+    name: Saudi Arabia
+    iso_code2: SA
+    address_format_id: 1
+    slug: saudi-arabia
+  185:
+#    id: 185
+    name: Senegal
+    iso_code2: SN
+    address_format_id: 1
+    slug: senegal
+  186:
+#    id: 186
+    name: Seychelles
+    iso_code2: SC
+    address_format_id: 1
+    slug: seychelles
+  187:
+#    id: 187
+    name: Sierra Leone
+    iso_code2: SL
+    address_format_id: 1
+    slug: sierra-leone
+  188:
+#    id: 188
+    name: Singapore
+    iso_code2: SG
+    address_format_id: 4
+    slug: singapore
+  189:
+#    id: 189
+    name: Slovakia (Slovak Republic)
+    iso_code2: SK
+    address_format_id: 1
+    slug: solvakia-slovak-republic
+  190:
+#    id: 190
+    name: Slovenia
+    iso_code2: SI
+    address_format_id: 1
+    slug: slovenia
+  191:
+#    id: 191
+    name: Solomon Islands
+    iso_code2: SB
+    address_format_id: 1
+    slug: solomon-islands
+  192:
+#    id: 192
+    name: Somalia
+    iso_code2: SO
+    address_format_id: 1
+    slug: somalia
+  193:
+#    id: 193
+    name: South Africa
+    iso_code2: ZA
+    address_format_id: 1
+    slug: south-africa
+  194:
+#    id: 194
+    name: South Georgia and the South Sandwich Islands
+    iso_code2: GS
+    address_format_id: 1
+    slug: south-georgia-and-the-south-sandwich-islands
+  195:
+#    id: 195
+    name: Spain
+    iso_code2: ES
+    address_format_id: 3
+    slug: spain
+  196:
+#    id: 196
+    name: Sri Lanka
+    iso_code2: LK
+    address_format_id: 1
+    slug: sri-lanka
+  197:
+#    id: 197
+    name: St. Helena
+    iso_code2: SH
+    address_format_id: 1
+    slug: st-helena
+  198:
+#    id: 198
+    name: St. Pierre and Miquelon
+    iso_code2: PM
+    address_format_id: 1
+    slug: st-pierre-and-miquelon
+  199:
+#    id: 199
+    name: Sudan
+    iso_code2: SD
+    address_format_id: 1
+    slug: sudan
+  200:
+#    id: 200
+    name: Suriname
+    iso_code2: SR
+    address_format_id: 1
+    slug: suriname
+  201:
+#    id: 201
+    name: Svalbard and Jan Mayen Islands
+    iso_code2: SJ
+    address_format_id: 1
+    slug: svalbard-and-jan-mayen-islands
+  202:
+#    id: 202
+    name: Swaziland
+    iso_code2: SZ
+    address_format_id: 1
+    slug: swaziland
+  203:
+#    id: 203
+    name: Sweden
+    iso_code2: SE
+    address_format_id: 1
+    slug: sweden
+  204:
+#    id: 204
+    name: Switzerland
+    iso_code2: CH
+    address_format_id: 1
+    slug: switzerland
+  205:
+#    id: 205
+    name: Syrian Arab Republic
+    iso_code2: SY
+    address_format_id: 1
+    slug: syrian-arab-republic
+  206:
+#    id: 206
+    name: Taiwan
+    iso_code2: TW
+    address_format_id: 1
+    slug: taiwan
+  207:
+#    id: 207
+    name: Tajikistan
+    iso_code2: TJ
+    address_format_id: 1
+    slug: tajikistan
+  208:
+#    id: 208
+    name: Tanzania, United Republic of
+    iso_code2: TZ
+    address_format_id: 1
+    slug: tanzania-united-republic-of
+  209:
+#    id: 209
+    name: Thailand
+    iso_code2: TH
+    address_format_id: 1
+    slug: thailand
+  210:
+#    id: 210
+    name: Togo
+    iso_code2: TG
+    address_format_id: 1
+    slug: togo
+  211:
+#    id: 211
+    name: Tokelau
+    iso_code2: TK
+    address_format_id: 1
+    slug: tokelau
+  212:
+#    id: 212
+    name: Tonga
+    iso_code2: 'TO'
+    address_format_id: 1
+    slug: tonga
+  213:
+#    id: 213
+    name: Trinidad and Tobago
+    iso_code2: TT
+    address_format_id: 1
+    slug: trinidad-and-tobago
+  214:
+#    id: 214
+    name: Tunisia
+    iso_code2: TN
+    address_format_id: 1
+    slug: tunisia
+  215:
+#    id: 215
+    name: Turkey
+    iso_code2: TR
+    address_format_id: 1
+    slug: turkey
+  216:
+#    id: 216
+    name: Turkmenistan
+    iso_code2: TM
+    address_format_id: 1
+    slug: turkmenistan
+  217:
+#    id: 217
+    name: Turks and Caicos Islands
+    iso_code2: TC
+    address_format_id: 1
+    slug: turks-and-caicos-islands
+  218:
+#    id: 218
+    name: Tuvalu
+    iso_code2: TV
+    address_format_id: 1
+    slug: tuvalu
+  219:
+#    id: 219
+    name: Uganda
+    iso_code2: UG
+    address_format_id: 1
+    slug: uganda
+  220:
+#    id: 220
+    name: Ukraine
+    iso_code2: UA
+    address_format_id: 1
+    slug: ukraine
+  221:
+#    id: 221
+    name: United Arab Emirates
+    iso_code2: AE
+    address_format_id: 1
+    slug: united-arab-emirates
+  222:
+#    id: 222
+    name: United Kingdom
+    iso_code2: GB
+    address_format_id: 1
+    slug: united-kingdom
+  223:
+#    id: 223
+    name: United States
+    iso_code2: US
+    address_format_id: 2
+    slug: united-states
+  224:
+#    id: 224
+    name: United States Minor Outlying Islands
+    iso_code2: UM
+    address_format_id: 1
+    slug: united-states-minor-outlying-islands
+  225:
+#    id: 225
+    name: Uruguay
+    iso_code2: UY
+    address_format_id: 1
+    slug: uruguay
+  226:
+#    id: 226
+    name: Uzbekistan
+    iso_code2: UZ
+    address_format_id: 1
+    slug: uzbekistan
+  227:
+#    id: 227
+    name: Vanuatu
+    iso_code2: VU
+    address_format_id: 1
+    slug: vanuatu
+  228:
+#    id: 228
+    name: Vatican City State (Holy See)
+    iso_code2: VA
+    address_format_id: 1
+    slug: vatican-city-state-holy-see
+  229:
+#    id: 229
+    name: Venezuela
+    iso_code2: VE
+    address_format_id: 1
+    slug: venezuela
+  230:
+#    id: 230
+    name: Viet Nam
+    iso_code2: VN
+    address_format_id: 1
+    slug: viet-nam
+  231:
+#    id: 231
+    name: Virgin Islands (British)
+    iso_code2: VG
+    address_format_id: 1
+    slug: virgin-islands-british
+  232:
+#    id: 232
+    name: Virgin Islands (U.S.)
+    iso_code2: VI
+    address_format_id: 1
+    slug: virgin-islands-u-s
+  233:
+#    id: 233
+    name: Wallis and Futuna Islands
+    iso_code2: WF
+    address_format_id: 1
+    slug: wallis-and-futuna-islands
+  234:
+#    id: 234
+    name: Western Sahara
+    iso_code2: EH
+    address_format_id: 1
+    slug: western-sahara
+  235:
+#    id: 235
+    name: Yemen
+    iso_code2: YE
+    address_format_id: 1
+    slug: yemen
+  236:
+#    id: 236
+    name: Yugoslavia
+    iso_code2: YU
+    address_format_id: 1
+    slug: yugoslavia
+  237:
+#    id: 237
+    name: Zaire
+    iso_code2: ZR
+    address_format_id: 1
+    slug: zaire
+  238:
+#    id: 238
+    name: Zambia
+    iso_code2: ZM
+    address_format_id: 1
+    slug: zambia
+  239:
+#    id: 239
+    name: Zimbabwe
+    iso_code2: ZW
+    address_format_id: 1
+    slug: zimbabwe

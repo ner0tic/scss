@@ -156,11 +156,11 @@ ScssArea:
       class: ScssStaff
       local: staff_id
       foreign: id
-ScssSubArea:
-  inheritance:
-    type:             column_aggregation
-    extends:          ScssArea
-    keyField:         parent_id
+    Parent:
+      class: ScssArea
+      local: id
+      foreign: id
+      foreignAlias: SubAreas
 ScssCampsite:
   actAs:
     Timestampable: ~

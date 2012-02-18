@@ -8,6 +8,12 @@
 class ScssCampTable extends Doctrine_Table
 {
     /**
+   * Use custom query class
+   */  
+    public function construct() {
+      $this->setAttribute(Doctrine::ATTR_QUERY_CLASS, 'ScssCampQuery');
+    }      
+    /**
      * Returns an instance of this class.
      *
      * @return object ScssCampTable

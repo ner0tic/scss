@@ -1,32 +1,43 @@
-<h1>Scss staffs List</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Dob</th>
-      <th>Cabin</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th>Slug</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($scss_staffs as $scss_staff): ?>
-    <tr>
-      <td><a href="<?php echo url_for('staff/show?id='.$scss_staff->getId()) ?>"><?php echo $scss_staff->getId() ?></a></td>
-      <td><?php echo $scss_staff->getFirstName() ?></td>
-      <td><?php echo $scss_staff->getLastName() ?></td>
-      <td><?php echo $scss_staff->getDob() ?></td>
-      <td><?php echo $scss_staff->getCabinId() ?></td>
-      <td><?php echo $scss_staff->getCreatedAt() ?></td>
-      <td><?php echo $scss_staff->getUpdatedAt() ?></td>
-      <td><?php echo $scss_staff->getSlug() ?></td>
-    </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
-
-  <a href="<?php echo url_for('staff/new') ?>">New</a>
+<?php load_assets('camp') ?>
+<?php load_assets('data-table') ?>
+<?php include_partial('global/infobox',array('page'=>'staff')) ?>
+<div class="box main-content">
+    <div class="box-content datagrid">
+        <h2>Staff&nbsp;<?php echo link_to(image_tag("/images/icons/add-icon.png",array('height'=>"16",'width'=>"16",'alt'=>"Add A Staff Member")),@staff_new, $sf_user->getProfile()->getActiveEnrollment()->getWeek()->getCamp())?></h2>
+        <table class="data-table" id="scout-table">
+            <tbody>
+<?php foreach($pager->getResults() as $i => $staff): ?>
+            <tr class="table-row <?php echo fmod($i,2) ? 'even-row' : 'odd-row' ?>">
+                <td><?php echo ucwords($staff->getLastName())?></td>
+                <td><?php echo ucwords($staff->getFirstName())?></td>
+                <td><?php echo $staff->getAge() ?></td>
+                <td class="table-controls">
+                    <div class="table-controls">
+                      <?php echo link_to(
+                              image_tag('icons/edit-icon.png', array(
+                                  'width'   =>    '16',
+                                  'height'  =>    '16',
+                                  'alt'     =>    'edit'))
+                              .'<span class="control-txt">edit</span>',
+                              @staff_edit,$staff) ?>  
+                      <?php echo link_to(
+                              image_tag('icons/delete-icon.png', array(
+                                  'width'   =>    '16',
+                                  'height'  =>    '16',
+                                  'alt'     =>    'delete'))
+                              .'<span class="control-txt">delete</span>',
+                              @staff_delete, $staff) ?>                        
+                    </div>
+                </td>
+<?php endforeach; ?>
+            </tr>
+            </tbody>
+            <?php include_partial('global/pager',array(
+                'colspan'      =>  4,
+                'module'       =>  'staff',
+                'pager'        =>  $pager,
+                'no_plural'    =>  true
+            )) ?>            
+        </table>
+    </div>
+</div>

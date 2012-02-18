@@ -1,0 +1,18 @@
+#/data/fixtures/scout.yml
+
+ScssScout:
+  -
+    first_name: David
+    last_name: Durost
+    dob: '1993-05-21 00:00:00'
+    patrol_id: 1
+  -
+    first_name: Matt
+    last_name: Farmer
+    dob: '1993-08-17 00:00:00'
+    patrol_id: 1
+  -
+    first_name: Johnny
+    last_name: Scout
+    dob: '1999-01-27 00:00:00'
+    patrol_id: 2

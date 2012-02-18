@@ -18,4 +18,10 @@ class ScssClass extends BaseScssClass
     public function __toString() {
         return $this->getCourse()->getLabel();
     }
+    
+    public function getCampSlug() { return $this->getPeriod()->getWeek()->getCamp()->getSlug(); }
+    public function getWeekSlug() { return $this->getPeriod()->getWeek()->getSlug(); }
+    public function getPeriodSlug() { return $this->getPeriod()->getSlug(); }
+    public function getClassSlug() { return $this->getCourse()->getSlug(); }
+    public function getDistrictSlug() { return $this->getPeriod()->getWeek()->getCamp()->getDistrict()->getSlug(); }
 }

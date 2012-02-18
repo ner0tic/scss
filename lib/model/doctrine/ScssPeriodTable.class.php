@@ -8,6 +8,12 @@
 class ScssPeriodTable extends Doctrine_Table
 {
     /**
+   * Use custom query class
+   */  
+    public function construct() {
+      $this->setAttribute(Doctrine::ATTR_QUERY_CLASS, 'ScssPeriodQuery');
+    }  
+    /**
      * Returns an instance of this class.
      *
      * @return object ScssPeriodTable

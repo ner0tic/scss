@@ -17,12 +17,8 @@ class classActions extends sfActions
     }
   public function executeIndex(sfWebRequest $request)
   {
-    $this->classes = Doctrine_Core::getTable('ScssClass')
-            ->createQuery('c')
-            ->leftJoin('c.Period p')
-            ->leftJoin('p.Week w')
-            ->where('w.slug = ?',$request->getParameter('week_slug'))
-            ->execute();
+    $this->courses = Doctrine::getTable('ScssCourse')->createQuery('a')->filterByCamp($this->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getCamp())->execute();
+    $this->periods = Doctrine::getTable('ScssPeriod')->createQuery('a')->filterByWeek($this->getUser()->getProfile()->getActiveEnrollment()->getWeek())->execute();
   }
 
   public function executeShow(sfWebRequest $request)

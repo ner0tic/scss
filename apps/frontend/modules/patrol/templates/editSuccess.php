@@ -6,7 +6,7 @@
         <h2>Update <?php echo $patrol ?></h2>
         <table class="data-table" id="patrol-table">
             <tbody>
-<?php include_partial('form', array('form' => $form)) ?>
+<?php include_partial('form', array('form' => $form, 'patrol'=>$patrol)) ?>
             </tbody>
         </table>
     </div>

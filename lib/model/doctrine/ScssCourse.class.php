@@ -12,13 +12,16 @@
  */
 class ScssCourse extends BaseScssCourse
 {
-    public function getLabel() {
+    /*public function getLabel() {
         return $this->getMeritBadge()->getName();
     }
     public function getName() {
         return $this->getMeritBadge()->getName();
-    }
+    }*/
     public function __toString() {
       return $this->getMeritBadge()->getName();
+    }
+    public function getCourseSlug() {
+      return $this->getSlug();
     }
 }

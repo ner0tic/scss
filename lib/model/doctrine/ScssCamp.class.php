@@ -28,4 +28,7 @@ class ScssCamp extends BaseScssCamp
 	public function hasCourse($mb) {
 	  return ($this->getCourse($mb)->count() >=1);
 	}
+    
+    public function getCampSlug() { return $this->getSlug(); }
+    public function getDistrictSlug() { return $this->getDistrict()->getSlug(); }
 }

@@ -43,6 +43,22 @@ class ScssScout extends BaseScssScout
                  ->andWhere('s.slug = ?', $slugs['scout'])->execute();
       return $scout[0];
     }
+    
+    public function getPatrolSlug() {
+      return $this->getPatrol()->getSlug();
+    }
+    
+    public function getTroopSlug() {
+      return $this->getPatrol()->getTroop()->getSlug();
+    }
+    
+    public function getDistrictSlug() {
+      return $this->getPatrol()->getTroop()->getDistrict()->getSlug();
+    }
+    
+    public function getScoutSlug() {
+      return $this->getSlug();
+    }
 /* public function getClassByPeriodId($pid,$r_text=false) { // true will return label of class, false will return class id
         //echo "p:".$pid."<br/>"."s:".$this->getId();
         $q = Doctrine::getTable('ScssScoutEnrollment')

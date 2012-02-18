@@ -77,7 +77,7 @@ course:
     model: ScssCourse
     module: course
     prefix_path: /courses
-    column: course_slug
+    column: course_slug   
 week:
   class: sfDoctrineRouteCollection
   options:
@@ -99,6 +99,12 @@ area:
     module: area
     prefix_path: /camps/:district_slug/:camp_slug/areas
     column: area_slug
+troop_enroll:
+  class: sfDoctrineRouteCollection
+  options:
+    model: ScssTroopEnrollment
+    module: TroopEnrollment
+    prefix_path: /troops/:district_slug/:troop_slug/troop-registration
 scout_enroll:
   class: sfDoctrineRouteCollection
   options:
@@ -227,15 +233,15 @@ campsites_by_camp:
 cabins_by_camp:
   url: /camps/:district_slug/:camp_slug/cabins
   params: { modules: cabin, action: index }
-areas_by_camp:
-  url: /camps/:district_slug/:camp_slug/areas
-  params: { module: area, action: index }
 staff_by_camp:
   url: /camps/:district_slug/:camp_slug/staff
   params: { module: staff, action: index }
 weeks_by_camp:
   url: /camps/:district_slug/:camp_slug/weeks
   params: { module: week, action: index }  
+areas_by_camp:
+  url: /camps/:district_slug/:camp_slug/areas
+  params: { module: camp, action: index }    
 #######################
 # * by troop
 #######################
