@@ -23,7 +23,7 @@ class ScssScout extends BaseScssScout
         if(is_null($w)) $w = sfContext::getInstance()->getUser()->getProfile()->getActiveEnrollment()->getWeek()->getId();
         $q->filterByWeek($w);
       }
-      $class = $q->filterByScout($this)->execute();
+      $class = $q->execute();
       return (is_null($p) ? $class : $class[0]);
     }
     public function isEnrolled($week) {

@@ -14,7 +14,7 @@ class ScssScoutEnrollment extends BaseScssScoutEnrollment
 {
   public function getClassSlug() { return $this->getClass()->getSlug();}
   public function getDistrictSlug() { return $this->getClass()->getPeriod()->getWeek()->getCamp()->getDistrict()->getSlug(); }
-    public function getWeekSlug() { return $this->getClass()->getPeriod()->getWeek()->getSlug(); }
-    public function getScoutSlug() { return $this->getScout()->getSlug(); }
-  public function getCampSlug() { return $this->getClass()->getPeriod()->getWeek()->getCamp()->getSlug(); }
+  public function getWeekSlug() { return $this->getClass()->getPeriod()->getWeek()->getSlug(); }
+  public function getScoutSlug() { return $this->getScout()->getSlug(); }
+  public function getCampSlug() { return $this->getClass()->getPeriod()->getWeek()->getSlug(); }
 }

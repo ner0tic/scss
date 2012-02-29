@@ -1,8 +1,8 @@
 <?php
 // lib/form/troopLeaderForm.class.php
-  class TroopLeaderForm extends sfForm {
+  class ScoutEnrollForm extends sfForm {
     public function configure() {
-
+      
     }
   }
-
+        

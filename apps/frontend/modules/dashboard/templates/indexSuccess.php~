@@ -19,7 +19,7 @@
                                     echo link_to(
                                       image_tag("/images/user_files/badges/" .
                                         (!is_null($e->getClass()->getCourse()->getMeritBadge()->getSlug()) ?
-                                          $e->getClass()->getCourse()->getSlug() :
+                                          $e->getClass()->getCourse()->getMeritBadge()->getSlug() :
                                                             'tbd') . ".png", array(
                                                 'alt' => $e->getClass()->getName(),
                                                 'height' => "48px",

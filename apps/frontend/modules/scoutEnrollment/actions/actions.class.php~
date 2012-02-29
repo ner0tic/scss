@@ -29,6 +29,7 @@ class scoutEnrollmentActions extends sfActions
   }
   public function executeNew(sfWebRequest $request) {
       $this->form = new ScoutEnrollForm(null,array('scout_slug' => $request->getParameter('scout_slug', null)));
+      var_dump($this->form->getWidgetSchema());die('------');
 
   }
   public function executeCreate(sfWebRequest $request)

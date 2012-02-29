@@ -15,7 +15,7 @@ packages:
     js: libs/jquery.lightbox.latest.js
     css: jquery.lightbox/themes/default/jquery.lightbox.css
   in-field-label:
-    js: libs/jquery.infieldlabel.min.js
+    js: libs/jquery.infieldlabel.min.js    
   layout:
     import: [jquery-ui]
     css: [scss.css.php,header.css.php,footer.css.php]
@@ -79,14 +79,14 @@ packages:
     import: layout
   district:
     import: layout
-  troop:
+  troop: 
     import: layout
   patrol:
     import: layout
   scout:
     import: layout
   enroll: # scoutEnrollment, troopRegistration
-    import: [form,data-table]
+    import: form
   camp: # camp, area, campsite, staff
     import: [layout, lightbox ]
     js: scss.camp.js

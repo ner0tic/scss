@@ -13,7 +13,7 @@
               <td colspan="<?php echo $colspan ?>" class="pager">
                 <?php if($pager->haveToPaginate()): ?>
                 <div class="pagination">
-                  <?php echo link_to("&larr;",$route,array('sf_subject'=>$params,$prefix.'page'=>$pager->getFirstPage())); ?>
+                  <?php echo link_to("&larr;",$route,array('subject'=>$params,$prefix.'page'=>$pager->getFirstPage())); ?>
                   <?php echo link_to("&laquo;",$route,array($params,$prefix.'page'=>$pager->getPreviousPage())) ?>
                   <?php foreach($pager->getLinks() as $page): ?>
                     <?php if ($page == $pager->getPage()): ?>

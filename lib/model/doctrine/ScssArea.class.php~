@@ -16,4 +16,14 @@ class ScssArea extends BaseScssArea
   public function getParentSlug() { return $this->getParent()->getSlug(); }
   public function getCampSlug() { return $this->getCamp()->getSlug(); }
   public function getDistrictSlug() { return $this->getCamp()->getDistrict()->getSlug(); }
+  public function toArray() {
+    $arr = parent::toArray();
+    return array_merge(
+      $arr,
+      array(
+        'district_slug' => $this->getDistrictSlug(),
+        'camp_slug' => $this->getCampSlug(),
+      )
+    );
+  }
 }

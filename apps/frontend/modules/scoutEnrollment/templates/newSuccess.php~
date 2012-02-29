@@ -25,7 +25,7 @@
                                 <?php echo ucwords($period->getLabel()) ?>
                                 <span><?php echo $period->getTte()? 'This is an optional period': 'Choose a class'; ?></span>
                             </label>
-                            <?php echo $form['ClassesByPeriod'][$i]['class_id']->render() ?>
+                            <?php echo $form['ClassesByPeriod'][$i]['class_id'] ?>
                         </p>
                     </li>
                 <?php endforeach ?>

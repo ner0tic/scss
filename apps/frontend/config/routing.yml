@@ -111,6 +111,12 @@ scout_enroll:
     model: ScssScoutEnrollment
     module: scoutEnrollment
     prefix_path: /camps/:district_slug/:camp_slug/:week_slug/scout-enroll
+scout_enroll_specific:
+  url:     /camps/:district_slug/:camp_slug/:week_slug/scout-enroll/:scout_slug.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: ScssScoutEnrollment, type: object }
+  param:   { module: scoutEnrollment, action: new, sf_format: html }
+  requirements: { sf_method: get }  
 staff:
   class: sfDoctrineRouteCollection
   options:

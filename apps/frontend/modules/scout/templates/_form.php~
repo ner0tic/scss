@@ -1,10 +1,11 @@
+<?php //apps/frontend/modules/contact/templates/_form.php ?>
 <?php load_assets('form-test') ?>
 <?php load_assets('scout') ?>
 <?php load_assets('data-table') ?>
 <div class="form-wrapper" id="scout-form-wrapper">
   <div class="form-content-wrapper">
-    <form name="scout-form" id="scout-form" action="<?php echo is_object($scout) ? '@scout_update' : '@scout_create' ?>" method="post" >
-      <div>
+    <form name="scout-form" id="scout-form" action="<?php echo is_object($scout) ? '@scout_update' : '@scout_create' ?>" method="post" > 
+      <div>      
         <div class="form-input-wrapper" id="first_name">
           <?php echo $form['first_name']->renderLabel() ?>
           <?php echo $form['first_name']->render() ?>
@@ -13,7 +14,7 @@
           <h3 class="help"></h3>
         </div>
       </div>
-      <div>
+      <div>      
         <div class="form-input-wrapper" id="last_name">
           <?php echo $form['last_name']->renderLabel() ?>
           <?php echo $form['last_name']->render() ?>
@@ -29,8 +30,8 @@
         </div>
         <div class="form-input-msg-wrapper">
           <h3 class="help"></h3>
-        </div>
-      </div>
+        </div>      
+      </div>          
       <div>
         <div class="form-input-wrapper" id="rank_id">
           <?php echo $form['rank_id']->renderLabel() ?>
@@ -38,7 +39,7 @@
         </div>
         <div class="form-input-msg-wrapper">
           <h3 class="help"></h3>
-        </div>
+        </div>      
       </div>
       <div>
         <div class="form-input-wrapper" id="patrol_id">
@@ -47,8 +48,8 @@
         </div>
         <div class="form-input-msg-wrapper">
           <h3 class="help"></h3>
-        </div>
-      </div>
+        </div>      
+      </div> 
       <?php if (!$form->getObject()->isNew()): ?>
       <div>
         <?php echo link_to('Delete', 'scout/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?','district_slug'=>$sf_request->getParameter('district_slug'),'troop_slug'=>$sf_request->getParameter('troop_slug'))) ?>
@@ -69,4 +70,4 @@
       </ul>
     </div>
   </div>
-</div>
+</div>    
