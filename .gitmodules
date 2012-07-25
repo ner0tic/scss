@@ -1,0 +1,3 @@
+[submodule "src/Ddnet"]
+	path = src/Ddnet
+	url = https://github.com/ner0tic/DdnetFoursquareBundle.git
