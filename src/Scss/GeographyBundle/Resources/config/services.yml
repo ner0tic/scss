@@ -1,0 +1,7 @@
+parameters:
+#    scss_geo.example.class: Scss\GeoBundle\Example
+
+services:
+#    scss_geo.example:
+#        class: %scss_geo.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

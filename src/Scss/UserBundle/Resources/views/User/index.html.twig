@@ -1,0 +1,139 @@
+{% extends '::Base.htmltwig' %}
+
+{% block stylesheets %}
+  <link href="{{ asset('/css/scss.css.php') }}" rel="stylesheet" />
+  {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('/js/scss.js.php') }}" type="text/javascript" />  
+{% endblock %}
+
+{% block main_content %}
+<div id="focus-wrapper">
+  <div id="focus-box">
+  {% block focus_box %}
+    <img src="/images/focus/default.png" />
+  {%endblock %}
+  </div>  
+  <div id="blurp-box">
+  {% block blurp_box %}
+    <h2>{{ Online scheduling made easy  | title }}</h2>
+    <p>
+    {% block blurp_details %}
+      blah blah blah blah blah blah blah blah blah blah blah blah blah 
+      blah blah blah blah blah blah blah blah blah blah blah blah blah 
+      blah blah blah blah blah blah blah blah blah blah blah blah blah 
+      blah blah blah blah blah blah blah blah blah blah blah blah blah
+      blah blah blah blah blah blah blah blah blah blah blah blah blah 
+      blah blah blah blah blah blah blah blah blah blah blah blah blah 
+    {% endblock %}
+    </p>
+    {% block blurp_button %}
+    <button class="greenButton">Create An Account &raquo;</button>
+    {% endblock %}
+  </div>
+</div>
+<div id="details">
+{% block details %}
+  <ul id="detail-items">
+  {% block detail_items %}
+    <li class="detail-item" id="online-advancement">
+    {% block detail_item_online_advancement %}
+      <h2>{{ 'online advancement training' | title }}</h2>
+      <p>
+      {% block detail_item_online_advancement_text %}
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah.
+      {% endblock %}
+      </p>
+      <img src="/images/icons/online-advancement.png" />
+    {% endblock %}    
+    </li>
+    <li class="detail-item" id="instant-payments">
+    {% block detail_item_instant_payments %}
+      <h2>{{ 'instant payments' | title }}</h2>
+      <p>
+      {% block detail_item_instant_payment_text %}
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah.
+      {% endblock %}
+      </p>
+      <img src="/images/icons/instant-payment.png" />
+    {% endblock %}    
+    </li>    
+    <li class="detail-item" id="print-reports">
+    {% block detail_item_print_reports %}
+      <h2>{{ 'print and manage reports' | title }}</h2>
+      <p>
+      {% block detail_item_print_reports_text %}
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah.
+      {% endblock %}
+      </p>
+      <img src="/images/icons/print_reports.png" />
+    {% endblock %}    
+    </li>    
+    <li class="detail-item" id="blah-blah-blah">
+    {% block detail_item_blah-blah-blah %}
+      <h2>{{ 'blah blah blah blah' | title }}</h2>
+      <p>
+      {% block detail_item_blah_blah_blah_text %}
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah.
+      {% endblock %}
+      </p>
+      <img src="/images/icons/blah-bah-blah.png" />
+    {% endblock %}    
+    </li>    
+    <li class="detail-item" id="mobile">
+    {% block detail_item_mobile %}
+      <h2>{{ 'mobile management platform' | title }}</h2>
+      <p>
+      {% block detail_item_mobile_text %}
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah.
+      {% endblock %}
+      </p>
+      <span>
+      {% block detail_item_mobile_text_focus %}
+        <h3>{{ 'Get it from your app store' | title }}</h3>
+        <p>
+        {% block detail_item_mobile_text_foucus_text %}
+            blah blah blah blah blah blah 
+            blah blah blah blah blah blah 
+            blah blah blah blah blah blah 
+            blah blah blah blah.
+            <button class="download-btn greenButton">{{ 'download it' | title }}</button>
+        {% endblock %}
+        </p>
+      {% endblock %}
+      </span>
+      {% block detail_item_mobile_image %}
+      <img src="/images/mobile.png" />
+      {% endblock %}
+    {% endblock %}    
+    </li>    
+  {% endblock %}
+  </ul>
+{% endblock %}
+</div>
+{% endblock %}

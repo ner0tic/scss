@@ -1,0 +1,57 @@
+organization:
+    pattern: /organizations
+    defaults: { _controller: ScssOrganizationBundle:Organization:index }
+organization_by_region:
+    pattern: /region/{region}/organizations
+    defaults: { _controller: ScssOrganizationBundle:Organization:region }
+organization_show:
+    pattern: /organization/{organization}
+    defaults: { _controller: ScssOrganizationBundle:Organization:show }
+
+group:
+    pattern: /groups
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:index }
+group_by_organization:
+    pattern: /organization/{organization}/groups
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:organization }
+group_by_region:
+    pattern: /region/{region}/groups
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:region }
+group_show:
+    pattern: /region/{region}/group/{group}
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:show }
+
+subgroup:
+    pattern: /subgroups
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:index }
+subgroup__by_region:
+    pattern: /region/{region}/subgroup
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:region }
+subgroup__by_organization:
+    pattern: /organization/{organization}/subgroups
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:organization }
+subgroup_by_group:
+    pattern: /region/{region}/{group}/subgroups
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:group }
+subgroup_show:
+    pattern: /region/{region}/{group}/{subgroup}
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:show }
+
+attendee:
+    pattern: /attendees
+    defaults: { _controller: ScssOrganizationBundle:Attendee:index }
+attendee_by_organization:
+    pattern: /organization/{organization}/attendees
+    defaults: { _controller: ScssOrganizationBundle:Attendee:organization }
+attendee_by_region:
+    pattern: /region/{region}/attendees
+    defaults: { _controller: ScssOrganizationBundle:Attendee:region }
+attendee_by_group:
+    pattern: /region/{region}/{group}/attendees
+    defaults: { _controller: ScssOrganizationBundle:Attendee:group }
+attendee_by_subgroup:
+    pattern: /region/{region}/{group}/{subgroup}/attendees
+    defaults: { _controller: ScssOrganizationBundle:Attendee:subgroup }
+attendee_show:
+    pattern: /region/{region}/{group}/{subgroup}/{attendee}/show
+    defaults: { _controller: ScssOrganizationBundle:Attendee:show }
