@@ -20,25 +20,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="{{ asset('/apple-touch-icon.png') }}">
 <!-- CSS : implied media="all" -->
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/scss.css.php') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/header.css.php') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/footer.css.php') }}" />
+    {% endblock %}
     <script src="/js/libs/modernizr-1.6.min.js"></script>
   </head>
   <body>
-    <div id="header">
+    <header>
       {% block header %}
       <div class="container">
       <ul id="top-links">
-        <li><?php echo link_to('Help','/help/dashboard') ?></li>
-        <li><?php echo link_to('Settings','/settings/account') ?></li>
-        <li><?php  echo ($sf_user->isAuthenticated(true))?link_to('Log Out','@sf_guard_signout') : link_to('Sign Up','@sf_guard_signup') ?></li>
+        <li><a href="{{ path('help_specific', { 'subject' : 'dashboard' }) }}">help</a></li>
+        <li><a href="{{ path('settings') }}">settings</a></li>
+        <li>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('fos_user_security_logout') }}">Sign Out</a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}">sign in</a>
+        {% endif %}
+        </li>
       </ul>
       <div id="logo"><a href="{{ path('homepage') }}">summercamp<span>schedulingsystem</span></a><sup>BETA</sup></div>
-      {{ knp_menu_render('ScssMenuBundle:Menu:mainMenu') }}
+     {# {{ knp_menu_render('ScssMenuBundle:MenuBuilder:mainMenu') }}#} { {{ knp_menu_render('main') }} 
       </div>    
       {% endblock %}
-    </div>
+    </header>
     <div id="main-content" class="container">
     {% block main_content %}
       

@@ -1,3 +1,27 @@
-ScssFacilityBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ScssFacilityBundle:Default:index }
+# by 
+
+
+
+
+
+facility:
+    pattern: /facilities
+    defaults: { _controller: ScssFacilityBundle:Facility:index }
+facility_by_region:
+    pattern: /region/{region}/facilities
+    defaults: { _controller: ScssFacilityBundle:Facility:region }
+facility_by_organization:
+    pattern: /organization/{organization}/facilities
+    defaults: { _controller: ScssFacilityBundle:Facility:organization }
+facility_show:
+    pattern: /region/{region}/
+
+department
+
+subdepartment
+
+faculty
+
+faculty_quarters
+
+group_quarters

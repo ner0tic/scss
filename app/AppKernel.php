@@ -21,12 +21,16 @@ class AppKernel extends Kernel
             
             new FOS\UserBundle\FOSUserBundle(),
            
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            
+            new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle(),
             
             new Scss\UserBundle\ScssUserBundle(),
             new Scss\FacilityBundle\ScssFacilityBundle(),
             new Scss\OrganizationBundle\ScssOrganizationBundle(),
             new Scss\GeographyBundle\ScssGeographyBundle(),
             new Scss\CourseBundle\ScssCourseBundle(),
+            new Scss\MenuBundle\ScssMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
