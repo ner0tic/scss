@@ -96,3 +96,50 @@ knp_menu:
         template: knp_menu.html.twig
     templating: false # if true, enables the helper for PHP templates
     default_renderer: twig # The renderer to use, list is also available by default
+    
+fos_facebook:
+    file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
+    alias:  facebook
+    secret: 41fbd98aa2efaeb12b2602149710ca86
+    app_id: 173494226064106
+    cookie: true
+    permissions: [email, user_birthday, user_location]    
+    
+hwi_oaith:
+    firewall_name: secured_area
+    
+    resource_owners:
+        facebook:
+            type: facebook
+            client_id:
+            client_secret:
+            scope: ""
+        google:
+            type: google
+            client_id:
+            client_secret:
+            scope: ""
+        linkedin:
+            type: linkedin
+            client_id:
+            client_secret:
+            scope: ""
+        github:
+            type: github
+            client_id: 
+            client_secret:
+            scope: ""
+        foursquare:
+            type: foursquare
+            client_id:
+            client_secret:
+            scope: ""
+    fosub:
+        username_iterations: 30
+        properties:
+            github: githubId
+            google: googleId
+            facebook: facebookId
+            foursquare: foursquareId
+            linkedin: linkedinId
+            

@@ -4,13 +4,14 @@ namespace Scss\MenuBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\Request;
 
 class MenuBuilder extends ContainerAware {
-//  public function __construct(FactoryInterface $factory) {
-//    $this->factory = $factory; 
-//    $this->user = $this->container->get('security.context')->getToken()->getUser();
-//    
-//  }
+  public function __construct(FactoryInterface $factory) {
+    $this->factory = $factory; 
+    //$this->user = $this->container->get('security.context')->getToken()->getUser();
+    
+  }
   
     public function createMainMenu(Request $request) {     
       $menu = $this->factory->createItem('root');
@@ -182,11 +183,11 @@ class MenuBuilder extends ContainerAware {
      * @param Request $request
      * @return MenuItem $menu 
      */
-    public function nonauthMenu(Request $request) {
+    public function createNonauthMenu(Request $request) {
       $menu = $this->factory->createItem('nonauth');
       $menu->addChild('home',     array('route' => 'homepage'));
       $menu->addChild('sign in',  array('route' => 'fos_user_security_login'));
-      $menu->addChild('sign up',  array('route' => 'fos_user_security_register'));
+      $menu->addChild('sign up',  array('route' => 'fos_user_registration_register'));
       $menu->addChild('about',    array('route' => 'about'));
       $menu->addChild('contact',  array('route' => 'contact'));
       return $menu;

@@ -30,9 +30,11 @@
         "gedmo/doctrine-extensions":                              "master-dev",
 
         "friendsofsymfony/user-bundle":                           "dev-master",
+        "friendsofsymfony/facebook-bundle":                       "dev-master",
+        "facebook/php-sdk":                                       "dev-master",
 
         "kriswallsmith/buzz":                                     "dev-master",
-        "sensio/buzz-bundle":                                     "0.1",
+        "sensio/buzz-bundle":                                     "v0.1",
         "willdurand/geocoder":                                    ">=1.0.0",
         "egeloen/google-map-bundle":                              "1.0",
         

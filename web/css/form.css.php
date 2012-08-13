@@ -27,7 +27,7 @@
 .radio-input < label {
     display: block;
 }
-input[type=text], textarea, select { border-radius: 5px; width: 400px !important;}
+input[type=text], input[type=password], textarea, select { border-radius: 5px; width: 400px !important;}
 select { width: 410px !important; }
 input[type=submit] {}
 .date-select-input { width: 123px !important; display: inline-block; padding-left: 4px; padding-right: 4px; }

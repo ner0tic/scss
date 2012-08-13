@@ -13,6 +13,7 @@
     $color[10]  =   $activeBtn  =   $ltGold; //'#f4f3ed';
     $color[11]  =   $offBlack   =   '#666666';
     $color[12]  =   $dkOlive    =   '#87772e';
+    $color[13]  =   $dkBrown    =   '#54491c';
 
 /*
     $ltOrange           =   '#FF9933';

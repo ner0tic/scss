@@ -9,6 +9,11 @@
   <script src="{{ asset('/js/dashboard.js.php') }}" type="text/javascript" />  
 {% endblock %}
 
+{% block menu %}
+  {# {{ knp_menu_render('ScssMenuBundle:MenuBuilder:mainMenu') }}#} 
+  {{ knp_menu_render('main') }}   
+{% endblock %}  
+  
 {% include 'ScssUtilityBundle:Utility:infobox.html.twig' with {'page': 'dashboard'} %}
 {% block main_content %}
 <div class="box main-content">

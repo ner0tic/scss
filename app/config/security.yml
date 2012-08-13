@@ -1,26 +1,53 @@
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
-
     providers:
         fos_userbundle:
             id: fos_user.user_manager
-
     firewalls:
-        main:
+        secured_area:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-            logout:       true
+                check_path: fos_user_security_check
+                login_path: /connect/
+            logout:       true # handlers: ["fos_facebook.logout_handler"]                
             anonymous:    true
-
+            remember_me:
+                key:      "%secret%"
+                lifetime: 3600
+                path:     /
+                domain:   ~              
+            fos_facebook:
+                app_url: "http://apps.facebook.com/scss/"
+                server_url: "http://scss2.daviddurost.net/facebookApp/"                
+            oauth:
+                resource_owners:
+                    github:   /signin/github/check
+                    google:   /signin/google/check
+                    facebook: /signin/facebook/check
+                    foursquare: /signin/foursquare/check
+                    linkedin: /signin/linkedin/check
+                login_path: /connect
+                failure_path: /connect
+                
+                oauth_user_provider:
+                    service: hqi_oauth.user.provider.fosusb_bridge
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/, role: [ ROLE_USER, IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_ANONYMOUSLY] }
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_GROUP_USER: ROLE_USER                  # attendee
+        ROLE_GROUP_LEADER: ROLE_GROUP_USER          # group leader
+        ROLE_GROUP_ADMIN: ROLE_GROUP_LEADER         # group admin
+        ROLE_FACILITY_FACULTY: ROLE_USER            # facility faculty
+        ROLE_FACILITY_ADMIN: ROLE_FACILITY_FACULTY  # facility admin
+        ROLE_ORGANIZATION_ADMIN: ROLE_USER          # organization admin
+        ROLE_REGION_ADMIN: ROLE_USER                # region admin
+        ROLE_ADMIN:       ROLE_USER                 # site admin
+        ROLE_SUPER_ADMIN: ROLE_ADMIN                # root admin

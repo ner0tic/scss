@@ -27,3 +27,10 @@ monolog:
 
 assetic:
     use_controller: true
+
+security:
+    firewalls:
+        public:
+            fos_facebook:
+                app_url: "http://apps.facebook.com/scss/"
+                server_url: "http://scss2.daviddurost.net/app_dev.php/"  

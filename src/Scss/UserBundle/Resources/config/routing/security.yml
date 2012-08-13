@@ -1,0 +1,23 @@
+fos_user_security_login:
+    pattern: /signin
+    defaults: { _controller: FOSUserBundle:Security:login }
+fos_user_security_check:
+    pattern: /signin-check
+    defaults: { _controller: FOSUserBundle:Security:check }
+fos_user_security_logout:
+    pattern: /signout
+    defaults: { _controller: FOSUserBundle:Security:logout }
+_security_check:
+    pattern:  /login_check
+_security_logout:
+    pattern:  /logout    
+facebook_check:
+    pattern: /signin/facebook/check
+google_check:
+    pattern: /signin/google/check
+github_check:
+    pattern: /signin/github/check
+linkedin_check:
+    pattern: /signin/linkedin/check
+foursquare_check:
+    pattern: /signin/foursquare/check

@@ -31,6 +31,9 @@ class AppKernel extends Kernel
             new Scss\GeographyBundle\ScssGeographyBundle(),
             new Scss\CourseBundle\ScssCourseBundle(),
             new Scss\MenuBundle\ScssMenuBundle(),
+            new FOS\FacebookBundle\FOSFacebookBundle(),
+            
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

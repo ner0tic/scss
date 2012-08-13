@@ -4,6 +4,7 @@ app/bootstrap*
 # Symfony directories
 vendor/*
 !vendor/ner0tic
+!vendor/hwi
 */logs/*
 */cache/*
 web/uploads/*

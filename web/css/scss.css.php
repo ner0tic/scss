@@ -56,20 +56,18 @@ body { margin: 0px; }
 
 #blurp-box { position: relative; z-index: 400; top: -250px; width: 250px; margin-left: 64%;}
 
-#details { background: <?php echo $dkOlive ?>; }
-ul#detail-items { display: inline; margin: 0 auto; background: <?php echo $dkOlive ?>; } 
-li.detail-item { width: 280px; color: #474747;
-float: left;
-font-size: 12px;
-font-weight: bold;
-list-style: none;
-margin: 0;
-padding-right: 7px; }
-li.detail-item h2, li.detail-item p { max-width: 300px; color: <?php echo $fadedGold ?>; vertical-align: top;  }
-li.detail-item h2 {  display: inline; margin-left: -4px; margin-top: 10px;}
-li.detail-item p { color: <?php echo $beige ?> !important; margin-left: 60px; }
-li.detail-item img { padding: 10px; }
-li#mobile { z-index: 400; display: inline; margin-top: 20px; }
+#details { width: 100%; height: 100%;}
+table#detail-items { display: inline; margin: 0 auto; background: <?php echo $dkOlive ?>; } 
+td.detail-item { background: <?php echo $dkBrown ?>; color: #474747; font-size: 12px; font-weight: bold; padding: 0 10px 10px 10px; width: 30%;}
+td.detail-item h2, li.detail-item p { max-width: 300px; color: <?php echo $fadedGold ?>; vertical-align: middle;  }
+td.detail-item h2 {  display: inline-block; position: relative; margin-top: -40px; font-family: "gill sans mt", veranda, arial; font-size: 2em; font-weight: bold; letter-spacing: -3px; text-align: left; width: 100%; }
+td.detail-item p { color: <?php echo $beige ?> !important; margin-left: 60px; display: inline-block; float: right;}
+td.detail-item img { padding: 10px; top: 65px; position: relative; }
+td#mobile { width: 40% !important; }
+td#mobile img { margin-left: 0 !important; padding-top: 150px !important; position: relative; }
+td#mobile h2 { top: 10px; }
+td#mobile p { margin-left: 160px !important;
+td#mobile span { display: none; }
 
 .main-content { float: left; width: 100%; max-width: 898px; margin: 0 !important; margin-top: 10px !important; }
 /************************************************
@@ -86,7 +84,7 @@ li#mobile { z-index: 400; display: inline; margin-top: 20px; }
 #info-box strong.week { position: relative; top: -20px;}
 #dashboard #info-box { position: relative; }
 .page-margin-offset {
-
+ 
 .datagrid table { width: 100%; }
 .datagrid table th { font-weight: bold; }
 .datagrid table td { width: 10%; margin: 0 auto; }

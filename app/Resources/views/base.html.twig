@@ -31,22 +31,28 @@
     <script src="/js/libs/modernizr-1.6.min.js"></script>
   </head>
   <body>
+    {{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}
     <header>
       {% block header %}
       <div class="container">
-      <ul id="top-links">
-        <li><a href="{{ path('help_specific', { 'subject' : 'dashboard' }) }}">help</a></li>
-        <li><a href="{{ path('settings') }}">settings</a></li>
-        <li>
-        {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('fos_user_security_logout') }}">Sign Out</a>
-        {% else %}
-            <a href="{{ path('fos_user_security_login') }}">sign in</a>
-        {% endif %}
-        </li>
-      </ul>
-      <div id="logo"><a href="{{ path('homepage') }}">summercamp<span>schedulingsystem</span></a><sup>BETA</sup></div>
-     {# {{ knp_menu_render('ScssMenuBundle:MenuBuilder:mainMenu') }}#} { {{ knp_menu_render('main') }} 
+        <ul id="top-links">
+          <li><a href="{{ path('help_specific', { 'subject' : 'dashboard' }) }}">help</a></li>
+          <li><a href="{{ path('settings') }}">settings</a></li>
+          <li>
+          {% if is_granted('ROLE_USER') %}
+              <a href="{{ path('fos_user_security_logout') }}">Sign Out</a>
+          {% else %}
+              <a href="{{ path('fos_user_security_login') }}">sign in</a>
+          {% endif %}
+          </li>
+        </ul>
+        <div id="logo"><a href="{{ path('homepage') }}">summercamp<span>schedulingsystem</span></a><sup>BETA</sup></div>
+        <menu>
+        {% block menu %}
+          {# {{ knp_menu_render('ScssMenuBundle:MenuBuilder:mainMenu') }}#} 
+          {{ knp_menu_render('nonauth') }} 
+        {% endblock %}
+        </menu>
       </div>    
       {% endblock %}
     </header>
@@ -54,11 +60,30 @@
     {% block main_content %}
       
     {% endblock %}
+    </div>
     <div id="footer">
     {% block footer %}      
       &copy; 2012 all rights reserved.
     {% endblock %}
     </div>
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+<script>
+  function goLogIn(){
+      window.location.href = "{{ path('_security_check') }}";
+  }
+
+  function onFbInit() {
+      if (typeof(FB) != 'undefined' && FB != null ) {
+          FB.Event.subscribe('auth.statusChange', function(response) {
+              if (response.session || response.authResponse) {
+                  setTimeout(goLogIn, 500);
+              } else {
+                  window.location.href = "{{ path('_security_logout') }}";
+              }
+          });
+      }
+  }
+</script>
+    {% endblock %}
   </body>
 </html>

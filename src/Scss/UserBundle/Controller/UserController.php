@@ -9,6 +9,6 @@ class UserController extends Controller {
       if($this->get('security.context')->isGranted('ROLE_USER'))
         return $this->render('ScssUserBundle:User:dashboard.html.twig');
       else
-        return $this->render('ScssUserBundle:User:index.html.twig', array('user' => $this->get('security.context')->getToken()->getUser()));
+        return $this->render('ScssUserBundle:User:index.html.twig');
     }
 }

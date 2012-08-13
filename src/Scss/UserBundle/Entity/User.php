@@ -52,6 +52,76 @@ class User extends BaseUser
      */
     private $updated;    
     
+    /**
+     * @ORM\Column(type="string", length=300) 
+     */
+    private $email_address;
+/**
+     * @var string
+     *
+     * @ORM\Column(name="facebookId", type="string", length=255)
+     */
+    protected $facebookId;
+
+    public function serialize()
+    {
+        return serialize(array($this->facebookId, parent::serialize()));
+    }
+
+    public function unserialize($data)
+    {
+        list($this->facebookId, $parentData) = unserialize($data);
+        parent::unserialize($parentData);
+    }
+
+    /**
+     * Get the full name of the user (first + last name)
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastname();
+    }
+
+    /**
+     * @param string $facebookId
+     * @return void
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+        $this->setUsername($facebookId);
+        $this->salt = '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param Array
+     */
+    public function setFBData($fbdata)
+    {
+        if (isset($fbdata['id'])) {
+            $this->setFacebookId($fbdata['id']);
+            $this->addRole('ROLE_FACEBOOK');
+        }
+        if (isset($fbdata['first_name'])) {
+            $this->setFirstName($fbdata['first_name']);
+        }
+        if (isset($fbdata['last_name'])) {
+            $this->setLastName($fbdata['last_name']);
+        }
+        if (isset($fbdata['email'])) {
+            $this->setEmailAddress($fbdata['email']);
+        }
+    }
+    
    /**
     * @ORM\ManyToOne(targetEntity="Scss\FacilityBundle\Entity\GroupEnrollment", inversedBy="user")
     * @ORM\JoinColumn(name="active_enrollment_id", referencedColumnName="id")
