@@ -105,39 +105,39 @@ fos_facebook:
     cookie: true
     permissions: [email, user_birthday, user_location]    
     
-hwi_oaith:
+hwi_oauth:
     firewall_name: secured_area
     
     resource_owners:
         facebook:
             type: facebook
-            client_id:
-            client_secret:
+            client_id: 173494226064106
+            client_secret: 41fbd98aa2efaeb12b2602149710ca86
             scope: ""
         google:
             type: google
-            client_id:
-            client_secret:
-            scope: ""
+            client_id: 986620454264.apps.googleusercontent.com
+            client_secret: 2D_1VRUM65dAvIZfgrjsB9Ha
+            scope: "https://www.googleapis.com/auth/plus.me"
         linkedin:
             type: linkedin
-            client_id:
-            client_secret:
+            client_id: wq7ouwedcs6f
+            client_secret: E313GhN9FrgksrAT
             scope: ""
-        github:
-            type: github
-            client_id: 
-            client_secret:
-            scope: ""
+#        github:
+#            type: github
+#            client_id: 
+#            client_secret:
+#            scope: ""
         foursquare:
             type: foursquare
-            client_id:
-            client_secret:
+            client_id: ZWMV20TQ5ASWTHXOMPVET54TNFMMGQ4WGCEYTSEZWP2QXQFN
+            client_secret: LHY4IZQGXBF0GLPMR2L21V3LDOETXYLWLP4CMB0H5ITDKL4D
             scope: ""
     fosub:
         username_iterations: 30
         properties:
-            github: githubId
+#            github: githubId
             google: googleId
             facebook: facebookId
             foursquare: foursquareId

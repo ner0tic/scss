@@ -6,4 +6,4 @@
 	url = https://github.com/hwi/HWIOAuthBundle.git
 [submodule "vendor/hwi/oauth-bundle/HWI/Bundle/OAuthBundle"]
 	path = vendor/hwi/oauth-bundle/HWI/Bundle/OAuthBundle
-	url = https://github.com/hwi/HWIOAuthBundle.git
+	url = https://github.com/ner0tic/HWIOAuthBundle.git

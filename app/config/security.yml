@@ -24,7 +24,7 @@ security:
                 server_url: "http://scss2.daviddurost.net/facebookApp/"                
             oauth:
                 resource_owners:
-                    github:   /signin/github/check
+#                    github:   /signin/github/check
                     google:   /signin/google/check
                     facebook: /signin/facebook/check
                     foursquare: /signin/foursquare/check
