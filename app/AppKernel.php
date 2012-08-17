@@ -13,17 +13,23 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             
-            new FOS\UserBundle\FOSUserBundle(),
-           
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            
             new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle(),
+            
+            new FOS\UserBundle\FOSUserBundle(),
+            new FOS\FacebookBundle\FOSFacebookBundle(),
+           
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             
             new Scss\UserBundle\ScssUserBundle(),
             new Scss\FacilityBundle\ScssFacilityBundle(),
@@ -31,9 +37,6 @@ class AppKernel extends Kernel
             new Scss\GeographyBundle\ScssGeographyBundle(),
             new Scss\CourseBundle\ScssCourseBundle(),
             new Scss\MenuBundle\ScssMenuBundle(),
-            new FOS\FacebookBundle\FOSFacebookBundle(),
-            
-            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

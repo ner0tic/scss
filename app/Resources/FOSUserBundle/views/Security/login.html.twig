@@ -12,11 +12,11 @@
 
 {% block fos_user_content %}
 <div class="signin-form-wrapper form-wrapper" id="signin-form">
-{% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
 <h2>{{ 'sign in' | title }}</h2>
 <br />
+{% if error %}
+    <div class="error">{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
 <form action="{{ path("fos_user_security_check") }}" method="post">
   <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
   <p>
@@ -37,9 +37,10 @@
 <div id="signin-quicklinks-wrapper">
   <h2>{{ 'sign in with' | title }}</h2>
   <ul id="quicklinks">
-    <li class="quicklink" id="facebook">{{ facebook_login_button({'autologoutlink': true, 'label': 'Sign In With Facebook'}) }}</li>
-    <li class="quicklink" id="twitter"></li>
-    <li class="quicklink" id="oauth"></li>
+    <li class="quicklink" id="facebook"><a href="#"><img src="{{ asset('/images/social/connect/facebook.png') }}" /></a>{# {{ facebook_login_button({'autologoutlink': true, 'label': 'Sign In With Facebook', return_uri: path('fos_user_security_check') }) }} #}</li>
+    <li class="quicklink" id="twitter"><a href="#"><img src="{{ asset('/images/social/connect/twitter.png') }}" /></a></li>
+    <li class="quicklink" id="google"><a href="#"><img src="{{ asset('/images/social/connect/google.png') }}" /></a></li>
+    <li class="quicklink" id="linkedin"><a href="#"><img src="{{ asset('/images/social/connect/linkedin.png') }}" /></a></li>
   </ul>
 </div>
 {% endblock %}

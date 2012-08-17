@@ -16,6 +16,7 @@ a:hover { color : <?php echo $logoLt ?>; text-decoration: none; font-weight : bo
 h1 { font-size : 24px; color : <?php echo $logoDark ?>; font-weight : bold; margin: 0;}
 h2 { font-size : 20px; color : <?php echo $offBlack ?>; font-weight : normal; margin: 0;}
 h3 { font-size : 14px; color : #888888; font-weight : normal; line-height: 20pt; margin: 0;}
+.error { background: <?php echo $errorRed ?>; padding: 4px; border: 1px solid <?php echo $errorRed ?>; border-radius: 5px; }
 body { margin: 0px; }
 .container {
     width: 920px;
@@ -120,5 +121,3 @@ a.greyButton, .greyButton a { color: #999; display: block; text-decoration: none
 .orangeButton:hover { background: #ffad32; background: -webkit-gradient(linear, left top, left bottom, from(#ffad32), to(#ff8132)); background: -moz-linear-gradient(top,  #ffad32,  #ff8132); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffad32', endColorstr='#ff8132'); }
 .orangeButton:active { background: #ff8132; background: -webkit-gradient(linear, left top, left bottom, from(#ff8132), to(#ffad32)); background: -moz-linear-gradient(top,  #ff8132,  #ffad32); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8132', endColorstr='#ffad32'); }
 a.orangeButton, .orangeButton a { color: #fff; display: block; text-decoration: none; }
-
-

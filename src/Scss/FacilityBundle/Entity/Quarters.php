@@ -4,7 +4,7 @@ namespace Scss\FacilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Scss\FacilityBundle\DBAL\Types\DataTypes\EnumQuartersType as Enum;
+
 
 /**
  * @ORM\Entity
@@ -26,7 +26,7 @@ class Quarters {
   protected $name;  
   
   /** 
-   * @ORM\Column(type="string", columnDefinition="ENUM('group', 'faculty')") 
+   * @ORM\Column(type="string", length=100) 
    */  
   protected $type;
   
@@ -86,6 +86,8 @@ class Quarters {
      */
     public function setType($type)
     {
+        if(!in_array(array('group', 'facility')))
+          throw new \InvalidArgumentException('Invalid option for a quarters type');
         $this->type = $type;
         return $this;
     }

@@ -51,18 +51,42 @@ class User extends BaseUser
      * @ORM\Column(type="datetime")
      */
     private $updated;    
-    
+
     /**
-     * @ORM\Column(type="string", length=300) 
-     */
-    private $email_address;
-/**
      * @var string
      *
      * @ORM\Column(name="facebookId", type="string", length=255)
      */
     protected $facebookId;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="googleId", type="string", length=255)
+     */
+    protected $googleId;    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkedinId", type="string", length=255)
+     */
+    protected $linkedinId;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitterId", type="string", length=255)
+     */
+    protected $twitterId;    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="foursquareId", type="string", length=255)
+     */
+    protected $foursquareId;    
+    
     public function serialize()
     {
         return serialize(array($this->facebookId, parent::serialize()));
@@ -118,7 +142,7 @@ class User extends BaseUser
             $this->setLastName($fbdata['last_name']);
         }
         if (isset($fbdata['email'])) {
-            $this->setEmailAddress($fbdata['email']);
+            $this->setEmail($fbdata['email']);
         }
     }
     
@@ -274,5 +298,93 @@ class User extends BaseUser
     public function getActiveEnrollment()
     {
         return $this->active_enrollment;
+    }
+
+    /**
+     * Set googleId
+     *
+     * @param string $googleId
+     * @return User
+     */
+    public function setGoogleId($googleId)
+    {
+        $this->googleId = $googleId;
+        return $this;
+    }
+
+    /**
+     * Get googleId
+     *
+     * @return string 
+     */
+    public function getGoogleId()
+    {
+        return $this->googleId;
+    }
+
+    /**
+     * Set linkedinId
+     *
+     * @param string $linkedinId
+     * @return User
+     */
+    public function setLinkedinId($linkedinId)
+    {
+        $this->linkedinId = $linkedinId;
+        return $this;
+    }
+
+    /**
+     * Get linkedinId
+     *
+     * @return string 
+     */
+    public function getLinkedinId()
+    {
+        return $this->linkedinId;
+    }
+
+    /**
+     * Set twitterId
+     *
+     * @param string $twitterId
+     * @return User
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
+        return $this;
+    }
+
+    /**
+     * Get twitterId
+     *
+     * @return string 
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
+    }
+
+    /**
+     * Set foursquareId
+     *
+     * @param string $foursquareId
+     * @return User
+     */
+    public function setFoursquareId($foursquareId)
+    {
+        $this->foursquareId = $foursquareId;
+        return $this;
+    }
+
+    /**
+     * Get foursquareId
+     *
+     * @return string 
+     */
+    public function getFoursquareId()
+    {
+        return $this->foursquareId;
     }
 }

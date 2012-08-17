@@ -1,20 +1,24 @@
 <?php
 //    header("Content-Type: text/css");
-    $color[0]   =   $fadedGold  =   '#efece0';
-    $color[1]   =   $gold       =   '#D4BA48';
-    $color[2]   =   $logoDark   =   '#ad983b';
-    $color[3]   =   $logoLt     =   '#76ad3b';
-    $color[4]   =   $beige      =   '#c1bba0';
-    $color[5]   =   $ltGold     =   '#eae1be';
-    $color[6]   =   $dkGreen    =   '#5c872e';
-    $color[7]   =   $offWhite   =   '#f8f8f5';
-    $color[8]   =   $white      =   '#ffffff';
-    $color[9]   =   $black      =   '#000000';
-    $color[10]  =   $activeBtn  =   $ltGold; //'#f4f3ed';
-    $color[11]  =   $offBlack   =   '#666666';
-    $color[12]  =   $dkOlive    =   '#87772e';
-    $color[13]  =   $dkBrown    =   '#54491c';
-
+    $color[0]   =   $fadedGold      =   '#efece0';
+    $color[1]   =   $gold           =   '#D4BA48';
+    $color[2]   =   $logoDark       =   '#ad983b';
+    $color[3]   =   $logoLt         =   '#76ad3b';
+    $color[4]   =   $beige          =   '#c1bba0';
+    $color[5]   =   $ltGold         =   '#eae1be';
+    $color[6]   =   $dkGreen        =   '#5c872e';
+    $color[7]   =   $offWhite       =   '#f8f8f5';
+    $color[8]   =   $white          =   '#ffffff';
+    $color[9]   =   $black          =   '#000000';
+    $color[10]  =   $activeBtn      =   $ltGold; //'#f4f3ed';
+    $color[11]  =   $offBlack       =   '#666666';
+    $color[12]  =   $dkOlive        =   '#87772e';
+    $color[13]  =   $dkBrown        =   '#54491c';
+    $color[14]  =   $errorRed       =   '#ffece2';
+    $color[15]  =   $warningYellow  =   '#fcfcdb';
+    $color[16]  =   $questionBlue   =   '#e6eff2';
+    
+    
 /*
     $ltOrange           =   '#FF9933';
     $dkOrange           =   '#D9822B';
@@ -30,9 +34,7 @@
     $dkOrangeStripe     = '#ff9933';
     $ltFadedGold        = '#f8f8f5';
     $ltFadedOrange      = '#fdf6ef';
-    $errorRed           =   '#ffece2';
-    $warningYellow      =   '#fcfcdb';
-    $questionBlue       =   '#e6eff2';
+
 
     $ltGreen            =   '#91d449';
     $green              =   '#76ad3b';

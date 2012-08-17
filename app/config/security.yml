@@ -10,8 +10,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-                check_path: fos_user_security_check
-                login_path: /connect/
+                check_path: /signin-check
+                login_path: /signin
             logout:       true # handlers: ["fos_facebook.logout_handler"]                
             anonymous:    true
             remember_me:
@@ -29,25 +29,29 @@ security:
                     facebook: /signin/facebook/check
                     foursquare: /signin/foursquare/check
                     linkedin: /signin/linkedin/check
-                login_path: /connect
-                failure_path: /connect
+                login_path: /signin
+                check_path: /signin-check
+                failure_path: /signin
                 
                 oauth_user_provider:
-                    service: hqi_oauth.user.provider.fosusb_bridge
+                    service: hwi_oauth.user.provider.fosub_bridge
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/sigin$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/signup, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/, role: [ ROLE_USER, IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_ANONYMOUSLY] }
 
     role_hierarchy:
-        ROLE_GROUP_USER: ROLE_USER                  # attendee
-        ROLE_GROUP_LEADER: ROLE_GROUP_USER          # group leader
-        ROLE_GROUP_ADMIN: ROLE_GROUP_LEADER         # group admin
-        ROLE_FACILITY_FACULTY: ROLE_USER            # facility faculty
-        ROLE_FACILITY_ADMIN: ROLE_FACILITY_FACULTY  # facility admin
-        ROLE_ORGANIZATION_ADMIN: ROLE_USER          # organization admin
-        ROLE_REGION_ADMIN: ROLE_USER                # region admin
-        ROLE_ADMIN:       ROLE_USER                 # site admin
-        ROLE_SUPER_ADMIN: ROLE_ADMIN                # root admin
+        ROLE_GROUP_USER: ROLE_USER                                        # attendee            # scout
+        ROLE_GROUP_LEADER: ROLE_GROUP_USER                                # group leader        # troop leader
+        ROLE_GROUP_ADMIN: ROLE_GROUP_LEADER                               # group admin         # scout master
+        ROLE_FACILITY_USER: ROLE_USER                                     # facility user       # camp staff
+        ROLE_FACILITY_FACULTY: [ ROLE_FACILITY_USER, ROLE_GROUP_ADMIN ]   # facility faculty    # camp administrative staff
+        ROLE_FACILITY_ADMIN: ROLE_FACILITY_FACULTY  # facility admin      # facility admin      # camp administration
+        ROLE_ORGANIZATION_USER: [ROLE_FACILITY_ADMIN, ROLE_GROUP_ADMIN]   # organization user   # council staff
+        ROLE_ORGANIZATION_ADMIN: ROLE_USER                                # organization admin  # council administration
+        ROLE_REGION_USER: ROLE_ORGANIZATION_ADMIN                         # region user         # district staff
+        ROLE_REGION_ADMIN: ROLE_USER                                      # region admin        # district administration
+        ROLE_ADMIN:       ROLE_USER                                       # site admin     
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]          # root admin

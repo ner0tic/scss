@@ -42,6 +42,9 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+#        types:
+#            enum: Scss\FacilityBundle\DBAL\Types\EnumType
+#            quartersEnum: Scss\FacilityBundle\DBAL\Types\EnumQuartersType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
@@ -142,4 +145,9 @@ hwi_oauth:
             facebook: facebookId
             foursquare: foursquareId
             linkedin: linkedinId
-            
+    connect: ~
+    http_client:
+        timeout:  5
+        verify_peer: true
+        ignore_errors: true
+        max_redirects: 5
