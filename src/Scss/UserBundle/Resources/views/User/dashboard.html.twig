@@ -1,4 +1,4 @@
-{% extends '::Base.htmltwig' %}
+{% extends '::base.html.twig' %}
 
 {% block stylesheets %}
   <link href="{{ asset('/css/dashboard.css.php') }}" rel="stylesheet" />
@@ -8,13 +8,8 @@
   {{ parent() }}
   <script src="{{ asset('/js/dashboard.js.php') }}" type="text/javascript" />  
 {% endblock %}
-
-{% block menu %}
-  {# {{ knp_menu_render('ScssMenuBundle:MenuBuilder:mainMenu') }}#} 
-  {{ knp_menu_render('main') }}   
-{% endblock %}  
-  
-{% include 'ScssUtilityBundle:Utility:infobox.html.twig' with {'page': 'dashboard'} %}
+ 
+{# {% include 'ScssUtilityBundle:InfoBox:index.html.twig' with {'page': 'dashboard'} %} #}
 {% block main_content %}
 <div class="box main-content">
   <div class="box-content datagrid">
@@ -33,7 +28,7 @@
             {% for x, period in user.activeEnrollment.week.periods %}
           <td>
               {% set enroll = scout.enrollment(period) %}  
-              {% if enroll.class.course.slug = '' %}
+              {% if enroll.class.course.slug == '' %}
               <a href="{{ path('scout_enroll_edit') }}"><img src="{{ asset('/images/user_files/badges/' ~ enroll.class.course.meritbadge.slug ~ '.png') }}" height="48px" width="48px" alt="{{ enroll.class.course.name }}" /></a>
               {% else %}
               none
@@ -54,7 +49,7 @@
             </div>
           </td>
         </tr>
-      {% endfor $}
+      {% endfor %}
       </tbody>
       {% include 'ScssUtilityBundle:Utility:pager.html.twig' with { 'colspan': 7, 'prefix': 's_', 'module': 'scout', 'pager': s_pager} %}
     {% endblock %}
@@ -70,11 +65,11 @@
     <table class="data-table" id="patrol-table">
     {% block patrol_table %}
       <tbody>
-      {% for i, subgroup in p_pager) %}
-        <tr class="table-row {% i is even ? 'even-row' : 'odd-row' %}">
+      {% for i, subgroup in p_pager %}
+        <tr class="table-row {{ cycle(['odd-row', 'even-row'], i) }}">
           <td>{{ subgroup.name }}</td>
           <td><img src="/images/user_files/logos/subgroups/{{ subgroup.img }}" height="48" alt="{{ subgroup.name }}" /></td>
-          <td>{{ subgroup.attendeeCount}} {{ 'attendee' | trans }}{{ subgroup.attendeeCount != 1) ? 's' : '' }}</td>
+          <td>{{ subgroup.attendeeCount}} {{ 'attendee' | trans }}{{ subgroup.attendeeCount != 1 ? 's' : '' }}</td>
           <td class="table-controls">
             <div class="table-controls">
               <a href="{{ path('subgroup_edit') }}"><img src="/images/icons/edit-icon.png" width="16" height="16" alt='edit' /><span class="control-txt">edit</span></a>

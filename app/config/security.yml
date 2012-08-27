@@ -1,4 +1,6 @@
 security:
+    acl:
+        connection: default
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
     providers:
@@ -12,27 +14,22 @@ security:
                 csrf_provider: form.csrf_provider
                 check_path: /signin-check
                 login_path: /signin
-            logout:       true # handlers: ["fos_facebook.logout_handler"]                
+            logout:       true # handlers: ["fos_facebook.logout_handler"]
             anonymous:    true
             remember_me:
                 key:      "%secret%"
                 lifetime: 3600
                 path:     /
-                domain:   ~              
+                domain:   ~
             fos_facebook:
                 app_url: "http://apps.facebook.com/scss/"
-                server_url: "http://scss2.daviddurost.net/facebookApp/"                
+                server_url: "http://scss2.daviddurost.net/facebookApp/"
             oauth:
                 resource_owners:
-#                    github:   /signin/github/check
-                    google:   /signin/google/check
-                    facebook: /signin/facebook/check
-                    foursquare: /signin/foursquare/check
-                    linkedin: /signin/linkedin/check
-                login_path: /signin
-                check_path: /signin-check
-                failure_path: /signin
-                
+                    google:   "/signin/google/check"
+                    facebook: "/signin/facebook/check"
+                login_path: /connect
+                failure_path: /connect
                 oauth_user_provider:
                     service: hwi_oauth.user.provider.fosub_bridge
     access_control:
@@ -53,5 +50,5 @@ security:
         ROLE_ORGANIZATION_ADMIN: ROLE_USER                                # organization admin  # council administration
         ROLE_REGION_USER: ROLE_ORGANIZATION_ADMIN                         # region user         # district staff
         ROLE_REGION_ADMIN: ROLE_USER                                      # region admin        # district administration
-        ROLE_ADMIN:       ROLE_USER                                       # site admin     
+        ROLE_ADMIN:       ROLE_USER                                       # site admin
         ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]          # root admin

@@ -49,8 +49,11 @@
         <div id="logo"><a href="{{ path('homepage') }}">summercamp<span>schedulingsystem</span></a><sup>BETA</sup></div>
         <menu>
         {% block menu %}
-          {# {{ knp_menu_render('ScssMenuBundle:MenuBuilder:mainMenu') }}#} 
-          {{ knp_menu_render('nonauth') }} 
+          {% if is_granted('ROLE_USER') %}
+            {# {{ knp_menu_render('main') }} #}
+          {% else %}
+            {{ knp_menu_render('nonauth') }}   
+          {% endif %}
         {% endblock %}
         </menu>
       </div>    

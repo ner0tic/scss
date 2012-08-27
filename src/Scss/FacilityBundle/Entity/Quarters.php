@@ -21,31 +21,31 @@ class Quarters {
 
   /**
    * @ORM\Column(type="string", length=150)
-   * @var type 
+   * @var type
    */
-  protected $name;  
-  
-  /** 
-   * @ORM\Column(type="string", length=100) 
-   */  
+  protected $name;
+
+  /**
+   * @ORM\Column(type="string", length=100)
+   */
   protected $type;
-  
+
   /**
    * @ORM\Column(type="integer")
    */
   protected $max_occupy;
-  
+
   /**
-   * @ORM\Column(type="string", length=250) 
+   * @ORM\Column(type="string", length=250)
    */
   protected $photo;
-    
+
   /**
    * @ORM\ManyToOne(targetEntity="Facility", inversedBy="area")
    * @ORM\JoinColumn(name="facilty_id", referencedColumnName="id")
-   */    
-  protected $facility;  
-  
+   */
+  protected $facility;
+
   /**
    * @var datetime $created
    *
@@ -63,15 +63,15 @@ class Quarters {
   private $updated;
 
   /**
-   * @Gedmo\Slug(fields={"name"}) 
+   * @Gedmo\Slug(fields={"name"})
    * @ORM\Column(length=128, unique=true)
    */
-  protected $slug;  
+  protected $slug;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -86,7 +86,7 @@ class Quarters {
      */
     public function setType($type)
     {
-        if(!in_array(array('group', 'facility')))
+        if(!in_array($type,array('group', 'facility')))
           throw new \InvalidArgumentException('Invalid option for a quarters type');
         $this->type = $type;
         return $this;
@@ -95,7 +95,7 @@ class Quarters {
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -117,7 +117,7 @@ class Quarters {
     /**
      * Get max_occupy
      *
-     * @return integer 
+     * @return integer
      */
     public function getMaxOccupy()
     {
@@ -139,7 +139,7 @@ class Quarters {
     /**
      * Get photo
      *
-     * @return string 
+     * @return string
      */
     public function getPhoto()
     {
@@ -161,7 +161,7 @@ class Quarters {
     /**
      * Get created
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreated()
     {
@@ -183,7 +183,7 @@ class Quarters {
     /**
      * Get updated
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdated()
     {
@@ -205,7 +205,7 @@ class Quarters {
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -227,7 +227,7 @@ class Quarters {
     /**
      * Get facility
      *
-     * @return Scss\FacilityBundle\Entity\Facility 
+     * @return Scss\FacilityBundle\Entity\Facility
      */
     public function getFacility()
     {
@@ -249,7 +249,7 @@ class Quarters {
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

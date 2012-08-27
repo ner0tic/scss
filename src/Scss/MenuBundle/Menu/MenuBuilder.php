@@ -7,13 +7,15 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
 
 class MenuBuilder extends ContainerAware {
+  
   public function __construct(FactoryInterface $factory) {
     $this->factory = $factory; 
-    //$this->user = $this->container->get('security.context')->getToken()->getUser();
     
+    //$this->user = $this->container->get('security.context')->getToken()->getUser();    
   }
   
     public function createMainMenu(Request $request) {     
+      $user = $this->get('security.context')->getToken()->getUser();
       $menu = $this->factory->createItem('root');
       //$menu->setCurrentUri($this->container->get('request')->getRequestUri());
       $menu->addChild('home',               array('uri'             =>  'homepage'));
@@ -199,8 +201,8 @@ class MenuBuilder extends ContainerAware {
       $menu->addChild('dashboard',          array('route'           =>  'dashboard'));
       // attendee mgmt =========================================================================================================================================================================
       $menu->addChild('attendee managment', array('route'           =>  'attendee_by_group',
-                                                  'routeParameters' =>  array('region_slug'   =>  $this->user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(), 
-                                                                              'group_slug'    =>  $this->user->getActiveEnrollment()->getTroop()->getSlug())));
+                                                  'routeParameters' =>  array('region_slug'   =>  $user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(), 
+                                                                              'group_slug'    =>  $user->getActiveEnrollment()->getTroop()->getSlug())));
       $menu['attendee management']->addChild('add attendee',        array('route'             =>  'attendee_new',
                                                                     'routeParameters'         =>  array('region_slug'     =>   $user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(), 
                                                                                                         'group_slug'      =>   $user->getActiveEnrollment()->getTroop()->getSlug())));
@@ -210,8 +212,8 @@ class MenuBuilder extends ContainerAware {
       $menu['attendee management']->addChild('attendee enrollment', array('route'             =>  'attendee_enrollment'));
       // subgroup mgmt =========================================================================================================================================================================
       $menu->addChild('subgroup managment', array('route'           =>  'subgroup_by_group',
-                                                  'routeParameters' =>  array('region_slug'   =>  $this->user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(), 
-                                                                              'group_slug'    =>  $this->user->getActiveEnrollment()->getTroop()->getSlug())));
+                                                  'routeParameters' =>  array('region_slug'   =>  $user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(), 
+                                                                              'group_slug'    =>  $user->getActiveEnrollment()->getTroop()->getSlug())));
       $menu['subgroup management']->addChild('add subgroup',        array('route'             =>  'subgroup_new',
                                                                     'routeParameters'         =>  array('region_slug'     =>   $user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(), 
                                                                                                         'group_slug'      =>   $user->getActiveEnrollment()->getTroop()->getSlug())));
@@ -227,14 +229,14 @@ class MenuBuilder extends ContainerAware {
                                                                                                         'group_slug'      =>   $user->getActiveEnrollment()->getTroop()->getSlug())));      
       // group menrollment =====================================================================================================================================================================
       $menu->addChild('group enrollment',   array('route'           =>  'group_enrollment',
-                                                  'routeParameters' =>  array('region_slug'   =>  $this->user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(), 
-                                                                              'group_slug'    =>  $this->user->getActiveEnrollment()->getTroop()->getSlug())));
+                                                  'routeParameters' =>  array('region_slug'   =>  $user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(), 
+                                                                              'group_slug'    =>  $user->getActiveEnrollment()->getTroop()->getSlug())));
       $menu['group enrollment']->addChild('next season',            array('route'             =>  'next_season',
-                                                                          'routeParameters'   =>  array('region_slug'   =>  $this->user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(),
-                                                                                                        'facility_slug' =>  $this->user->getActiveEnrollment()->getFacility()->getSlug())));
+                                                                          'routeParameters'   =>  array('region_slug'   =>  $user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(),
+                                                                                                        'facility_slug' =>  $user->getActiveEnrollment()->getFacility()->getSlug())));
       $menu['group enrollment']->addChild('payments',               array('route'             =>  'group_payments',
-                                                                          'routeParameters'   =>  array('region_slug'   =>  $this->user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(),
-                                                                                                        'group_slug'    =>  $this->user->getActiveEnrollment()->getTroop()->getSlug())));
+                                                                          'routeParameters'   =>  array('region_slug'   =>  $user->getActiveEnrollment()->getTroop()->getRegion()->getSlug(),
+                                                                                                        'group_slug'    =>  $user->getActiveEnrollment()->getTroop()->getSlug())));
       return $menu;
     }
     

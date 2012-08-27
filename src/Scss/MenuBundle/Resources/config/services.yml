@@ -3,14 +3,11 @@ services:
     scss_menu.menu_builder:
         class: Scss\MenuBundle\Menu\MenuBuilder
         arguments: ["@knp_menu.factory"]
-#    scss_menu.menu_builder:
-#        class: Scss\MenuBundle\Menu\MenuContainerBuilder
-#        arguments: ["@knp_menu.factory"]
     scss_menu.menu.main:
         class: Knp\Menu\MenuItem 
         factory_service: scss_menu.menu_builder
         factory_method: createMainMenu
-        arguments: ["@request", "@service_container"]
+        arguments: ["@service_container"]
         scope: request # needed as we have the request as a dependency here
         tags:
             - { name: knp_menu.menu, alias: main }
@@ -18,7 +15,7 @@ services:
         class: Knp\Menu\MenuItem
         factory_service: scss_menu.menu_builder
         factory_method: createNonauthMenu
-        arguments: ["@request", "@service_container"]
+        arguments: ["@request"]
         scope: request
         tags:
             - { name: knp_menu.menu, alias: nonauth }            

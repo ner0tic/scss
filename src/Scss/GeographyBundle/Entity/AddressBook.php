@@ -74,5 +74,234 @@ class AddressBook {
     * @ORM\Column(length=128, unique=true)
     */
   protected $slug;
-}
 
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param decimal $latitude
+     * @return AddressBook
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return decimal 
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param decimal $longitude
+     * @return AddressBook
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return decimal 
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return AddressBook
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set street
+     *
+     * @param string $street
+     * @return AddressBook
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+        return $this;
+    }
+
+    /**
+     * Get street
+     *
+     * @return string 
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * Set suburb
+     *
+     * @param string $suburb
+     * @return AddressBook
+     */
+    public function setSuburb($suburb)
+    {
+        $this->suburb = $suburb;
+        return $this;
+    }
+
+    /**
+     * Get suburb
+     *
+     * @return string 
+     */
+    public function getSuburb()
+    {
+        return $this->suburb;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return AddressBook
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set postal_code
+     *
+     * @param string $postalCode
+     * @return AddressBook
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postal_code = $postalCode;
+        return $this;
+    }
+
+    /**
+     * Get postal_code
+     *
+     * @return string 
+     */
+    public function getPostalCode()
+    {
+        return $this->postal_code;
+    }
+
+    /**
+     * Set created
+     *
+     * @param datetime $created
+     * @return AddressBook
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return datetime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param datetime $updated
+     * @return AddressBook
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return datetime 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return AddressBook
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+}

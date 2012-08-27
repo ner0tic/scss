@@ -22,17 +22,17 @@ class User extends BaseUser
     
     /**
      * @Gedmo\Slug(fields={"first_name", "last_name"}) 
-     * @ORM\Column(length=128, unique=true)
+     * @ORM\Column(length=128, unique=true, nullable=true)
      */
     protected $slug;
     
     /**
-     * @ORM\Column(type="string", length=150) 
+     * @ORM\Column(type="string", length=150, nullable=true) 
      */
     protected $first_name;
     
     /**
-     * @ORM\Column(type="string", length=150) 
+     * @ORM\Column(type="string", length=150, nullable=true) 
      */
     protected $last_name;
     
@@ -40,7 +40,7 @@ class User extends BaseUser
      * @var datetime $created
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $created;
 
@@ -48,44 +48,63 @@ class User extends BaseUser
      * @var datetime $updated
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated;    
 
     /**
      * @var string
      *
-     * @ORM\Column(name="facebookId", type="string", length=255)
+     * @ORM\Column(name="facebookId", type="string", length=255, nullable=true)
      */
     protected $facebookId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="googleId", type="string", length=255)
+     * @ORM\Column(name="googleId", type="string", length=255, nullable=true)
      */
     protected $googleId;    
     
     /**
      * @var string
      *
-     * @ORM\Column(name="linkedinId", type="string", length=255)
+     * @ORM\Column(name="linkedinId", type="string", length=255, nullable=true)
      */
     protected $linkedinId;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="twitterId", type="string", length=255)
+     * @ORM\Column(name="twitterId", type="string", length=255, nullable=true)
      */
     protected $twitterId;    
     
     /**
      * @var string
      *
-     * @ORM\Column(name="foursquareId", type="string", length=255)
+     * @ORM\Column(name="foursquareId", type="string", length=255, nullable=true)
      */
     protected $foursquareId;    
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="Scss\OrganizationBundle\Entity\ScssGroup", inversedBy="user")
+    * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=true)
+    */        
+    protected $group;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Scss\FacilityBundle\Entity\GroupEnrollment", inversedBy="user")
+     * @ORM\JoinColumn(name="active_enrollment_id", referencedColumnName="id", nullable=true)
+     */        
+    protected $active_enrollment;    
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
+     */
+    protected $avatar = '/images/avatars/default.png';
     
     public function serialize()
     {
@@ -146,12 +165,6 @@ class User extends BaseUser
         }
     }
     
-   /**
-    * @ORM\ManyToOne(targetEntity="Scss\FacilityBundle\Entity\GroupEnrollment", inversedBy="user")
-    * @ORM\JoinColumn(name="active_enrollment_id", referencedColumnName="id")
-    */    
-    protected $active_enrollment;
-
     public function __construct()
     {
         parent::__construct();
@@ -386,5 +399,49 @@ class User extends BaseUser
     public function getFoursquareId()
     {
         return $this->foursquareId;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string 
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Set group
+     *
+     * @param Scss\OrganizationBundle\Entity\ScssGroup $group
+     * @return User
+     */
+    public function setGroup(\Scss\OrganizationBundle\Entity\ScssGroup $group = null)
+    {
+        $this->group = $group;
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return Scss\OrganizationBundle\Entity\ScssGroup 
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }

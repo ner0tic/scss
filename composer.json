@@ -33,14 +33,19 @@
         "friendsofsymfony/facebook-bundle":                       "dev-master",
         "facebook/php-sdk":                                       "dev-master",
 
-        "kriswallsmith/buzz":                                     "dev-master",
-        "sensio/buzz-bundle":                                     "v0.1",
+        "kriswallsmith/buzz":                                     "v0.7",
+        
         "willdurand/geocoder":                                    ">=1.0.0",
         "egeloen/google-map-bundle":                              "1.0",
         
         "knplabs/knp-menu":                                       "1.1.*",
         "knplabs/knp-menu-bundle":                                "1.1.0",
-        "elao/web-profiler-extra-bundle":                         "dev-master"
+        "knplabs/knp-paginator-bundle":                           "v2.2",
+        "knplabs/knp-components":                                 ">=1.1",
+        
+        "elao/web-profiler-extra-bundle":                         "dev-master",
+        
+        "hwi/oauth-bundle":                                       "dev-master"
     },
 
     "autoload": {
