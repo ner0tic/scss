@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('/css/organization.css.php') }}" rel="stylesheet" />
+{% endblock %}
+{% block main_content %}  
+<div class="box main-content">
+  <div class="box-content datagrid">
+  {% block organization_datagrid %}    
+    <h2>{{ 'organizations' | title }} &nbsp;<a href="{{ path('organization_new') }}"><img src="{{ assets('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add an organization' | title }}" /></a></h2>
+    <table class="data-table" id="organization-table">
+    {% block organization_table %}
+      <tbody>
+      {% for i, entity in entities $}
+        <tr class="table-row {{ cycle(['odd-row', 'even-row'], i) }}">
+          <td>{{ entity.name | title }}</td>
+          <td>{{ entity.code | capitalize }}</td>
+          <td class="table-controls">
+            <div class="table-controls">
+              <a href="{{ path('organization_edit', {'organization_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/edit-icon.png') }}" width='16' height='16' alt="{{ 'edit' | title }}" /></a>
+              <a href="{{ path('organization_remove', {'organization_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/delete-icon.png') }}" width='16' height='16' alt="{{ 'delete' | title }}" /></a>
+            </div>
+          </td>
+        </tr>
+      {% endforeach %}
+      </tbody>
+      {% block pager %}
+      <tfoot>
+        <tr>
+          <td colspan="3">
+            {{ pagerfanta(pagerfanta_inst, 'twitter_bootstrap_translated', {'proximity': 2}) }}
+          </td>
+        </tr>              
+      </tfoot>
+      {% endblock %}         
+    {% endblock %}
+    </table>
+  {% endblock %}
+  </div>
+</div>
+{% endblock %}
+  

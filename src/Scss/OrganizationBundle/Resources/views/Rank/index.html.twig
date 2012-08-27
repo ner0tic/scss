@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('/css/rank.css.php') }}" rel="stylesheet" />
+{% endblock %}
+{% block main_content %}  
+<div class="box main-content">
+  <div class="box-content datagrid">
+  {% block rank_datagrid %}    
+    <h2>{{ 'ranks' | title }} &nbsp;<a href="{{ path('rank_new') }}"><img src="{{ assets('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add a rank' | title }}" /></a></h2>
+    <table class="data-table" id="rank-table">
+    {% block rank_table %}
+      <tbody>
+      {% for i, entity in entities $}
+        <tr class="table-row {{ cycle(['odd-row', 'even-row'], i) }}">
+          <td>{{ entity.name | title }}</td>
+          <td class="table-controls">
+            <div class="table-controls">
+              <a href="{{ path('rank_edit', {'rank_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/edit-icon.png') }}" width='16' height='16' alt="{{ 'edit' | title }}" /></a>
+              <a href="{{ path('rank_remove', {'rank_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/delete-icon.png') }}" width='16' height='16' alt="{{ 'delete' | title }}" /></a>
+            </div>
+          </td>
+        </tr>
+      {% endforeach %}
+      </tbody>
+      {% block pager %}
+      <tfoot>
+        <tr>
+          <td colspan="2">
+            {{ pagerfanta(pagerfanta_inst, 'twitter_bootstrap_translated', {'proximity': 2}) }}
+          </td>
+        </tr>              
+      </tfoot>
+      {% endblock %}         
+    {% endblock %}
+    </table>
+  {% endblock %}
+  </div>
+</div>
+{% endblock %}
+  

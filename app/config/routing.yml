@@ -1,12 +1,7 @@
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /connect
-hwi_oauth_connect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
-hwo_oauth_security:
-    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix: /login
-scss_user_security:
+scss__user_security:
     resource: "@ScssUserBundle/Resources/config/routing/security.yml"
 scss_user_signup:
     resource: "@ScssUserBundle/Resources/config/routing/signup.yml"
@@ -14,7 +9,7 @@ scss_user_signup:
 
 #fos_user_security:
 #    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
-#
+# 
 #fos_user_profile:
 #    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
 #    prefix: /profile
@@ -30,7 +25,7 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
-
+    
 homepage:
     pattern: /
     defaults: { _controller: ScssUserBundle:User:index }
@@ -54,7 +49,7 @@ contact:
 # By Region
 organization_by_region:
     pattern: /region/{slug}/organizations
-    defaults: { _controller: ScssOrganizationBundle:Organization:region }
+    defaults: { _controller: ScssOrganizationBundle:Organization:region }  
 group_by_region:
     pattern: /region/{slug}/groups
     defaults: { _controller: ScssOrganizationBundle:ScssGroup:region }
@@ -165,141 +160,141 @@ class_by_department:
 # Show
 region_show:
     pattern: /region/{region_slug}
-    defaults: { _controller: ScssGeographyBundle:Region:show }
+    defaults: { _controller: ScssGeographyBundle:Region:show }  
 facility_show:
     pattern: /region/{region_slug}/facility/{facililty_slug}
-    defaults: { _controller: ScssFacilityBundle:Facility:show }
+    defaults: { _controller: ScssFacilityBundle:Facility:show }  
 department_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/department/{department_slug}
-    defaults: { _controller: ScssFacilityBundle:Department:show }
+    defaults: { _controller: ScssFacilityBundle:Department:show }  
 faculty_quarters_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/quarters/faculty/{faculty_quarters_slug}
-    defaults: { _controller: ScssFacilityBundle:FacultyQuarters:show }
+    defaults: { _controller: ScssFacilityBundle:FacultyQuarters:show }  
 group_quarters_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/quarters/group/{group_quarters_slug}
-    defaults: { _controller: ScssFacilityBundle:GroupQuarters:show }
+    defaults: { _controller: ScssFacilityBundle:GroupQuarters:show }  
 faculty_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/faculty/{faculty_slug}
-    defaults: { _controller: ScssFacilityBundle:Faculty:show }
+    defaults: { _controller: ScssFacilityBundle:Faculty:show }  
 organization_show:
     pattern: /organization/{orgranization_slug}
-    defaults: { _controller: ScssOrganizationBundle:Organizaiton:show }
+    defaults: { _controller: ScssOrganizationBundle:Organizaiton:show }  
 group_show:
     pattern: /region/{region_slug}/group/{group_slug}/
-    defaults: { _controller: ScssOrganizationBundle:ScssGroup:show }
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:show }  
 subgroup_show:
-    pattern: /region/{region_slug}/group/{group_slug}/subgroup/{subgroup}
-    defaults: { _controller: ScssOrganizationBundle:SubGroup:show }
+    pattern: /region/{region_slug}/group/{group_slug}/subgroup/{sub_group_slug}
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:show }  
 attendee_show:
-    pattern: /region/{region_slug}/group/{group_slug}/subgroup/{subgroup}/attendee/{attendee_slug}
-    defaults: { _controller: ScssOrganizationBundle:Attendee:show }
+    pattern: /region/{region_slug}/group/{group_slug}/subgroup/{sub_group_slug}/attendee/{attendee_slug}
+    defaults: { _controller: ScssOrganizationBundle:Attendee:show }  
 attendee_enrollment_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/attendee-enrollment
-    defaults: { _controller: ScssCourseBundle:AttendeeEnrollment:show }
+    defaults: { _controller: ScssCourseBundle:AttendeeEnrollment:show }  
 group_enrollment_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/group-enrollment
-    defaults: { _controller: ScssFacilityBundle:GroupEnrollment:show }
+    defaults: { _controller: ScssFacilityBundle:GroupEnrollment:show }  
 course_show:
     pattern: /course/{course_slug}
-    defaults: { _controller: ScssCourseBundle:Course:show }
+    defaults: { _controller: ScssCourseBundle:Course:show }  
 class_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/class/{class_slug}
-    defaults: { _controller: ScssCourseBundle:ScssClass:show }
+    defaults: { _controller: ScssCourseBundle:ScssClass:show }  
 week_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_Slug}
-    defaults: { _controller: ScssCourseBundle:Week:show }
+    defaults: { _controller: ScssCourseBundle:Week:show }  
 period_show:
     pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/period/{period_slug}
-    defaults: { _controller: ScssCourseBundle:Period:show }
-# New
+    defaults: { _controller: ScssCourseBundle:Period:show }  
+# New 
 region_new:
     pattern: /regions/new
-    defaults: { _controller: ScssGeographyBundle:Region:new }
+    defaults: { _controller: ScssGeographyBundle:Region:new }    
 facility_new:
     pattern: /region/{region_slug}/facility/{facility_slug}/new
-    defaults: { _controller: ScssFacilityBundle:Facility:new }
+    defaults: { _controller: ScssFacilityBundle:Facility:new }    
 department_new:
     pattern: /region/{region_slug}/facility/{facility_slug}/departments/new
-    defaults: { _controller: ScssFacilityBundle:Department:new }
+    defaults: { _controller: ScssFacilityBundle:Department:new }    
 faculty_quarters_new:
     pattern: /region/{region_slug}/facility/{facility_slug}/quarters/faculty/new
-    defaults: { _controller: ScssFacilityBundle:FacultyQuarters:new }
+    defaults: { _controller: ScssFacilityBundle:FacultyQuarters:new }    
 group_quarters_new:
     pattern: /region/{region_slug}/facility/{facility_slug}/quarters/group/new
-    defaults: { _controller: ScssFacilityBundle:GroupQuarters:new }
+    defaults: { _controller: ScssFacilityBundle:GroupQuarters:new }    
 faculty_new:
     pattern: /region/{region_slug}/facility/{facility_slug}/faculty/new
-    defaults: { _controller: ScssFacilityBundle:Facility:new }
+    defaults: { _controller: ScssFacilityBundle:Facility:new }    
 organization_new:
     pattern: /organization/new
-    defaults: { _controller: ScssOrganizationBundle:Organization:new }
+    defaults: { _controller: ScssOrganizationBundle:Organization:new }    
 group_new:
     pattern: /region/{region_slug}/group/new
-    defaults: { _controller: ScssOrganizationBundle:ScssGroup:new }
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:new }    
 subgroup_new:
     pattern: /region/{region_slug}/group/{group_slug}/subgroup/new
-    defaults: { _controller: ScssOrganizationBundle:SubGroup:new }
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:new }    
 attendee_new:
     pattern: /region/{region_slug}/group/{group_slug}/attendees/new
-    defaults: { _controller: ScssOrganizationBundle:Attendee:new }
+    defaults: { _controller: ScssOrganizationBundle:Attendee:new }    
 course_new:
     pattern: /course/new
-    defaults: { _controller: ScssCourseBundle:Course:new }
+    defaults: { _controller: ScssCourseBundle:Course:new }    
 class_new:
     pattern: /region/{region_slug}/facility/{facility_slug}/classes/new
-    defaults: { _controller: ScssCourseBundle:ScssClass:new }
+    defaults: { _controller: ScssCourseBundle:ScssClass:new }    
 week_new:
     pattern: /region/{region_slug}/facility/{facility_slug}/week/new
-    defaults: { _controller: ScssCourseBundle:Week:new }
-period_new:
+    defaults: { _controller: ScssCourseBundle:Week:new }    
+period_new:  
     pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/period/new
-    defaults: { _controller: ScssCourseBundle:Period:new }
+    defaults: { _controller: ScssCourseBundle:Period:new }    
 # Index
 region:
     pattern: /regions
-    defaults: { _controller: ScssGeographyBundle:Region:index }
+    defaults: { _controller: ScssGeographyBundle:Region:index }  
 facility:
     pattern: /facilities
-    defaults: { _controller: ScssFacilityBundle:Facility:index }
+    defaults: { _controller: ScssFacilityBundle:Facility:index }  
 department:
     pattern: /departments
-    defaults: { _controller: ScssFacilityBundle:Department:index }
+    defaults: { _controller: ScssFacilityBundle:Department:index }  
 faculty_quarters:
     pattern: /quarters/faculty
-    defaults: { _controller: ScssFacilityBundle:FacultyQuarters:index }
+    defaults: { _controller: ScssFacilityBundle:FacultyQuarters:index }  
 group_quarters:
     pattern: /quarters/group
-    defaults: { _controller: ScssFacilityBundle:GroupQuraters:index }
+    defaults: { _controller: ScssFacilityBundle:GroupQuraters:index }  
 faculty:
     pattern: /faculty
-    defaults: { _controller: ScssFacilityBundle:Faculty:index }
+    defaults: { _controller: ScssFacilityBundle:Faculty:index }  
 organization:
     pattern: /organizations
-    defaults: { _controller: ScssOrganizationBundle:Organization:index }
+    defaults: { _controller: ScssOrganizationBundle:Organization:index }  
 group:
     pattern: /groups
-    defaults: { _controller: ScssOrganizationBundle:ScssGroup:index }
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:index }  
 subgroup:
     pattern: /subgroups
-    defaults: { _controller: ScssOrganizationBundle:SubGroup:index }
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:index }  
 attendee:
     pattern: /attendees
-    defaults: { _controller: ScssOrganizationBundle:Attendee:index }
+    defaults: { _controller: ScssOrganizationBundle:Attendee:index }  
 attendee_enrollment:
     pattern: /attendee-enrollment
-    defaults: { _controller: ScssCourseBundle:AttendeeEnrollment:index }
+    defaults: { _controller: ScssCourseBundle:AttendeeEnrollment:index }  
 group_enrollment:
     pattern: /group-enrollment
-    defaults: { _controller: ScssFacilityBundle:GroupEnrollment:index }
+    defaults: { _controller: ScssFacilityBundle:GroupEnrollment:index }  
 course:
     pattern: /courses
-    defaults: { _controller: ScssCourseBundle:Course:index }
+    defaults: { _controller: ScssCourseBundle:Course:index }  
 class:
     pattern: /classes
-    defaults: { _controller: ScssCourseBundle:ScssClass:index }
+    defaults: { _controller: ScssCourseBundle:ScssClass:index }  
 week:
     pattern: /weeks
-    defaults: { _controller: ScssCourseBundle:Week:index }
+    defaults: { _controller: ScssCourseBundle:Week:index }  
 period:
     pattern: /periods
-    defaults: { _controller: ScssCourseBundle:Period:index }
+    defaults: { _controller: ScssCourseBundle:Period:index }  

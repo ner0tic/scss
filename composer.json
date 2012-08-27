@@ -37,12 +37,14 @@
         
         "willdurand/geocoder":                                    ">=1.0.0",
         "egeloen/google-map-bundle":                              "1.0",
+        "oh/google-map-form-type-bundle":                         "dev-master",
         
         "knplabs/knp-menu":                                       "1.1.*",
         "knplabs/knp-menu-bundle":                                "1.1.0",
-        "knplabs/knp-paginator-bundle":                           "v2.2",
-        "knplabs/knp-components":                                 ">=1.1",
         
+        "white-october/pagerfanta-bundle":                        "dev-master",
+        "pagerfanta/pagerfanta":                                  "dev-master",
+                
         "elao/web-profiler-extra-bundle":                         "dev-master",
         
         "hwi/oauth-bundle":                                       "dev-master"
