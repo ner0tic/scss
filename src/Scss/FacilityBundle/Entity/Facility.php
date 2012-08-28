@@ -282,7 +282,7 @@ class Facility {
     {
         $this->faculty = new \Doctrine\Common\Collections\ArrayCollection();
         $this->quarters = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->areas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->departments = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -332,10 +332,10 @@ class Facility {
     /**
      * Set region
      *
-     * @param Scss\GeographicBundle\Entity\Region $region
+     * @param Scss\GeographyBundle\Entity\Region $region
      * @return Facility
      */
-    public function setRegion(\Scss\GeographicBundle\Entity\Region $region = null)
+    public function setRegion(\Scss\GeographyBundle\Entity\Region $region = null)
     {
         $this->region = $region;
         return $this;
@@ -344,33 +344,11 @@ class Facility {
     /**
      * Get region
      *
-     * @return Scss\GeographicBundle\Entity\Region 
+     * @return Scss\GeographyBundle\Entity\Region 
      */
     public function getRegion()
     {
         return $this->region;
-    }
-
-    /**
-     * Add areas
-     *
-     * @param Scss\FacilityBundle\Entity\Area $areas
-     * @return Facility
-     */
-    public function addArea(\Scss\FacilityBundle\Entity\Area $areas)
-    {
-        $this->areas[] = $areas;
-        return $this;
-    }
-
-    /**
-     * Get areas
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getAreas()
-    {
-        return $this->areas;
     }
 
     /**
@@ -379,9 +357,9 @@ class Facility {
      * @param Scss\FacilityBundle\Entity\Department $departments
      * @return Facility
      */
-    public function addDepartment(\Scss\FacilityBundle\Entity\Department $departments)
+    public function addDepartments(\Doctrine\Common\Collections\Collection $departments)
     {
-        $this->departments[] = $departments;
+        $this->departments = array_merge($this->departments, $departments);
         return $this;
     }
 
@@ -393,5 +371,31 @@ class Facility {
     public function getDepartments()
     {
         return $this->departments;
+    }
+
+    /**
+     * Add departments
+     *
+     * @param Scss\FacilityBundle\Entity\Department $departments
+     * @return Facility
+     */
+    public function addDepartment(\Scss\FacilityBundle\Entity\Department $department)
+    {
+        $this->departments[] = $department;
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     */
+    public function getDepartment($slug)
+    {
+      if(in_array($slug, $this->departments))  {
+        foreach($this->departments as $dept) {
+          if($dept->getSlug() == $slug) return $dept;
+        }
+      }
+      return false;
     }
 }

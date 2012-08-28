@@ -241,10 +241,10 @@ class ScssGroup {
     /**
      * Set group_type
      *
-     * @param Scss\GroupBundle\Entity\GroupType $groupType
+     * @param Scss\OrganizationBundle\Entity\GroupType $groupType
      * @return ScssGroup
      */
-    public function setGroupType(\Scss\GroupBundle\Entity\GroupType $groupType = null)
+    public function setGroupType(\Scss\OrganizationBundle\Entity\GroupType $groupType = null)
     {
         $this->group_type = $groupType;
         return $this;
@@ -253,7 +253,7 @@ class ScssGroup {
     /**
      * Get group_type
      *
-     * @return Scss\GroupBundle\Entity\GroupType 
+     * @return Scss\OrganizationBundle\Entity\GroupType 
      */
     public function getGroupType()
     {
@@ -263,10 +263,10 @@ class ScssGroup {
     /**
      * Set region
      *
-     * @param Scss\GeographicBundle\Entity\Region $region
+     * @param Scss\GeographyBundle\Entity\Region $region
      * @return ScssGroup
      */
-    public function setRegion(\Scss\GeographicBundle\Entity\Region $region = null)
+    public function setRegion(\Scss\GeographyBundle\Entity\Region $region = null)
     {
         $this->region = $region;
         return $this;
@@ -285,10 +285,10 @@ class ScssGroup {
     /**
      * Set leader
      *
-     * @param Scss\GroupBundle\Entity\GroupLeader $leader
+     * @param Scss\OrganizationBundle\Entity\GroupLeader $leader
      * @return ScssGroup
      */
-    public function setLeader(\Scss\GroupBundle\Entity\GroupLeader $leader = null)
+    public function setLeader(\Scss\OrganizationBundle\Entity\GroupLeader $leader = null)
     {
         $this->leader = $leader;
         return $this;
@@ -297,7 +297,7 @@ class ScssGroup {
     /**
      * Get leader
      *
-     * @return Scss\GroupBundle\Entity\GroupLeader 
+     * @return Scss\OrganizationBundle\Entity\GroupLeader 
      */
     public function getLeader()
     {
@@ -307,10 +307,10 @@ class ScssGroup {
     /**
      * Add leaders
      *
-     * @param Scss\GroupBundle\Entity\GroupLeader $leaders
+     * @param Scss\OrganizationBundle\Entity\GroupLeader $leaders
      * @return ScssGroup
      */
-    public function addGroupLeader(\Scss\GroupBundle\Entity\GroupLeader $leaders)
+    public function addGroupLeader(\Scss\OrganizationBundle\Entity\GroupLeader $leaders)
     {
         $this->leaders[] = $leaders;
         return $this;
@@ -329,10 +329,10 @@ class ScssGroup {
     /**
      * Add sub_groups
      *
-     * @param Scss\GroupBundle\Entity\SubGroup $subGroups
+     * @param Scss\OrganizationBundle\Entity\SubGroup $subGroups
      * @return ScssGroup
      */
-    public function addSubGroup(\Scss\GroupBundle\Entity\SubGroup $subGroups)
+    public function addSubGroup(\Scss\OrganizationBundle\Entity\SubGroup $subGroups)
     {
         $this->sub_groups[] = $subGroups;
         return $this;
@@ -351,10 +351,10 @@ class ScssGroup {
     /**
      * Add attendees
      *
-     * @param Scss\GroupBundle\Entity\Attendee $attendees
+     * @param Scss\OrganizationBundle\Entity\Attendee $attendees
      * @return ScssGroup
      */
-    public function addAttendee(\Scss\GroupBundle\Entity\Attendee $attendees)
+    public function addAttendee(\Scss\OrganizationBundle\Entity\Attendee $attendees)
     {
         $this->attendees[] = $attendees;
         return $this;

@@ -1,1 +1,44 @@
-{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('/css/organization.css.php') }}" />
+  <link rel="stylesheet" href="{{ asset('/css/datatable.css.php') }}" />
+{% endblock %}
+{% block main_content %}
+<div class="box main-content">
+  <div class="box-content datagrid">
+  {% block sub_group_datagrid %}
+    <h2>{{ sub_group.name | title }}</h2>
+    <table class="data-table" id="sub-group-table">
+    {% block sub_group_table %}
+      <tbody>
+        <tr>
+          <td>
+            {{ sub_group.memberCount ~ ' members' }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+          {% if sub_group.photo %}
+            <a href="{{ path('sub_group_photo_show', { 'photo': sub_group.photo }) }}"><img class="thumbnail sub-group-photo" src="{{ asset(sub_group.photo) }}" /></a>
+          {% else %}
+            <p>{{ 'no photo found.' }}</p>
+          {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>
+          {% if sub_group.logo %}
+            <img class="thumbnail sub-group-logo" src="{{ asset(sub_group.logo) }}" /></a>
+          {% else %}
+            <p>&nbsp;</p>
+          {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    {% endblock %}
+    </table>
+  {% endblock %}
+  </div>
+</div>
+{% endblock %}

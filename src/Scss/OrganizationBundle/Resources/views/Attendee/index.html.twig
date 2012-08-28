@@ -7,29 +7,29 @@
 <div class="box main-content">
   <div class="box-content datagrid">
   {% block attendee_datagrid %}    
-    <h2>{{ 'attendees' | title }} &nbsp;<a href="{{ path('attendee_new') }}"><img src="{{ assets('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add an attendee' | title }}" /></a></h2>
+    <h2>{{ 'attendees' | title }} &nbsp;<a href="{{ path('attendee_new') }}"><img src="{{ asset('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add an attendee' | title }}" /></a></h2>
     <table class="data-table" id="attendee-table">
     {% block attendee_table %}
       <tbody>
-      {% for i, entity in entities $}
+      {% for i, entity in entities %}
         <tr class="table-row {{ cycle(['odd-row', 'even-row'], i) }}">
           <td>{{ entity.lastName | title }}</td>
           <td>{{ entity.firstName | title }}</td>
           <td>{{ entity.subGroup.name | title }}</td>
           <td class="table-controls">
             <div class="table-controls">
-              <a href="{{ path('attendee_edit', {'attendee_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/edit-icon.png') }}" width='16' height='16' alt="{{ 'edit' | title }}" /></a>
-              <a href="{{ path('attendee_remove', {'attendee_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/delete-icon.png') }}" width='16' height='16' alt="{{ 'delete' | title }}" /></a>
+              <a href="{{ path('attendee_edit', {'attendee_slug': entity.slug}) }}"><img src="{{ asset('/images/icons/edit-icon.png') }}" width='16' height='16' alt="{{ 'edit' | title }}" /></a>
+              <a href="{{ path('attendee_remove', {'attendee_slug': entity.slug}) }}"><img src="{{ asset('/images/icons/delete-icon.png') }}" width='16' height='16' alt="{{ 'delete' | title }}" /></a>
             </div>
           </td>
         </tr>
-      {% endforeach %}
+      {% endfor %}
       </tbody>
       {% block pager %}
       <tfoot>
         <tr>
           <td colspan="4">
-            {{ pagerfanta(pagerfanta_inst, 'twitter_bootstrap_translated', {'proximity': 2}) }}
+            {{ pagerfanta(pagerfanta_inst) }}
           </td>
         </tr>              
       </tfoot>

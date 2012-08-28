@@ -1,1 +1,36 @@
-{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('/css/organization.css.php') }}" />
+  <link rel="stylesheet" href="{{ asset('/css/datatable.css.php') }}" />
+  <link rel="stylesheet" href="{{ asset('/css/form.css.php') }}" />
+{% endblock %}  
+{% block main_content %}
+<div class="box main-content">
+  <div class="box-content datagrid">
+  {% block attendee_datagrid %}    
+    <h2>{{ 'add an attendee' | title }}</h2>
+    <table class="data-table" id="attendee-table">
+    {% block attendee_table %}
+      <tbody>
+      {% block attendee_form %}
+        <form action="{{ path('attendee_new', { 'region_slug': app.user.activeEnrollment.group.region.slug, 'group_slug': app.user.activeEnrollment.group.slug }) }}" method="post" {{ form_enctype(form) }}>
+            {{ form_errors(form) }}
+
+            {{ form_row(form.first_name) }}
+            {{ form_row(form.last_name) }}
+            {{ form_row(form.birthdate) }}
+            {{ form_row(form.sub_group) }}
+            
+
+            {{ form_rest(form) }}
+            <input type="submit" class="greenButton" />
+        </form>
+      {% endblock %}
+      </tbody>
+    {% endblock %}
+    </table>
+  {% endblock %}
+  </div>
+</div>
+{% endblock %}

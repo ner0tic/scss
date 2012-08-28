@@ -30,8 +30,10 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-//            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
+            new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
             
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             
             new Scss\UserBundle\ScssUserBundle(),
             new Scss\FacilityBundle\ScssFacilityBundle(),

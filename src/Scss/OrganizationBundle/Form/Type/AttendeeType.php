@@ -2,16 +2,20 @@
 namespace Scss\OrganizationBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class AttendeeType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('first_name');
-        $builder->add('last_name');
-        $builder->add('birthdate', 'birthday');
-        $builder->add('sub_group');
-        $builder->add('group');
-        ;
+        $builder->add( 'first_name' );
+        $builder->add( 'last_name' );
+        $minYr = date('Y') - 18;
+        $maxYr = date('Y') - 10;
+        $years = array();
+        for($x=$maxYr; $x >= $minYr; $x--) $years[] = $x;
+        $builder->add( 'birthdate',   'birthday', array( 'years' => $years, 'format' => 'M/dd/y') );
+        $builder->add( 'sub_group',   'entity',   array( 'property' =>  'name', 'class' => 'Scss\OrganizationBundle\Entity\SubGroup' ) );
+        $builder->add( 'scss_group',  'entity',   array( 'property' =>  'name', 'class' => 'Scss\OrganizationBundle\Entity\ScssGroup' ) );       
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

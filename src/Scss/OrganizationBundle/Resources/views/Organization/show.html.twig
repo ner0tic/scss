@@ -1,1 +1,31 @@
-{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('/css/organization.css.php') }}" />
+  <link rel="stylesheet" href="{{ asset('/css/datatable.css.php') }}" />
+{% endblock %}
+{% block main_content %}
+<div class="box main-content">
+  <div class="box-content datagrid">
+  {% block organization_datagrid %}
+    <h2>{{ organization.name | title }}</h2>
+    <table class="data-table" id="scss-group-table">
+    {% block organization_table %}
+      <tbody>
+        <tr>
+          <td>
+            {{ organization.code | upper }}
+          </td>
+        </tr>   
+        <tr>
+          <td>
+            {{ organization.zone ~ ', ' ~ organization.country | title }}
+          </td>
+        </tr>       
+      </tbody>
+    {% endblock %}
+    </table>
+  {% endblock %}
+  </div>
+</div>
+{% endblock %}

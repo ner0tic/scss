@@ -44,7 +44,7 @@ class Attendee {
    * @ORM\ManyToOne(targetEntity="ScssGroup", inversedBy="attendee")
    * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
    */
-  protected $group;
+  protected $scss_group;
   
   /**
   * @var datetime $created
@@ -213,10 +213,10 @@ class Attendee {
     /**
      * Set sub_group
      *
-     * @param Scss\GroupBundle\Entity\SubGroup $subGroup
+     * @param Scss\OrganizationBundle\Entity\SubGroup $subGroup
      * @return Attendee
      */
-    public function setSubGroup(\Scss\GroupBundle\Entity\SubGroup $subGroup = null)
+    public function setSubGroup(\Scss\OrganizationBundle\Entity\SubGroup $subGroup = null)
     {
         $this->sub_group = $subGroup;
         return $this;
@@ -225,7 +225,7 @@ class Attendee {
     /**
      * Get sub_group
      *
-     * @return Scss\GroupBundle\Entity\SubGroup 
+     * @return Scss\OrganizationBundle\Entity\SubGroup 
      */
     public function getSubGroup()
     {
@@ -235,22 +235,22 @@ class Attendee {
     /**
      * Set group
      *
-     * @param Scss\GroupBundle\Entity\ScssGroup $group
+     * @param Scss\OrganizationBundle\Entity\ScssGroup $group
      * @return Attendee
      */
-    public function setGroup(\Scss\GroupBundle\Entity\ScssGroup $group = null)
+    public function setScssGroup(\Scss\OrganizationBundle\Entity\ScssGroup $scss_group = null)
     {
-        $this->group = $group;
+        $this->scss_group = $scss_group;
         return $this;
     }
 
     /**
      * Get group
      *
-     * @return Scss\GroupBundle\Entity\ScssGroup 
+     * @return Scss\OrganizationBundle\Entity\ScssGroup 
      */
-    public function getGroup()
+    public function getScssGroup()
     {
-        return $this->group;
+        return $this->scss_group;
     }
 }

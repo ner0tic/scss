@@ -217,10 +217,10 @@ class SubGroup {
     /**
      * Add attendees
      *
-     * @param Scss\GroupBundle\Entity\Attendee $attendees
+     * @param Scss\OrganizationBundle\Entity\Attendee $attendees
      * @return SubGroup
      */
-    public function addAttendee(\Scss\GroupBundle\Entity\Attendee $attendees)
+    public function addAttendee(\Scss\OrganizationBundle\Entity\Attendee $attendees)
     {
         $this->attendees[] = $attendees;
         return $this;
@@ -239,10 +239,10 @@ class SubGroup {
     /**
      * Set group
      *
-     * @param Scss\GroupBundle\Entity\ScssGroup $group
+     * @param Scss\OrganizationBundle\Entity\ScssGroup $group
      * @return SubGroup
      */
-    public function setGroup(\Scss\GroupBundle\Entity\ScssGroup $group = null)
+    public function setGroup(\Scss\OrganizationBundle\Entity\ScssGroup $group = null)
     {
         $this->group = $group;
         return $this;
@@ -251,7 +251,7 @@ class SubGroup {
     /**
      * Get group
      *
-     * @return Scss\GroupBundle\Entity\ScssGroup 
+     * @return Scss\OrganizationBundle\Entity\ScssGroup 
      */
     public function getGroup()
     {

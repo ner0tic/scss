@@ -208,10 +208,10 @@ class GroupLeader {
     /**
      * Set group
      *
-     * @param Scss\GroupBundle\Entity\ScssGroup $group
+     * @param Scss\OrganizationBundle\Entity\ScssGroup $group
      * @return GroupLeader
      */
-    public function setGroup(\Scss\GroupBundle\Entity\ScssGroup $group = null)
+    public function setGroup(\Scss\OrganizationBundle\Entity\ScssGroup $group = null)
     {
         $this->group = $group;
         return $this;
@@ -220,7 +220,7 @@ class GroupLeader {
     /**
      * Get group
      *
-     * @return Scss\GroupBundle\Entity\ScssGroup 
+     * @return Scss\OrganizationBundle\Entity\ScssGroup 
      */
     public function getGroup()
     {

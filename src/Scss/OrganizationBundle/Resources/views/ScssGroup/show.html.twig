@@ -1,1 +1,69 @@
-{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('/css/organization.css.php') }}" />
+  <link rel="stylesheet" href="{{ asset('/css/datatable.css.php') }}" />
+{% endblock %}
+{% block main_content %}
+<div class="box main-content">
+  <div class="box-content datagrid">
+  {% block scss_group_datagrid %}
+    <h2>{{ scss_group.name | title }}</h2>
+    <table class="data-table" id="scss-group-table">
+    {% block scss_group_table %}
+      <tbody>
+        <tr>
+          <td>
+            {{ scss_group.groupType.name | title }}
+          </td>
+        </tr>   
+        <tr>
+          <td>
+            {{ scss_group.region.name | title }}
+          </td>
+        </tr>       
+        <tr>
+          <td>
+            {{ scss_group.leader.name | title }}
+          </td>
+        </tr>        
+        <tr>
+          <td>
+            {{ scss_group.leaderCount ~ ' leaders' | title }}
+          </td>
+        </tr>        
+        <tr>
+          <td>
+            {{ scss_group.SubGroupCount ~ ' sub groups' | title }}
+          </td>
+        </tr>        
+        <tr>
+          <td>
+            {{ scss_group.memberCount ~ ' members' | title }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+          {% if scss_group.photo %}
+            <a href="{{ path('scss_group_photo_show', { 'photo': scss_group.photo }) }}"><img class="thumbnail scss-group-photo" src="{{ asset(scss_group.photo) }}" /></a>
+          {% else %}
+            <p>{{ 'no photo found.' }}</p>
+          {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>
+          {% if scss_group.logo %}
+            <img class="thumbnail scss-group-logo" src="{{ asset(scss_group.logo) }}" /></a>
+          {% else %}
+            <p>&nbsp;</p>
+          {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    {% endblock %}
+    </table>
+  {% endblock %}
+  </div>
+</div>
+{% endblock %}

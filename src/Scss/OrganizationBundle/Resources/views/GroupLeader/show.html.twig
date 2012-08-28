@@ -1,1 +1,26 @@
-{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('/css/organization.css.php') }}" />
+  <link rel="stylesheet" href="{{ asset('/css/datatable.css.php') }}" />
+{% endblock %}
+{% block main_content %}
+<div class="box main-content">
+  <div class="box-content datagrid">
+  {% block group_leader_datagrid %}
+    <h2>{{ group_leader.name | title }}</h2>
+    <table class="data-table" id="scss-group-table">
+    {% block group_leader_table %}
+      <tbody>
+        <tr>
+          <td>
+            {{ group_leader.birthdte }}
+          </td>
+        </tr>   
+      </tbody>
+    {% endblock %}
+    </table>
+  {% endblock %}
+  </div>
+</div>
+{% endblock %}

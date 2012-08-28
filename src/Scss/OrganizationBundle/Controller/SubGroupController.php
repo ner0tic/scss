@@ -44,6 +44,8 @@ class SubGroupController extends Controller {
   public function showAction($slug) {
     $sub_group = $this->getDoctrine()->getRepository('ScssOrganizationBundle:SubGroup')->find($slug);
     if(!$sub_group)  throw $this->createNotFoundException('No sub group found.');        
+    return $this->render('ScssOrganizationBundle:SubGroup:show.html.twig', array(
+        'sub_group' => $sub_group));
   }
   
   public function createAction() {
