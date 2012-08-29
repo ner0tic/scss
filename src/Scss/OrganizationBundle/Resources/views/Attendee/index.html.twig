@@ -7,7 +7,7 @@
 <div class="box main-content">
   <div class="box-content datagrid">
   {% block attendee_datagrid %}    
-    <h2>{{ 'attendees' | title }} &nbsp;<a href="{{ path('attendee_new') }}"><img src="{{ asset('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add an attendee' | title }}" /></a></h2>
+    <h2>{{ 'attendees' | title }} &nbsp;<a href="{{ path('attendee_new', { 'region_slug': app.user.activeEnrollment.group.region.slug, 'group_slug': app.user.activeEnrollment.group.slug }) }}"><img src="{{ asset('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add an attendee' | title }}" /></a></h2>
     <table class="data-table" id="attendee-table">
     {% block attendee_table %}
       <tbody>

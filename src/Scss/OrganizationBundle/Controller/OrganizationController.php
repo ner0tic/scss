@@ -30,7 +30,7 @@ class OrganizationController extends Controller {
     
     return $this->render('ScssOrganizationBundle:Organization:index.html.twig', array(
         'entities'        => $entities,
-        'pagerfanta_inst' =>  $pagerfanata,
+        'pagerfanta_inst' =>  $pagerfanta,
         'num_pages'       =>  $pages));
   }
   

@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Scss\OrganizationBundle\Repository\SubGroupRepository")
  * @ORM\Table(name="sub_group")
  */
 class SubGroup {
@@ -256,5 +256,9 @@ class SubGroup {
     public function getGroup()
     {
         return $this->group;
+    }
+    
+    public function memberCount() {
+      return count($this->getAttendees());
     }
 }

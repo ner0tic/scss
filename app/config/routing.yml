@@ -211,7 +211,7 @@ region_new:
     pattern: /regions/new
     defaults: { _controller: ScssGeographyBundle:Region:new }    
 facility_new:
-    pattern: /region/{region_slug}/facility/{facility_slug}/new
+    pattern: /region/{region_slug}/facility/new
     defaults: { _controller: ScssFacilityBundle:Facility:new }    
 department_new:
     pattern: /region/{region_slug}/facility/{facility_slug}/departments/new
@@ -298,3 +298,89 @@ week:
 period:
     pattern: /periods
     defaults: { _controller: ScssCourseBundle:Period:index }  
+# Edit 
+region_edit:
+    pattern: /regions/:region_slug/edit
+    defaults: { _controller: ScssGeographyBundle:Region:edit }    
+facility_edit:
+    pattern: /region/{region_slug}/facility/{facility_slug}/edit
+    defaults: { _controller: ScssFacilityBundle:Facility:edit }    
+department_edit:
+    pattern: /region/{region_slug}/facility/{facility_slug}/departments/{department_slug}/edit
+    defaults: { _controller: ScssFacilityBundle:Department:edit }    
+faculty_quarters_edit:
+    pattern: /region/{region_slug}/facility/{facility_slug}/quarters/faculty/{quarters_faculty_slug}/edit
+    defaults: { _controller: ScssFacilityBundle:FacultyQuarters:edit }    
+group_quarters_edit:
+    pattern: /region/{region_slug}/facility/{facility_slug}/quarters/group/{quarters_group_slug}/edit
+    defaults: { _controller: ScssFacilityBundle:GroupQuarters:edit }    
+faculty_edit:
+    pattern: /region/{region_slug}/facility/{facility_slug}/faculty/{faculty_slug}/edit
+    defaults: { _controller: ScssFacilityBundle:Facility:edit }    
+organization_edit:
+    pattern: /organization/{organization_slug}/edit
+    defaults: { _controller: ScssOrganizationBundle:Organization:edit }    
+group_edit:
+    pattern: /region/{region_slug}/group/{group_slug}/edit
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:edit }    
+subgroup_edit:
+    pattern: /region/{region_slug}/group/{group_slug}/subgroup/{sub_group_slug}/edit
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:edit }    
+attendee_edit:
+    pattern: /region/{region_slug}/group/{group_slug}/attendees/{attendee_slug}/edit
+    defaults: { _controller: ScssOrganizationBundle:Attendee:edit }    
+course_edit:
+    pattern: /course/{course_slug}/edit
+    defaults: { _controller: ScssCourseBundle:Course:edit }    
+class_edit:
+    pattern: /region/{region_slug}/facility/{facility_slug}/classes/{class_slug}/edit
+    defaults: { _controller: ScssCourseBundle:ScssClass:edit }    
+week_edit:
+    pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/edit
+    defaults: { _controller: ScssCourseBundle:Week:edit }    
+period_edit:  
+    pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/period/{period_slug}/edit
+    defaults: { _controller: ScssCourseBundle:Period:edit }
+# Remove
+region_remove:
+    pattern: /regions/:region_slug/remove
+    defaults: { _controller: ScssGeographyBundle:Region:remove }    
+facility_remove:
+    pattern: /region/{region_slug}/facility/{facility_slug}/remove
+    defaults: { _controller: ScssFacilityBundle:Facility:remove }    
+department_remove:
+    pattern: /region/{region_slug}/facility/{facility_slug}/departments/{department_slug}/remove
+    defaults: { _controller: ScssFacilityBundle:Department:remove }    
+faculty_quarters_remove:
+    pattern: /region/{region_slug}/facility/{facility_slug}/quarters/faculty/{quarters_faculty_slug}/remove
+    defaults: { _controller: ScssFacilityBundle:FacultyQuarters:remove }    
+group_quarters_remove:
+    pattern: /region/{region_slug}/facility/{facility_slug}/quarters/group/{quarters_group_slug}/remove
+    defaults: { _controller: ScssFacilityBundle:GroupQuarters:remove }    
+faculty_remove:
+    pattern: /region/{region_slug}/facility/{facility_slug}/faculty/{faculty_slug}/remove
+    defaults: { _controller: ScssFacilityBundle:Facility:remove }    
+organization_remove:
+    pattern: /organization/{organization_slug}/remove
+    defaults: { _controller: ScssOrganizationBundle:Organization:remove }    
+group_remove:
+    pattern: /region/{region_slug}/group/{group_slug}/remove
+    defaults: { _controller: ScssOrganizationBundle:ScssGroup:remove }    
+subgroup_remove:
+    pattern: /region/{region_slug}/group/{group_slug}/subgroup/{sub_group_slug}/remove
+    defaults: { _controller: ScssOrganizationBundle:SubGroup:remove }    
+attendee_remove:
+    pattern: /region/{region_slug}/group/{group_slug}/attendees/{attendee_slug}/remove
+    defaults: { _controller: ScssOrganizationBundle:Attendee:remove }    
+course_remove:
+    pattern: /course/{course_slug}/remove
+    defaults: { _controller: ScssCourseBundle:Course:remove }    
+class_remove:
+    pattern: /region/{region_slug}/facility/{facility_slug}/classes/{class_slug}/remove
+    defaults: { _controller: ScssCourseBundle:ScssClass:remove }    
+week_remove:
+    pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/remove
+    defaults: { _controller: ScssCourseBundle:Week:remove }    
+period_remove:  
+    pattern: /region/{region_slug}/facility/{facility_slug}/week/{week_slug}/period/{period_slug}/remove
+    defaults: { _controller: ScssCourseBundle:Period:remove }    

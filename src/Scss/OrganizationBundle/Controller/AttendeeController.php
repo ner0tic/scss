@@ -22,7 +22,6 @@ class AttendeeController extends Controller {
     $repo = $this->getDoctrine()->getRepository('ScssOrganizationBundle:Attendee');
     $query = $repo->createQueryBuilder('a')->orderBy('a.last_name',' ASC');
     
-    $adapter = new DoctrineORMAdapter($query);
     $pagerfanta = new Pagerfanta($adapter);
     
     $pagerfanta->SetMaxPerPage($max_per_pg);
@@ -33,7 +32,7 @@ class AttendeeController extends Controller {
     
     return $this->render('ScssOrganizationBundle:Attendee:index.html.twig', array(
         'entities'        => $entities,
-        'pagerfanta_inst' =>  $pagerfanata,
+        'pagerfanta_inst' =>  $pagerfanta,
         'num_pages'       =>  $pages));
   }
   

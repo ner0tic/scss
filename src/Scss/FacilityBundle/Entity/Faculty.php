@@ -65,7 +65,13 @@ class Faculty {
    * @ORM\JoinColumn(name="facilty_id", referencedColumnName="id")
    */    
   protected $facility;
-    
+  
+  /**
+   * @ORM\ManyToOne(targetEntity="Quarters", inversedBy="faculty")
+   * @ORM\JoinColumn(name="quarters_id", referencedColumnName="id")
+   */    
+  protected $quarters;  
+  protected $quarters_type = 'group';
 
     /**
      * Get id

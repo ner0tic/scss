@@ -27,7 +27,7 @@
 
         "doctrine/data-fixtures":                                 "dev-master",
         "doctrine/doctrine-fixtures-bundle":                      "dev-master",
-        "gedmo/doctrine-extensions":                              "master-dev",
+        "stof/doctrine-extensions-bundle":                        "dev-master",
 
         "friendsofsymfony/user-bundle":                           "dev-master",
         "friendsofsymfony/facebook-bundle":                       "dev-master",

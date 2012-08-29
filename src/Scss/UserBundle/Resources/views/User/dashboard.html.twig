@@ -14,20 +14,22 @@
 <div class="box main-content">
   <div class="box-content datagrid">
   {% block attendee_list %}
-    <h2>Attendee List</h2>
+    <h2>
+      {{ 'Attendees' | trans }}&nbsp;<a href="{{ path('attendee_new', { 'region_slug': app.user.activeEnrollment.group.region.slug, 'group_slug': app.user.activeEnrollment.group.slug }) }}"><img src="/images/icons/add-icon.png" height="16" width="16" alt="Add" /></a>
+    </h2>
     <table class="data-table" id="patrol-table">
     {% block attendee_table %}
       <tbody>
-      {% for i, attendee in s_pager %}
+      {% for i, attendee in attendees %}
         <tr class="table-row {{  i is even ? 'even-row' : 'odd-row' }}">
-          <td>{{ scout.lastName | capitalize }}</td>
-          <td>{{ scout.firstName | capitalize }}</td>
-          <td>{{ scout.dob - date() }}</td>
-          <td>{{ scout.patrol.name }}</td>
-          {% if scout.enrolled %}
-            {% for x, period in user.activeEnrollment.week.periods %}
+          <td>{{ attendee.lastName | capitalize }}</td>
+          <td>{{ attendee.firstName | capitalize }}</td>
+          <td>{{ attendee.dob - date() }}</td>
+          <td>{{ attendee.patrol.name }}</td>
+          {% if attendee.enrolled %}
+            {% for x, period in app.user.activeEnrollment.week.periods %}
           <td>
-              {% set enroll = scout.enrollment(period) %}  
+              {% set enroll = attendee.enrollment(period) %}  
               {% if enroll.class.course.slug == '' %}
               <a href="{{ path('scout_enroll_edit') }}"><img src="{{ asset('/images/user_files/badges/' ~ enroll.class.course.meritbadge.slug ~ '.png') }}" height="48px" width="48px" alt="{{ enroll.class.course.name }}" /></a>
               {% else %}
@@ -51,7 +53,7 @@
         </tr>
       {% endfor %}
       </tbody>
-      {% include 'ScssUtilityBundle:Utility:pager.html.twig' with { 'colspan': 7, 'prefix': 's_', 'module': 'scout', 'pager': s_pager} %}
+      {# {% include 'ScssUtilityBundle:Utility:pager.html.twig' with { 'colspan': 7, 'prefix': 's_', 'module': 'scout', 'pager': s_pager} %} #}
     {% endblock %}
     </table>
   {% endblock %}
@@ -60,26 +62,26 @@
 <div class="box main-content">
   <div class="box-content datagrid">
     <h2>
-      {{ 'SubGroups' | trans }}&nbsp;<a href="{{ path('subgroup_new') }}"><img src="/images/icons/add-icon.png" height="16" width="16" alt="Add" /></a>
+      {{ 'SubGroups' | trans }}&nbsp;<a href="{{ path('subgroup_new', { 'region_slug': app.user.activeEnrollment.group.region.slug, 'group_slug': app.user.activeEnrollment.group.slug }) }}"><img src="/images/icons/add-icon.png" height="16" width="16" alt="Add" /></a>
     </h2>
     <table class="data-table" id="patrol-table">
     {% block patrol_table %}
       <tbody>
-      {% for i, subgroup in p_pager %}
+      {% for i, subgroup in subgroups %}
         <tr class="table-row {{ cycle(['odd-row', 'even-row'], i) }}">
           <td>{{ subgroup.name }}</td>
-          <td><img src="/images/user_files/logos/subgroups/{{ subgroup.img }}" height="48" alt="{{ subgroup.name }}" /></td>
-          <td>{{ subgroup.attendeeCount}} {{ 'attendee' | trans }}{{ subgroup.attendeeCount != 1 ? 's' : '' }}</td>
+          <td><img src="/images/user_files/logos/subgroups/{{ subgroup.logo }}" height="48" alt="{{ subgroup.name }}" /></td>
+          <td>{{ subgroup.memberCount}} {{ 'attendee' | trans }}{{ subgroup.memberCount != 1 ? 's' : '' }}</td>
           <td class="table-controls">
             <div class="table-controls">
-              <a href="{{ path('subgroup_edit') }}"><img src="/images/icons/edit-icon.png" width="16" height="16" alt='edit' /><span class="control-txt">edit</span></a>
-              <a href=" {{ path('subgroup_remove') }}"><img src="/images/icons/delete-icon.png" width="16" height="16" alt='delete' /><span class="control-txt">delete</span></a>
+              <a href="{{ path('subgroup_edit', { 'region_slug': subgroup.group.region.slug, 'group_slug': subgroup.group.slug, 'sub_group_slug': subgroup.slug }) }}"><img src="/images/icons/edit-icon.png" width="16" height="16" alt='edit' /><span class="control-txt">edit</span></a>
+              <a href=" {{ path('subgroup_remove', { 'region_slug': subgroup.group.region.slug, 'group_slug': subgroup.group.slug, 'sub_group_slug': subgroup.slug }) }}"><img src="/images/icons/delete-icon.png" width="16" height="16" alt='delete' /><span class="control-txt">delete</span></a>
             </div>
           </td>
         </tr>
       {% endfor %}
       </tbody>
-      {% include 'ScssUtilityBundle:Utility:pager.html.twig' with { 'colspan': 4, 'prefix': 'p_', 'module': 'patrol', 'pager': p_pager } %}
+     {# {% include 'ScssUtilityBundle:Utility:pager.html.twig' with { 'colspan': 4, 'prefix': 'p_', 'module': 'patrol', 'pager': p_pager } %} #}
     {% endblock %}
     </table>      
   </div>
