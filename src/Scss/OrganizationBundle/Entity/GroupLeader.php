@@ -21,12 +21,12 @@ class GroupLeader {
   protected $id;
 
   /**
-  * @ORM\Column(type="string", length=250)
+  * @ORM\Column(name="first_name", type="string", length=250)
   */
   protected $first_name;
   
   /**
-  * @ORM\Column(type="string", length=250)
+  * @ORM\Column(name="last_name", type="string", length=250)
   */
   protected $last_name;
   
@@ -58,7 +58,7 @@ class GroupLeader {
   private $updated;
 
   /**
-  * @Gedmo\Slug(fields={"name"}) 
+  * @Gedmo\Slug(fields={"first_name", "last_name"}) 
   * @ORM\Column(length=128, unique=true)
   */
   protected $slug;

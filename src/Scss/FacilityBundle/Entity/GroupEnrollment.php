@@ -33,13 +33,7 @@ class GroupEnrollment {
     * @ORM\Column(type="datetime")
     */
   private $updated;
-
-  /**
-    * @Gedmo\Slug(fields={"name"}) 
-    * @ORM\Column(length=128, unique=true)
-    */
-  protected $slug;
-  
+ 
   /**
    * @ORM\ManyToOne(targetEntity="Scss\OrganizationBundle\Entity\ScssGroup", inversedBy="group_enrollment")
    * @ORM\JoinColumn(name="group_id", referencedColumnName="id")

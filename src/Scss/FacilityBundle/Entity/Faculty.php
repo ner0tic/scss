@@ -258,4 +258,26 @@ class Faculty {
     {
         return $this->facility;
     }
+
+    /**
+     * Set quarters
+     *
+     * @param Scss\FacilityBundle\Entity\Quarters $quarters
+     * @return Faculty
+     */
+    public function setQuarters(\Scss\FacilityBundle\Entity\Quarters $quarters = null)
+    {
+        $this->quarters = $quarters;
+        return $this;
+    }
+
+    /**
+     * Get quarters
+     *
+     * @return Scss\FacilityBundle\Entity\Quarters 
+     */
+    public function getQuarters()
+    {
+        return $this->quarters;
+    }
 }

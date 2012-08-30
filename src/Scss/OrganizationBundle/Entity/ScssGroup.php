@@ -69,7 +69,7 @@ class ScssGroup {
   protected $attendees;  
   
   /**
-    * @Gedmo\Slug(fields={"first_name, last_name"}) 
+    * @Gedmo\Slug(fields={"name"}) 
     * @ORM\Column(length=128, unique=true)
     */
   protected $slug;

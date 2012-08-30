@@ -63,7 +63,7 @@ class Attendee {
   private $updated;
 
   /**
-  * @Gedmo\Slug(fields={"name"}) 
+  * @Gedmo\Slug(fields={"first_name", "last_name"}) 
   * @ORM\Column(length=128, unique=true)
   */
   protected $slug;
