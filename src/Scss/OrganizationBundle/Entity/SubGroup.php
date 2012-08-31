@@ -3,7 +3,6 @@
 namespace Scss\OrganizationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//use Vich\GeographicalBundle\Annotation as Geo;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 

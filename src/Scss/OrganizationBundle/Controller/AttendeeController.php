@@ -31,7 +31,7 @@ class AttendeeController extends Controller {
     $pages = $pagerfanta->getNbPages();
     
     return $this->render('ScssOrganizationBundle:Attendee:index.html.twig', array(
-        'entities'        => $entities,
+        'attendees'        => $entities,
         'pagerfanta_inst' =>  $pagerfanta,
         'num_pages'       =>  $pages));
   }

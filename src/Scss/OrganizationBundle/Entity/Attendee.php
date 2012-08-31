@@ -253,4 +253,5 @@ class Attendee {
     {
         return $this->scss_group;
     }
+
 }

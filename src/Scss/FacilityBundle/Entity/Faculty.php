@@ -19,12 +19,6 @@ class Faculty {
   protected $id;
 
   /**
-    * @Gedmo\Slug(fields={"first_name, last_name"}) 
-    * @ORM\Column(length=128, unique=true)
-    */
-  protected $slug;
-
-  /**
     * @var datetime $created
     *
     * @Gedmo\Timestampable(on="create")
@@ -41,22 +35,22 @@ class Faculty {
   private $updated;    
 
   /**
-    * @ORM\Column(type="string", length=150)
+    * @ORM\Column(name="first_name", type="string", length=150)
     */
   protected $first_name;
 
   /**
-    * @ORM\Column(type="string", length=150)
+    * @ORM\Column(name="last_name", type="string", length=150)
     */
   protected $last_name;    
 
   /**
-    * @ORM\Column(type="date")
+    * @ORM\Column(name="brithdate", type="date")
     */
   protected $birthdate;
 
   /**
-    * @ORM\Column(type="string", length=150)
+    * @ORM\Column(name="title", type="string", length=150)
     */
   protected $title;
 
@@ -73,6 +67,12 @@ class Faculty {
   protected $quarters;  
   protected $quarters_type = 'group';
 
+  /**
+    * @Gedmo\Slug(fields={"first_name", "last_name"}) 
+    * @ORM\Column(name="slug", length=128, unique=true)
+    */
+  protected $slug;
+  
     /**
      * Get id
      *

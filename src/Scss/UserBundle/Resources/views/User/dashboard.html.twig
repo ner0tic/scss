@@ -17,15 +17,15 @@
     <h2>
       {{ 'Attendees' | trans }}&nbsp;<a href="{{ path('attendee_new', { 'region_slug': app.user.activeEnrollment.group.region.slug, 'group_slug': app.user.activeEnrollment.group.slug }) }}"><img src="/images/icons/add-icon.png" height="16" width="16" alt="Add" /></a>
     </h2>
-    <table class="data-table" id="patrol-table">
+    <table class="data-table" id="sub-group-table">
     {% block attendee_table %}
       <tbody>
       {% for i, attendee in attendees %}
         <tr class="table-row {{  i is even ? 'even-row' : 'odd-row' }}">
           <td>{{ attendee.lastName | capitalize }}</td>
           <td>{{ attendee.firstName | capitalize }}</td>
-          <td>{{ attendee.dob - date() }}</td>
-          <td>{{ attendee.patrol.name }}</td>
+          <td>{{ attendee.birthdate | date("F - d - Y") }}</td>
+          <td>{{ attendee.subGroup.name }}</td>
           {% if attendee.enrolled %}
             {% for x, period in app.user.activeEnrollment.week.periods %}
           <td>
@@ -64,8 +64,8 @@
     <h2>
       {{ 'SubGroups' | trans }}&nbsp;<a href="{{ path('subgroup_new', { 'region_slug': app.user.activeEnrollment.group.region.slug, 'group_slug': app.user.activeEnrollment.group.slug }) }}"><img src="/images/icons/add-icon.png" height="16" width="16" alt="Add" /></a>
     </h2>
-    <table class="data-table" id="patrol-table">
-    {% block patrol_table %}
+    <table class="data-table" id="sub-group-table">
+    {% block sub_group_table %}
       <tbody>
       {% for i, subgroup in subgroups %}
         <tr class="table-row {{ cycle(['odd-row', 'even-row'], i) }}">
