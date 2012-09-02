@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
+            new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
             new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
             
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),

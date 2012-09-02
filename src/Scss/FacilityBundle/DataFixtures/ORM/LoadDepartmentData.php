@@ -1,10 +1,10 @@
 <?php
-  namespace Scss\DepartmentBundle\DataFixtures\ORM;
+  namespace Scss\FacilityBundle\DataFixtures\ORM;
   
   use Doctrine\Common\Persistence\ObjectManager;
   use Doctrine\Common\DataFixtures\AbstractFixture;
   use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-  use Scss\UserBundle\Entity\Department;
+  use Scss\FacilityBundle\Entity\Department;
   
   class LoadDepartmentData extends AbstractFixture implements OrderedFixtureInterface {
     public function load(ObjectManager $manager) {
@@ -40,6 +40,14 @@
       $CH_SC->setName('scoutcraft');
       $CH_SC->setFacility($manager->merge($this->getReference('hinds')));
       $manager->persist($CH_SC);
+      
+      // Camp Hinds - Basic Scout Skills
+      $CHG_BSS = new Department();
+      $CHG_BSS->setName('basic scout skills');
+      $CHG_BSS->setParent($manager->merge($this->getRefernce('ch-scoutcraft')));
+      $CHG_BSS->setMaxOccupy('20');
+      $CHG_BSS->setFacility($manager->merge($this->getReference('hinds')));
+      $manager->persist($CHG_BSS);      
       
       // Camp Hinds - Nature Conservatory
       $CH_NC = new Department();
@@ -122,6 +130,7 @@
       $this->addReference('ch-boat',        $CH_Boat);
       $this->addReference('ch-west',        $CH_WB);
       $this->addReference('ch-scoutcraft',  $CH_SC);
+      $this->addReference('ch-bss',         $CH_BSS);
       $this->addReference('ch-cope',        $CH_CT);
       $this->addReference('ch-tech',        $CH_TC);
       $this->addReference('ch-shooting',    $CH_SS);
@@ -137,5 +146,5 @@
       $this->addReference('cb-tbd',         $CB_TBD);
     }
     
-    public function getOrder() { return 2; }
+    public function getOrder() { return 4; }
   }

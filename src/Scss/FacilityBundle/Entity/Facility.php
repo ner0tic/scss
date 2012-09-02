@@ -82,6 +82,11 @@ class Facility {
     protected $quarters;
     
     /**
+     * @ORM\OneToMany(targetEntity="Scss\GeographyBundle\Entity\AddressBook", mappedBy="facility")
+     */    
+    protected $address;    
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Scss\GeographyBundle\Entity\Region", inversedBy="facility")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      */    
@@ -397,5 +402,27 @@ class Facility {
         }
       }
       return false;
+    }
+
+    /**
+     * Add address
+     *
+     * @param Scss\GeographyBundle\Entity\AddressBook $address
+     * @return Facility
+     */
+    public function addAddressBook(\Scss\GeographyBundle\Entity\AddressBook $address)
+    {
+        $this->address[] = $address;
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

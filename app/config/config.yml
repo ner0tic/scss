@@ -188,3 +188,11 @@ services:
         class: Pagerfanta\View\DefaultView
         public: false
         tags: [{ name: pagerfanta.view, alias: default }]  
+ivory_google_map:
+    geocoder:
+        # Geocoder class
+        class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\Geocoder"
+        provider:
+            class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\\Provider"
+        # Adapter class
+        adapter: "Geocoder\HttpAdapter\BuzzHttpAdapter"        

@@ -86,7 +86,7 @@ class Quarters {
      */
     public function setType($type)
     {
-        if(!in_array($type,array('group', 'facility')))
+        if(!in_array($type,array('group', 'faculty')))
           throw new \InvalidArgumentException('Invalid option for a quarters type');
         $this->type = $type;
         return $this;

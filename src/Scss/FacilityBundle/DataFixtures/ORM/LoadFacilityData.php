@@ -4,7 +4,7 @@
   use Doctrine\Common\Persistence\ObjectManager;
   use Doctrine\Common\DataFixtures\AbstractFixture;
   use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-  use Scss\UserBundle\Entity\Facility;
+  use Scss\FacilityBundle\Entity\Facility;
   
   class LoadFacilityData extends AbstractFixture implements OrderedFixtureInterface {
     public function load(ObjectManager $manager) {
@@ -14,6 +14,7 @@
       $Hinds->setPhone('2077664748');
       $Hinds->setEmail('info@camphindsbsa.org');
       $manager->persist($Hinds);
+      $this->addReference('hinds', $Hinds);
       
       // Camp Bomazeen
       $Bom = new Facility();
@@ -21,12 +22,10 @@
       $Bom->setPhone('123456789');
       $Bom->setEmail('info@campbomazeenbsa.org');
       $manager->persist($Bom);             
+      $this->addReference('bomazeen', $Bom);
       
       $manager->flush();
-      
-      $this->addReference('hinds', $Hinds);
-      $this->addReference('bomazeen', $Bom);
     }
     
-    public function getOrder() { return 1; }
+    public function getOrder() { return 3; }
   }
