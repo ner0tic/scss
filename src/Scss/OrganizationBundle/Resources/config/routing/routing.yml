@@ -1,43 +1,43 @@
-organization:
+organizations:
     pattern: /organizations
     defaults: { _controller: ScssOrganizationBundle:Organization:index }
-organization_by_region:
-    pattern: /region/{region}/organizations
+organizations_by_region:
+    pattern: /regions/{region}/organizations
     defaults: { _controller: ScssOrganizationBundle:Organization:region }
 organization_show:
-    pattern: /organization/{organization}
+    pattern: /organizations/{organization}
     defaults: { _controller: ScssOrganizationBundle:Organization:show }
 
-group:
+groups:
     pattern: /groups
     defaults: { _controller: ScssOrganizationBundle:ScssGroup:index }
-group_by_organization:
-    pattern: /organization/{organization}/groups
+groups_by_organization:
+    pattern: /organizations/{organization}/groups
     defaults: { _controller: ScssOrganizationBundle:ScssGroup:organization }
-group_by_region:
-    pattern: /region/{region}/groups
+groups_by_region:
+    pattern: /regions/{region}/groups
     defaults: { _controller: ScssOrganizationBundle:ScssGroup:region }
 group_show:
-    pattern: /region/{region}/group/{group}
+    pattern: /regions/{region}/group/{group}
     defaults: { _controller: ScssOrganizationBundle:ScssGroup:show }
 
-subgroup:
+subgroups:
     pattern: /subgroups
     defaults: { _controller: ScssOrganizationBundle:SubGroup:index }
-subgroup__by_region:
-    pattern: /region/{region}/subgroup
+subgroups_by_region:
+    pattern: /regions/{region}/subgroup
     defaults: { _controller: ScssOrganizationBundle:SubGroup:region }
-subgroup__by_organization:
-    pattern: /organization/{organization}/subgroups
+subgroups_by_organization:
+    pattern: /organizations/{organization}/subgroups
     defaults: { _controller: ScssOrganizationBundle:SubGroup:organization }
-subgroup_by_group:
-    pattern: /region/{region}/{group}/subgroups
+subgroups_by_group:
+    pattern: /regions/{region}/{group}/subgroups
     defaults: { _controller: ScssOrganizationBundle:SubGroup:group }
 subgroup_show:
     pattern: /region/{region}/{group}/{subgroup}
     defaults: { _controller: ScssOrganizationBundle:SubGroup:show }
 
-attendee:
+attendees:
     pattern: /attendees
     defaults: { _controller: ScssOrganizationBundle:Attendee:index }
 attendee_by_organization:

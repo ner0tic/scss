@@ -1,0 +1,22 @@
+group_enrollments:
+    pattern: /group-enrollments
+    defaults: { _controller: ScssCourseBundle:GroupEnrollment:index }
+group_enrollments_by_group:
+    pattern: /regions/{region}/group/{group}/enrollments
+    defaults: { _controller: ScssCourseBundle:GroupEnrollment:index }
+group_enrollments_by_facility:
+    pattern: /facilities/{facility}/group-enrollments
+    defaults: { _controller: ScssCourseBundle:GroupEnrollment:index }
+group_enrollment_show:
+    pattern: /group-enrollments/{group}
+    defaults: { _controller: ScssCourseBundle:GroupBundle:show }
+
+attendee_enrollments:
+    pattern: /attendee-enrollments
+    defaults: { _controller: ScssCourseBundle:AttendeeEnrollment:index }
+attendee_enrollment_by_facility:
+    pattern: /facilities/{facility}/attendee-enrollments
+    defaults: { _controller: ScssCourseBundle:AttendeeEnrollment:index }
+attendee_enrollment_show:
+    pattern: /attendee-enrollments/{attendee}
+    defaults: { _controller: ScssCourseBundle:AttendeeEnrollment:show }

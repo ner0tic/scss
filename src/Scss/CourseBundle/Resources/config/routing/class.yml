@@ -1,0 +1,9 @@
+classes_by_week: 
+    pattern: /facilities/{facility}/{week}/classes
+    defaults: { _controller: ScssCourseBundle:ScssClass:index }
+classes_by_period:    
+    pattern: /facilities/{facility}/{week}/{period}/classes
+    defaults: { _controller: ScssCourseBundle:ScssClass:index }
+class_show:
+    pattern: /facilities/{facility}/classes/{class}
+    defaults: { _controller: ScssCourseBundle:ScssClass:show }

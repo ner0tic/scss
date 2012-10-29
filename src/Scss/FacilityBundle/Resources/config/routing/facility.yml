@@ -1,0 +1,12 @@
+facilities:
+    pattern: /facilities
+    defaults: { _controller: ScssFacilityBundle:Facility:index }
+facilities_by_region:
+    pattern: /regions/{region}/facilities
+    defaults: { _controller: ScssFacilityBundle:Facility:index }
+facilities_by_organization:
+    pattern: /organizations/{organization}/facilities
+    defaults: { _controller: ScssFacilityBundle:Facility:index }
+facility_show:
+    pattern: /facilities/{facility}
+    defaults: { _controller: ScssFacilityBundle:Facility:show }
