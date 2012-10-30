@@ -142,4 +142,26 @@ class AttendeeEnrollmentCollection {
     {
         return $this->week;
     }
+
+    /**
+     * Add enrollments
+     *
+     * @param Scss\CourseBundle\Entity\AttendeeEnrollment $enrollments
+     * @return AttendeeEnrollmentCollection
+     */
+    public function addEnrollment(\Scss\CourseBundle\Entity\AttendeeEnrollment $enrollments)
+    {
+        $this->enrollments[] = $enrollments;
+        return $this;
+    }
+
+    /**
+     * Remove enrollments
+     *
+     * @param Scss\CourseBundle\Entity\AttendeeEnrollment $enrollments
+     */
+    public function removeEnrollment(\Scss\CourseBundle\Entity\AttendeeEnrollment $enrollments)
+    {
+        $this->enrollments->removeElement($enrollments);
+    }
 }

@@ -31,27 +31,37 @@ class AddressBook {
   protected $longitude;
     
   /**
-   * @ORM\Column(type="string", length=150)) 
+   * @ORM\Column(type="string", length=150) 
    */
   protected $name;
   
   /**
-   * @ORM\Column(type="string", length=150)) 
+   * @ORM\Column(type="string", length=150) 
    */
   protected $street;
   
   /**
-   * @ORM\Column(type="string", length=150)) 
+   * @ORM\Column(type="string", length=150, nullable=true)
    */  
   protected $suburb;
   
   /**
-   * @ORM\Column(type="string", length=150)) 
+   * @ORM\Column(type="string", length=150)
    */  
   protected $city;
   
   /**
-   * @ORM\Column(type="string", length=10)) 
+   * @ORM\Column(type="string", length=150)
+   */  
+  protected $zone;
+  
+  /**
+   * @ORM\Column(type="string", length=250)
+   */  
+  protected $country = 'United States';
+  
+  /**
+   * @ORM\Column(type="string", length=10, nullable=true) 
    */  
   protected $postal_code;
   
@@ -321,5 +331,49 @@ class AddressBook {
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set zone
+     *
+     * @param string $zone
+     * @return AddressBook
+     */
+    public function setZone($zone)
+    {
+        $this->zone = $zone;
+        return $this;
+    }
+
+    /**
+     * Get zone
+     *
+     * @return string 
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return AddressBook
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string 
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

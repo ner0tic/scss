@@ -32,4 +32,4 @@ homepage:
     defaults: { _controller: ScssUserBundle:User:index }
 dashboard:
     pattern: /dashboard
-    defaults: { _controller: ScssUserBundle:User:dashboard }
+    defaults: { _controller: ScssUserBundle:User:index }

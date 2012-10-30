@@ -74,5 +74,5 @@
       $this->addReference('ch-w7', $CH_W7);
     }
     
-    public function getOrder() { return 8; }    
+    public function getOrder() { return 11; }    
   }

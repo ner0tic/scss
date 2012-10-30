@@ -44,6 +44,7 @@ class AppKernel extends Kernel
             new Scss\GeographyBundle\ScssGeographyBundle(),
             new Scss\CourseBundle\ScssCourseBundle(),
             new Scss\MenuBundle\ScssMenuBundle(),
+            new Scss\UtilityBundle\ScssUtilityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

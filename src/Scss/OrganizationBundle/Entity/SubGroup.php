@@ -260,4 +260,14 @@ class SubGroup {
     public function memberCount() {
       return count($this->getAttendees());
     }
+
+    /**
+     * Remove attendees
+     *
+     * @param Scss\OrganizationBundle\Entity\Attendee $attendees
+     */
+    public function removeAttendee(\Scss\OrganizationBundle\Entity\Attendee $attendees)
+    {
+        $this->attendees->removeElement($attendees);
+    }
 }

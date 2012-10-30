@@ -8,7 +8,7 @@
   use Symfony\Component\DependencyInjection\ContainerInterface;  
   use Scss\OrganizationBundle\Entity\Organization;
   
-  class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
+  abstract class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
     public function load(ObjectManager $manager) {
       // Pine Tree Council
       $PTC = new Organization();
@@ -27,7 +27,16 @@
       $KAC->setCountry('United States');
       $manager->persist($KAC); 
       $this->addReference('kac-bsa',         $KAC);
+      
+      // Minuteman Council
+      $MMC = new Organization();
+      $MMC->setName('minuteman council');
+      $MMC->setCode('MMC-BSA');
+      $MMC->setZone('Massachusetts');
+      $MMC->setCountry('United States');
+      $manager->persist($MMC);
+      $this->addReference('mmc-bsa',          $MMC);
     }
     
-    public function getOrder() { return 1; }
+    public function getOrder() { return 2; }
   }

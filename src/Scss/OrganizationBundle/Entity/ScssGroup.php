@@ -369,4 +369,46 @@ class ScssGroup {
     {
         return $this->attendees;
     }
+
+    /**
+     * Add leaders
+     *
+     * @param Scss\OrganizationBundle\Entity\GroupLeader $leaders
+     * @return ScssGroup
+     */
+    public function addLeader(\Scss\OrganizationBundle\Entity\GroupLeader $leaders)
+    {
+        $this->leaders[] = $leaders;
+        return $this;
+    }
+
+    /**
+     * Remove leaders
+     *
+     * @param Scss\OrganizationBundle\Entity\GroupLeader $leaders
+     */
+    public function removeLeader(\Scss\OrganizationBundle\Entity\GroupLeader $leaders)
+    {
+        $this->leaders->removeElement($leaders);
+    }
+
+    /**
+     * Remove sub_groups
+     *
+     * @param Scss\OrganizationBundle\Entity\SubGroup $subGroups
+     */
+    public function removeSubGroup(\Scss\OrganizationBundle\Entity\SubGroup $subGroups)
+    {
+        $this->sub_groups->removeElement($subGroups);
+    }
+
+    /**
+     * Remove attendees
+     *
+     * @param Scss\OrganizationBundle\Entity\Attendee $attendees
+     */
+    public function removeAttendee(\Scss\OrganizationBundle\Entity\Attendee $attendees)
+    {
+        $this->attendees->removeElement($attendees);
+    }
 }

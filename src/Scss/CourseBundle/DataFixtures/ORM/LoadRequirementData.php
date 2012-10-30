@@ -59,5 +59,5 @@
       $this->addReference('camping-4b', $CAMPING_4b);
     }
     
-    public function getOrder() { return 12; }
+    public function getOrder() { return 19; }
   }

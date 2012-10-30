@@ -144,5 +144,5 @@
       $this->addReference('chf-sa', $CHF_SA);
     }
     
-    public function getOrder() { return 5; }
+    public function getOrder() { return 7; }
   }

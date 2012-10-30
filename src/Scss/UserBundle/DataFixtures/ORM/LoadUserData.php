@@ -11,6 +11,9 @@
       $userAdmin = new User();
       $userAdmin->setUsername('ner0tic');
       $userAdmin->setPassword('gatorade');
+      $userAdmin->setEmail('david.durost@gmail.com');
+      $userAdmin->setFirstName('David');
+      $userAdmin->setLastName('Durost');
       
       $manager->persist($userAdmin);
       $manager->flush();
