@@ -39,6 +39,8 @@
       $bomazeen->setLongitude($result->getGeometry()->getLocation()->getLongitude());
       $manager->persist($bomazeen);
       $this->addReference('address-bomazeen', $bomazeen);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 4; }

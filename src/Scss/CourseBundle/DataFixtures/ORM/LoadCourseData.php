@@ -103,7 +103,9 @@
       $LIFESAVING->setMeritbadge($manager->merge($this->getReference('mb-lifesaving')));
       $LIFESAVING->setFacility($manager->merge($this->getReference('hinds')));
       $manager->persist($LIFESAVING);
-      $this->addReference('crs-lifesaving', $LIFESAVING);      
+      $this->addReference('crs-lifesaving', $LIFESAVING);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 10; }

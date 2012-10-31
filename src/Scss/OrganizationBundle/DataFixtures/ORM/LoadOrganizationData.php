@@ -36,6 +36,8 @@
       $MMC->setCountry('United States');
       $manager->persist($MMC);
       $this->addReference('mmc-bsa',          $MMC);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 2; }

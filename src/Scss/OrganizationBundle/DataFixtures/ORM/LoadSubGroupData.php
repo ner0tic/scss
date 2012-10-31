@@ -11,16 +11,18 @@
       // cb805 :: bears
       $bears805 = new SubGroup();
       $bears805->setName('bears');
-      $bears805->setGroup($manager->merge($this->getReference('cb-805')));
+      $bears805->setGroup($this->getReference('cb-805'));
       $manager->persist($bears805);
       $this->addReference('cb805-bears', $bears805);
       
       // fl500 :: foxes
       $fox500 = new SubGroup();
       $fox500->setName('foxes');
-      $fox500->setGroup($manager->merge($this->getReference('fl-500')));
+      $fox500->setGroup($this->getReference('fl-500'));
       $manager->persist($fox500);
       $this->addReference('fl500-foxes', $fox500);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 16; }

@@ -13,7 +13,7 @@
       $mattfarmer->setFirstName('Matt');
       $mattfarmer->setLastName('Farmer');
       $mattfarmer->getBirthdate('1983-04-10 00:00:00');
-      $mattfarmer->setGroup($manager->merge($this->getReference('fl-500')));
+      $mattfarmer->setGroup($this->getReference('fl-500'));
       $manager->persist($mattfarmer);
       $this->addReference('fl500-mattfarmer', $mattfarmer);
       
@@ -22,9 +22,11 @@
       $mattg->setFirstName('Matt');
       $mattg->setLastName('gosselin');
       $mattg->getBirthdate('1983-07-10 00:00:00');
-      $mattg->setGroup($manager->merge($this->getReference('cb-805')));
+      $mattg->setGroup($this->getReference('cb-805'));
       $manager->persist($mattg);
       $this->addReference('cb805-mattg', $mattg);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 15; }

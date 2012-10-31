@@ -20,7 +20,7 @@
       $result = $geo->geocode('Oxford Maine');
       $AB = new Region();
       $AB->setName('abanaki district');
-      $AB->setOrganization($manager->merge($this->getReference('ptc-bsa')));
+      $AB->setOrganization($this->getReference('ptc-bsa'));
       $AB->setLatitude($result->getGeometry()->getLocation()->getLatitude());
       $AB->setLogitude($result->getGeometry()->getLocation()->getLogitude());
       $manager->persist($AB);
@@ -31,7 +31,7 @@
       $CB = new Region();
       $CB->setName('casco bay district');
       $CB->setIsoCode('CB');
-      $CB->setOrganization($manager->merge($this->getRegerence('ptc-bsa')));
+      $CB->setOrganization($this->getRegerence('ptc-bsa'));
       $CB->setLatitude($result->getGeometry()->getLocation()->getLatitude());
       $CB->setLogitude($result->getGeometry()->getLocation()->getLogitude());
       $manager->persist($CB); 
@@ -42,11 +42,13 @@
       $FL = new Region();
       $FL->setName('flintlock district');
       $FL->setIsoCode('FL');
-      $FL->setOrganization($manager->merge($this->getRegerence('mmc-bsa')));
+      $FL->setOrganization($this->getRegerence('mmc-bsa'));
       $FL->setLatitude($result->getGeometry()->getLocation()->getLatitude());
       $FL->setLogitude($result->getGeometry()->getLocation()->getLogitude());
       $manager->persist($FL); 
       $this->setReference('flintlock', $FL);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 3; }

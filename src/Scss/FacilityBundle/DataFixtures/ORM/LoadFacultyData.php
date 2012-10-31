@@ -12,11 +12,13 @@
       $nickDurost->setFirstName('Nick');
       $nickDurost->setLastName('Durost');
       $nickDurost->setBirthdate(new \DateTime('1988-03-17 00:00:00'));
-      $nickDurost->setFacility($manager->merge($this->getReference('hinds')));
-      $nickDurost->setQuarters($manager->merge($this->getReference('chf-per')));
+      $nickDurost->setFacility($this->getReference('hinds'));
+      $nickDurost->setQuarters($this->getReference('chf-per'));
       $nickDurost->setTitle('Aquatics Instructor');
       $manager->persist($nickDurost);
       $this->addReference('ch-faculty-nickdurost', $nickDurost);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 8; }

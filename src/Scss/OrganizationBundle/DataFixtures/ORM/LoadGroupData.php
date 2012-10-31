@@ -11,16 +11,18 @@
       // cb805
       $cb805 = new ScssGroup();
       $cb805->setName('Troop 805');
-      $cb805->setRegion($manager->merge($this->getReference('casco-bay')));
+      $cb805->setRegion($this->getReference('casco-bay'));
       $manager->persist($cb805);
       $this->addReference('cb-805', $cb805);
       
       // fl500
       $fl500 = new ScssGroup();
       $fl500->setName('Troop 500');
-      $fl500->setRegion($manager->merge($this->getReference('flintlock')));
+      $fl500->setRegion($this->getReference('flintlock'));
       $manager->persist($fl500);
       $this->addReference('fl-500', $fl500);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 14; }

@@ -14,11 +14,10 @@
       $userAdmin->setEmail('david.durost@gmail.com');
       $userAdmin->setFirstName('David');
       $userAdmin->setLastName('Durost');
-      
       $manager->persist($userAdmin);
-      $manager->flush();
-      
       $this->addReference('admin-user', $userAdmin);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 1; }

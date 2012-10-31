@@ -13,6 +13,9 @@
       $Hinds->setName('hinds');
       $Hinds->setPhone('2077664748');
       $Hinds->setEmail('info@camphindsbsa.org');
+      $Hinds->setFax('');
+      $Hinds->setUrl('www.camphindsbsa.org');
+      $Hinds->addAddress($this->getReference('address-hinds'));
       $manager->persist($Hinds);
       $this->addReference('hinds', $Hinds);
       
@@ -21,6 +24,9 @@
       $Bom->setName('bomazeen');
       $Bom->setPhone('123456789');
       $Bom->setEmail('info@campbomazeenbsa.org');
+      $Bom->setFax('');
+      $Bom->setUrl('www.bomazeenbsa.org');
+      $Bom->addAddress($this->getReference('address-bomazeen'));
       $manager->persist($Bom);             
       $this->addReference('bomazeen', $Bom);
       

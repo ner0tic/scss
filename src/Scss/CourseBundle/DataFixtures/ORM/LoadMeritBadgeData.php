@@ -82,6 +82,8 @@
       $LIFESAVING->setSpecial(true);
       $manager->persist($LIFESAVING);
       $this->addReference('mb-lifesaving', $LIFESAVING);
+      
+      $manager->flush();
     }
     
     public function getOrder() { return 9; }
