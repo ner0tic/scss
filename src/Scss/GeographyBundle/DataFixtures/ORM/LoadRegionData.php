@@ -8,7 +8,7 @@
   use Symfony\Component\DependencyInjection\ContainerInterface;
   use Scss\GeographyBundle\Entity\Region;
   
-  abstract class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
+  class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
     private $container;
     
     public function setContainer(ContainerInterface $container = null) { $this->container = $container; }

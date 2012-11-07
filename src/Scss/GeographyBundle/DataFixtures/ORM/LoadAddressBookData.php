@@ -5,10 +5,10 @@
   use Doctrine\Common\DataFixtures\AbstractFixture;
   use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
   use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-  use Symfony\Component\DependencyInjection\ContainerInterface;  
+  use Symfony\Component\DependencyInjection\ContainerInterface;
   use Scss\GeographyBundle\Entity\AddressBook;
   
-  abstract class LoadAddressBookData extends AbstractFixture implements OrderedFixtureInterface {
+  class LoadAddressBookData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
     private $container;
     
     public function setContainer(ContainerInterface $container = null) { $this->container = $container; }

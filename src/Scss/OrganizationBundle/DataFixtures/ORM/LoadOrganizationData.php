@@ -5,10 +5,14 @@
   use Doctrine\Common\DataFixtures\AbstractFixture;
   use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
   use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-  use Symfony\Component\DependencyInjection\ContainerInterface;  
+  use Symfony\Component\DependencyInjection\ContainerInterface;
   use Scss\OrganizationBundle\Entity\Organization;
   
   abstract class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
+    private $container;
+    
+    public function setContainer(ContainerInterface $container = null) { $this->container = $container; }
+    
     public function load(ObjectManager $manager) {
       // Pine Tree Council
       $PTC = new Organization();

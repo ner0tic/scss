@@ -425,4 +425,68 @@ class Facility {
     {
         return $this->address;
     }
+
+    /**
+     * Remove faculty
+     *
+     * @param Scss\FacilityBundle\Entity\Faculty $faculty
+     */
+    public function removeFaculty(\Scss\FacilityBundle\Entity\Faculty $faculty)
+    {
+        $this->faculty->removeElement($faculty);
+    }
+
+    /**
+     * Add quarters
+     *
+     * @param Scss\FacilityBundle\Entity\Quarters $quarters
+     * @return Facility
+     */
+    public function addQuarter(\Scss\FacilityBundle\Entity\Quarters $quarters)
+    {
+        $this->quarters[] = $quarters;
+        return $this;
+    }
+
+    /**
+     * Remove quarters
+     *
+     * @param Scss\FacilityBundle\Entity\Quarters $quarters
+     */
+    public function removeQuarter(\Scss\FacilityBundle\Entity\Quarters $quarters)
+    {
+        $this->quarters->removeElement($quarters);
+    }
+
+    /**
+     * Add address
+     *
+     * @param Scss\GeographyBundle\Entity\AddressBook $address
+     * @return Facility
+     */
+    public function addAddres(\Scss\GeographyBundle\Entity\AddressBook $address)
+    {
+        $this->address[] = $address;
+        return $this;
+    }
+
+    /**
+     * Remove address
+     *
+     * @param Scss\GeographyBundle\Entity\AddressBook $address
+     */
+    public function removeAddres(\Scss\GeographyBundle\Entity\AddressBook $address)
+    {
+        $this->address->removeElement($address);
+    }
+
+    /**
+     * Remove departments
+     *
+     * @param Scss\FacilityBundle\Entity\Department $departments
+     */
+    public function removeDepartment(\Scss\FacilityBundle\Entity\Department $departments)
+    {
+        $this->departments->removeElement($departments);
+    }
 }

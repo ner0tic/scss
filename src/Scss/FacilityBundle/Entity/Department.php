@@ -24,7 +24,7 @@ class Department {
   protected $name;
   
   /**
-   * @ORM\ManyToOne(targetEntity="Facility", inversedBy="department")
+   * @ORM\ManyToOne(targetEntity="Department", inversedBy="department")
    * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
    */     
   protected $parent;
