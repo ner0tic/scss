@@ -6,11 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Scss\OrganizationBundle\Repository\OrganizationRepository")
  * @ORM\Table(name="organization")
  */
-class Organization {
-
+class Organization 
+{
   /**
    * @ORM\Id
    * @ORM\Column(type="integer")
@@ -20,7 +20,8 @@ class Organization {
 
   /**
     * @Gedmo\Slug(fields={"name"}) 
-    * @ORM\Column(length=128, unique=true)
+    * @ORM\Column(unique=true)
+    * @Assert\MaxLength(128)
     */
   protected $slug;
 
@@ -40,191 +41,195 @@ class Organization {
     */
   private $updated;    
 
-  /**
-    * @ORM\Column(type="string", length=150)
-    * @var type 
-    */
-  protected $name;
-  
-  /**
-   * @ORM\Column(type="string", length=10)
-   * @var type 
-   */
-  protected $code;
-  
-  /**
-   * @ORM\Column(type="string", length=150)
-   * @var type 
-   */
-  protected $zone;
-  
-  /**
-   * @ORM\Column(type="string", length=200)
-   * @var type 
-   */
-  protected $country;
-
     /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
+      * @ORM\Column(type="string")
+      * @Assert\MaxLength(150)
+      * @var type 
+      */
+    protected $name;
+    
     /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Organization
+     * @ORM\Column(type="string")
+     * @Assert\MaxLength(10)
+     * @var type 
      */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-        return $this;
-    }
-
+    protected $code;
+    
     /**
-     * Get slug
-     *
-     * @return string 
+     * @ORM\Column(type="string")
+     * @Assert\MaxLength(150)
+     * @var type 
      */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
+    protected $zone;
+    
     /**
-     * Set created
-     *
-     * @param datetime $created
-     * @return Organization
+     * @ORM\Column(type="string")
+     * @Assert\MaxLength(200)
+     * @var type 
      */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-        return $this;
-    }
+    protected $country;
 
-    /**
-     * Get created
-     *
-     * @return datetime 
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
+      /**
+       * Get id
+       *
+       * @return integer 
+       */
+      public function getId()
+      {
+          return $this->id;
+      }
 
-    /**
-     * Set updated
-     *
-     * @param datetime $updated
-     * @return Organization
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-        return $this;
-    }
+      /**
+       * Set slug
+       *
+       * @param string $slug
+       * @return Organization
+       */
+      public function setSlug($slug)
+      {
+          $this->slug = $slug;
+          return $this;
+      }
 
-    /**
-     * Get updated
-     *
-     * @return datetime 
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
+      /**
+       * Get slug
+       *
+       * @return string 
+       */
+      public function getSlug()
+      {
+          return $this->slug;
+      }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Organization
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+      /**
+       * Set created
+       *
+       * @param datetime $created
+       * @return Organization
+       */
+      public function setCreated($created)
+      {
+          $this->created = $created;
+          return $this;
+      }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+      /**
+       * Get created
+       *
+       * @return datetime 
+       */
+      public function getCreated()
+      {
+          return $this->created;
+      }
 
-    /**
-     * Set code
-     *
-     * @param string $code
-     * @return Organization
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
-        return $this;
-    }
+      /**
+       * Set updated
+       *
+       * @param datetime $updated
+       * @return Organization
+       */
+      public function setUpdated($updated)
+      {
+          $this->updated = $updated;
+          return $this;
+      }
 
-    /**
-     * Get code
-     *
-     * @return string 
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
+      /**
+       * Get updated
+       *
+       * @return datetime 
+       */
+      public function getUpdated()
+      {
+          return $this->updated;
+      }
 
-    /**
-     * Set zone
-     *
-     * @param string $zone
-     * @return Organization
-     */
-    public function setZone($zone)
-    {
-        $this->zone = $zone;
-        return $this;
-    }
+      /**
+       * Set name
+       *
+       * @param string $name
+       * @return Organization
+       */
+      public function setName($name)
+      {
+          $this->name = $name;
+          return $this;
+      }
 
-    /**
-     * Get zone
-     *
-     * @return string 
-     */
-    public function getZone()
-    {
-        return $this->zone;
-    }
+      /**
+       * Get name
+       *
+       * @return string 
+       */
+      public function getName()
+      {
+          return $this->name;
+      }
 
-    /**
-     * Set country
-     *
-     * @param string $country
-     * @return Organization
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-        return $this;
-    }
+      /**
+       * Set code
+       *
+       * @param string $code
+       * @return Organization
+       */
+      public function setCode($code)
+      {
+          $this->code = $code;
+          return $this;
+      }
 
-    /**
-     * Get country
-     *
-     * @return string 
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
+      /**
+       * Get code
+       *
+       * @return string 
+       */
+      public function getCode()
+      {
+          return $this->code;
+      }
+
+      /**
+       * Set zone
+       *
+       * @param string $zone
+       * @return Organization
+       */
+      public function setZone($zone)
+      {
+          $this->zone = $zone;
+          return $this;
+      }
+
+      /**
+       * Get zone
+       *
+       * @return string 
+       */
+      public function getZone()
+      {
+          return $this->zone;
+      }
+
+      /**
+       * Set country
+       *
+       * @param string $country
+       * @return Organization
+       */
+      public function setCountry($country)
+      {
+          $this->country = $country;
+          return $this;
+      }
+
+      /**
+       * Get country
+       *
+       * @return string 
+       */
+      public function getCountry()
+      {
+          return $this->country;
+      }
 }

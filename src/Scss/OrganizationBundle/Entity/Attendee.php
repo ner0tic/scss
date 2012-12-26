@@ -2,71 +2,57 @@
 
 namespace Scss\OrganizationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-//use Vich\GeographicalBundle\Annotation as Geo;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constratins as Assert;
+use Scss\UserBundle\Entity\User;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="attendee")
+ * @ORM\Entity(repositoryClass="Scss\OrganizationBundle\Repository\AttendeeRepository")
  */
-class Attendee {
+class Attendee extends User
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
-  /**
-   * @ORM\Id
-   * @ORM\Column(type="integer")
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
-  protected $id;
+    /**
+     * @ORM\ManyToOne(targetEntity="Faction", inversedBy="attendee")
+     * @ORM\JoinColumn(name="faction_id", referencedColumnName="id")
+     */
+    protected $faction;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Passel", inversedBy="attendee")
+     * @ORM\JoinColumn(name="passel_id", referencedColumnName="id")
+     */
+    protected $passel;
+    
+    /**
+    * @var datetime $created
+    *
+    * @Gedmo\Timestampable(on="create")
+    * @ORM\Column(type="datetime")
+    */
+    private $created;
 
-  /**
-  * @ORM\Column(type="string", length=250)
-  */
-  protected $first_name;
-  
-  /**
-  * @ORM\Column(type="string", length=250)
-  */
-  protected $last_name;
-  
-  /**
-  * @ORM\Column(type="date")
-  */
-  protected $birthdate;
-  
-  /**
-   * @ORM\ManyToOne(targetEntity="SubGroup", inversedBy="attendee")
-   * @ORM\JoinColumn(name="sub_group_id", referencedColumnName="id")
-   */
-  protected $sub_group;
-  
-  /**
-   * @ORM\ManyToOne(targetEntity="ScssGroup", inversedBy="attendee")
-   * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
-   */
-  protected $scss_group;
-  
-  /**
-  * @var datetime $created
-  *
-  * @Gedmo\Timestampable(on="create")
-  * @ORM\Column(type="datetime")
-  */
-  private $created;
+    /**
+    * @var datetime $updated
+    *
+    * @Gedmo\Timestampable(on="update")
+    * @ORM\Column(type="datetime")
+    */
+    private $updated;
 
-  /**
-  * @var datetime $updated
-  *
-  * @Gedmo\Timestampable(on="update")
-  * @ORM\Column(type="datetime")
-  */
-  private $updated;
-
-  /**
-  * @Gedmo\Slug(fields={"first_name", "last_name"}) 
-  * @ORM\Column(length=128, unique=true)
-  */
-  protected $slug;
+    /**
+    * @Gedmo\Slug(fields={"first_name", "last_name"}) 
+    * @ORM\Column(length=128, unique=true)
+    */
+    protected $slug;
 
     /**
      * Get id
@@ -76,116 +62,6 @@ class Attendee {
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set first_name
-     *
-     * @param string $firstName
-     * @return Attendee
-     */
-    public function setFirstName($firstName)
-    {
-        $this->first_name = $firstName;
-        return $this;
-    }
-
-    /**
-     * Get first_name
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->first_name;
-    }
-
-    /**
-     * Set last_name
-     *
-     * @param string $lastName
-     * @return Attendee
-     */
-    public function setLastName($lastName)
-    {
-        $this->last_name = $lastName;
-        return $this;
-    }
-
-    /**
-     * Get last_name
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->last_name;
-    }
-
-    /**
-     * Set birthdate
-     *
-     * @param date $birthdate
-     * @return Attendee
-     */
-    public function setBirthdate($birthdate)
-    {
-        $this->birthdate = $birthdate;
-        return $this;
-    }
-
-    /**
-     * Get birthdate
-     *
-     * @return date 
-     */
-    public function getBirthdate()
-    {
-        return $this->birthdate;
-    }
-
-    /**
-     * Set created
-     *
-     * @param datetime $created
-     * @return Attendee
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-        return $this;
-    }
-
-    /**
-     * Get created
-     *
-     * @return datetime 
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Set updated
-     *
-     * @param datetime $updated
-     * @return Attendee
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-        return $this;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return datetime 
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
     }
 
     /**
@@ -211,47 +87,47 @@ class Attendee {
     }
 
     /**
-     * Set sub_group
+     * Set faction
      *
-     * @param Scss\OrganizationBundle\Entity\SubGroup $subGroup
+     * @param Scss\OrganizationBundle\Entity\Faction $faction
      * @return Attendee
      */
-    public function setSubGroup(\Scss\OrganizationBundle\Entity\SubGroup $subGroup = null)
+    public function setFaction(Faction $faction = null)
     {
-        $this->sub_group = $subGroup;
+        $this->faction = $faction;
         return $this;
     }
 
     /**
-     * Get sub_group
+     * Get faction
      *
-     * @return Scss\OrganizationBundle\Entity\SubGroup 
+     * @return Scss\OrganizationBundle\Entity\Faction 
      */
-    public function getSubGroup()
+    public function getFaction()
     {
-        return $this->sub_group;
+        return $this->faction;
     }
 
     /**
-     * Set group
+     * Set passel
      *
-     * @param Scss\OrganizationBundle\Entity\ScssGroup $group
+     * @param Scss\OrganizationBundle\Entity\Passel $passel
      * @return Attendee
      */
-    public function setScssGroup(\Scss\OrganizationBundle\Entity\ScssGroup $scss_group = null)
+    public function setPassel(Passel $passel = null)
     {
-        $this->scss_group = $scss_group;
+        $this->passel = $passel;
         return $this;
     }
 
     /**
-     * Get group
+     * Get passel
      *
-     * @return Scss\OrganizationBundle\Entity\ScssGroup 
+     * @return Scss\OrganizationBundle\Entity\Passel 
      */
-    public function getScssGroup()
+    public function getPassel()
     {
-        return $this->scss_group;
+        return $this->passel;
     }
 
 }
