@@ -24,11 +24,6 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             
-            new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle(),
-            
-            new FOS\UserBundle\FOSUserBundle(),
-            new FOS\FacebookBundle\FOSFacebookBundle(),
-           
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -52,6 +47,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle();
         }
 
         return $bundles;

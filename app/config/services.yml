@@ -1,0 +1,8 @@
+services:
+################################################################################
+## Pagerfanta
+################################################################################
+    pagerfanta.view.default:
+        class: Pagerfanta\View\DefaultView
+        public: false
+        tags: [{ name: pagerfanta.view, alias: default }]  

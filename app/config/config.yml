@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
@@ -15,7 +16,9 @@ framework:
     default_locale:  %locale%
     session: ~
 
-# Twig Configuration
+################################################################################
+## Twig Configuration
+################################################################################
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
@@ -23,19 +26,18 @@ twig:
         resources:
             - 'OhGoogleMapFormTypeBundle:Form:fields.html.twig'
 
-# Assetic Configuration
+################################################################################
+## Assetic Configuration
+################################################################################
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    # java: /usr/bin/java
     filters:
         cssrewrite: ~
-        # closure:
-        #     jar: %kernel.root_dir%/java/compiler.jar
-        # yui_css:
-        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
 
-# Doctrine Configuration
+################################################################################
+## Doctrine Configuration
+################################################################################
 doctrine:
     dbal:
         driver:   %database_driver%
@@ -45,7 +47,6 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
-
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
@@ -76,73 +77,66 @@ doctrine:
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
                         alias: GedmoTree # this one is optional and will default to the name set for the mapping
                         is_bundle: false
-# Swiftmailer Configuration
+
+################################################################################
+## Doctrine Extensions
+################################################################################
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default: 
+          timestampable: true
+          sluggable: true                        
+
+################################################################################
+## Swiftmailer Configuration
+################################################################################
 swiftmailer:
     transport: %mailer_transport%
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
 
-jms_security_extra:
-    secure_controllers:  true
-    secure_all_services: false
-
-# FOS
+################################################################################
+## FOS
+################################################################################
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Scss\UserBundle\Entity\User
-    
-# Doctrine Extensions
-stof_doctrine_extensions:
-    default_locale: en_US
-    orm:
-        default: 
-          timestampable: true
-          sluggable: true
-    
-# JMS
+
+################################################################################
+## JMS
+################################################################################
 jms_security_extra:
-    # Whether you want to secure all services (true), or only secure specific
-    # services (false); see also below
+    secure_controllers:  true
     secure_all_services: false
-
-    # Enabling this setting will add an additional special attribute "IS_IDDQD".
-    # Anybody with this attribute will effectively bypass all security checks.
+jms_security_extra:
+    secure_all_services: false
     enable_iddqd_attribute: false
-
-    # Enables expression language
     expressions: false
-
-    # Allows you to disable some, or all built-in voters
     voters:
         disable_authenticated: false
         disable_role:          false
         disable_acl:           false
-
-    # Allows you to specify access control rules for specific methods, such
-    # as controller actions
     method_access_control: { }    
 jms_aop:
     cache_dir: %kernel.cache_dir%/jms_aop  
 
+################################################################################
+## KnP Menu
+################################################################################
 knp_menu:
     twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
         template: knp_menu.html.twig
     templating: false # if true, enables the helper for PHP templates
     default_renderer: twig # The renderer to use, list is also available by default
     
-fos_facebook:
-    file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
-    alias:  facebook
-    secret: 41fbd98aa2efaeb12b2602149710ca86
-    app_id: 173494226064106
-    cookie: true
-    permissions: [email, user_birthday, user_location]    
-    
+################################################################################
+## HWI
+################################################################################
 hwi_oauth:
-    firewall_name: secured_area
-    
+    firewall_name: secured_area    
     resource_owners:
         facebook:
             type: facebook
@@ -164,13 +158,12 @@ hwi_oauth:
 #            client_id: 
 #            client_secret:
 #            scope: ""
-#        foursquare:
-#            type: foursquare
-#            client_id: ZWMV20TQ5ASWTHXOMPVET54TNFMMGQ4WGCEYTSEZWP2QXQFN
-#            client_secret: LHY4IZQGXBF0GLPMR2L21V3LDOETXYLWLP4CMB0H5ITDKL4D
-#            scope: ""
+        foursquare:
+            type: foursquare
+            client_id: ZWMV20TQ5ASWTHXOMPVET54TNFMMGQ4WGCEYTSEZWP2QXQFN
+            client_secret: LHY4IZQGXBF0GLPMR2L21V3LDOETXYLWLP4CMB0H5ITDKL4D
     fosub:
-        username_iterations: 30
+        username_iterations: 5
         properties:
 #            github: githubId
             google: googleId
@@ -183,16 +176,13 @@ hwi_oauth:
         verify_peer: true
         ignore_errors: true
         max_redirects: 5
-services:
-    pagerfanta.view.default:
-        class: Pagerfanta\View\DefaultView
-        public: false
-        tags: [{ name: pagerfanta.view, alias: default }]  
+
+################################################################################
+## Google Maps
+################################################################################
 ivory_google_map:
     geocoder:
-        # Geocoder class
         class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\Geocoder"
         provider:
             class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\\Provider"
-        # Adapter class
         adapter: "Geocoder\HttpAdapter\BuzzHttpAdapter"        

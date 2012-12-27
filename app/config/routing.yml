@@ -21,12 +21,12 @@ geography:
 misc:
     resource: "@ScssUtilityBundle/Resources/config/routing/routing.yml"
     prefix: /
-fos_user_resetting:
-    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix: /resetting
-fos_user_change_password:
-    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /profile  
+#fos_user_resetting:
+#    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+#    prefix: /resetting
+#fos_user_change_password:
+#    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+#    prefix: /profile  
 homepage:
     pattern: /
     defaults: { _controller: ScssUserBundle:User:index }

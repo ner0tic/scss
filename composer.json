@@ -30,10 +30,6 @@
         "gedmo/doctrine-extensions":                              "2.3.x-dev",
         "stof/doctrine-extensions-bundle":                        "dev-master",
 
-        "friendsofsymfony/user-bundle":                           "dev-master",
-        "friendsofsymfony/facebook-bundle":                       "dev-master",
-        "facebook/php-sdk":                                       "dev-master",
-
         "kriswallsmith/buzz":                                     "v0.7",
         
         "willdurand/geocoder":                                    ">=1.0.0",
@@ -44,6 +40,8 @@
         "pagerfanta/pagerfanta":                                  "dev-master",
                 
         "elao/web-profiler-extra-bundle":                         "dev-master",
+        
+        "fos/user-bundle":                                        "*",
         
         "hwi/oauth-bundle":                                       "dev-master",
         
