@@ -25,7 +25,8 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-            
+            new FOS\UserBundle\FOSUserBundle(),
+
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
@@ -40,6 +41,7 @@ class AppKernel extends Kernel
             new Scss\CourseBundle\ScssCourseBundle(),
             new Scss\MenuBundle\ScssMenuBundle(),
             new Scss\UtilityBundle\ScssUtilityBundle(),
+            new Scss\EnrollmentBundle\ScssEnrollmentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

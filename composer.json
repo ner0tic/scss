@@ -41,7 +41,7 @@
                 
         "elao/web-profiler-extra-bundle":                         "dev-master",
         
-        "fos/user-bundle":                                        "*",
+        "friendsofsymfony/user-bundle":                           "*",
         
         "hwi/oauth-bundle":                                       "dev-master",
         
