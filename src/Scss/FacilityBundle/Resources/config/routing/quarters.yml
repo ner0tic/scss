@@ -1,12 +1,12 @@
-group_quarters:
-    pattern: /group-quarters
-    defaults: { _controller: ScssFacilityBundle:GroupQuarters:index }
-group_quarters_by_facility:
-    pattern: /facilities/{facility}/group-quarters
-    defaults: { _controller: ScssFacilityBundle:GroupQuarters:index }
-group_quarters_show:
-    pattern: /facilities/{facility}/group-quarters/{group-quarters}
-    defaults: { _controller: ScssFacilityBundle:GroupQuarters:show }
+passel_quarters:
+    pattern: /passel-quarters
+    defaults: { _controller: ScssFacilityBundle:PasselQuarters:index }
+passel_quarters_by_facility:
+    pattern: /facilities/{facility}/passel-quarters
+    defaults: { _controller: ScssFacilityBundle:PasselQuarters:index }
+passel_quarters_show:
+    pattern: /facilities/{facility}/passel-quarters/{passel-quarters}
+    defaults: { _controller: ScssFacilityBundle:PasselQuarters:show }
     
 faculty_quarters:
     pattern: /faculty-quarters

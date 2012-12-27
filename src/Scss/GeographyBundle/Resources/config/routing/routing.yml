@@ -1,9 +1,3 @@
 regions:
-    pattern: /regions
-    defaults: { _controller: ScssGeographyBundle:Region:index }
-regions_by_organization:
-    pattern: /organizations/organization/regions
-    defaults: { _controller: ScssGeographyBundle:Region:index }
-region_show:
-    pattern: /regions/{region}
-    defaults: { _controller: ScssGeographyBundle:Region:show }
+    resource: "@ScssGeographyBundle/Resources/config/routing/region.yml"
+    prefix: /
