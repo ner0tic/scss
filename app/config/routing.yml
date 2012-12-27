@@ -1,8 +1,3 @@
-scss_enrollment:
-    resource: "@ScssEnrollmentBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /connect
@@ -11,6 +6,9 @@ scss_user_security:
 scss_user_signup:
     resource: "@ScssUserBundle/Resources/config/routing/signup.yml"
     prefix: /signup
+enrollment:
+    resource:"@ScssEnrollmentBundle/Resources/config/routing/routing.yml"
+    prefix: /
 organizaiton:
     resource: "@ScssOrganizationBundle/Resources/config/routing/routing.yml"
     prefix: /

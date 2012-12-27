@@ -4,9 +4,6 @@ courses:
 class: 
     resource: "@ScssCourseBundle/Resources/config/routing/class.yml"
     prefix: /
-enrollment:
-    resource: "@ScssCourseBundle/Resources/config/routing/enrollment.yml"
-    prefix: /
 mb:
     resource: "@ScssCourseBundle/Resources/config/routing/meritbadge.yml"
     prefix: /
