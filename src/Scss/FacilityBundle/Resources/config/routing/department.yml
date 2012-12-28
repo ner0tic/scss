@@ -1,9 +1,9 @@
 departments:
     pattern: /departments
-    defaults: { _controller: ScssFacilityBundle:Departments:index }
+    defaults: { _controller: ScssFacilityBundle:Department:index }
 departments_by_facility:
     pattern: /facilities/{facility}/departments
-    defaults: { _controller: ScssFacilityBundle:Departments:index }
+    defaults: { _controller: ScssFacilityBundle:Department:index }
 departments_show:
     pattern: /facilities/{facility}/departments/{department}
-    defaults: { _controller: ScssFacilityBundle:Departments:show }
+    defaults: { _controller: ScssFacilityBundle:Department:show }

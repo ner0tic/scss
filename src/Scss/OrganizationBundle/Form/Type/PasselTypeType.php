@@ -3,19 +3,18 @@ namespace Scss\OrganizationBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Scss\OrganizationBundle\Entity\Organization;
+use Scss\OrganizationBundle\Entity\PasselType;
 
-class OrganizationType extends AbstractType 
+class PasselTypeType extends AbstractType 
 {
     public function buildForm( FormBuilderInterface $builder, array $options ) 
     {
         $builder->add( 'name' );
-        $builder->add( 'code' );
-        $builder->add( 'zone' );
-        $builder->add( 'country' );
+        $builder->add( 'description' );
+        $builder->add( 'iso_code' );
     }
-  
+
     public function getName() {
-        return 'organization';
+        return 'passel_type';
     }
 }

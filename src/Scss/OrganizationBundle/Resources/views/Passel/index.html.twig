@@ -1,15 +1,15 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
   {{ parent() }}
-  <link href="{{ asset('/css/group.css.php') }}" rel="stylesheet" />
+  <link href="{{ asset('/css/passel.css.php') }}" rel="stylesheet" />
 {% endblock %}
 {% block main_content %}  
 <div class="box main-content">
   <div class="box-content datagrid">
-  {% block scss_group_datagrid %}    
-    <h2>{{ 'groups' | title }} &nbsp;<a href="{{ path('scss_group_new') }}"><img src="{{ assets('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add a group' | title }}" /></a></h2>
-    <table class="data-table" id="group-table">
-    {% block scss_group_table %}
+  {% block passel_datagrid %}    
+    <h2>{{ 'passels' | title }} &nbsp;<a href="{{ path('passel_new') }}"><img src="{{ assets('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add a passel' | title }}" /></a></h2>
+    <table class="data-table" id="passel-table">
+    {% block passel_table %}
       <tbody>
       {% for i, entity in entities $}
         <tr class="table-row {{ cycle(['odd-row', 'even-row'], i) }}">
@@ -18,8 +18,8 @@
           <td>{{ entity.region.name | title }} </td>
           <td class="table-controls">
             <div class="table-controls">
-              <a href="{{ path('scss_group_edit', {'scss_group_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/edit-icon.png') }}" width='16' height='16' alt="{{ 'edit' | title }}" /></a>
-              <a href="{{ path('scss_group_remove', {'scss_group_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/delete-icon.png') }}" width='16' height='16' alt="{{ 'delete' | title }}" /></a>
+              <a href="{{ path('passel_edit', {'passel_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/edit-icon.png') }}" width='16' height='16' alt="{{ 'edit' | title }}" /></a>
+              <a href="{{ path('passel_remove', {'passel_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/delete-icon.png') }}" width='16' height='16' alt="{{ 'delete' | title }}" /></a>
             </div>
           </td>
         </tr>

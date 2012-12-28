@@ -11,7 +11,6 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_provider: form.csrf_provider
                 check_path: /signin-check
                 login_path: /signin
             logout:       true # handlers: ["fos_facebook.logout_handler"]

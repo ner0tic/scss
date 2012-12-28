@@ -1,15 +1,15 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
   {{ parent() }}
-  <link href="{{ asset('/css/sub-group.css.php') }}" rel="stylesheet" />
+  <link href="{{ asset('/css/faction.css.php') }}" rel="stylesheet" />
 {% endblock %}
 {% block main_content %}  
 <div class="box main-content">
   <div class="box-content datagrid">
-  {% block sub_group_datagrid %}    
-    <h2>{{ 'sub groups' | title }} &nbsp;<a href="{{ path('sub_group_new') }}"><img src="{{ assets('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add a sub group' | title }}" /></a></h2>
-    <table class="data-table" id="sub-group-table">
-    {% block sub_group_table %}
+  {% block faction_datagrid %}    
+    <h2>{{ 'factions' | title }} &nbsp;<a href="{{ path('faction_new') }}"><img src="{{ assets('/images/icons/add-icon.png') }}" height="16" width="16" alt="{{ 'add a sub group' | title }}" /></a></h2>
+    <table class="data-table" id="faction-table">
+    {% block faction_table %}
       <tbody>
       {% for i, entity in entities $}
         <tr class="table-row {{ cycle(['odd-row', 'even-row'], i) }}">
@@ -17,8 +17,8 @@
           <td>{{ entity.memberCount ~ ' members' | nl2br }}</td>
           <td class="table-controls">
             <div class="table-controls">
-              <a href="{{ path('sub_group_edit', {'sub_group_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/edit-icon.png') }}" width='16' height='16' alt="{{ 'edit' | title }}" /></a>
-              <a href="{{ path('sub_group_remove', {'sub_group_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/delete-icon.png') }}" width='16' height='16' alt="{{ 'delete' | title }}" /></a>
+              <a href="{{ path('faction_edit', {'faction_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/edit-icon.png') }}" width='16' height='16' alt="{{ 'edit' | title }}" /></a>
+              <a href="{{ path('faction_remove', {'faction_slug': entity.slug}) }}"><img src="{{ assets('/images/icons/delete-icon.png') }}" width='16' height='16' alt="{{ 'delete' | title }}" /></a>
             </div>
           </td>
         </tr>

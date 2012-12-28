@@ -7,26 +7,16 @@
 {% block main_content %}
 <div class="box main-content">
   <div class="box-content datagrid">
-  {% block group_type_datagrid %}
-    <h2>{{ group_type.name | title }}</h2>
-    <table class="data-table" id="scss-group-table">
-    {% block group_type_table %}
+  {% block passel_leader_datagrid %}
+    <h2>{{ passel_leader.name | title }}</h2>
+    <table class="data-table" id="passel-table">
+    {% block passel_leader_table %}
       <tbody>
         <tr>
           <td>
-            {{ group_type.groupType.name | title }}
+            {{ passel_leader.birthdte }}
           </td>
         </tr>   
-        <tr>
-          <td>
-            {{ group_type.description | capitalize }}
-          </td>
-        </tr>       
-        <tr>
-          <td>
-            {{ group_type.iso_code | upper }}
-          </td>
-        </tr>        
       </tbody>
     {% endblock %}
     </table>

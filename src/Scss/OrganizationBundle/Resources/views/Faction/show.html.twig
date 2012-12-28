@@ -7,20 +7,20 @@
 {% block main_content %}
 <div class="box main-content">
   <div class="box-content datagrid">
-  {% block sub_group_datagrid %}
-    <h2>{{ sub_group.name | title }}</h2>
-    <table class="data-table" id="sub-group-table">
-    {% block sub_group_table %}
+  {% block faction_datagrid %}
+    <h2>{{ faction.name | title }}</h2>
+    <table class="data-table" id="faction-table">
+    {% block faction_table %}
       <tbody>
         <tr>
           <td>
-            {{ sub_group.memberCount ~ ' members' }}
+            {{ faction.memberCount ~ ' members' }}
           </td>
         </tr>
         <tr>
           <td>
-          {% if sub_group.photo %}
-            <a href="{{ path('sub_group_photo_show', { 'photo': sub_group.photo }) }}"><img class="thumbnail sub-group-photo" src="{{ asset(sub_group.photo) }}" /></a>
+          {% if faction.photo %}
+            <a href="{{ path('faction_photo_show', { 'photo': faction.photo }) }}"><img class="thumbnail faction-photo" src="{{ asset(faction.photo) }}" /></a>
           {% else %}
             <p>{{ 'no photo found.' }}</p>
           {% endif %}
@@ -28,8 +28,8 @@
         </tr>
         <tr>
           <td>
-          {% if sub_group.logo %}
-            <img class="thumbnail sub-group-logo" src="{{ asset(sub_group.logo) }}" /></a>
+          {% if faction.logo %}
+            <img class="thumbnail faction-logo" src="{{ asset(faction.logo) }}" /></a>
           {% else %}
             <p>&nbsp;</p>
           {% endif %}

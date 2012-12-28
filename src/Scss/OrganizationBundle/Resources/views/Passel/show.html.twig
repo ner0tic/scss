@@ -7,45 +7,45 @@
 {% block main_content %}
 <div class="box main-content">
   <div class="box-content datagrid">
-  {% block scss_group_datagrid %}
-    <h2>{{ scss_group.name | title }}</h2>
-    <table class="data-table" id="scss-group-table">
-    {% block scss_group_table %}
+  {% block passel_datagrid %}
+    <h2>{{ passel.name | title }}</h2>
+    <table class="data-table" id="passel-table">
+    {% block passel_table %}
       <tbody>
         <tr>
           <td>
-            {{ scss_group.groupType.name | title }}
+            {{ passel.passelType.name | title }}
           </td>
         </tr>   
         <tr>
           <td>
-            {{ scss_group.region.name | title }}
+            {{ passel.region.name | title }}
           </td>
         </tr>       
         <tr>
           <td>
-            {{ scss_group.leader.name | title }}
+            {{ passel.leader.name | title }}
           </td>
         </tr>        
         <tr>
           <td>
-            {{ scss_group.leaderCount ~ ' leaders' | title }}
+            {{ passel.leaderCount ~ ' leaders' | title }}
           </td>
         </tr>        
         <tr>
           <td>
-            {{ scss_group.SubGroupCount ~ ' sub groups' | title }}
+            {{ passel.SubGroupCount ~ ' sub passels' | title }}
           </td>
         </tr>        
         <tr>
           <td>
-            {{ scss_group.memberCount ~ ' members' | title }}
+            {{ passel.memberCount ~ ' members' | title }}
           </td>
         </tr>
         <tr>
           <td>
-          {% if scss_group.photo %}
-            <a href="{{ path('scss_group_photo_show', { 'photo': scss_group.photo }) }}"><img class="thumbnail scss-group-photo" src="{{ asset(scss_group.photo) }}" /></a>
+          {% if passel.photo %}
+            <a href="{{ path('passel_photo_show', { 'photo': passel.photo }) }}"><img class="thumbnail passel-photo" src="{{ asset(passel.photo) }}" /></a>
           {% else %}
             <p>{{ 'no photo found.' }}</p>
           {% endif %}
@@ -53,8 +53,8 @@
         </tr>
         <tr>
           <td>
-          {% if scss_group.logo %}
-            <img class="thumbnail scss-group-logo" src="{{ asset(scss_group.logo) }}" /></a>
+          {% if passel.logo %}
+            <img class="thumbnail passel-logo" src="{{ asset(passel.logo) }}" /></a>
           {% else %}
             <p>&nbsp;</p>
           {% endif %}

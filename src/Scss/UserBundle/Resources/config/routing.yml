@@ -1,3 +1,0 @@
-ScssUserBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ScssUserBundle:Default:index }
