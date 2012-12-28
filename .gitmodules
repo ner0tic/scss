@@ -1,9 +1,0 @@
-[submodule "vendor/ner0tic/DdnetFoursquareBundle/Ddnet"]
-	path = vendor/ner0tic/DdnetFoursquareBundle/Ddnet
-	url = https://github.com/ner0tic/DdnetFoursquareBundle.git
-[submodule "vendor/hwi/oauth-bundle/HWI/OAuthBundle"]
-	path = vendor/hwi/oauth-bundle/HWI/OAuthBundle
-	url = https://github.com/hwi/HWIOAuthBundle.git
-[submodule "vendor/hwi/oauth-bundle/HWI/Bundle/OAuthBundle"]
-	path = vendor/hwi/oauth-bundle/HWI/Bundle/OAuthBundle
-	url = https://github.com/ner0tic/HWIOAuthBundle.git

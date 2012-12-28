@@ -3,8 +3,9 @@ namespace Scss\OrganizationBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Scss\OrganizationBundle\Entity\Passel;
+use Scss\OrganizationBundle\Entity\Faction;
 
-class FactionRepository extends EntityRepository
+class AttendeeRepository extends EntityRepository
 {
     public function filterByPassel( $passel )
     {
@@ -18,7 +19,7 @@ class FactionRepository extends EntityRepository
         }
         
         return $this->getEntityManager()
-            ->createQuery( 'SELECT f FROM ScssOrganizationBundle:Faction f WHERE a.passel = :passel ORDER BY f.name ASC' )
+            ->createQuery( 'SELECT a FROM ScssOrganizationBundle:Attendee a WHERE a.passel = :passel ORDER BY a.last_name ASC' )
             ->setParameter( 'passel', $passel )
             ->getResult();
     }
