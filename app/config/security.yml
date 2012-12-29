@@ -39,9 +39,9 @@ security:
         - { path: ^/, role: [ ROLE_USER, IS_AUTHENTICATED_FULLY, IS_AUTHENTICATED_ANONYMOUSLY] }
 
     role_hierarchy:
-        ROLE_GROUP_USER: ROLE_USER                                        # attendee            # scout
-        ROLE_GROUP_LEADER: ROLE_GROUP_USER                                # group leader        # troop leader
-        ROLE_GROUP_ADMIN: ROLE_GROUP_LEADER                               # group admin         # scout master
+        ROLE_PASSEL_USER: ROLE_USER                                        # attendee            # scout
+        ROLE_PASSEL_LEADER: ROLE_GROUP_USER                                # group leader        # troop leader
+        ROLE_PASSEL_ADMIN: ROLE_GROUP_LEADER                               # group admin         # scout master
         ROLE_FACILITY_USER: ROLE_USER                                     # facility user       # camp staff
         ROLE_FACILITY_FACULTY: [ ROLE_FACILITY_USER, ROLE_GROUP_ADMIN ]   # facility faculty    # camp administrative staff
         ROLE_FACILITY_ADMIN: ROLE_FACILITY_FACULTY  # facility admin      # facility admin      # camp administration

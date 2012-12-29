@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+  <link href="{{ asset('/css/dashboard.css.php') }}" rel="stylesheet" />
+  {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('/js/dashboard.js.php') }}" type="text/javascript" />  
+{% endblock %}
+ 
+{# {% include 'ScssUtilityBundle:InfoBox:index.html.twig' with {'page': 'dashboard'} %} #}
+{% block main_content %}
+
+{% endblock %}

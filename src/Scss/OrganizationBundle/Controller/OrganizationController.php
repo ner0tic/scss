@@ -20,7 +20,7 @@ class OrganizationController extends Controller
         $repo = $this->getDoctrine()->getRepository( 'ScssOrganizationBundle:Organization' );
         $query = $repo->createQueryBuilder( 'o' )->orderBy( 'o.name', ' ASC' );
         
-        $pager = new Pagerfanta( new Doctrine ORMAdapter( $query ) );
+        $pager = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         
         $pager->SetMaxPerPage( $max_per_pg );
         $pager->setCurrentPage( $cur_pg );
@@ -67,5 +67,10 @@ class OrganizationController extends Controller
         return forward( 'ScssOrganizationBundle:Organization:show', array(
             'slug'  =>  $organization->getSlug()
         ));
+    }
+    
+    public function dashboardAction()
+    {
+        return $this->render( 'ScssOrganizationBundle:Organization:dashboard.htmltwig' );
     }
 }
