@@ -24,7 +24,7 @@ class AttendeeRepository extends EntityRepository
             ->getResult();
     }
     
-    public function filterByFaction($faction)
+    public function filterByFaction( $faction )
     {
         if( $faction instanceof Faction )
         {
