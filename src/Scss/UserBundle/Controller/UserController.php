@@ -45,6 +45,41 @@ class UserController extends Controller
                 
         return $this->render( 'ScssUserBundle:User:index.html.twig' );
     }
+    
+    public function registerAction()
+    {
+        $form = $this->createForm(
+            new RegistrationType(),
+            new Registration()
+        );
+
+        return $this->render( 'ScssUserBundle:User:register.html.twig', array(
+            'form'  =>  $form->createView()
+        ));
+    }    
+    
+    public function createAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $form = $this->createForm( new RegistrationType(), new Registration() );
+
+        $form->bind( $this->getRequest() );
+
+        if ( $form->isValid() ) 
+        {
+            $registration = $form->getData();
+
+            $em->persist( $registration->getUser() );
+            $em->flush();
+
+            return $this->redirect( 'ScssUserBundle:User:dashboard' );
+        }
+
+        return $this->render( 'ScssUserBundle:USer:register.html.twig', array(
+            'form'  =>  $form->createView()
+        ));
+    }    
        
     private function forwardToDashboard( $role, $available_roles = array() )
     {
