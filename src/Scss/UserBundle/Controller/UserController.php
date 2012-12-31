@@ -13,19 +13,14 @@ class UserController extends Controller
     
     public function indexAction( $pager_1 = 1, $pager_2 = 1 ) 
     {
-        $max_per_pg = 10;
-      
-        $cur_pg[] = $this->getRequest()->get('pager_1', 1);
-        $cur_pg[] = $this->getRequest()->get('pager_2', 1);
-      
-        $user_roles = $this->getUser()->getRoles();
-        
         /**
-         * If the user is atleasted authenticated
+         * If the user is atleast authenticated
          * with the system then we can continue.
          */
-        if( in_array( $user_roles, 'ROLE_USER' ) )
+        if( $this->get( 'security.context' )->isGranted( 'ROLE_USER' ) )
         {
+            $user_roles = $this->getUser()->getRoles();
+            
             /**
              * The array is reversed to reverse sort the roles
              * since they are entered into the security.yml
@@ -76,7 +71,7 @@ class UserController extends Controller
             return $this->redirect( 'ScssUserBundle:User:dashboard' );
         }
 
-        return $this->render( 'ScssUserBundle:USer:register.html.twig', array(
+        return $this->render( 'ScssUserBundle:User:register.html.twig', array(
             'form'  =>  $form->createView()
         ));
     }    

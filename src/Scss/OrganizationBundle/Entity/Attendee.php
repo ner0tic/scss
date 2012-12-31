@@ -6,6 +6,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constratins as Assert;
 use Scss\UserBundle\Entity\User;
+use Scss\EnrollmentBundle\Entity\ActiveEnrollment;
+
 
 /**
  * @ORM\Table(name="attendee")
@@ -38,7 +40,7 @@ class Attendee extends User
     * @Gedmo\Timestampable(on="create")
     * @ORM\Column(type="datetime")
     */
-    private $created;
+    protected $created;
 
     /**
     * @var datetime $updated
@@ -46,7 +48,7 @@ class Attendee extends User
     * @Gedmo\Timestampable(on="update")
     * @ORM\Column(type="datetime")
     */
-    private $updated;
+    protected $updated;
 
     /**
     * @Gedmo\Slug(fields={"first_name", "last_name"}) 
@@ -109,76 +111,49 @@ class Attendee extends User
     }
 
     /**
-     * Set passel
-     *
-     * @param Scss\OrganizationBundle\Entity\Passel $passel
-     * @return Attendee
-     */
-    public function setPassel(Passel $passel = null)
-    {
-        $this->passel = $passel;
-        return $this;
-    }
-
-    /**
-     * Get passel
-     *
-     * @return Scss\OrganizationBundle\Entity\Passel 
-     */
-    public function getPassel()
-    {
-        return $this->passel;
-    }
-
-    /**
      * @var string $first_name
      */
-    private $first_name;
+    protected $first_name;
 
     /**
      * @var string $last_name
      */
-    private $last_name;
+    protected $last_name;
 
     /**
      * @var string $facebookId
      */
-    private $facebookId;
+    protected $facebookId;
 
     /**
      * @var string $googleId
      */
-    private $googleId;
+    protected $googleId;
 
     /**
      * @var string $linkedinId
      */
-    private $linkedinId;
+    protected $linkedinId;
 
     /**
      * @var string $twitterId
      */
-    private $twitterId;
+    protected $twitterId;
 
     /**
      * @var string $foursquareId
      */
-    private $foursquareId;
+    protected $foursquareId;
 
     /**
      * @var string $avatar
      */
-    private $avatar;
+    protected $avatar;
 
     /**
-     * @var Scss\OrganizationBundle\Entity\ScssGroup
+     * @var Scss\EnrollmentBundle\Entity\PasselEnrollment
      */
-    private $group;
-
-    /**
-     * @var Scss\FacilityBundle\Entity\GroupEnrollment
-     */
-    private $active_enrollment;
+    protected $active_enrollment;
 
 
     /**
@@ -402,23 +377,23 @@ class Attendee extends User
     }
 
     /**
-     * Set group
+     * Set passel
      *
-     * @param Scss\OrganizationBundle\Entity\ScssGroup $group
+     * @param Scss\OrganizationBundle\Entity\Passel $passel
      * @return Attendee
      */
-    public function setGroup(\Scss\OrganizationBundle\Entity\ScssGroup $group = null)
+    public function setPassel(Passel $passel = null)
     {
-        $this->group = $group;
+        $this->passel = $passel;
         return $this;
     }
 
     /**
-     * Get group
+     * Get passel
      *
-     * @return Scss\OrganizationBundle\Entity\ScssGroup 
+     * @return Scss\OrganizationBundle\Entity\Passel 
      */
-    public function getGroup()
+    public function getPassel()
     {
         return $this->group;
     }
@@ -426,19 +401,18 @@ class Attendee extends User
     /**
      * Set active_enrollment
      *
-     * @param Scss\FacilityBundle\Entity\GroupEnrollment $activeEnrollment
+     * @param Scss\EnrollmentBundle\Entity\ActiveEnrollment $activeEnrollment
      * @return Attendee
      */
-    public function setActiveEnrollment(\Scss\FacilityBundle\Entity\GroupEnrollment $activeEnrollment = null)
+    public function setActiveEnrollment(ActiveEnrollment $activeEnrollment = null)
     {
-        $this->active_enrollment = $activeEnrollment;
-        return $this;
+        return parent::setActiveEnrollment($activeEnrollment);
     }
 
     /**
      * Get active_enrollment
      *
-     * @return Scss\FacilityBundle\Entity\GroupEnrollment 
+     * @return Scss\EnrollmentyBundle\Entity\PasselEnrollment 
      */
     public function getActiveEnrollment()
     {

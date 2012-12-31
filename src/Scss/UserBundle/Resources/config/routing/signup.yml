@@ -1,5 +1,5 @@
 fos_user_registration_register:
-    pattern: /
+    pattern: /signup
     defaults: { _controller: FOSUserBundle:Registration:register }
 fos_user_registration_check_email:
     pattern: /check-email

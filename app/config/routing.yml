@@ -7,7 +7,7 @@ scss_user_signup:
     resource: "@ScssUserBundle/Resources/config/routing/signup.yml"
     prefix: /signup
 enrollment:
-    resource:"@ScssEnrollmentBundle/Resources/config/routing/routing.yml"
+    resource: "@ScssEnrollmentBundle/Resources/config/routing/routing.yml"
     prefix: /
 organizaiton:
     resource: "@ScssOrganizationBundle/Resources/config/routing/routing.yml"

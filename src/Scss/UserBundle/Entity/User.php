@@ -6,6 +6,8 @@ namespace Scss\UserBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Scss\EnrollmentBundle\Entity\ActiveEnrollment;
+use FOS\UserBundle\Model\GroupInterface;
 
 /**
  * @ORM\Entity
@@ -42,7 +44,7 @@ class User extends BaseUser
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $created;
+    protected $created;
 
     /**
      * @var datetime $updated
@@ -50,7 +52,7 @@ class User extends BaseUser
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updated;    
+    protected $updated;    
 
     /**
      * @var string
@@ -88,13 +90,7 @@ class User extends BaseUser
     protected $foursquareId;    
     
     /**
-    * @ORM\ManyToOne(targetEntity="Scss\OrganizationBundle\Entity\ScssGroup", inversedBy="user")
-    * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=true)
-    */        
-    protected $group;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="Scss\FacilityBundle\Entity\GroupEnrollment", inversedBy="user")
+     * @ORM\ManyToOne(targetEntity="Scss\EnrollmentBundle\Entity\PasselEnrollment", inversedBy="user")
      * @ORM\JoinColumn(name="active_enrollment_id", referencedColumnName="id", nullable=true)
      */        
     protected $active_enrollment;    
@@ -106,16 +102,16 @@ class User extends BaseUser
      */
     protected $avatar = '/images/avatars/default.png';
     
-    public function serialize()
-    {
-        return serialize(array($this->facebookId, parent::serialize()));
-    }
-
-    public function unserialize($data)
-    {
-        list($this->facebookId, $parentData) = unserialize($data);
-        parent::unserialize($parentData);
-    }
+//    public function serialize()
+//    {
+//        return serialize(array($this->facebookId, parent::serialize()));
+//    }
+//
+//    public function unserialize($data)
+//    {
+//        list($this->facebookId, $parentData) = unserialize($data);
+//        parent::unserialize($parentData);
+//    }
 
     /**
      * Get the full name of the user (first + last name)
@@ -294,10 +290,10 @@ class User extends BaseUser
     /**
      * Set active_enrollment
      *
-     * @param Scss\FacilityBundle\Entity\GroupEnrollment $activeEnrollment
+     * @param Scss\EntityBundle\Entity\PasselEnrollment $activeEnrollment
      * @return User
      */
-    public function setActiveEnrollment(\Scss\FacilityBundle\Entity\GroupEnrollment $activeEnrollment = null)
+    public function setActiveEnrollment(ActiveEnrollment $activeEnrollment = null)
     {
         $this->active_enrollment = $activeEnrollment;
         return $this;
@@ -306,7 +302,7 @@ class User extends BaseUser
     /**
      * Get active_enrollment
      *
-     * @return Scss\FacilityBundle\Entity\GroupEnrollment 
+     * @return Scss\EnrollmentBundle\Entity\PasselEnrollment 
      */
     public function getActiveEnrollment()
     {
@@ -422,26 +418,68 @@ class User extends BaseUser
     {
         return $this->avatar;
     }
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
+     *
+     */
+    protected $groups;
+
+
+    public function getRoles()
+    {
+        return $this->groups->toArray();
+    }
 
     /**
-     * Set group
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+        ) = unserialize($serialized);
+    }
+
+    /**
+     * Add groups
      *
-     * @param Scss\OrganizationBundle\Entity\ScssGroup $group
+     * @param Scss\UserBundle\Entity\Group $groups
      * @return User
      */
-    public function setGroup(\Scss\OrganizationBundle\Entity\ScssGroup $group = null)
+    public function addGroup(GroupInterface $groups)
     {
-        $this->group = $group;
+        $this->groups[] = $groups;
         return $this;
     }
 
     /**
-     * Get group
+     * Remove groups
      *
-     * @return Scss\OrganizationBundle\Entity\ScssGroup 
+     * @param Scss\UserBundle\Entity\Group $groups
      */
-    public function getGroup()
+    public function removeGroup(GroupInterface $groups)
     {
-        return $this->group;
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }
