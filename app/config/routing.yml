@@ -1,6 +1,3 @@
-hwi_oauth_redirect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:   /connect
 scss_user_security:
     resource: "@ScssUserBundle/Resources/config/routing/security.yml"
 scss_user_signup:

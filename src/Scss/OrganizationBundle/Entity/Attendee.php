@@ -412,10 +412,16 @@ class Attendee extends User
     /**
      * Get active_enrollment
      *
-     * @return Scss\EnrollmentyBundle\Entity\PasselEnrollment 
+     * @return Scss\EnrollmentyBundle\Entity\ActiveSEnrollment 
      */
     public function getActiveEnrollment()
     {
         return $this->active_enrollment;
     }
+
+    public function __construct()
+    {
+        parent::construct();
+    }
+    
 }

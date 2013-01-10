@@ -6,8 +6,8 @@ namespace Scss\UserBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Scss\EnrollmentBundle\Entity\ActiveEnrollment;
-use FOS\UserBundle\Model\GroupInterface;
 
 /**
  * @ORM\Entity
@@ -29,12 +29,18 @@ class User extends BaseUser
     protected $slug;
     
     /**
-     * @ORM\Column(type="string", length=150, nullable=true) 
+     * @ORM\Column(type="string") 
+     * @Assert\NotBlank(message="Please enter your first name.", groups={"Registration", "Profile"})
+     * @Assert\MinLength(limit="3", message="The name is too short.", groups={"Registration", "Profile"})
+     * @Assert\MaxLength(limit="255", message="The name is too long.", groups={"Registration", "Profile"})
      */
     protected $first_name;
     
     /**
-     * @ORM\Column(type="string", length=150, nullable=true) 
+     * @ORM\Column(type="string") 
+     * @Assert\NotBlank(message="Please enter your last name.", groups={"Registration", "Profile"})
+     * @Assert\MinLength(limit="3", message="The name is too short.", groups={"Registration", "Profile"})
+     * @Assert\MaxLength(limit="255", message="The name is too long.", groups={"Registration", "Profile"})
      */
     protected $last_name;
     
@@ -417,69 +423,5 @@ class User extends BaseUser
     public function getAvatar()
     {
         return $this->avatar;
-    }
-    
-    /**
-     * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
-     *
-     */
-    protected $groups;
-
-
-    public function getRoles()
-    {
-        return $this->groups->toArray();
-    }
-
-    /**
-     * @see \Serializable::serialize()
-     */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-        ));
-    }
-
-    /**
-     * @see \Serializable::unserialize()
-     */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-        ) = unserialize($serialized);
-    }
-
-    /**
-     * Add groups
-     *
-     * @param Scss\UserBundle\Entity\Group $groups
-     * @return User
-     */
-    public function addGroup(GroupInterface $groups)
-    {
-        $this->groups[] = $groups;
-        return $this;
-    }
-
-    /**
-     * Remove groups
-     *
-     * @param Scss\UserBundle\Entity\Group $groups
-     */
-    public function removeGroup(GroupInterface $groups)
-    {
-        $this->groups->removeElement($groups);
-    }
-
-    /**
-     * Get groups
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getGroups()
-    {
-        return $this->groups;
     }
 }

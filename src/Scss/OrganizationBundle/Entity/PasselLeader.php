@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use Scss\UserBundle\Entity\User;
+use Scss\UserBundle\Entity\User as BaseUser;
 
 /**
  * @ORM\Table(name="passel_leader")
  * @ORM\Entity(repositoryClass="Scss\OrganizationBundle\Repository\PasselLeaderRepository")
  */
-class PasselLeader 
+class PasselLeader extends BaseUser
 {
     /**
      * @ORM\ManyToOne(targetEntity="Passel", inversedBy="passel_leader")

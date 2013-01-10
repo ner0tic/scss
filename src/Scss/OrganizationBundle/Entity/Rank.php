@@ -55,7 +55,7 @@ class Rank
     protected $special = false;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Scss\OrganizaitonBundle\Entity\Organization", inversedBy="rank")
+     * @ORM\ManyToOne(targetEntity="Scss\OrganizationBundle\Entity\Organization", inversedBy="rank")
      * @ORM\JoinColumn(name="organization_id", referencedColumnName="id")
      */      
     protected $organization;
@@ -178,5 +178,27 @@ class Rank
     public function getSpecial()
     {
         return $this->special;
+    }
+
+    /**
+     * Set organization
+     *
+     * @param Scss\OrganizationBundle\Entity\Organization $organization
+     * @return Rank
+     */
+    public function setOrganization(\Scss\OrganizationBundle\Entity\Organization $organization = null)
+    {
+        $this->organization = $organization;
+        return $this;
+    }
+
+    /**
+     * Get organization
+     *
+     * @return Scss\OrganizationBundle\Entity\Organization 
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
     }
 }

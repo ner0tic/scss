@@ -11,29 +11,10 @@
 {% endblock %}
 
 {% block fos_user_content %}
-<div class="signin-form-wrapper form-wrapper" id="signin-form">
-<h2>{{ 'sign in' | title }}</h2>
+<div class="signup-form-wrapper form-wrapper" id="signup-form">
+<h2>{{ 'sign up' | title }}</h2>
 <br />
-{% if error %}
-    <div class="error">{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
-<form action="{{ path("fos_user_security_check") }}" method="post">
-  <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-  <p>
-    <label for="username">email address</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" class="text-input" />
-  </p>
-  <p>
-    <label for="password">password</label>
-    <input type="password" id="password" name="_password" class="text-input" />
-  </p>
-  <p>
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">remember me</label>
-    <input type="submit" id="_submit" name="_submit" value="sign in &raquo;" class="greenButton" />
-  </p>
-</form>
-</div>
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
 <div id="signin-quicklinks-wrapper">
   <h2>{{ 'sign in with' | title }}</h2>
   <ul id="quicklinks">

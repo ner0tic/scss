@@ -2,11 +2,11 @@ parameters:
 #    scss_user.example.class: Scss\UserBundle\Example
 
 services:
-    scss_user.signup.form.type:
-        class: Scss\UserBundle\Form\Type\SignupFormType
+    scss_user.registration.form.type:
+        class: Scss\UserBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%]
         tags:
-            - { name: form.type, alias: scss_user_signup }
+            - { name: form.type, alias: scss_user_registration }
 #    my.facebook.user:
 #        class: Scss\UserBundle\Security\User\Provider\FacebookProvider
 #        arguments:

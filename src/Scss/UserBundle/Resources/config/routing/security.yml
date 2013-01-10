@@ -13,19 +13,19 @@ _security_check:
 _security_logout:
     pattern:  /logout    
 facebook_check:
-    pattern: /signin/facebook/check
+    pattern: /signin/check-facebook
     defaults: { _controller: FOSUserBundle:Security:check }
 google_check:
-    pattern: /signin/google/check
+    pattern: /signin/check-google
     defaults: { _controller: FOSUserBundle:Security:check }
 github_check:
-    pattern: /signin/github/check
+    pattern: /signin/check-github
     defaults: { _controller: FOSUserBundle:Security:check }
 linkedin_check:
-    pattern: /signin/linkedin/check
+    pattern: /signin/check-linkedin
     defaults: { _controller: FOSUserBundle:Security:check }
 foursquare_check:
-    pattern: /signin/foursquare/check
+    pattern: /signin/check-foursquare
     defaults: { _controller: FOSUserBundle:Security:check }
 connect:
     pattern: /connect/

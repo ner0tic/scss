@@ -5,7 +5,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      ~
     secret:          %secret%
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
@@ -102,19 +102,25 @@ swiftmailer:
 ################################################################################
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: secured_area
+    firewall_name: main
     user_class: Scss\UserBundle\Entity\User
     registration:
         form:
-            type: scss_user_signup
+            type: scss_user_registration
+        confirmation:
+            enabled:    true
+            from_email:
+                address:  noreply@scss.net
+                sender_name: ScssBot
+    from_email:
+        address:        noreply@scss.net
+        sender_name:    ScssBot
 
 ################################################################################
 ## JMS
 ################################################################################
 jms_security_extra:
     secure_controllers:  true
-    secure_all_services: false
-jms_security_extra:
     secure_all_services: false
     enable_iddqd_attribute: false
     expressions: false
@@ -134,51 +140,6 @@ knp_menu:
         template: knp_menu.html.twig
     templating: false # if true, enables the helper for PHP templates
     default_renderer: twig # The renderer to use, list is also available by default
-    
-################################################################################
-## HWI
-################################################################################
-hwi_oauth:
-    firewall_name: secured_area    
-    resource_owners:
-        facebook:
-            type: facebook
-            client_id: 173494226064106
-            client_secret: 41fbd98aa2efaeb12b2602149710ca86
-            scope: ""
-        google:
-            type: google
-            client_id: 986620454264.apps.googleusercontent.com
-            client_secret: 2D_1VRUM65dAvIZfgrjsB9Ha
-            scope: "https://www.googleapis.com/auth/plus.me"
-        linkedin:
-            type: linkedin
-            client_id: wq7ouwedcs6f
-            client_secret: E313GhN9FrgksrAT
-            scope: ""
-#        github:
-#            type: github
-#            client_id: 
-#            client_secret:
-#            scope: ""
-        foursquare:
-            type: foursquare
-            client_id: ZWMV20TQ5ASWTHXOMPVET54TNFMMGQ4WGCEYTSEZWP2QXQFN
-            client_secret: LHY4IZQGXBF0GLPMR2L21V3LDOETXYLWLP4CMB0H5ITDKL4D
-    fosub:
-        username_iterations: 5
-        properties:
-#            github: githubId
-            google: googleId
-            facebook: facebookId
-            foursquare: foursquareId
-            linkedin: linkedinId
-    connect: ~
-    http_client:
-        timeout:  5
-        verify_peer: true
-        ignore_errors: true
-        max_redirects: 5
 
 ################################################################################
 ## Google Maps

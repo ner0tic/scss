@@ -36,7 +36,7 @@ class AttendeeEnrollmentCollection
 	protected $facility;
 
 	/**
-	* @ORM\ManyToOne(targetEntity="Week", inversedBy="attendee_enrollment_collection")
+	* @ORM\ManyToOne(targetEntity="Scss\CourseBundle\Entity\Week", inversedBy="attendee_enrollment_collection")
 	* @ORM\JoinColumn(name="week_id", referencedColumnName="id")
 	*/    
 	protected $week;  

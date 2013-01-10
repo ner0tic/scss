@@ -26,7 +26,8 @@ class UserController extends Controller
              * since they are entered into the security.yml
              * file in a low - high hierarchy.
              */
-            $available_roles = array_reverse( $this->get( 'security.role_hierarchy.roles' ) );
+            var_dump($this->get('security.role')->getToken());die('...');
+            $available_roles = array_reverse( $this->get( 'security.role.hierarchy.roles' ) );
         
             foreach( $user_roles as $role )
             {
