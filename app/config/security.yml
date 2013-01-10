@@ -27,15 +27,21 @@ security:
         - { path: ^/admin/, role: ROLE_ADMIN }
 
     role_hierarchy:
-        ROLE_PASSEL_USER: ROLE_USER                                        # attendee            # scout
-        ROLE_PASSEL_LEADER: ROLE_GROUP_USER                                # group leader        # troop leader
-        ROLE_PASSEL_ADMIN: ROLE_GROUP_LEADER                               # group admin         # scout master
-        ROLE_FACILITY_USER: ROLE_USER                                     # facility user       # camp staff
-        ROLE_FACILITY_FACULTY: [ ROLE_FACILITY_USER, ROLE_GROUP_ADMIN ]   # facility faculty    # camp administrative staff
-        ROLE_FACILITY_ADMIN: ROLE_FACILITY_FACULTY  # facility admin      # facility admin      # camp administration
-        ROLE_ORGANIZATION_USER: [ROLE_FACILITY_ADMIN, ROLE_GROUP_ADMIN]   # organization user   # council staff
-        ROLE_ORGANIZATION_ADMIN: ROLE_USER                                # organization admin  # council administration
-        ROLE_REGION_USER: ROLE_ORGANIZATION_ADMIN                         # region user         # district staff
-        ROLE_REGION_ADMIN: ROLE_USER                                      # region admin        # district administration
-        ROLE_ADMIN:       ROLE_USER                                       # site admin
-        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]          # root admin
+        # Region
+        ROLE_REGION_ADMIN:      [ ROLE_REGION_USER ]
+        ROLE_REGION_USER:       [ ROLE_ORG_ADMIN, ROLE_FACILITY_ADMIN ] 
+        # Organization
+        ROLE_ORG_ADMIN:         [ ROLE_ORG_USER, ROLE_PASSEL_ADMIN ]
+        ROLE_ORG_USER:          [ ROLE_PASSEL_USER ]
+        # Passel
+        ROLE_PASSEL_ADMIN:      [ ROLE_PASSEL_LEADER ]
+        ROLE_PASSEL_LEADER:     [ ROLE_PASSEL_USER ]
+        ROLE_PASSEL_USER:       [ ROLE_USER ]
+        # Facility
+        ROLE_FACILITY_ADMIN:    [ ROLE_FACILITY_FACULTY, ROLE_PASSEL_ADMIN ]
+        ROLE_FACILITY_FACULTY:  [ ROLE_FACILITY_USER, ROLE_PASSEL_USER ]
+        ROLE_FACILITY_USER:     [ ROLE_USER ]
+        # Admin
+        ROLE_SUPER_USER:        [ ROLE_ADMIN ]
+        ROLE_ADMIN:             [ ROLE_REGION_ADMIN ]
+        

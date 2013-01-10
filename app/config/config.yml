@@ -120,7 +120,7 @@ fos_user:
 ## JMS
 ################################################################################
 jms_security_extra:
-    secure_controllers:  true
+#    secure_controllers:  true
     secure_all_services: false
     enable_iddqd_attribute: false
     expressions: false
