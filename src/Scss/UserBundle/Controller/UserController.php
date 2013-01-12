@@ -19,24 +19,27 @@ class UserController extends Controller
          */
         if( $this->get( 'security.context' )->isGranted( 'ROLE_USER' ) )
         {
-            $user_roles = $this->getUser()->getRoles();
-            
-            /**
-             * The array is reversed to reverse sort the roles
-             * since they are entered into the security.yml
-             * file in a low - high hierarchy.
-             */
-            var_dump($this->get('security.role')->getToken());die('...');
-            $available_roles = array_reverse( $this->get( 'security.role.hierarchy.roles' ) );
-        
-            foreach( $user_roles as $role )
+            $s = $this->get( 'security.context' );
+            if( $s->isGranted( 'ROLE_ADMIN' ) )
             {
-                if( in_array( $role, $available_roles ) )
-                {
-                    $this->forwardToDashboard( $role, $available_roles );
-                    break;
-                }
+                $this->forwardToDashboard( ( $s->isGranted( ' ROLE_SUPER_ADMIN' ) ? 'ROLE_SUPER_ADMIN' : 'ROLE_ADMIN' ) );                
             }
+            else if ( $s->isGranted( 'ROLE_REGION_USER' ) )
+            {
+                $this->forwardToDashboard( ( $s->isGranted( ' ROLE_REGION_ADMIN' ) ? 'ROLE_REGION_ADMIN' : 'ROLE_REGION_USER' ) );                
+            }
+            else if ( $s->isGranted( 'ROLE_ORG_USER' ) )
+            {
+                $this->forwardToDashboard( ( $s->isGranted( ' ROLE_ORG_ADMIN' ) ? 'ROLE_ORG_ADMIN' : 'ROLE_ORG_USER' ) );                
+            }
+            else if ( $s->isGranted( 'ROLE_FACILITY_ADMIN ') )
+            {
+                $this->forwardToDashboard( ( $s->isGranted( ' ROLE_FACILITY_ADMIN' ) ? 'ROLE_FACILITY_ADMIN' : ( $s->isGranted( 'ROLE_FACILITY_FACULTY' ) ? 'ROLE_FACILITY_FACULTY' : 'ROLE_FACILITY_USER' ) ) );
+            }
+            else if ( $s->isGranted( 'ROLE_PASSEL_USER' ) )
+            {
+                $this->forwardToDashboard( ( $s->isGranted( ' ROLE_PASSEL_ADMIN' ) ? 'ROLE_PASSEL_ADMIN' : ( $s->isGranted( 'ROLE_PASSEL_LEADER' ) ? 'ROLE_PASSEL_LEADER' : 'ROLE_PASSEL_USER' ) ) );
+            }                       
         }
                 
         return $this->render( 'ScssUserBundle:User:index.html.twig' );
@@ -77,7 +80,7 @@ class UserController extends Controller
         ));
     }    
        
-    private function forwardToDashboard( $role, $available_roles = array() )
+    private function forwardToDashboard( $role )
     {
         /**
          * @todo find a cleaner way to match the role to the controller
@@ -89,8 +92,8 @@ class UserController extends Controller
             'ROLE_FACILITY_USER'        =>  'ScssFacilityBundle:Faculty:dasboard',
             'ROLE_FACILITY_FACULTY'     =>  'ScssFacilityBundle:Faculty:dasboard',
             'ROLE_FACILITY_ADMIN'       =>  'ScssFacilityBundle:Faculty:dasboard',
-            'ROLE_ORGANIZATION_USER'    =>  'ScssOrganizationBundle:Organization:dasboard',
-            'ROLE_ORGANIZATION_ADMIN'   =>  'ScssOrganizationBundle:Organization:dasboard',
+            'ROLE_ORG_USER'             =>  'ScssOrganizationBundle:Organization:dasboard',
+            'ROLE_ORG_ADMIN'            =>  'ScssOrganizationBundle:Organization:dasboard',
             'ROLE_REGION_USER'          =>  'ScssGeographyBundle:Region:dasboard',
             'ROLE_REGION_ADMIN'         =>  'ScssGeographyBundle:Region:dasboard',
             'ROLE_ADMIN'                =>  'ScssUserBundle:Admin:dasboard',

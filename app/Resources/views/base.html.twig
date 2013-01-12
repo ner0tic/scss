@@ -51,7 +51,7 @@
         <menu>
         {% block menu %}
           {% if is_granted('ROLE_USER') %}
-            {# {{ knp_menu_render('main') }} #}
+            {{ knp_menu_render('main') }}
           {% else %}
             {{ knp_menu_render('nonauth') }}   
           {% endif %}
