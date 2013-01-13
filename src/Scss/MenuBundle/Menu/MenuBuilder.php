@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MenuBuilder extends ContainerAware 
 {
+    protected $activeEnrollLabel;
+    
     public function __construct( FactoryInterface $factory ) 
     {
         $this->factory = $factory; 
@@ -31,14 +33,42 @@ class MenuBuilder extends ContainerAware
     {
         $menu = $this->createMainMenu( $request );
         
+        $this->activeEnrollLabel = $user->getActiveEnrollment()->getFacility() . ' ' . $user->getActiveEnrollment()->getWeek();
+        
         $menu->addChild(
-                $activeEnrollLabel,
+                $this->activeEnrollLabel,
                 array(
                     'uri'                   =>  'weeks_by_facility',
                     'routeParameters'       =>  array(
-                        'region_slug'       =>  $user->getActiveEnrollment()->getFacility(->getRegion()->getSlug(),
-                    )
-                ))
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug(),
+        ) ) );
+        
+        foreach( $user->getActiveEnrollment()->getFacility()->getWeeks() as $week )
+        {
+            if ($week->getId() != $user->getActiveEnrollment()->getWeek()->getId() )
+            {
+                $menu[ $this->activeEnrollLabel ]->addChild(
+                        $user->getActiveEnrollment()->getFacility() . ' ' . $week,
+                        array(
+                            'uri'               =>  'change-active-week',
+                            'routeParamters'    =>  array(
+                                'region_slug'       =>  $user->getActiveEnrollment()
+                                                             ->getFacility()
+                                                             ->getRegion()
+                                                             ->getSlug(),
+                                'facility_slug'     =>  $user->getActiveEnrollment()
+                                                             ->getFacility()
+                                                             ->getSlug(),
+                                'week_slug'         =>  $week->getSlug()
+                ) ) );
+            }
+        }
         // Faculty
         
         // -- Facility Admin
@@ -56,7 +86,7 @@ class MenuBuilder extends ContainerAware
     {
         $menu = $this->createMainMenu( $request );
         
-        $activeEnrollLabel = $user->getActiveEnrollment()->getFacility() . ' - ' . $user->getActiveEnrollment()->getWeek();            
+        $this->activeEnrollLabel = $user->getActiveEnrollment()->getFacility() . ' - ' . $user->getActiveEnrollment()->getWeek();            
         
         ////////////////////////////////////////////////////////////////////////
         // Passel Leader Menu
@@ -67,7 +97,7 @@ class MenuBuilder extends ContainerAware
             // Active Enrollment Menu Item
             ////////////////////////////////////////////////////////////////////
             $menu->addChild( 
-                    $activeEnrollLabel,    
+                    $this->activeEnrollLabel,    
                     array(
                         'uri'               =>  'passel_enrollment_show',
                         'routeParameters'   =>  array(
@@ -77,7 +107,7 @@ class MenuBuilder extends ContainerAware
             
             foreach( $user->getActiveEnrollment()->getPassel()->getEnrollments() as $enrollment )
             {
-                $menu[ $activeEnrollLabel ]->addChild( 
+                $menu[ $this->activeEnrollLabel ]->addChild( 
                         $enrollment()->getFacility() . ' - ' . $enrollment()->getWeek(), 
                         array(
                             'uri'               =>  'change-enrollment',
@@ -213,7 +243,7 @@ class MenuBuilder extends ContainerAware
                                                          ->getSlug(),
                 ) ) );
 
-                $menu[ $activeEnrollLabel ]->addChild( 
+                $menu[ $this->activeEnrollLabel ]->addChild( 
                         'enroll in a facility', 
                         array(
                             'uri'               =>  'passel_enrollment_new',
@@ -252,7 +282,7 @@ class MenuBuilder extends ContainerAware
             // Active Enrollment Menu Item
             ////////////////////////////////////////////////////////////////////
             $menu->addChild( 
-                    $activeEnrollLabel,    
+                    $this->activeEnrollLabel,    
                     array(
                         'uri'               =>  'passel_enrollment_show',
                         'routeParameters'   =>  array(
@@ -260,7 +290,7 @@ class MenuBuilder extends ContainerAware
                                                      ->getPasselEnrollmentId()
             ) ) );
             
-            $menu[ $activeEnrollLabel ]->addChild( 
+            $menu[ $this->activeEnrollLabel ]->addChild( 
                     'enroll', 
                     array(
                         'uri'               =>  'attendee_enrollment_new',
@@ -273,7 +303,7 @@ class MenuBuilder extends ContainerAware
                                                      ->getSlug(),                    
             ) ) );
             
-            $menu[ $activeEnrollLabel ]->addChild( 
+            $menu[ $this->activeEnrollLabel ]->addChild( 
                     'mealplan',
                     array(
                         'uri'               =>  'mealplan',
@@ -286,7 +316,7 @@ class MenuBuilder extends ContainerAware
                                                       ->getSlug(),                    
             )));
             
-            $menu[ $activeEnrollLabel ]->addChild( 
+            $menu[ $this->activeEnrollLabel ]->addChild( 
                     'packinglist',                   
                     array(
                         'uri'               =>  'packing-list',
@@ -299,7 +329,7 @@ class MenuBuilder extends ContainerAware
                                                          ->getSlug(),
             ) ) );
             
-            $menu[ $activeEnrollLabel ]->addChild( 
+            $menu[ $this->activeEnrollLabel ]->addChild( 
                     'change facilities',
                     array( 
                         'uri'                   =>  'passel_enrollments_by_passel', 
