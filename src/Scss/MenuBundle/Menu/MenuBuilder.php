@@ -31,6 +31,11 @@ class MenuBuilder extends ContainerAware
     
     public function createFacilityMenu( Request $request ) 
     {
+         // facultyAdmin
+        // [ %facility% - %wk% ]
+        // [ passel mgmt ]
+        // [ passel enrollment ]
+        // [ reports ]
         $menu = $this->createMainMenu( $request );
         
         $this->activeEnrollLabel = $user->getActiveEnrollment()->getFacility() . ' ' . $user->getActiveEnrollment()->getWeek();
