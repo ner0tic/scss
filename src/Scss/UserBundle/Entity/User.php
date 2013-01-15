@@ -1,6 +1,4 @@
 <?php
-// src/Scss/UserBundle/Entity/User.php
-
 namespace Scss\UserBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
@@ -8,10 +6,16 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Scss\EnrollmentBundle\Entity\ActiveEnrollment;
+use Scss\OrganizationBundle\Entity\Attendee;
+use Scss\OrganizationBundle\Entity\PasselLeader;
+use Scss\FacilityBundle\Entity\Faculty;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type",type="string")
+ * @ORM\DiscriminatorMap({"attendee" = "Attendee", "passel_leader" = "PasselLeader", "faculty"= "Faculty})
  */
 class User extends BaseUser
 {
@@ -21,12 +25,6 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
-    /**
-     * @Gedmo\Slug(fields={"first_name", "last_name"}) 
-     * @ORM\Column(length=128, unique=true, nullable=true)
-     */
-    protected $slug;
     
     /**
      * @ORM\Column(type="string") 
@@ -108,17 +106,6 @@ class User extends BaseUser
      */
     protected $avatar = '/images/avatars/default.png';
     
-//    public function serialize()
-//    {
-//        return serialize(array($this->facebookId, parent::serialize()));
-//    }
-//
-//    public function unserialize($data)
-//    {
-//        list($this->facebookId, $parentData) = unserialize($data);
-//        parent::unserialize($parentData);
-//    }
-
     /**
      * Get the full name of the user (first + last name)
      * @return string
@@ -184,30 +171,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return User
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set first_name
-     *
      * @param string $firstName
      * @return User
      */

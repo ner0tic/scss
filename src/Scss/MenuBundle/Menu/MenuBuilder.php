@@ -221,7 +221,9 @@ class MenuBuilder extends ContainerAware
                                                          ->getWeek()
                                                          ->getSlug()
             ) ) );
-        }        
+        }
+	
+	return $menu;        
     }
     
     /*

@@ -23,7 +23,8 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             
             new FOS\UserBundle\FOSUserBundle(),
-            
+            new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
+
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
