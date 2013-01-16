@@ -4,12 +4,16 @@ namespace Scss\FacilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Scss\UserBundle\Entity\User as BaseUser;
+use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="faculty")
+ * @UniqueEntity(fields = "username", targetClass = "Scss\USerBundle\Entity\User", message="fos_user.username_already")
+ * @UniqueEntity(fields = "email", targetClass = "Scss\USerBundle\Entity\User", message="fos_user.email_already")
  */
-class Faculty {
+class Faculty extends BaseUser {
 
   /**
    * @ORM\Id

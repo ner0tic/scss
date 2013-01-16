@@ -7,10 +7,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Scss\UserBundle\Entity\User as BaseUser;
+use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Table(name="passel_leader")
  * @ORM\Entity(repositoryClass="Scss\OrganizationBundle\Repository\PasselLeaderRepository")
+ * @UniqueEntity(fields = "username", targetClass = "Scss\USerBundle\Entity\User", message="fos_user.username_already")
+ * @UniqueEntity(fields = "email", targetClass = "Scss\USerBundle\Entity\User", message="fos_user.email_already")
  */
 class PasselLeader extends BaseUser
 {

@@ -6,18 +6,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Scss\EnrollmentBundle\Entity\ActiveEnrollment;
-use Scss\OrganizationBundle\Entity\Attendee;
-use Scss\OrganizationBundle\Entity\PasselLeader;
-use Scss\FacilityBundle\Entity\Faculty;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type",type="string")
- * @ORM\DiscriminatorMap({"attendee" = "Attendee", "passel_leader" = "PasselLeader", "faculty"= "Faculty})
+ * @ORM\DiscriminatorMap({"attendee" = "Scss\OrganizationBundle\Entity\Attendee", "passel_leader" = "Scss\OrganizationBundle\Entity\PasselLeader", "faculty"= "Scss\FacilityBundle\Entity\Faculty"})
  */
-class User extends BaseUser
+abstract class User extends BaseUser
 {
     /**
      * @ORM\Id
