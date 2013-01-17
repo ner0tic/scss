@@ -108,10 +108,10 @@ fos_user:
         user_manager: pugx_user_manager
     registration:
         form:
-            handler: pugx_user_registration_form_handler 
+            #handler: pugx_user_registration_form_handler 
     profile:
         form:
-            handler: pugx_user_profile_form_handler
+#            handler: pugx_user_profile_form_handler
 #            type: scss_user_registration
 #        confirmation:
 #            enabled:    true
