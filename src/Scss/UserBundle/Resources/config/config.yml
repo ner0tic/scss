@@ -1,0 +1,18 @@
+parameters:
+  pugx_user_discriminator_parameters:
+    classes:
+        attendee:
+            entity: Scss\OrganizationBundle\Entity\Attendee
+            registration: Scss\OrganizationBundle\Form\Type\RegistrationAttendeeFormType
+            profile: Scss\OrganizationBundle\Form\Type\ProfileAttendeeFormType
+            factory:
+        passel_leader:
+            entity: Scss\OrganizationBundle\Entity\PasselLeader
+            registration: Scss\OrganizationBundle\Form\Type\RegistrationPasselLeaderFormType
+            profile: Scss\OrganizationBundle\Form\Type\ProfilePasselLeaderFormType
+            factory:
+        faculty:
+            entity: Scss\FacilityBundle\Entity\Faculty
+            registration: Scss\OrganizationBundle\Form\Type\RegistrationFacultyFormType
+            profile: Scss\OrganizationBundle\Form\Type\ProfileFacultyFormType
+            factory:

@@ -104,17 +104,23 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Scss\UserBundle\Entity\User
+    service:
+        user_manager: pugx_user_manager
     registration:
         form:
-            type: scss_user_registration
-        confirmation:
-            enabled:    true
-            from_email:
-                address:  noreply@scss.net
-                sender_name: ScssBot
-    from_email:
-        address:        noreply@scss.net
-        sender_name:    ScssBot
+            handler: pugx_user_registration_form_handler 
+    profile:
+        form:
+            handler: pugx_user_profile_form_handler
+#            type: scss_user_registration
+#        confirmation:
+#            enabled:    true
+#            from_email:
+#                address:  noreply@scss.net
+#                sender_name: ScssBot
+#    from_email:
+#        address:        noreply@scss.net
+#        sender_name:    ScssBot
 
 ################################################################################
 ## JMS

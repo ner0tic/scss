@@ -14,3 +14,12 @@ fos_user_registration_confirm:
 fos_user_registration_confirmed:
     pattern: /confirmed
     defaults: { _controller: FOSUserBundle:Registration:confirmed }
+attendee_registration:
+    pattern: /attendee
+    defaults: { _controller: ScssUserBundle:RegistrationAttendee:register }
+passel_leader_registration:
+    pattern: /passel-leader
+    defaults: { _controller: ScssUserBundle:RegistrationPasselLeader:register }    
+faculty_registration:
+    pattern: /faculty
+    defaults: { _controller: ScssUserBundle:RegistrationFaculty:register }    
