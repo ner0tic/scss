@@ -10,10 +10,11 @@ use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity
  * @ORM\Table(name="faculty")
- * @UniqueEntity(fields = "username", targetClass = "Scss\USerBundle\Entity\User", message="fos_user.username_already")
- * @UniqueEntity(fields = "email", targetClass = "Scss\USerBundle\Entity\User", message="fos_user.email_already")
+ * @UniqueEntity(fields = "username", targetClass = "Scss\UserBundle\Entity\User", message="fos_user.username_already")
+ * @UniqueEntity(fields = "email", targetClass = "Scss\UserBundle\Entity\User", message="fos_user.email_already")
  */
-class Faculty extends BaseUser {
+class Faculty extends BaseUser 
+{
 
   /**
    * @ORM\Id
@@ -21,37 +22,6 @@ class Faculty extends BaseUser {
    * @ORM\GeneratedValue(strategy="AUTO")
    */
   protected $id;
-
-  /**
-    * @var datetime $created
-    *
-    * @Gedmo\Timestampable(on="create")
-    * @ORM\Column(type="datetime")
-    */
-  private $created;
-
-  /**
-    * @var datetime $updated
-    *
-    * @Gedmo\Timestampable(on="update")
-    * @ORM\Column(type="datetime")
-    */
-  private $updated;    
-
-  /**
-    * @ORM\Column(name="first_name", type="string", length=150)
-    */
-  protected $first_name;
-
-  /**
-    * @ORM\Column(name="last_name", type="string", length=150)
-    */
-  protected $last_name;    
-
-  /**
-    * @ORM\Column(name="brithdate", type="date")
-    */
-  protected $birthdate;
 
   /**
     * @ORM\Column(name="title", type="string", length=150)
@@ -107,116 +77,6 @@ class Faculty extends BaseUser {
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Set created
-     *
-     * @param datetime $created
-     * @return Faculty
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-        return $this;
-    }
-
-    /**
-     * Get created
-     *
-     * @return datetime 
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Set updated
-     *
-     * @param datetime $updated
-     * @return Faculty
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-        return $this;
-    }
-
-    /**
-     * Get updated
-     *
-     * @return datetime 
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
-    /**
-     * Set first_name
-     *
-     * @param string $firstName
-     * @return Faculty
-     */
-    public function setFirstName($firstName)
-    {
-        $this->first_name = $firstName;
-        return $this;
-    }
-
-    /**
-     * Get first_name
-     *
-     * @return string 
-     */
-    public function getFirstName()
-    {
-        return $this->first_name;
-    }
-
-    /**
-     * Set last_name
-     *
-     * @param string $lastName
-     * @return Faculty
-     */
-    public function setLastName($lastName)
-    {
-        $this->last_name = $lastName;
-        return $this;
-    }
-
-    /**
-     * Get last_name
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->last_name;
-    }
-
-    /**
-     * Set birthdate
-     *
-     * @param date $birthdate
-     * @return Faculty
-     */
-    public function setBirthdate($birthdate)
-    {
-        $this->birthdate = $birthdate;
-        return $this;
-    }
-
-    /**
-     * Get birthdate
-     *
-     * @return date 
-     */
-    public function getBirthdate()
-    {
-        return $this->birthdate;
     }
 
     /**

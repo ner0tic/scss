@@ -95,8 +95,6 @@
         "white-october/pagerfanta-bundle":                        "dev-master",
         "pagerfanta/pagerfanta":                                  "dev-master",
                 
-        "elao/web-profiler-extra-bundle":                         "dev-master",
-        
         "friendsofsymfony/user-bundle":                           "dev-master",
         "pugx/multi-user-bundle":                                 "dev-master",        
         
