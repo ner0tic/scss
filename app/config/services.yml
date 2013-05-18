@@ -10,7 +10,7 @@ services:
 ## KnP Menu ####################################################################
 ################################################################################
     scss_menu.menu_builder:
-        class: Scss\MenuBundle\Menu\MenuBuilder
+        class: Scss\UserBundle\Menu\MenuBuilder
         arguments: ["@knp_menu.factory"]
 
     scss_menu.menu.main:

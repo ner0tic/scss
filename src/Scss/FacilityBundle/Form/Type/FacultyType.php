@@ -9,7 +9,7 @@ class FacultyType extends AbstractType {
   public function buildForm(FormBuilderInterface $builder, array $options) {
     $builder->add('first_name');
     $builder->add('last_name');
-    $builder->add('borthdate', 'birthday');
+    $builder->add('birthdate', 'birthday');
     $builder->add('title');
     $builder->add('facility');
     

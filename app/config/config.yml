@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: doctrine_extensions.yml }
     - { resource: services.yml }
 
 framework:
@@ -24,6 +25,7 @@ twig:
     strict_variables: %kernel.debug%
     form:
         resources:
+            - "BraincraftedBootstrapBundle:Form:form_div_layout.html.twig"
             - 'OhGoogleMapFormTypeBundle:Form:fields.html.twig'
 
 ################################################################################
@@ -47,6 +49,11 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        mapping_types:
+            enum: string
+            set: string
+            varbinary: string
+            tinyblob: text        
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
@@ -101,27 +108,18 @@ swiftmailer:
 ## FOS
 ################################################################################
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    db_driver: orm
     firewall_name: main
     user_class: Scss\UserBundle\Entity\User
     service:
         user_manager: pugx_user_manager
     registration:
         form:
-            #handler: pugx_user_registration_form_handler 
+            handler: pugx_user_registration_form_handler
     profile:
         form:
-#            handler: pugx_user_profile_form_handler
-#            type: scss_user_registration
-#        confirmation:
-#            enabled:    true
-#            from_email:
-#                address:  noreply@scss.net
-#                sender_name: ScssBot
-#    from_email:
-#        address:        noreply@scss.net
-#        sender_name:    ScssBot
-
+            handler: pugx_user_profile_form_handler
+    
 ################################################################################
 ## JMS
 ################################################################################
@@ -139,20 +137,71 @@ jms_aop:
     cache_dir: %kernel.cache_dir%/jms_aop  
 
 ################################################################################
-## KnP Menu
+## KnP
 ################################################################################
 knp_menu:
-    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
-        template: knp_menu.html.twig
-    templating: false # if true, enables the helper for PHP templates
-    default_renderer: twig # The renderer to use, list is also available by default
-
+    twig: 
+        template: ScssUserBundle:Base:menu.html.twig
+    templating: false 
+    default_renderer: twig      
+    
 ################################################################################
 ## Google Maps
 ################################################################################
 ivory_google_map:
+    map:
+      prefix_javascript_variable: "map_"
+      html_container: "map"
+      async: false
+      auto_zoom: false
+      center:
+          longitude:  0
+          latitude:   0
+          no_wrap:    true
+      zoom: 3
+      bound:
+          south_west:
+              latitude:   -2.1
+              longitude:  1.4
+              no_wrap:    true
+          north_east:
+              latitude:   2.6
+              longitude:  1.4
+              no_wrap:    true
+      type: "roadmap" 
+      width:  "100%"
+      height: "100%"
+      map_options:
+          disableDefaultUI:       true
+          disableDoubleClickZoom: true
+      stylesheet_options: 
+          position: "absolute"
+          top:      "32px"
+          left:     "0px"
+          z-index:  "-100"
+      language: en
     geocoder:
-        class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\Geocoder"
-        provider:
-            class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\\Provider"
-        adapter: "Geocoder\HttpAdapter\BuzzHttpAdapter"        
+      class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\Geocoder"
+      provider:
+        class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\\Provider"
+        api_key: ~
+        locale: en
+      adapter: "Geocoder\HttpAdapter\BuzzHttpAdapter" 
+################################################################################
+## PUGX Multi User
+################################################################################
+parameters:
+    pugx_user_discriminator_parameters:
+        classes:
+            faculty:
+                entity: Scss\FacilityBundle\Entity\Faculty
+                registration: Scss\FacilityBundle\Form\Type\RegistrationFacultyFormType
+                profile: Scss\FacilityBundle\Form\Type\ProfileFacultyFormType
+            passel_leader:
+                entity: Scss\OrganizationBundle\Entity\PasselLeader
+                registration: Scss\OrganizationBundle\Form\Type\RegistrationPasselLeaderFormType
+                profile: Scss\OrganizationBundle\Form\Type\ProfilePasselLeaderFormType
+            attendee:
+                entity: Scss\OrganizationBundle\Entity\Attendee
+                registration: Scss\OrganizationBundle\Form\Type\RegistrationAttendeeFormType
+                profile: Scss\OrganizationBundle\Form\Type\ProfileAttendeeFormType

@@ -158,7 +158,7 @@ class Department {
     /**
      * Set parent
      *
-     * @param Scss\FacilityBundle\Entity\Aacility $parent
+     * @param Scss\FacilityBundle\Entity\Department $parent
      * @return Department
      */
     public function setParent(\Scss\FacilityBundle\Entity\Department $parent = null)

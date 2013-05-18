@@ -34,42 +34,91 @@
   <body>
     {#{{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }} #}
     <header>
-      {% block header %}
-      <div class="container">
-        <ul id="top-links">
-          <li><a href="{{ path('help_specific', { 'subject' : 'dashboard' }) }}">help</a></li>
-          <li><a href="{{ path('settings') }}">settings</a></li>
-          <li>
-          {% if is_granted('ROLE_USER') %}
-              <a href="{{ path('fos_user_security_logout') }}">Sign Out</a>
-          {% else %}
-              <a href="{{ path('fos_user_security_login') }}">sign in</a>
-          {% endif %}
-          </li>
-        </ul>
-        <div id="logo"><a href="{{ path('homepage') }}">summercamp<span>schedulingsystem</span></a><sup>BETA</sup></div>
-        <menu>
-        {% block menu %}
-          {% if is_granted('ROLE_USER') %}
-            {{ knp_menu_render('main') }}
-          {% else %}
-            {{ knp_menu_render('nonauth') }}   
-          {% endif %}
+    { % block header %}
+        <div id="logo">
+        {% block logo %}
+            <a href="#">
+                <img src="{{ asset( 'logo' ) }}" />
+                <span>{% block logo_text %}[SCSS]{% endblock %}</span>
+            </a>
         {% endblock %}
-        </menu>
-      </div>    
-      {% endblock %}
+        </div>
+        <nav id="nav-bar">
+        {% block navbar %}
+            <ul>
+                <li class="nav-link current">
+                    <a href="#">home</a>
+                </li>
+                <li class="nav-link dropdown">
+                    <a href="#">enrollments</a>
+                    <ul class="submenu">
+                        <li class="nav-link sub-nav-link">
+                            <a href="#">attendee enrollment</a>
+                        </li>
+                        <li class="nav-link sub-nav-link">
+                            <a href="#">passel enrollment</a>
+                        </li>
+                        <li class="nav-link sub-nav-link">
+                            <a href="#">next season</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-link dropdown">
+                    <a href="#">reports</a>
+                    <ul class="submenu">
+                        <li class="nav-link sub-nav-link">
+                            <a href="#">individual schedule</a>
+                        </li>
+                        <li class="nav-link sub-nav-link">
+                            <a href="#">master schedule</a>
+                        </li>
+                        <li class="nav-link sub-nav-link">
+                            <a href="#">alpha list</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-link">
+                    <a href="#">medications</a>
+                </li>
+                <li class="nav-link dropdown" id="profile-link">
+                    <a href="#">profile<p class="down-arrow"></p></a>
+                </li>
+            </ul>
+        {% endblock %}
+        </nav>
+    {% endblock %}
     </header>
-    <div id="main-content" class="container">
-    {% block main_content %}
-      
+    <section id="content">
+    {% block content %}
+        <nav id="session-bar">
+        {% block sessionbar %}
+            <ul>
+                <li class="session-item" id="passel">
+                    <label>passel:</label>
+                    <input id="passel" />
+                </li>
+                <li class="session-item" id="facility">
+                    <label>facility:</label>
+                    <input id="facility" />
+                </li>
+                <li class="session-item" id="season">
+                    <label>season:</label>
+                    <input id="season" />
+                </li>
+                <li class="session-item" id="attendee">
+                    <label>attendee:</label>
+                    <input id="attendee" />
+                </li>
+            </ul>
+        {% endblock %}
+        </nav>
+        <section id="main-content">
+        {% block main_content %}
+            
+        {% endblock %}
+        </section>
     {% endblock %}
-    </div>
-    <div id="footer">
-    {% block footer %}      
-      &copy; 2012 all rights reserved.
-    {% endblock %}
-    </div>
+    </section>            
     {% block javascripts %}
 <script>
   function goLogIn(){

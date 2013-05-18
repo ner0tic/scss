@@ -17,18 +17,21 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             
             new JMS\AopBundle\JMSAopBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            
             
             new FOS\UserBundle\FOSUserBundle(),
             new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
 
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-
+                        
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
-            new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
+//            new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
             
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             
@@ -37,17 +40,16 @@ class AppKernel extends Kernel
             new Scss\OrganizationBundle\ScssOrganizationBundle(),
             new Scss\GeographyBundle\ScssGeographyBundle(),
             new Scss\CourseBundle\ScssCourseBundle(),
-            new Scss\MenuBundle\ScssMenuBundle(),
             new Scss\UtilityBundle\ScssUtilityBundle(),
             new Scss\EnrollmentBundle\ScssEnrollmentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+            $bundles[] = new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle();
+            $bundles[] = new JMS\DebuggingBundle\JMSDebuggingBundle($this);
         }
 
         return $bundles;
