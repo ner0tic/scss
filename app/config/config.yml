@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
     - { resource: services.yml }
+    - { resource: menu.yml }
 
 framework:
     #esi:             ~
@@ -25,9 +26,9 @@ twig:
     strict_variables: %kernel.debug%
     form:
         resources:
-            - "BraincraftedBootstrapBundle:Form:form_div_layout.html.twig"
-            - 'OhGoogleMapFormTypeBundle:Form:fields.html.twig'
-
+            - "BcBootstrapBundle:Form:form_div_layout.html.twig"
+#            - 'OhGoogleMapFormTypeBundle:Form:fields.html.twig'
+            
 ################################################################################
 ## Assetic Configuration
 ################################################################################
@@ -35,7 +36,17 @@ assetic:
     debug:          %kernel.debug%
     use_controller: false
     filters:
+        less:
+            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            apply_to: "\.less$"
         cssrewrite: ~
+    assets:
+        bootstrap_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/docs/assets/css/bootstrap.css
+            filters:
+                - cssrewrite
+            output: css/bootstrap.css
 
 ################################################################################
 ## Doctrine Configuration
@@ -60,6 +71,8 @@ doctrine:
             default:
                 auto_mapping: true
                 mappings:
+                    FOSUserBundle: ~
+                    ScssUserBundle: ~
                     gedmo_translatable:
                         type: annotation
                         prefix: Gedmo\Translatable\Entity
@@ -141,7 +154,7 @@ jms_aop:
 ################################################################################
 knp_menu:
     twig: 
-        template: ScssUserBundle:Base:menu.html.twig
+        template: MillwrightMenuBundle:Default:knp_menu.html.twig
     templating: false 
     default_renderer: twig      
     
@@ -197,11 +210,14 @@ parameters:
                 entity: Scss\FacilityBundle\Entity\Faculty
                 registration: Scss\FacilityBundle\Form\Type\RegistrationFacultyFormType
                 profile: Scss\FacilityBundle\Form\Type\ProfileFacultyFormType
+                factory: ~
             passel_leader:
-                entity: Scss\OrganizationBundle\Entity\PasselLeader
-                registration: Scss\OrganizationBundle\Form\Type\RegistrationPasselLeaderFormType
-                profile: Scss\OrganizationBundle\Form\Type\ProfilePasselLeaderFormType
+                entity: Scss\PasselBundle\Entity\PasselLeader
+                registration: Scss\PasselBundle\Form\Type\RegistrationPasselLeaderFormType
+                profile: Scss\PasselBundle\Form\Type\ProfilePasselLeaderFormType
+                factory: ~
             attendee:
-                entity: Scss\OrganizationBundle\Entity\Attendee
-                registration: Scss\OrganizationBundle\Form\Type\RegistrationAttendeeFormType
-                profile: Scss\OrganizationBundle\Form\Type\ProfileAttendeeFormType
+                entity: Scss\PasselBundle\Entity\Attendee
+                registration: Scss\PasselBundle\Form\Type\RegistrationAttendeeFormType
+                profile: Scss\PasselBundle\Form\Type\ProfileAttendeeFormType
+                factory: ~

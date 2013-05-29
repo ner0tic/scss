@@ -23,75 +23,42 @@
     <link rel="apple-touch-icon" href="{{ asset('/apple-touch-icon.png') }}">
 <!-- CSS : implied media="all" -->
     {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('/css/reset.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/scss.css.php') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/datatable.css.php') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/header.css.php') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/footer.css.php') }}" />
+      <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
+      <link rel="stylesheet" href="{{ asset('/bundles/scssuser/css/scss.css') }}" />
     {% endblock %}
     <script src="/js/libs/modernizr-1.6.min.js"></script>
   </head>
   <body>
     {#{{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }} #}
     <header>
-    { % block header %}
+    {% block header %}
         <div id="logo">
         {% block logo %}
             <a href="#">
-                <img src="{{ asset( 'logo' ) }}" />
+                <img src="{{ asset( 'logo' ) }}" class="logo" />
                 <span>{% block logo_text %}[SCSS]{% endblock %}</span>
             </a>
         {% endblock %}
         </div>
         <nav id="nav-bar">
         {% block navbar %}
-            <ul>
-                <li class="nav-link current">
-                    <a href="#">home</a>
-                </li>
-                <li class="nav-link dropdown">
-                    <a href="#">enrollments</a>
-                    <ul class="submenu">
-                        <li class="nav-link sub-nav-link">
-                            <a href="#">attendee enrollment</a>
-                        </li>
-                        <li class="nav-link sub-nav-link">
-                            <a href="#">passel enrollment</a>
-                        </li>
-                        <li class="nav-link sub-nav-link">
-                            <a href="#">next season</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-link dropdown">
-                    <a href="#">reports</a>
-                    <ul class="submenu">
-                        <li class="nav-link sub-nav-link">
-                            <a href="#">individual schedule</a>
-                        </li>
-                        <li class="nav-link sub-nav-link">
-                            <a href="#">master schedule</a>
-                        </li>
-                        <li class="nav-link sub-nav-link">
-                            <a href="#">alpha list</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-link">
-                    <a href="#">medications</a>
-                </li>
-                <li class="nav-link dropdown" id="profile-link">
-                    <a href="#">profile<p class="down-arrow"></p></a>
-                </li>
-            </ul>
+            <menu>
+              {% if is_granted( 'ROLE_USER' ) %}
+              
+              {% else %}
+                {{ millwright_menu_render('nonAuthMenu') }}    
+              {% endif %}
+            </menu>
         {% endblock %}
         </nav>
     {% endblock %}
     </header>
     <section id="content">
     {% block content %}
+        {% if is_granted( 'ROLE_USER' ) %}
         <nav id="session-bar">
         {% block sessionbar %}
+          <menu>
             <ul>
                 <li class="session-item" id="passel">
                     <label>passel:</label>
@@ -110,8 +77,10 @@
                     <input id="attendee" />
                 </li>
             </ul>
+          </menu>
         {% endblock %}
         </nav>
+        {% endif %}
         <section id="main-content">
         {% block main_content %}
             

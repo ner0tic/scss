@@ -3,7 +3,7 @@
 services:
     # KernelRequest listener
     extension.listener:
-        class: Landmarx\LandmarkBundle\Listener\DoctrineExtensionListener
+        class: Scss\UserBundle\Listener\DoctrineExtensionListener
         calls:
             - [ setContainer, [ @service_container ] ]
         tags:

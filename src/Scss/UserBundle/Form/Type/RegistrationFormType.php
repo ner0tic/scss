@@ -10,7 +10,7 @@ class RegistrationFormType extends BaseType
     {
         parent::buildForm($builder, $options);
         
-        //$builder->add( 'user-type', new UserType() );
+        $builder->add( 'type' );
 //        $builder->add( 'terms', 'checkbox', array( 
 //            'property_path' =>  'termsAccepted' 
 //        ));

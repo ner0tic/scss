@@ -1,260 +1,257 @@
 <?php
+    namespace Scss\CourseBundle\Entity;
 
-namespace Scss\CourseBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-
-
-
-/**
- * @ORM\Entity
- * @ORM\Table(name="week")
- */
-class Week {
-
-  /**
-   * @ORM\Id
-   * @ORM\Column(type="integer")
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
-  protected $id;
-
-  /**
-   * @Gedmo\Slug(fields={"name"}) 
-   * @ORM\Column(length=128, unique=true)
-   */
-  protected $slug;
-
-  /**
-   * @var datetime $created
-   *
-   * @Gedmo\Timestampable(on="create")
-   * @ORM\Column(type="datetime")
-   */
-  private $created;
-
-  /**
-   * @var datetime $updated
-   *
-   * @Gedmo\Timestampable(on="update")
-   * @ORM\Column(type="datetime")
-   */
-  private $updated;    
-
-  /**
-   * @ORM\Column(type="string", length=150)
-   * @var type 
-   */
-  protected $name;
-  
-  /**
-   * @ORM\Column(type="datetime")
-   * @var type 
-   */
-  protected $start;
-  
-  /**
-   * @ORM\Column(type="datetime")
-   * @var type 
-   */
-  protected $end;
-  
-  /**
-   * @ORM\Column(type="boolean")
-   * @var type 
-   */
-  protected $special = false;
-  
-  /**
-   * @ORM\ManyToOne(targetEntity="Scss\FacilityBundle\Entity\Facility", inversedBy="week")
-   * @ORM\JoinColumn(name="facility_id", referencedColumnName="id")
-   */  
-  protected $facility;
+    use Doctrine\ORM\Mapping as ORM,
+        Gedmo\Mapping\Annotation as Gedmo;
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @ORM\Entity
+     * @ORM\Table(name="week")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    class Week {
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Week
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-        return $this;
-    }
+      /**
+       * @ORM\Id
+       * @ORM\Column(type="integer")
+       * @ORM\GeneratedValue(strategy="AUTO")
+       */
+      protected $id;
 
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
+      /**
+       * @Gedmo\Slug(fields={"name"}) 
+       * @ORM\Column(length=128, unique=true)
+       */
+      protected $slug;
 
-    /**
-     * Set created
-     *
-     * @param datetime $created
-     * @return Week
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-        return $this;
-    }
+      /**
+       * @var datetime $created
+       *
+       * @Gedmo\Timestampable(on="create")
+       * @ORM\Column(type="datetime")
+       */
+      private $created;
 
-    /**
-     * Get created
-     *
-     * @return datetime 
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
+      /**
+       * @var datetime $updated
+       *
+       * @Gedmo\Timestampable(on="update")
+       * @ORM\Column(type="datetime")
+       */
+      private $updated;    
 
-    /**
-     * Set updated
-     *
-     * @param datetime $updated
-     * @return Week
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-        return $this;
-    }
+      /**
+       * @ORM\Column(type="string", length=150)
+       * @var type 
+       */
+      protected $name;
+      
+      /**
+       * @ORM\Column(type="datetime")
+       * @var type 
+       */
+      protected $start;
+      
+      /**
+       * @ORM\Column(type="datetime")
+       * @var type 
+       */
+      protected $end;
+      
+      /**
+       * @ORM\Column(type="boolean")
+       * @var type 
+       */
+      protected $special = false;
+      
+      /**
+       * @ORM\ManyToOne(targetEntity="Scss\FacilityBundle\Entity\Facility", inversedBy="week")
+       * @ORM\JoinColumn(name="facility_id", referencedColumnName="id")
+       */  
+      protected $facility;
 
-    /**
-     * Get updated
-     *
-     * @return datetime 
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
+        /**
+         * Get id
+         *
+         * @return integer 
+         */
+        public function getId()
+        {
+            return $this->id;
+        }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Week
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+        /**
+         * Set slug
+         *
+         * @param string $slug
+         * @return Week
+         */
+        public function setSlug($slug)
+        {
+            $this->slug = $slug;
+            return $this;
+        }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+        /**
+         * Get slug
+         *
+         * @return string 
+         */
+        public function getSlug()
+        {
+            return $this->slug;
+        }
 
-    /**
-     * Set start
-     *
-     * @param datetime $start
-     * @return Week
-     */
-    public function setStart($start)
-    {
-        $this->start = $start;
-        return $this;
-    }
+        /**
+         * Set created
+         *
+         * @param datetime $created
+         * @return Week
+         */
+        public function setCreated($created)
+        {
+            $this->created = $created;
+            return $this;
+        }
 
-    /**
-     * Get start
-     *
-     * @return datetime 
-     */
-    public function getStart()
-    {
-        return $this->start;
-    }
+        /**
+         * Get created
+         *
+         * @return datetime 
+         */
+        public function getCreated()
+        {
+            return $this->created;
+        }
 
-    /**
-     * Set end
-     *
-     * @param datetime $end
-     * @return Week
-     */
-    public function setEnd($end)
-    {
-        $this->end = $end;
-        return $this;
-    }
+        /**
+         * Set updated
+         *
+         * @param datetime $updated
+         * @return Week
+         */
+        public function setUpdated($updated)
+        {
+            $this->updated = $updated;
+            return $this;
+        }
 
-    /**
-     * Get end
-     *
-     * @return datetime 
-     */
-    public function getEnd()
-    {
-        return $this->end;
-    }
+        /**
+         * Get updated
+         *
+         * @return datetime 
+         */
+        public function getUpdated()
+        {
+            return $this->updated;
+        }
 
-    /**
-     * Set special
-     *
-     * @param boolean $special
-     * @return Week
-     */
-    public function setSpecial($special)
-    {
-        $this->special = $special;
-        return $this;
-    }
+        /**
+         * Set name
+         *
+         * @param string $name
+         * @return Week
+         */
+        public function setName($name)
+        {
+            $this->name = $name;
+            return $this;
+        }
 
-    /**
-     * Get special
-     *
-     * @return boolean 
-     */
-    public function getSpecial()
-    {
-        return $this->special;
-    }
+        /**
+         * Get name
+         *
+         * @return string 
+         */
+        public function getName()
+        {
+            return $this->name;
+        }
 
-    /**
-     * Set facility
-     *
-     * @param Scss\FacilityBundle\Entity\Facility $facility
-     * @return Week
-     */
-    public function setFacility(\Scss\FacilityBundle\Entity\Facility $facility = null)
-    {
-        $this->facility = $facility;
-        return $this;
-    }
+        /**
+         * Set start
+         *
+         * @param datetime $start
+         * @return Week
+         */
+        public function setStart($start)
+        {
+            $this->start = $start;
+            return $this;
+        }
 
-    /**
-     * Get facility
-     *
-     * @return Scss\FacilityBundle\Entity\Facility 
-     */
-    public function getFacility()
-    {
-        return $this->facility;
+        /**
+         * Get start
+         *
+         * @return datetime 
+         */
+        public function getStart()
+        {
+            return $this->start;
+        }
+
+        /**
+         * Set end
+         *
+         * @param datetime $end
+         * @return Week
+         */
+        public function setEnd($end)
+        {
+            $this->end = $end;
+            return $this;
+        }
+
+        /**
+         * Get end
+         *
+         * @return datetime 
+         */
+        public function getEnd()
+        {
+            return $this->end;
+        }
+
+        /**
+         * Set special
+         *
+         * @param boolean $special
+         * @return Week
+         */
+        public function setSpecial($special)
+        {
+            $this->special = $special;
+            return $this;
+        }
+
+        /**
+         * Get special
+         *
+         * @return boolean 
+         */
+        public function getSpecial()
+        {
+            return $this->special;
+        }
+
+        /**
+         * Set facility
+         *
+         * @param Scss\FacilityBundle\Entity\Facility $facility
+         * @return Week
+         */
+        public function setFacility(\Scss\FacilityBundle\Entity\Facility $facility = null)
+        {
+            $this->facility = $facility;
+            return $this;
+        }
+
+        /**
+         * Get facility
+         *
+         * @return Scss\FacilityBundle\Entity\Facility 
+         */
+        public function getFacility()
+        {
+            return $this->facility;
+        }
     }
-}

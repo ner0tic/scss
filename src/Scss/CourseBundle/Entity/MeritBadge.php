@@ -1,55 +1,55 @@
 <?php
+  namespace Scss\CourseBundle\Entity;
 
-namespace Scss\CourseBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-
-/**
- * @ORM\Entity
- * @ORM\Table(name="merit_badge")
- */
-class MeritBadge {
+  use Doctrine\ORM\Mapping as ORM,
+      Gedmo\Mapping\Annotation as Gedmo,
+      Scss\CourseBundle\Model\Course;
 
   /**
-   * @ORM\Id
-   * @ORM\Column(type="integer")
-   * @ORM\GeneratedValue(strategy="AUTO")
+   * @ORM\Entity(repositoryClass="Scss\CourseBundle\Repository\MeritBadgeRepository")
+   * @ORM\Table(name="merit_badge")
    */
-  protected $id;
+  class MeritBadge extends Course
+  {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
-  /**
-   * @Gedmo\Slug(fields={"name"}) 
-   * @ORM\Column(length=128, unique=true)
-   */
-  protected $slug;
+    /**
+     * @Gedmo\Slug(fields={"name"}) 
+     * @ORM\Column(length=128, unique=true)
+     */
+    protected $slug;
 
-  /**
-   * @var datetime $created
-   *
-   * @Gedmo\Timestampable(on="create")
-   * @ORM\Column(type="datetime")
-   */
-  private $created;
+    /**
+     * @var datetime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
 
-  /**
-   * @var datetime $updated
-   *
-   * @Gedmo\Timestampable(on="update")
-   * @ORM\Column(type="datetime")
-   */
-  private $updated;    
+    /**
+     * @var datetime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;    
 
-  /**
-   * @ORM\Column(type="string", length=150)
-   * @var type 
-   */
-  protected $name;
-  
-  /**
-   * @ORM\Column(type="boolean") 
-   */
-  protected $special = false;  
+    /**
+     * @ORM\Column(type="string", length=150)
+     * @var type 
+     */
+    protected $name;
+    
+    /**
+     * @ORM\Column(type="boolean") 
+     */
+    protected $special = false;  
 
     /**
      * Get id

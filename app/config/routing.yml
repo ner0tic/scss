@@ -15,12 +15,15 @@ course:
 facility:
     resource: "@ScssFacilityBundle/Resources/config/routing/routing.yml"
     prefix: /
-geography:
-    resource: "@ScssGeographyBundle/Resources/config/routing/routing.yml"
+passel:
+    resource: "@ScssPasselBundle/Resources/config/routing/routing.yml"
     prefix: /
-misc:
-    resource: "@ScssUtilityBundle/Resources/config/routing/routing.yml"
-    prefix: /
+report:
+    resource: "@ScssReportBundle/Resources/config/routing/routing.yml"
+    prefix: /    
+#misc:
+#    resource: "@ScssUtilityBundle/Resources/config/routing/routing.yml"
+#    prefix: /
 #fos_user_resetting:
 #    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
 #    prefix: /resetting
@@ -33,3 +36,21 @@ homepage:
 dashboard:
     pattern: /dashboard
     defaults: { _controller: ScssUserBundle:User:index }
+about:
+    pattern: /about
+    defaults: { _controller: ScssUserBundle:User:about }
+help:
+    pattern: /help
+    defaults: { _controller: ScssUserBundle:User:help }
+contact:
+    pattern: /contact
+    defaults: { _controller: ScssUserBundle:User:contact }
+attendee_registration:
+    pattern:  /signup/attendee
+    defaults: { _controller: ScssUserBundle:RegistrationAttendee:register }
+passel_leader_registration:
+    pattern:  /signup/passel-leader
+    defaults: { _controller: ScssUserBundle:RegistrationPasselLeader:register }    
+faculty_registration:
+    pattern: /signup/faculty
+    defaults: { _controller: ScssUserBundle:RegistrationFaculty:register }

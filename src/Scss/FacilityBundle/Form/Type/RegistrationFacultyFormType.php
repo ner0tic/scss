@@ -2,12 +2,12 @@
 
 namespace Scss\FacilityBundle\Form\Type;
 
-use Symfony\Component\Form\FormBuilder,
+use Symfony\Component\Form\FormBuilderInterface,
     FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
 class RegistrationFacultyFormType extends BaseType
 {
-    public function buildForm( FormBuilder $builder, array $options )
+    public function buildForm( FormBuilderInterface $builder, array $options )
     {
         parent::buildForm( $builder, $options );
 

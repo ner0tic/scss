@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Scss\OrganizationBundle\Repository\OrganizationRepository")
+ * @ORM\Entity(repositoryClass="Scss\CourseBundle\Repository\RequirementRepository")
  * @ORM\Table(name="requirement")
  */
 class Requirement 
@@ -58,6 +58,24 @@ class Requirement
      * @var type 
      */
     protected $text;
+
+    /**
+     * @ORM(\ManyToOne(targetEntity="MeritBadge", inversedBy="requirement")
+     * @ORM\JoinColumn(name="merit_badge_id", referencedColumnName="id")
+     */
+    protected $merit_badge;
+
+    public function getMeritBadge() 
+    {
+      return $this->merit_badge;
+    }
+
+    public function setMeritBadge( Scss\CourseBundle\Entity\MeritBadge $mb )
+    {
+      $this->merit_badge = $mb;
+
+      return $this;
+    }
 
     protected $attributes = array();
 

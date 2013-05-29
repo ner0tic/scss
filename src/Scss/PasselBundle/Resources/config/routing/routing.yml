@@ -1,0 +1,134 @@
+###############################################################################
+## Passel
+###############################################################################
+passels:
+    pattern: /passels
+    defaults: { _controller: ScssPasselBundle:Passel:index }
+passels_by_organization:
+    pattern: /organizations/{organization}/passels
+    defaults: { _controller: ScssPasselBundle:Passel:organization }
+passels_by_council:
+    pattern: /councils/{council}/passels
+    defaults: {_controller: ScssPasselBundle:Passel:council }    
+passels_by_region:
+    pattern: /regions/{region}/passels
+    defaults: { _controller: ScssPasselBundle:Passel:region }
+passel_show:
+    pattern: /passels/{passel}
+    defaults: { _controller: ScssPasselBundle:Passel:show }
+passel_new:
+    pattern: /passels/new
+    defaults: { _controller: ScssPasselBundle:Passel:new }    
+passel_edit:
+    pattern: /passels/{passel}/edit
+    defaults: { _controller: ScssPasselBundle:Passel:edit }    
+
+###############################################################################
+## Faction
+###############################################################################
+factions:
+    pattern: /factions
+    defaults: { _controller: ScssPasselBundle:Faction:index }
+factions_by_passel:
+    pattern: /passels/{passel}/factions
+    defaults: { _controller: ScssPasselBundle:Faction:passel }
+faction_show:
+    pattern: /passels/{passel}/factions/{faction}
+    defaults: { _controller: ScssPasselBundle:Faction:show }
+faction_new:
+    pattern: /passels/{passel}/factions/new
+    defaults: { _controller: ScssPasselBundle:Faction:new }
+faction_edit:
+    pattern: /passels/{passel}/factions/{faction}/edit
+    defaults: { _controller: ScssPasselBundle:Faction:edit }    
+
+###############################################################################
+## Attendee
+###############################################################################
+attendees:
+    pattern: /attendees
+    defaults: { _controller: ScssPasselBundle:Attendee:index }
+attendee_by_organization:
+    pattern: /organizations/{organization}/attendees
+    defaults: { _controller: ScssPasselBundle:Attendee:organization }
+attendee_by_region:
+    pattern: /regions/{region}/attendees
+    defaults: { _controller: ScssPasselBundle:Attendee:region }
+attendee_by_passel:
+    pattern: /passels/{passel}/attendees
+    defaults: { _controller: ScssPasselBundle:Attendee:passel }
+attendee_by_faction:
+    pattern: /passels/{passel}/factions/{faction}/attendees
+    defaults: { _controller: ScssPasselBundle:Attendee:faction }
+attendee_show:
+    pattern: /passels/{passel}/factions/{faction}/{attendee}
+    defaults: { _controller: ScssPasselBundle:Attendee:show }
+attendee_new:
+    pattern: /passels/{passel}/factions/{faction}/attendees/new
+    defaults: { _controller: ScssPasselBundle:Attendee:new }
+attendee_edit:
+    pattern: /passels/{passel}/factions/{faction}/attendees/{attendee}/edit
+    defaults: { _controller: ScssPasselBundle:Attendee:edit }
+
+###############################################################################
+## Passel Type
+###############################################################################
+passel_types:
+    pattern: /passel-types
+    defaults: { _controller: ScssPasselBundle:PasselType:index }
+passel_types_by_organization:
+    pattern: /organizations/{organization}/passel-types
+    defaults: { _controller: ScssPasselBundle:PasselType:organization }    
+passel_type_show:
+    pattern: /passel-types/{passel_type}
+    defaults: { _controller: ScssPasselBundle:PasselType:show }    
+passel_type_edit:
+    pattern: /passel-types/{passel_type}/edit
+    defaults: { _controller: ScssPasselBundle:PasselType:edit }    
+
+###############################################################################
+## Passel Leader
+###############################################################################
+passel_leaders:
+    pattern: /passel-leaders
+    defaults: { _controller: ScssPasselBundle:PasselLeader:index }
+passel_leaders_by_passel:
+    pattern: /passels/{passel}/passel-leaders
+    defaults: { _controller: ScssPasselBundle:PasselLeader:passel }    
+passel_leaders_by_region:    
+    pattern: /regions/{region}/passel-leaders
+    defaults: { _controller: ScssPasselBundle:PasselLeader:region }    
+passel_leaders_by_council:
+    pattern: /councils/{council}/passel-leaders
+    defaults: { _controller: ScssPasselBundle:PasselLeader:council }    
+passel_leaders_by_organization:
+    pattern: /organizations/{organization}/passel-leaders
+    defaults: { _controller: ScssPasselBundle:PasselLeader:organization }    
+passel_leaders_show:
+    pattern: /passels/{passel}/passel-leaders/{passel_leader}
+    defaults: { _controller: ScssPasselBundle:PasselLeader:show }    
+passel_leader_new:
+    pattern: /passels/{passel}/passel-leaders/new
+    defaults: { _controller: ScssPasselBundle:PasselLeader:new }    
+passel_leader_edit:
+    pattern: /passels/{passel}/passel-leader/{passel_leader}/edit
+    defaults: { _controller: ScssPasselBundle:PasselLeader:edit }    
+
+###############################################################################
+## Rank
+###############################################################################
+ranks:
+    pattern: /ranks
+    defaults: { _controller: ScssPasselBundle:Rank:index }    
+ranks_by_organization:
+    pattern: /organizations/{organization}/ranks
+    defaults: { _controller: ScssPasselBundle:Rank:organization }    
+rank_show:
+    pattern: /ranks/{rank}
+    defaults: { _controller: ScssPasselBundle:Rank:show }
+rank_new:
+    pattern: /ranks/new
+    defaults: { _controller: ScssPasselBundle:Rank:new }
+rank_edit:    
+    pattern: /ranks/{rank}/edit
+    defaults: { _controller: ScssPasselBundle:Rank:edit }

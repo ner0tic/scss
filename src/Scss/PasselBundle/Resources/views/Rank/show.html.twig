@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/bundles/scssuser/css/Base/show.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scsspassel/css/rank.css') }}" rel="stylesheet" />    
+{% endblock %}
+
+{% block main_content %}
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>{{ 'name' | title }}</th>
+            <td>{{ rank.name }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'organization' | title }}</th>
+            <td>{{ rank.organization }}</td>
+        </tr>        
+    </tbody>    
+</table>
+{% endblock %}

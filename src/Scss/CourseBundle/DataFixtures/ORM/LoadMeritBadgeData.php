@@ -1,4 +1,3 @@
-<?php
   namespace Scss\CourseBundle\DataFixtures\ORM;
   
   use Doctrine\Common\Persistence\ObjectManager;

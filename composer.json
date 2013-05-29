@@ -15,56 +15,105 @@
                 },
                 "target-dir": "PUGX/MultiUserBundle"
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "ner0tic/millwright-menu-bundle",
+                "version": "dev-master",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/ner0tic/MillwrightMenuBundle.git",
+                    "reference": "master"
+                },
+                "require": {
+                    "knplabs/knp-menu-bundle": "dev-master",
+                    "ner0tic/millwright-configuration-bundle": "dev-master"
+                },
+                "target-dir": "Millwright/MenuBundle"
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "ner0tic/millwright-util",
+                "version": "dev-master",
+                "source": {
+                    "type": "git",
+                    "url": "git://github.com/ner0tic/MillwrightUtil.git",
+                    "reference": "master"
+                },
+                "target-dir": "Millwright/Util"
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "ner0tic/millwright-configuration-bundle",
+                "version": "dev-master",
+                "source": {
+                    "type": "git",
+                    "url": "git://github.com/ner0tic/ConfigurationBundle.git",
+                    "reference": "master"
+                },
+                "target-dir": "Millwright/ConfigurationBundle"
+            }
         }
     ],    
     "require": {
         "php":                                                    ">=5.4",
                 
-        "symfony/symfony":                                          "2.2.1",
-        "sensio/distribution-bundle":                               "2.2.*",
-        "sensio/framework-extra-bundle":                            "2.2.*",
-        "sensio/generator-bundle":                                  "2.2.*",
-        "symfony/translation":                                      "*",
+        "symfony/symfony":                                        "2.2.1",
+        "sensio/distribution-bundle":                             "2.2.*",
+        "sensio/framework-extra-bundle":                          "2.2.*",
+        "sensio/generator-bundle":                                "2.2.*",
+        "symfony/translation":                                    "*",
         
-        "twig/extensions": "1.0.*",
+        "twig/extensions":                                        "1.0.*",
         
-        "doctrine/orm":                                             "~2.2,>=2.2.3",
-        "doctrine/doctrine-bundle":                                 "1.2.*",
-        "doctrine/dbal":                                            "2.2.2.0",
-        "doctrine/doctrine-fixtures-bundle":                        "dev-master",
-        "doctrine/data-fixtures":                                   "1.0.x-dev",
+        "doctrine/orm":                                           "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle":                               "1.2.*",
+        "doctrine/dbal":                                          "2.2.2.0",
+        "doctrine/doctrine-fixtures-bundle":                      "dev-master",
+        "doctrine/data-fixtures":                                 "1.0.x-dev",
         
-        "symfony/assetic-bundle":                                   "2.1.2",
-        "kriswallsmith/assetic":                                    "1.1.x-dev",
+        "symfony/assetic-bundle":                                 "2.1.2",
+        "kriswallsmith/assetic":                                  "1.1.*",
         
-        "jms/aop-bundle":                                           "1.0.0.0",
-        "jms/security-extra-bundle":                                "1.4.*",
-        "jms/di-extra-bundle":                                      "1.3.*",
+        "jms/aop-bundle":                                         "1.0.0.0",
+        "jms/security-extra-bundle":                              "1.4.*",
+        "jms/di-extra-bundle":                                    "1.3.*",
 
-        "symfony/security-bundle":                                  "2.2.*",
-        "symfony/swiftmailer-bundle":                               "v2.2.1",
-        "symfony/monolog-bundle":                                   "2.2.*",
+        "symfony/security-bundle":                                "2.2.*",
+        "symfony/swiftmailer-bundle":                             "v2.2.1",
+        "symfony/monolog-bundle":                                 "2.2.*",
 
-        "gedmo/doctrine-extensions":                                "2.3.x-dev",
-        "stof/doctrine-extensions-bundle":                          "dev-master",
+        "gedmo/doctrine-extensions":                              "2.3.x-dev",
+        "stof/doctrine-extensions-bundle":                        "dev-master",
 
         "willdurand/geocoder":                                    ">=1.0.0",
-        "egeloen/google-map-bundle":                              "1.0",        
+        "egeloen/google-map-bundle":                              "1.0",  
         
         "friendsofsymfony/user-bundle":                           "1.3.1",
         "ner0tic/multi-user-bundle":                              "dev-master",        
         
-        "white-october/pagerfanta-bundle":                          "dev-master",
-        "pagerfanta/pagerfanta":                                    "dev-master",
+        "white-october/pagerfanta-bundle":                        "dev-master",
+        "pagerfanta/pagerfanta":                                  "dev-master",
         
-        "braincrafted/bootstrap-bundle":                            "1.4.2",
-        "twitter/bootstrap":                                        "2.3.*",
-         
+        "braincrafted/bootstrap-bundle":                          "1.4.2",
+        "twitter/bootstrap":                                      "2.3.*",
+        "leafo/lessphp":                                          "dev-master",
+
         
         "vich/uploader-bundle":                                   "dev-master",
         
         "knplabs/knp-menu":                                       "2.0.x-dev",
-        "knplabs/knp-menu-bundle":                                "dev-master"
+        "knplabs/knp-menu-bundle":                                "dev-master",
+        
+        "ner0tic/millwright-util":                              "dev-master",
+        "ner0tic/millwright-configuration-bundle":              "dev-master",
+        "ner0tic/millwright-menu-bundle":                       "dev-master"
+
     },
     "require-dev": {
         "elao/web-profiler-extra-bundle":                           "dev-master",
@@ -73,7 +122,10 @@
     "autoload": {
         "psr-0": {
             "Scss": "src/",
-            "PUGX\\MultiUserBundle": "vendor/ner0tic/multi-user-bundle/"
+            "PUGX\\MultiUserBundle": "vendor/ner0tic/multi-user-bundle/",
+            "Millwright\\ConfigurationBundle": "vendor/ner0tic/millwright-configuration-bundle/",
+            "Millwright\\Util": "vendor/ner0tic/millwright-util/",
+            "Millwright\\MenuBundle": "vendor/ner0tic/millwright-menu-bundle/"
         }
     }
 }

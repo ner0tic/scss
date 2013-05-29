@@ -1,57 +1,34 @@
+###############################################################################
+## Organization
+###############################################################################
 organizations:
     pattern: /organizations
     defaults: { _controller: ScssOrganizationBundle:Organization:index }
-organizations_by_region:
-    pattern: /regions/{region}/organizations
-    defaults: { _controller: ScssOrganizationBundle:Organization:region }
 organization_show:
     pattern: /organizations/{organization}
     defaults: { _controller: ScssOrganizationBundle:Organization:show }
+organization_new:
+    pattern: /organizations/new
+    defaults: { _controller: ScssOrganizationBundle:Organization:new }    
+organization_edit:
+    pattern: /organizations/{organization}/edit
+    defaults: { _controller: ScssOrganizationBundle:Organization:edit }    
 
-groups:
-    pattern: /groups
-    defaults: { _controller: ScssOrganizationBundle:ScssGroup:index }
-groups_by_organization:
-    pattern: /organizations/{organization}/groups
-    defaults: { _controller: ScssOrganizationBundle:ScssGroup:organization }
-groups_by_region:
-    pattern: /regions/{region}/groups
-    defaults: { _controller: ScssOrganizationBundle:ScssGroup:region }
-group_show:
-    pattern: /regions/{region}/group/{group}
-    defaults: { _controller: ScssOrganizationBundle:ScssGroup:show }
-
-subgroups:
-    pattern: /subgroups
-    defaults: { _controller: ScssOrganizationBundle:SubGroup:index }
-subgroups_by_region:
-    pattern: /regions/{region}/subgroup
-    defaults: { _controller: ScssOrganizationBundle:SubGroup:region }
-subgroups_by_organization:
-    pattern: /organizations/{organization}/subgroups
-    defaults: { _controller: ScssOrganizationBundle:SubGroup:organization }
-subgroups_by_group:
-    pattern: /regions/{region}/{group}/subgroups
-    defaults: { _controller: ScssOrganizationBundle:SubGroup:group }
-subgroup_show:
-    pattern: /region/{region}/{group}/{subgroup}
-    defaults: { _controller: ScssOrganizationBundle:SubGroup:show }
-
-attendees:
-    pattern: /attendees
-    defaults: { _controller: ScssOrganizationBundle:Attendee:index }
-attendee_by_organization:
-    pattern: /organization/{organization}/attendees
-    defaults: { _controller: ScssOrganizationBundle:Attendee:organization }
-attendee_by_region:
-    pattern: /region/{region}/attendees
-    defaults: { _controller: ScssOrganizationBundle:Attendee:region }
-attendee_by_group:
-    pattern: /region/{region}/{group}/attendees
-    defaults: { _controller: ScssOrganizationBundle:Attendee:group }
-attendee_by_subgroup:
-    pattern: /region/{region}/{group}/{subgroup}/attendees
-    defaults: { _controller: ScssOrganizationBundle:Attendee:subgroup }
-attendee_show:
-    pattern: /region/{region}/{group}/{subgroup}/{attendee}/show
-    defaults: { _controller: ScssOrganizationBundle:Attendee:show }
+###############################################################################
+## Council
+###############################################################################
+councils:
+    pattern: /councils
+    defaults: { _controller: ScssOrganizationBundle:Council:index }    
+councils_by_organization:
+    pattern: /organizations/{organization}/councils
+    defaults: { _controller: ScssOrganizationBundle:Council:organization }    
+councils_show:
+    pattern: /councils/{council}
+    defaults: { _controller: ScssOrganizationBundle:Council:show }    
+councils_new:
+    pattern: /councils/new
+    defaults: { _controller: ScssOrganizationBundle:Council:new }    
+councils_edit:
+    pattern: /councils/{council}/edit
+    defaults: { _controller: ScssOrganizationBundle:Council:edit }    

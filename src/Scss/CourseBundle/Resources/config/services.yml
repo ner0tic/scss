@@ -1,0 +1,7 @@
+parameters:
+#    scss_course.example.class: Scss\CourseBundle\Example
+
+services:
+#    scss_course.example:
+#        class: %scss_course.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/bundles/scssuser/css/Base/show.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scsspassel/css/attendee.css') }}" rel="stylesheet" />    
+{% endblock %}
+
+{% block main_content %}
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>{{ 'last name' | title }}</th>
+            <td>{{ attendee.last_name }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'first name' | title }}</th>
+            <td>{{ attendee.first_name }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'dob' | title }}</th>
+            <td>{{ attendee.dob }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'faction' | title }}</th>
+            <td>{{ attendee.faction }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'passel' | title }}</th>
+            <td>{{ attendee.passel }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'region' | title }}</th>
+            <td>{{ attendee.region }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'council' | title }}</th>
+            <td>{{ attendee.council }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'organization' | title }}</th>
+            <td>{{ attendee.passel.council.organization }}</td>
+        </tr>        
+    </tbody>    
+</table>
+{% endblock %}

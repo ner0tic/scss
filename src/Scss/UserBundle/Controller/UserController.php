@@ -79,7 +79,22 @@ class UserController extends Controller
             'form'  =>  $form->createView()
         ));
     }    
-       
+    
+    public function aboutAction()
+    {
+        return $this->render( 'ScssUserBundle:Base:about.html.twig' );
+    }
+    
+    public function helpAction()
+    {
+        return $this->render( 'ScssUserBundle:Base:help.html.twig' );
+    }
+
+    public function contactAction()
+    {
+        return $this->render( 'ScssUserBundle:Base:contact.html.twig' );
+    }
+
     private function forwardToDashboard( $role )
     {
         /**

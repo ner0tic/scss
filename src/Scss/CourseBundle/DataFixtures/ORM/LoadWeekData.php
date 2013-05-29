@@ -1,5 +1,5 @@
 <?php
-  namespace Scss\FacilityBundle\DataFixtures\ORM;
+  namespace Scss\CourseBundle\DataFixtures\ORM;
   
   use Doctrine\Common\Persistence\ObjectManager;
   use Doctrine\Common\DataFixtures\AbstractFixture;

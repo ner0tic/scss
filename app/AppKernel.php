@@ -23,25 +23,29 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            
-            
+                        
             new FOS\UserBundle\FOSUserBundle(),
             new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
 
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Millwright\MenuBundle\MillwrightMenuBundle(),
+            new Millwright\ConfigurationBundle\MillwrightConfigurationBundle(),
                         
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
 //            new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
             
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             
             new Scss\UserBundle\ScssUserBundle(),
             new Scss\FacilityBundle\ScssFacilityBundle(),
             new Scss\OrganizationBundle\ScssOrganizationBundle(),
-            new Scss\GeographyBundle\ScssGeographyBundle(),
+//            new Scss\GeographyBundle\ScssGeographyBundle(),
             new Scss\CourseBundle\ScssCourseBundle(),
-            new Scss\UtilityBundle\ScssUtilityBundle(),
+//            new Scss\UtilityBundle\ScssUtilityBundle(),
             new Scss\EnrollmentBundle\ScssEnrollmentBundle(),
+            new Scss\PasselBundle\ScssPasselBundle(),
+            new Scss\ReportBundle\ScssReportBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

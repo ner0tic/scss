@@ -1,387 +1,257 @@
-scss_menu:
-    renderers:
-        navigation: # menu type id
-          renderer: null #custom renderer
-          rendererOptions:
-              template: MillwrightMenuBundle:Default:knp_menu.html.twig
-    items: # menu items
-        ########################################################################
-        ## Global Menu Items ###################################################
-        ########################################################################
-        ## Homepage ############################################################
-        ########################################################################
-        homepage:
-            label: 'home'
-            translateDomain: 'MillwrightMenuBundle'
-        ########################################################################
-        ## About ###############################################################
-        ########################################################################
-        about:
-            label: 'about'
-            translateDomain: 'MillwrightMenuBundle'
-            showNonAuthorized: true
-        ########################################################################
-        ## Contact #############################################################
-        ########################################################################
-        contact:
-            label: 'contact'
-            translateDomain: 'MillwrightMenuBundle'
-            showNonAuthorized: true
-        ########################################################################
-        ## User Profile ########################################################
-        ########################################################################
-        profile:
-            translateDomain: 'MillwrightMenuBundle'
-            roles: ROLE_USER
-            showNonAuthorized: false
-            children:
-        ########################################################################
-        ## User Profile :: Edit ################################################
-        ########################################################################
-                edit_profile:
-                    label: 'edit'
-                    route: 'user_profile_edit'
-                    showNonAuthorized: false
-        ########################################################################
-        ## User Profile :: Change Password #####################################
-        ########################################################################
-                change_password:
-                    translateDomain: 'MillwrightMenuBundle'
-                    roles: ROLE_USER
-        ########################################################################
-        ## User Profile :: Remove Account ######################################
-        ########################################################################
-                remove_account:
-                    translateDomain: 'MillwrightMenuBundle'
-                    roles: ROLE_USER
-        ########################################################################
-        ## Authorization #######################################################
-        ########################################################################
-        ## Authorization :: Sign Up ############################################
-        ########################################################################
-        sign_up:
-            label: 'sign up'
-            translateDomain: 'MillwrightMenuBundle'
-            route: 'fos_user_registration_register'
-        ########################################################################
-        ## Authorization :: Sign In ############################################
-        ########################################################################
-        sign_in:
-            label: 'sign in'
-            translateDomain: 'MillwrightMenuBundle'
-            route: 'fos_user_security_login'
-        ########################################################################
-        ## Authorization :: Sign Out ###########################################
-        ########################################################################
-        sign_out:
-            label: 'sign out'
-            translateDomain: 'MillwrightMenuBundle'
-            route: 'fos_user_security_logout'
-        ########################################################################
-        ## Reports #############################################################
-        ########################################################################
-        reports:
-            translateDomain: 'MillwrightMenuDomain'
-        ########################################################################
-        ## Reports :: Master Schedule ##########################################
-        ########################################################################
-        master_schedule:
-            route: 'reports_master_schedule'
-        ########################################################################
-        ## Reports :: Attendee Schedule ########################################
-        ########################################################################
-        attendee_schedule:
-            route: 'reports_attendee_schedule'
-        ########################################################################
-        ## Reports :: Faculty Schedule #########################################
-        ########################################################################
-        faculty_schedule:
-            route: 'reports_faculty_schedule'
-        ########################################################################
-        ## Reports :: Class List ###############################################
-        ########################################################################
-        class_list:
-            route: 'reports_class_list'
-        ########################################################################
-        ## Reports :: Facility List ############################################
-        ########################################################################
-        facility_list:
-            route: 'reports_facility_list'
-        ########################################################################
-        ## Reports :: Alpha List ###############################################
-        ########################################################################
-        alpha_list:
-            route: 'reports_alpha_list'
-            translateDomain: 'MillwrightDomain'
-        ########################################################################
-        ## Passel Menu #########################################################
-        ########################################################################
-        ## Passel Mgmt #########################################################
-        ########################################################################
-        passel_mgmt:
-            label: 'passel management'
-            translateDomain: 'MillwrightMenuDomain'
-        ########################################################################
-        ## Passel Mgmt :: Passel Edit ##########################################
-        ########################################################################
-        edit_passel:
-            label: 'edit'
-            route: 'passel_edit'
-            translateDomain: 'MillwrightMenuDomain'
-        ########################################################################
-        ## Passel Mgmt :: Passel Enrollment ####################################
-        ########################################################################
-        passel_enrollment:
-            route: 'change-passel-enrollment'
-            translateDomain: 'MillwrightMenuDomain'
-        ########################################################################
-        ## Add Passel ##########################################################
-        ########################################################################
-        passel_add:
-            label: 'add'
-            translateDomain: 'MillwrightMenuDomain'
-        ########################################################################
-        ## Faction Menu ########################################################
-        ########################################################################
-        ## Faction Mgmt ########################################################
-        ########################################################################
-        faction_mgmt:
-            label: 'faction management'
-            translateDomain: 'MillwrightMenuDomain'
-        ########################################################################
-        ## Faction Add #########################################################
-        ########################################################################
-        faction_add:
-            label: 'add'
-            translateDomain: 'MillwrightMenuDomain'
-        ########################################################################
-        ## Attendee Menu #######################################################
-        ########################################################################
-        ## Attendee Mgmt #######################################################
-        ########################################################################
-        attendee_mgmt:
-            label: 'attendee management'
-            translateDomain: 'MillwrightMenuDomain'
-        ########################################################################
-        ## Attendee Add ########################################################
-        ########################################################################
-        attendee_add:
-            label: 'add'
-            translateDomain: 'MillwrightMenuDomain'
-    tree: #menu containers
-        non_auth: 
-            type: navigation # menu type id ^^
-            children:
-                homepage: ~
-                about: ~
-                contact: ~
-                signup: ~
-                signin: ~
-        passel:
-            type: navigation
-            children:
-                homepage: ~
-                passel_mgmt:
-                    children:
-                        edit_passel: ~
-                        passel_enrollment: ~
-                faction_mgmt:
-                    children:
-                        add_faction: ~
-                attendee_mgmt:
-                    children:
-                        add_attendee: ~
-                        attendee_enrollment: ~
-                reports:
-                    children:
-                        alpha_list: ~
-                        master_schedule: ~
-                        attendee_schedule: ~
-                        class_list: ~
-                profile: ~
-                signout: ~
-        attendee:
-            type: navigation
-            children:
-                homepage: ~
-                class_enrollment:
-                    children:
-                        attendee_enrollment: ~
-                reports:
-                    children: 
-                        attendee_schedule: ~
-                profile: ~
-                signout: ~
-        faculty:
-            type: navigation
-            children:
-                homepage: ~
-                class_mgmt:
-                    children: 
-                        class_attendence: ~
-                        change_class: ~
-                reports:
-                    children:
-                        alpha_list: ~
-                profile: ~
-                signout: ~
-        faculty_admin:
-            type: navigation
-            children:
-                homepage: ~
-                course_mgmt:
-                    children: 
-                        add_course: ~
-                        class_status: ~
-                        period_mgmt:
-                            children: 
-                                add_period: ~
-                department_mgmt:
-                    children: 
-                        add_department: ~
-                quarters_mgmt:
-                    children:
-                        add_quarters: ~
-                        quarters_faculty_mgmt: ~
-                        quarters_passel_mgmt: ~
-                passel_enrollment: ~
-                week_mgmt:
-                    children:
-                        add_week: ~
-                        period_mgmt:
-                            children:
-                                add_period: ~
-                faculty_mgmt:
-                    children:
-                        add_faculty: ~
-                reports:
-                    children:
-                        passel_list: ~
-                        faculty_list: ~
-                        alpha_list: ~
-                profile: ~
-                sign_out: ~
-        region:
-            type: navigation
-            children: 
-                homepage: ~
-                passel_mgmt:
-                    children: 
-                        add_passel: ~
-                        passel_enrollment: ~
-                facility_mgmt:
-                    children: 
-                        add_facility: ~
-                        department_mgmt:
-                            children:
-                                add_deparmtent: ~
-                        quarters_mgmt:
-                            children:
-                                add_quarters: ~
-                                quarters_faculty_mgmt: ~
-                                quarters_passel_mgmt: ~
-                        week_mgmt:
-                            children:
-                                add_week: ~
-                                period_mgmt:
-                                    children:
-                                        add_period: ~
-                        faculty_mgmt:
-                            children:
-                                add_faculty: ~
-                region_mgmt: ~
-                profile: ~
-                signout: ~
-        organization:
-            type: navigation
-            children:
-                homepage: ~
-                region_mgmt:
-                    children: 
-                        add_region: ~
-                passel_mgmt:
-                    children: 
-                      add_passel: ~
-                      passel_enrollment: ~
-                      faction_mgmt:
-                          children:
-                              add_faction: ~
-                      attendee_mgmt:
-                          children:
-                              add_attendee: ~
-                              attendee_enrollment: ~
-                facility_mgmt:
-                    children: 
-                        add_facility: ~
-                        department_mgmt:
-                            children:
-                                add_deparmtent: ~
-                        quarters_mgmt:
-                            children:
-                                add_quarters: ~
-                                quarters_faculty_mgmt: ~
-                                quarters_passel_mgmt: ~
-                        week_mgmt:
-                            children:
-                                add_week: ~
-                                period_mgmt:
-                                    children:
-                                        add_period: ~
-                        faculty_mgmt:
-                            children:
-                                add_faculty: ~
-                organization_mgmt: ~
-                profile: ~
-                sign_out: ~
-        admin:
-            type: navigation
-            children:
-                homepage: ~
-                organization_mgmt:
-                    children:
-                        add_organization: ~
-                        region_mgmt: 
-                            children:
-                                add_region: ~
-                                passel_mgmt:
-                    children: 
-                      add_passel: ~
-                      passel_enrollment: ~
-                      faction_mgmt:
-                          children:
-                              add_faction: ~
-                      attendee_mgmt:
-                          children:
-                              add_attendee: ~
-                              attendee_enrollment: ~
-                facility_mgmt:
-                    children: 
-                        add_facility: ~
-                        department_mgmt:
-                            children:
-                                add_deparmtent: ~
-                        quarters_mgmt:
-                            children:
-                                add_quarters: ~
-                                quarters_faculty_mgmt: ~
-                                quarters_passel_mgmt: ~
-                        week_mgmt:
-                            children:
-                                add_week: ~
-                                period_mgmt:
-                                    children:
-                                        add_period: ~
-                        faculty_mgmt:
-                            children:
-                                add_faculty: ~
-                course_mgmt:
-                    children: 
-                        add_course: ~
-                        class_mgmt:
-                            children:
-                                add_class: ~
-                                class_status: ~
-                        period_mgmt:
-                            children: 
-                                add_period: ~
-                                
+millwright_menu:
+  renderers:
+    navigation:
+      renderer: null
+      rendererOptions:
+        template: ScssUserBundle:Base:menu.html.twig
+    active_enrollment:
+      renderer: null
+      rendererOptions:
+        template: ScssUserBundle:User:active-enrollment-menu.html.twig
+  items:
+###############################################################################
+## Globals
+###############################################################################	
+    homepage:
+      label: 'home'
+      roles: IS_AUTHENTICATED_ANONYMOUSLY
+    signin:
+      roles: IS_AUTHENTICATED_ANONYMOUSLY
+      route: fos_user_security_login
+    signup:
+      roles: IS_AUTHENTICATED_ANONYMOUSLY
+      route: fos_user_registration_register
+    signout:
+      route: fos_user_security_logout
+    profile:
+      route: settings
+    profile_edit:
+      route: settings-edit
+    change_pw:
+      route: fos_user_change_password
+    help: 
+      roles: IS_AUTHENTICATED_ANONYMOUSLY
+    about: 
+      roles: IS_AUTHENTICATED_ANONYMOUSLY
+    contact: 
+      roles: IS_AUTHENTICATED_ANONYMOUSLY
+###############################################################################
+## Organization Menu
+###############################################################################
+    organization_add:
+      label: 'add organization'
+    organization_edit: ~
+    organization_mgmt: ~
+###############################################################################
+## Council Menu
+###############################################################################
+    council_add:
+      label: 'add council'
+    council_edit: ~
+    council_mgmt: ~
+###############################################################################
+## Region Menu
+###############################################################################
+    region_add:
+      label: 'add region'
+    region_edit: ~
+    region_mgmt: ~		
+###############################################################################
+## Passel Menu
+###############################################################################
+    passel_add:
+      label: 'add passel'
+      roles: ROLE_FACILITY_ADMIN
+    passel_edit: ~
+    passel_mgmt: ~
+    passel_enroll: 
+      label: 'passel enrollment'
+    chg_passel_enroll: 
+      label: 'change passel enrollment'
+###############################################################################
+## Faction Menu
+###############################################################################
+    faction_add:
+      label: 'add faction'
+    faction_edit: ~
+    faction_mgmt: ~
+###############################################################################
+## Attendee Menu
+###############################################################################
+    attendee_add:
+      label: 'add attendee'
+    attendee_edit: ~
+    attendee_mgmt: ~
+    attendee_enroll:
+      label: 'attendee enrollment'
+###############################################################################
+## Facility Menu
+###############################################################################
+    facility_add:
+      label: 'add facility'
+    facility_edit: ~
+    facility_mgmt: ~
+###############################################################################
+## Department Menu
+###############################################################################
+    department_add:
+      label: 'add department'
+    department_edit: ~
+    department_mgmt: ~
+###############################################################################
+## Faculty Menu
+###############################################################################
+    faculty_add:
+      label: 'add faculty'
+    faculty_edit: ~
+    faculty_mgmt: ~
+###############################################################################
+## Class Menu
+###############################################################################
+    class_add:
+      label: 'add class'
+    class_edit: ~
+    class_mgmt: ~
+    class_attendence: ~
+    class_activation: ~
+###############################################################################
+## Quarters Menu
+###############################################################################
+    quarters_add:
+      label: 'add quarters'
+    quarters_edit: ~
+    quarters_mgmt: ~
+    quarters_passel_mgmt: ~
+    quarters_faculty_mgmt: ~
+###############################################################################
+## Week Menu
+###############################################################################
+    week_add:
+      label: 'add week'
+    week_edit: ~
+    week_mgmt: ~
+###############################################################################
+## Period Menu
+###############################################################################
+    period_add:
+      label: 'add period'
+    period_edit: ~
+    period_mgmt: ~
+###############################################################################
+## Course Menu
+###############################################################################
+    course_add:
+      label: 'add course'
+    course_edit: ~
+    course_mgmt: ~		
+###############################################################################
+## Reports Menu
+###############################################################################
+    reports_add:
+      label: 'add report'
+#    reports_master_sched: ~
+#    reports_pasel_sched: ~
+#    reports_attendee_sched: ~
+#    reports_alpha_list: ~
+#    reports_faculty_list: ~
+#    reports_facility_list: ~
+#    reports_attendee_list: ~
+#    reports_class_list: ~
+  tree:
+    nonAuthMenu:
+      type: navigation
+      children:
+        homepage: ~
+        about: ~
+        signup: ~
+        signin: ~
+        reports: ~
+#          children:
+#            class_list: ~
+#            facility_list: ~
+#    attendeeMenu:
+#      type: navigation
+#      children:
+#        homepage: ~
+#        profile:
+#          children:
+#            profile_edit: ~
+#            change_pw: ~
+#        enrollment:
+#          children:
+#            attendee_enroll: ~
+#            chg_passel_enroll: ~
+#        reports: ~
+#          children:
+#            reports_attendee_sched: ~
+#        signout: ~
+#    passelLeaderMenu:
+#      type: navigation
+#      children:
+#        homepage: ~
+#        profile:
+#          children: 
+#            profile_edit: ~
+#            change_pw: ~
+#        passel_mgmt:
+#          children:
+#            attendee_mgmt: ~
+#            faction_mgmt: ~
+#        reports: ~
+#        signout: ~
+#    facultyMenu:
+#      type: navigation
+#      children:
+#        homepage: ~
+#        profile:
+#          children:
+#            profile_edit: ~
+#            change_pw: ~
+#        class_mgmt: ~
+#        reports: ~
+#        signout: ~
+#    facultyAdminMenu:
+#      type: navigation
+#      children:
+#        homepage: ~
+#        profile: 
+#          children: 
+#            profile_edit: ~
+#            change_pw: ~
+#        facility_mgmt: ~
+#        passel_mgmt: ~
+#        reports: ~
+#        signout: ~
+#    regionMenu:
+#      type: navigation
+#      children:
+#        homepage: ~
+#        profile:
+#          children:
+#            profile_edit: ~
+#            change_pw: ~
+#        region_mgmt: ~
+#        reports: ~
+#        signout: ~
+#    councilMenu:
+#      type: navigation
+#      children:
+#        homepage: ~
+#        profile:
+#          children:
+#            profile_edit: ~
+#            change_pw: ~
+#        council_mgmt: ~
+#        reports: ~
+#        signout: ~
+#    organizationMenu:
+#      type: navigation
+#      children: 
+#        homepage: ~
+#        profile:
+#          children:
+#            profile_edit: ~
+#            change_pw: ~
+#        organization_mgmt: ~
+#        reports: ~
+#        signout: ~

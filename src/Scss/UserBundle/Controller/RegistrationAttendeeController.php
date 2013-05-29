@@ -10,7 +10,7 @@ class RegistrationAttendee extends BaseController
         $handler = $this->container->get( 'pugx_multi_user.controller.handler' );
         $discriminator = $this->container->get( 'pugx_user_discriminator' );
 
-        $return = $handler->registration( 'Scss\OrganizationBundle\Entity\Attendee' );
+        $return = $handler->registration( 'Scss\PasselBundle\Entity\Attendee' );
         $form = $discriminator->getRegistrationForm();
 
         if( $return instanceof RedirectResponse ) 
@@ -26,7 +26,7 @@ class RegistrationAttendee extends BaseController
         
         return $this->container
                     ->get( 'templating' )
-                    ->renderResponse( 'ScssOrganizationBundle:Registration:attendee.form.html.twig', 
+                    ->renderResponse( 'ScssUserBundle:Registration:attendee.form.html.twig', 
                             array(
                                 'form' => $form->createView(),
                     ) );
