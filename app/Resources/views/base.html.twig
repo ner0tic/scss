@@ -32,21 +32,13 @@
     {#{{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }} #}
     <header>
     {% block header %}
-        <div id="logo">
-        {% block logo %}
-            <a href="#">
-                <img src="{{ asset( 'logo' ) }}" class="logo" />
-                <span>{% block logo_text %}[SCSS]{% endblock %}</span>
-            </a>
-        {% endblock %}
-        </div>
-        <nav id="nav-bar">
+        <nav id="main">
         {% block navbar %}
             <menu>
               {% if is_granted( 'ROLE_USER' ) %}
-              
+
               {% else %}
-                {{ millwright_menu_render('nonAuthMenu') }}    
+                {{ millwright_menu_render('nonAuthMenu') }}
               {% endif %}
             </menu>
         {% endblock %}
@@ -83,11 +75,11 @@
         {% endif %}
         <section id="main-content">
         {% block main_content %}
-            
+
         {% endblock %}
         </section>
     {% endblock %}
-    </section>            
+    </section>
     {% block javascripts %}
 <script>
   function goLogIn(){

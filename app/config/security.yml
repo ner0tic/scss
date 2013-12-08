@@ -4,7 +4,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
@@ -14,8 +14,8 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                login_path: /login
-                check_path: /login-check
+                login_path: /signin
+                check_path: /signin-check
                 csrf_provider: form.csrf_provider
             logout:       true
             anonymous:    true
@@ -27,10 +27,10 @@ security:
         - { path: ^/admin/, role: ROLE_ADMIN }
 
     role_hierarchy:
-        
+
         # Region
         ROLE_REGION_ADMIN:      [ ROLE_REGION_USER ]
-        ROLE_REGION_USER:       [ ROLE_ORG_ADMIN, ROLE_FACILITY_ADMIN ] 
+        ROLE_REGION_USER:       [ ROLE_ORG_ADMIN, ROLE_FACILITY_ADMIN ]
         # Organization
         ROLE_ORG_ADMIN:         [ ROLE_ORG_USER, ROLE_PASSEL_ADMIN ]
         ROLE_ORG_USER:          [ ROLE_PASSEL_USER ]
@@ -45,4 +45,4 @@ security:
         # Admin
         ROLE_SUPER_USER:        [ ROLE_ADMIN ]
         ROLE_ADMIN:             [ ROLE_REGION_ADMIN ]
-        
+

@@ -1,0 +1,88 @@
+{% block details %}
+  <table id="detail-items" class="table">
+  {% block detail_items %}
+<!-- ADVANCEMENT TRAINING -->
+    <tr>
+      <td id="advancement-training" class="detail-item">
+      {% block detail_item_online_advancement %}
+        <img src="/images/icons/online-advancement.png" />
+        <h2>{{ 'advancement training' }}</h2>
+          <p>
+          {% block detail_item_online_advancement_text %}
+            The SCSS system allows for attendees to easily track and manage their advancement from anywhere anytime.
+          {% endblock %}
+          </p>
+      {% endblock %}
+      </td>
+<!-- PRINT/MANAGE REPORTS -->
+      <td id="print-reports" class="detail-item">
+      {% block detail_item_print_reports %}
+        <img src="/images/icons/print_reports.png" />
+        <h2>{{ 'print & manage reports' }}</h2>
+        <p>
+        {% block detail_item_print_reports_text %}
+        Easily print and manage various reports for your passels and attendees.
+        {% endblock %}
+        </p>
+      {% endblock %}
+      </td>
+<!-- MOBILE PLATFORM -->
+      <td id="mobile-platform" class="detail-item" rowspan="2">
+      {% block detail_item_mobile %}
+        <div class="mobile-img">
+        {% block detail_item_mobile_image %}
+          <img src="/images/iphone.png" height="200" />
+        {% endblock %}
+        </div>
+        <h2>{{ 'mobile platform' }}</h2>
+        <div>
+        {% block detail_item_mobile_text_focus %}
+          <h3>{{ 'Get it from your app store' }}</h3>
+          <p>
+          {% block detail_item_mobile_text_foucus_text %}
+              Available via a mobile web interface.
+              <button class="download-btn greenButton">{{ 'download it' }}</button>
+          {% endblock %}
+          </p>
+        {% endblock %}
+        </div>
+        <p>
+        {% block detail_item_mobile_text %}
+          Utilize our mobile platform to manage your course data on the go!
+        {% endblock %}
+        </p>
+      {% endblock %}
+      </td>
+    </tr>
+    <tr>
+<!-- INSTANT PAYMENTS -->
+      <td class="detail-item" id="instant-payments">
+      {% block detail_item_instant_payments %}
+        <img src="/images/icons/instant-payment.png" />
+        <h2>{{ 'instant payments' }}</h2>
+        <p>
+        {% block detail_item_instant_payment_text %}
+          Clean and consice Paypal integration to ensure easy and secure payments.
+        {% endblock %}
+        </p>
+      {% endblock %}
+      </td>
+<!-- OTHER -->
+      <td class="detail-item" id="other-detail">
+      {% block detail_item_other_detail %}
+        <img src="/images/icons/blah-blah-blah.png" />
+        <h2>{{ 'other details' }}</h2>
+        <p>
+        {% block detail_item_other_text %}
+          Blah blah blah blah blah blah!
+        {% endblock %}
+        </p>
+      {% endblock %}
+      </td>
+<!--
+      </div>
+    </div>
+  -->
+  {% endblock %}
+  </div>
+{% endblock %}

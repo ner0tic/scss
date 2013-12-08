@@ -1,0 +1,7 @@
+parameters:
+#    SCSS_enrollment.example.class: SCSS\EnrollmentBundle\Example
+
+services:
+#    SCSS_enrollment.example:
+#        class: %SCSS_enrollment.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

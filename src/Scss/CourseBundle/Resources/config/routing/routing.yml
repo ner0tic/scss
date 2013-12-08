@@ -1,9 +1,0 @@
-courses:
-    resource: "@ScssCourseBundle/Resources/config/routing/course.yml"
-    prefix: /
-class: 
-    resource: "@ScssCourseBundle/Resources/config/routing/class.yml"
-    prefix: /
-mb:
-    resource: "@ScssCourseBundle/Resources/config/routing/meritbadge.yml"
-    prefix: /

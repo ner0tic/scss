@@ -1,0 +1,19 @@
+passel_quarters:
+    pattern: /passel-quarters
+    defaults: { _controller: SCSSFacilityBundle:PasselQuarters:index }
+passel_quarters_by_facility:
+    pattern: /facilities/{facility}/passel-quarters
+    defaults: { _controller: SCSSFacilityBundle:PasselQuarters:index }
+passel_quarters_show:
+    pattern: /facilities/{facility}/passel-quarters/{passel-quarters}
+    defaults: { _controller: SCSSFacilityBundle:PasselQuarters:show }
+
+faculty_quarters:
+    pattern: /faculty-quarters
+    defaults: { _controller: SCSSFacilityBundle:FacultyQuarters:index }
+faculty_quarters_by_facility:
+    pattern: /facilities/{facility}/faculty-quarters
+    defaults: { _controller: SCSSFacilityBundle:FacultyQuarters:index }
+faculty_quarters_show:
+    pattern: /facilities/{facility}/faculty-quarters/{faculty-quarters}
+    defaults: { _controller: SCSSFacilityBundle:FacultyQuarters:show }

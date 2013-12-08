@@ -1,6 +1,0 @@
-meritbadges:
-    pattern: /meritbadges
-    defaults: { _controller: ScssCourseBundle:MeritBadge:index }
-meritbadge_show:
-    pattern: /meritbadges/{meritbadge}
-    defaults: { _controller: ScssCourseBundle:MeritBadge:show }

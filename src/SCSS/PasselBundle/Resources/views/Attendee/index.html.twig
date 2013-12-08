@@ -1,0 +1,57 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/bundles/scssuser/css/Base/index.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scsspassel/css/attendee.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssuser/css/Base/datatable.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="fluid-row">
+    <div class="span12">
+        <h1>
+            {{ 'attendees' | title }}
+            {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path( 'scss_attendee_new' ) }}" alt="{{ 'add a attendee' }}">
+                <i class="icon-plus on icon-check-empty pull-right"></i>
+           </a>
+           {% endif %}
+        </h1>
+
+        {% block datatable %}
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    <a href="#" class="sort-toggle">{{ 'name' | title }}</a>
+                </th>
+                <th>{{ 'description' | title }}</th>
+                <th>{{ 'status' | title }}</th>
+                <th>{{ 'category' | title }}</th>
+                <td></td>
+            </tr>
+            {% for attendee in attendees %}
+            <tr>
+                <td><a href="{{ path( 'scss_attendee_show', { 'slug': attendee.slug } ) }}">{{ attendee.name }}</a></td>
+                <td>{{ attendee.shortDescription }}</td>
+                <td><a href="{{ path( 'scss_status_show', { 'slug': attendee.Status.slug } ) }}">{{ attendee.Status.name }}</a></td>
+                <td><a href="{{ path( 'scss_category_show', { 'slug': attendee.Category.slug } ) }}">{{ attendee.Category.name }}</a></td>
+                {% include 'SCSSUserBundle:Datatable:datatable.controls.html.twig' with { 'slug': attendee.slug, 'type': 'attendee' } %}
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">
+                    <em>{{ 'no attendees found.' | title }}</em>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% include 'SCSSUserBundle:Datatable:datatable.footer.html.twig' with { 'pager': pager } %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

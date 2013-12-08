@@ -1,0 +1,7 @@
+parameters:
+#    SCSS_report.example.class: SCSS\ReportBundle\Example
+
+services:
+#    SCSS_report.example:
+#        class: %SCSS_report.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

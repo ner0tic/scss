@@ -1,0 +1,15 @@
+###############################################################################
+## Reports
+###############################################################################
+reports:
+    pattern: /reports
+    defaults: { _controller: SCSSReportBundle:Report:index }
+reports_show:
+    pattern: /reports/{report}
+    defaults: { _controller: SCSSReportBundle:Report:show }
+report_new:
+    pattern: /reports/new
+    defaults: { _controller: SCSSReportBundle:Report:new }
+report_edit:
+    pattern: /reports/{report}/edit
+    defaults: { _controller: SCSSReportBundle:Report:edit }

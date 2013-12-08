@@ -1,0 +1,7 @@
+parameters:
+#    SCSS_passel.example.class: SCSS\PasselBundle\Example
+
+services:
+#    SCSS_passel.example:
+#        class: %SCSS_passel.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

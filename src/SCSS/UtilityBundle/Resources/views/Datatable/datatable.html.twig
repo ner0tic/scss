@@ -1,0 +1,55 @@
+{% block datatable %}
+<table class="table table-striped">
+    {{ block('datatable_head') }}
+    {{ block('datatable_content') }}
+    {{ block('datatable_foot') }}
+</table>
+{% endblock %}
+
+{% block data>table_head %}
+<thead>
+    <tr>
+        {% for item in headers %}
+        <th>{{ item.name | title }}</th>
+        {% endfor %}
+        <td></td>
+    </tr>
+</thead>
+{% endblock %}
+
+{% block datatable_content %}
+<tbody>
+    <tr>
+        {% for item in items %}
+        {{ block('datatable_row') }}
+        {% else %}
+        <th>{{ 'no results found.' | title }}</th>
+        {% endfor %}
+    </tr>
+</tbody>
+{% endblock %}
+
+{% block datatable_row %}
+{# name #}
+<td>{{ item.name | title }}</td>
+{# description #}
+<td>{{ item.description[:30] ~ '...' }}</td>
+{{ block('datatable_controls') }}
+{% endblock %}
+
+{% block datatable_controls %}
+{% include 'SCSSUtilityBundle:Datatable:datatable.controls.html.twig' with { 'type': type, 'slug': item.slug } %}
+{% endblock %}
+
+{% block datatable_foot %}
+<div class="container table-footer">
+    <div class="pull-left table-details">
+        {{ 'Showing '~pager.currentPageResults|length~' of '~pager.nbResults~' items.' | lower }}
+    </div>
+    <div class="pull-right">
+        {% if pager.haveToPaginate %}
+        {{ pagerfanta(pager) }}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

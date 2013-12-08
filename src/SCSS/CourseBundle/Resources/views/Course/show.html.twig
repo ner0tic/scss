@@ -1,0 +1,82 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/bundles/scssuser/css/Base/show.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scsspassel/css/passel.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="fluid-row">
+    <div class="span12">
+        <h1>
+            <a href="{{ path('scss_passel_index') }}">{{ 'passels' | title }}</a>
+            <i class="icon-arrow-right"></i>
+            <a href="#">{{ passel.name | title }}</a>
+        </h1>
+    </div>
+    <div class="span6 pull-left" id="passel-image">
+        <img src="/bundles/scsspassel/img/passels/{{ passel.slug }}/image.png" class="" />
+    </div>
+    <div class="span6 pull-right" id="passel-description">
+        {{ passel.description }}
+    </div>
+    <div class="span6 pull-left" id="passel-details">
+        <ul>
+            <li>
+                <h3>
+                    {{ 'category' | title }}:
+                    <a href="{{ path('scss_category_show', { 'slug': passel.Category.slug } ) }}">{{ passel.Category.name | title }}</a>
+                </h3>
+            </li>
+            <li>
+                <h3>
+                    {{ 'status' | title }}:
+                    <a href="{{ path('scss_status_show', { 'slug': passel.Status.slug } ) }}">{{ passel.Status.name | title }}</a>
+                </h3>
+            </li>
+{#}            <li>
+                <h3>
+                    {{ 'client' | title }}:
+                    <a href="{{ path('scss_client_show', { 'slug': passel.Client.slug } ) }}">{{ passel.Client.name | title }}</a>
+                </h3>
+            </li>
+            <li>
+                <h3>
+                    {{ 'developer' | title | pluralize(passel.Developers|length)}}:
+                </h3>
+                <ul>
+                    {% for dev in passel.Developers %}
+                    <li>
+                         <a href="{{ path('scss_developer_show', { 'slug': dev.slug })}}">{{ dev.name | title }}</a>
+                     </li>
+                     {% else %}
+                    <li><em>{{ 'no developers assigned.'}}</em></li>
+                    {% endfor %}
+                </ul>
+            </li>
+#}        </ul>
+    </div>
+    <div class="span6 pull-right github" id="passel-versioning">
+        <h2>{{ 'github' | title }}:</h2>
+{#}        <ul>
+            {% for commit in passel.Github.recent(3) %}
+            <li>
+                <div class="fluid-row">
+                    <div class="commit-msg span12">{{ commit.message }}</div>
+                    <div class="commit-details">
+                        by {{ commit.author }} on {{ commit.timestamp }} to {{ commit.branch }}
+                    </div>
+                </div>
+            </li>
+            {% else %}
+            <li><em>{{ 'no commits found.'}} </em></li>
+            {% endfor %}
+        </ul>
+#}    </div>
+</div>
+{% endblock %}

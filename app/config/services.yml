@@ -1,3 +1,4 @@
+
 services:
 ################################################################################
 ## Pagerfanta ##################################################################
@@ -5,23 +6,24 @@ services:
     pagerfanta.view.default:
         class: Pagerfanta\View\DefaultView
         public: false
-        tags: [{ name: pagerfanta.view, alias: default }]  
+        tags: [{ name: pagerfanta.view, alias: default }]
+
 ################################################################################
 ## KnP Menu ####################################################################
 ################################################################################
     scss_menu.menu_builder:
-        class: Scss\UserBundle\Menu\MenuBuilder
+        class: Scss\UtilityBundle\Menu\MenuBuilder
         arguments: ["@knp_menu.factory"]
 
     scss_menu.menu.main:
-        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        class: Knp\Menu\MenuItem
         factory_service: scss_menu.menu_builder
         factory_method: createMainMenu
         arguments: [ "@request", "@service_container" ]
-        scope: request # needed as we have the request as a dependency here
+        scope: request
         tags:
-            - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
-            
+            - { name: knp_menu.menu, alias: main }
+
     scss_menu.menu.nonauth:
         class: Knp\Menu\MenuItem
         factory_service: scss_menu.menu_builder
@@ -29,4 +31,4 @@ services:
         arguments: [ "@request" ]
         scope: request
         tags:
-            - { name: knp_menu.menu, alias: nonauth } # Named "sidebar" this time            
+            - { name: knp_menu.menu, alias: nonauth }

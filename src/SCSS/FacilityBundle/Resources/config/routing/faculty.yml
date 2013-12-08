@@ -1,0 +1,13 @@
+faculty:
+    pattern: /faculty
+    defaults: { _controller: SCSSFacilityBundle:Faculty:index }
+faculty_by_region:
+    pattern: /region/{region}/facilities
+    defaults: { _controller: SCSSFacilityBundle:Faculty:index }
+faculty_by_organization:
+    pattern: /organization/{organization}/faculty
+    defaults: { _controller: SCSSFacilityBundle:Facility:index }
+faculty_by_facility:
+    pattern: /facilities/{facility}/faculty
+faculty_show:
+    pattern: /faculty/{faculty}

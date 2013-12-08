@@ -1,3 +1,0 @@
-scss_enrollment_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ScssEnrollmentBundle:Default:index }

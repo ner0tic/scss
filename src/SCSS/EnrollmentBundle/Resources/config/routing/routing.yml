@@ -1,0 +1,22 @@
+passel_enrollments:
+    pattern: /passel-enrollments
+    defaults: { _controller: SCSSEnrollmentBundle:PasselEnrollment:index }
+passel_enrollments_by_passel:
+    pattern: /regions/{region}/passel/{passel}/enrollments
+    defaults: { _controller: SCSSEnrollmentBundle:PasselEnrollment:index }
+passel_enrollments_by_facility:
+    pattern: /facilities/{facility}/passel-enrollments
+    defaults: { _controller: SCSSEnrollmentBundle:PasselEnrollment:index }
+passel_enrollment_show:
+    pattern: /passel-enrollments/{passel}
+    defaults: { _controller: SCSSEnrollmentBundle:PasselBundle:show }
+
+attendee_enrollments:
+    pattern: /attendee-enrollments
+    defaults: { _controller: SCSSEnrollmentBundle:AttendeeEnrollment:index }
+attendee_enrollment_by_facility:
+    pattern: /facilities/{facility}/attendee-enrollments
+    defaults: { _controller: SCSSEnrollmentBundle:AttendeeEnrollment:index }
+attendee_enrollment_show:
+    pattern: /attendee-enrollments/{attendee}
+    defaults: { _controller: SCSSEnrollmentBundle:AttendeeEnrollment:show }

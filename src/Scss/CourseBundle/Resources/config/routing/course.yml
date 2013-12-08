@@ -1,6 +1,0 @@
-courses:
-    pattern: /courses
-    defaults: { _controller: ScssCourseBundle:Course:index }
-course_show: 
-    pattern: /courses/{course}
-    defaults: { _controller: ScssCourseBundle:Course:show }

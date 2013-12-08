@@ -1,0 +1,59 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/bundles/scssuser/css/Base/new.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssuser/css/Base/form.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scsspassel/css/attendee.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="span8 container">
+        <h1>{{ 'update a attendee' | title }}</h1>
+        <form action="{{ path( 'scss_attendee_new' ) }}" method="post" {{ form_enctype( form ) }}>
+        {% block form %}
+            <div id="form-errors" class="hidden">
+                {{ form_errors( form ) }}
+            </div>
+            <div class="row-fluid">
+                <div id="left-pane" class="pull-left">
+                    <div>
+                        {{ form_row( form.name ) }}
+                    </div>
+                    <div>
+                        {{ form_row( form.status ) }}
+                    </div>
+                    <div>
+                        {{ form_row( form.category ) }}
+                    </div>
+                </div>
+                <div id="right-pane" class="pull-right">
+                    <div>
+                        {{ form_row( form.short_description ) }}
+                    </div>
+                    <div>
+                        {{ form_row( form.description ) }}
+                    </div>
+                    <div>
+                        {{ form_row( form.url ) }}
+                    </div>
+                    <div>
+                        {{ form_row( form.client ) }}
+                    </div>
+                </div>
+            </div>
+            <div>
+                {{ form_rest(form) }}
+                <button class="btn btn-primary btn-block pull-right" name="submit">{{ 'go' | upper }}</button>
+            </div>
+        {% endblock %}
+        </form>
+    </div>
+    <div class="span4 container"></div>
+</div>
+{% endblock %}

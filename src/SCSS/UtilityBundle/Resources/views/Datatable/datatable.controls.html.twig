@@ -1,0 +1,17 @@
+{% block datatable_controls %}
+<td class="datatable-controls">
+    <div class="pull-right">
+        <a href="{{ path('scss_'~type~'_show', { 'slug' : slug }) }}" class="view" alt="{{ 'view' }}">
+            <i class="icon-eye-open icon-large"></i>
+        </a>&nbsp;
+
+        <a href="{{ path('scss_'~type~'_edit', { 'slug' : slug }) }}" class="edit" alt="{{ 'edit' }}">
+            <i class="icon-edit icon-large {% if not is_granted("ROLE_ADMIN") %} icon-muted {% endif %}"></i>
+        </a>&nbsp;
+
+        <a href="{{ path('scss_'~type~'_delete', { 'slug' : slug }) }}" class="remove" alt="{{ 'remove' }}">
+            <i class="icon-trash icon-large {% if not is_granted("ROLE_ADMIN") %} icon-muted {% endif %}"></i>
+        </a>
+    </div>
+</td>
+{% endblock %}

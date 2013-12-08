@@ -1,56 +1,87 @@
 imports:
-    - { resource: parameters.ini }
+    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
     - { resource: services.yml }
-    - { resource: menu.yml }
+#    - { resource: menu.yml }
 
+#####################################################################################
+## Framwork Configuration
+#####################################################################################
 framework:
     #esi:             ~
     translator:      ~
     secret:          %secret%
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] }
-#    assets_version: SomeVersionScheme
-    default_locale:  %locale%
-    session: ~
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         ~
+    fragments:       ~
 
-################################################################################
+#####################################################################################
 ## Twig Configuration
-################################################################################
+#####################################################################################
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
     form:
-        resources:
-            - "BcBootstrapBundle:Form:form_div_layout.html.twig"
-#            - 'OhGoogleMapFormTypeBundle:Form:fields.html.twig'
-            
-################################################################################
+        resources: ~
+#            - "BcBootstrapBundle:Form:form_div_layout.html.twig"
+
+#####################################################################################
 ## Assetic Configuration
-################################################################################
+#####################################################################################
 assetic:
     debug:          %kernel.debug%
     use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
     filters:
-        less:
-            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
-            apply_to: "\.less$"
         cssrewrite: ~
+        less:
+            node: /usr/bin/nodejs
+            node_paths: [ /usr/local/lib/node_modules/ ]
+            apply_to:   "\.less$"
     assets:
         bootstrap_css:
             inputs:
-                - %kernel.root_dir%/../vendor/twitter/bootstrap/docs/assets/css/bootstrap.css
+                - %kernel.root_dir%/../src/SCSS/UserBundle/Resources/public/less/build.less
             filters:
+                - less
                 - cssrewrite
             output: css/bootstrap.css
+        bootstrap_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-transition.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-alert.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-button.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-carousel.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-collapse.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-dropdown.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-modal.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-tooltip.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-popover.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-tab.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-typeahead.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/bootstrap-affix.js
+            output: js/bootstrap.js
+        jquery:
+            inputs:
+                - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js
+            output: js/jquery.js
 
-################################################################################
+#####################################################################################
 ## Doctrine Configuration
-################################################################################
+#####################################################################################
 doctrine:
     dbal:
         driver:   %database_driver%
@@ -60,11 +91,10 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
-        mapping_types:
-            enum: string
-            set: string
-            varbinary: string
-            tinyblob: text        
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
@@ -72,7 +102,7 @@ doctrine:
                 auto_mapping: true
                 mappings:
                     FOSUserBundle: ~
-                    ScssUserBundle: ~
+                    SCSSUserBundle: ~
                     gedmo_translatable:
                         type: annotation
                         prefix: Gedmo\Translatable\Entity
@@ -104,9 +134,9 @@ doctrine:
 stof_doctrine_extensions:
     default_locale: en_US
     orm:
-        default: 
+        default:
           timestampable: true
-          sluggable: true                        
+          sluggable: true
 
 ################################################################################
 ## Swiftmailer Configuration
@@ -116,28 +146,28 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
+    spool:     { type: memory }
 
 ################################################################################
-## FOS
+## FOS Configuration
 ################################################################################
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Scss\UserBundle\Entity\User
+    user_class: SCSS\UserBundle\Entity\User
     service:
         user_manager: pugx_user_manager
-    registration:
-        form:
-            handler: pugx_user_registration_form_handler
-    profile:
-        form:
-            handler: pugx_user_profile_form_handler
-    
+#fos_facebook:
+#  alias:  facebook
+#  app_id: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#  secret: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#  cookie: true
+#  permissions: [email, user_birthday, user_location]
+
 ################################################################################
-## JMS
+## JMS Configuration
 ################################################################################
 jms_security_extra:
-#    secure_controllers:  true
     secure_all_services: false
     enable_iddqd_attribute: false
     expressions: false
@@ -145,79 +175,94 @@ jms_security_extra:
         disable_authenticated: false
         disable_role:          false
         disable_acl:           false
-    method_access_control: { }    
+    method_access_control: { }
 jms_aop:
-    cache_dir: %kernel.cache_dir%/jms_aop  
+    cache_dir: %kernel.cache_dir%/jms_aop
 
 ################################################################################
-## KnP
+## KNP Configuration
 ################################################################################
 knp_menu:
-    twig: 
-        template: MillwrightMenuBundle:Default:knp_menu.html.twig
-    templating: false 
-    default_renderer: twig      
-    
+    twig: # false
+        template: SCSSUserBundle:Menu:layout.html.twig
+    default_renderer: twig
+
 ################################################################################
-## Google Maps
+## PUGX Configuration
 ################################################################################
-ivory_google_map:
-    map:
-      prefix_javascript_variable: "map_"
-      html_container: "map"
-      async: false
-      auto_zoom: false
-      center:
-          longitude:  0
-          latitude:   0
-          no_wrap:    true
-      zoom: 3
-      bound:
-          south_west:
-              latitude:   -2.1
-              longitude:  1.4
-              no_wrap:    true
-          north_east:
-              latitude:   2.6
-              longitude:  1.4
-              no_wrap:    true
-      type: "roadmap" 
-      width:  "100%"
-      height: "100%"
-      map_options:
-          disableDefaultUI:       true
-          disableDoubleClickZoom: true
-      stylesheet_options: 
-          position: "absolute"
-          top:      "32px"
-          left:     "0px"
-          z-index:  "-100"
-      language: en
-    geocoder:
-      class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\Geocoder"
-      provider:
-        class: "Ivory\GoogleMapBundle\Model\Services\Geocoding\\Provider"
-        api_key: ~
-        locale: en
-      adapter: "Geocoder\HttpAdapter\BuzzHttpAdapter" 
+pugx_multi_user:
+    users:
+        faculty:
+            entity:
+                class: SCSS\FacilityBundle\Entity\Faculty
+            registration:
+                form:
+                    type: SCSS\UserBundle\Form\Type\RegistrationFacultyFormType
+                    name: fos_user_registration_form
+                    validation_groups: [Profile, Default, Faculty]
+                template: SCSSUserBundle:Faculty:registration.form.html.twig
+            profile:
+                form:
+                    type: SCSS\UserBundle\Form\Type\ProfileFacultyFormType
+                    name: fos_user_profile_form
+                    validation_groups: [Profile, Default, Faculty]
+        leader:
+            entity:
+                class: SCSS\PasselBundle\Entity\Leader
+            registration:
+                form:
+                    type: SCSS\UserBundle\Form\Type\RegistrationLeaderFormType
+                    name: fos_user_registration_form
+                    validation_groups: [Profile, Default, Leader]
+                template: SCSSUserBundle:Leader:registration.form.html.twig
+            profile:
+                form:
+                    type: SCSS\UserBundle\Form\Type\ProfileLeaderFormType
+                    name: fos_user_profile_form
+                    validation_groups: [Profile, Default, Leader]
+        attendee:
+            entity:
+                class: SCSS\PasselBundle\Entity\Attendee
+            registration:
+                form:
+                    type: SCSS\UserBundle\Form\Type\RegistrationAttendeeFormType
+                    name: fos_user_registration_form
+                    validation_groups: [Profile, Default, Attendee]
+                template: SCSSUserBundle:Attendee:registration.form.html.twig
+            profile:
+                form:
+                    type: SCSS\UserBundle\Form\Type\ProfileAttendeeFormType
+                    name: fos_user_profile_form
+                    validation_groups: [Profile, Default, Attendee]
+        admin:
+            entity:
+                class: SCSS\UserBundle\Entity\Admin
+            registration:
+                form:
+                    type: SCSS\UserBundle\Form\Type\RegistrationAdminFormType
+                    name: fos_user_registration_form
+                    validation_groups: [Profile, Default, Admin]
+                template: SCSSUserBundle:Admin:registration.form.html.twig
+            profile:
+                form:
+                    type: SCSS\UserBundle\Form\Type\ProfileAdminFormType
+                    name: fos_user_profile_form
+                    validation_groups: [Profile, Default]
+
 ################################################################################
-## PUGX Multi User
+## IMAGINE Configuration
 ################################################################################
-parameters:
-    pugx_user_discriminator_parameters:
-        classes:
-            faculty:
-                entity: Scss\FacilityBundle\Entity\Faculty
-                registration: Scss\FacilityBundle\Form\Type\RegistrationFacultyFormType
-                profile: Scss\FacilityBundle\Form\Type\ProfileFacultyFormType
-                factory: ~
-            passel_leader:
-                entity: Scss\PasselBundle\Entity\PasselLeader
-                registration: Scss\PasselBundle\Form\Type\RegistrationPasselLeaderFormType
-                profile: Scss\PasselBundle\Form\Type\ProfilePasselLeaderFormType
-                factory: ~
-            attendee:
-                entity: Scss\PasselBundle\Entity\Attendee
-                registration: Scss\PasselBundle\Form\Type\RegistrationAttendeeFormType
-                profile: Scss\PasselBundle\Form\Type\ProfileAttendeeFormType
-                factory: ~
+liip_imagine:
+    filter_sets:
+        carousel_sm:
+            filters:
+                thumbnail: { size: [940, 400], mode: outbound }
+        carousel_lg:
+            filters:
+                thumbnail: { size: [1170, 400], mode: outbound }
+
+###############################################################################
+## PAGERFANTA Configuration
+###############################################################################
+white_october_pagerfanta:
+    default_view: twitter_bootstrap

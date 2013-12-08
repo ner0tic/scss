@@ -1,0 +1,58 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/bundles/scssuser/css/Base/index.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scsscourse/css/course.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssuser/css/Base/datatable.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="fluid-row">
+    <div class="span12">
+        <h1>
+            {{ 'courses' | title }}
+            {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path( 'scss_course_new' ) }}" alt="{{ 'add a course' }}">
+                <i class="icon-plus on icon-check-empty pull-right"></i>
+           </a>
+           {% endif %}
+        </h1>
+
+        {% block datatable %}
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    <a href="#" class="sort-toggle">{{ 'name' | title }}</a>
+                </th>
+                <th>{{ 'facility' | title }}</th>
+                <th>{{ 'start' | title }}</th>
+                <th>{{ 'end' | title }}</th>
+                <th>{{ 'faculty' | title }}</th>
+                <td></td>
+            </tr>
+            {% for course in courses %}
+            <tr>
+                <td><a href="{{ path( 'scss_course_show', { 'slug': course.slug } ) }}">{{ course.name }}</a></td>
+                <td>{{ course.start }}</td>
+                <td>{{ course.end }}</td>
+                <td>{{ course.faculty}}</td>
+                {% include 'SCSSUserBundle:Datatable:datatable.controls.html.twig' with { 'slug': course.slug, 'type': 'course' } %}
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">
+                    <em>{{ 'no courses found.' | title }}</em>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% include 'SCSSUserBundle:Datatable:datatable.footer.html.twig' with { 'pager': pager } %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

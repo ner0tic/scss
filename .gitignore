@@ -1,21 +1,19 @@
-# Bootstrap
-app/bootstrap*
-
-# Symfony directories
-vendor/*
-*/logs/*
 */cache/*
-web/uploads/*
-web/bundles/*
-
-# Configuration files
 app/config/parameters.ini
-app/config/parameters.yml
-
-# Composer
-composer.phar
+vendor/*
+app/bootstrap*
+web/uploads/*
 composer.lock
-
+web/bundles/*
 # Misc
+# Bootstrap
+scss.sublime-project
+/src/.Scss
+# Symfony directories
+# Configuration files
+/nbproject
+# Composer
 *~
-/nbproject/
+composer.phar
+app/config/parameters.yml
+*/logs/*

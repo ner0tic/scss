@@ -1,3 +1,7 @@
+scss_utility:
+    resource: "@SCSSUtilityBundle/Resources/config/routing.yml"
+    prefix:   /
+
 scss_user_security:
     resource: "@ScssUserBundle/Resources/config/routing/security.yml"
 scss_user_signup:

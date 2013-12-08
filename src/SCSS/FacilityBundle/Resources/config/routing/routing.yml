@@ -1,0 +1,12 @@
+facilities:
+    resource: "@SCSSFacilityBundle/Resources/config/routing/facility.yml"
+    prefix: /
+department:
+    resource: "@SCSSFacilityBundle/Resources/config/routing/department.yml"
+    prefix: /
+faculty:
+    resource: "@SCSSFacilityBundle/Resources/config/routing/faculty.yml"
+    prefix: /
+quarter:
+    resource: "@SCSSFacilityBundle/Resources/config/routing/quarters.yml"
+    prefix: /

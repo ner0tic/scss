@@ -1,7 +1,0 @@
-parameters:
-#    scss_facility.example.class: Scss\FacilityBundle\Example
-
-services:
-#    scss_facility.example:
-#        class: %scss_facility.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,3 @@
+SCSS_course_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: SCSSCourseBundle:Default:index }

@@ -14,38 +14,27 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-                        
             new FOS\UserBundle\FOSUserBundle(),
             new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
-
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Millwright\MenuBundle\MillwrightMenuBundle(),
-            new Millwright\ConfigurationBundle\MillwrightConfigurationBundle(),
-                        
-            new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
-//            new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
-            
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-            new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
-            
-            new Scss\UserBundle\ScssUserBundle(),
-            new Scss\FacilityBundle\ScssFacilityBundle(),
-            new Scss\OrganizationBundle\ScssOrganizationBundle(),
-//            new Scss\GeographyBundle\ScssGeographyBundle(),
-            new Scss\CourseBundle\ScssCourseBundle(),
-//            new Scss\UtilityBundle\ScssUtilityBundle(),
-            new Scss\EnrollmentBundle\ScssEnrollmentBundle(),
-            new Scss\PasselBundle\ScssPasselBundle(),
-            new Scss\ReportBundle\ScssReportBundle(),
+            new SCSS\UserBundle\SCSSUserBundle(),
+            new SCSS\PasselBundle\SCSSPasselBundle(),
+            new SCSS\OrganizationBundle\SCSSOrganizationBundle(),
+            new SCSS\FacilityBundle\SCSSFacilityBundle(),
+            new SCSS\EnrollmentBundle\SCSSEnrollmentBundle(),
+            new SCSS\CourseBundle\SCSSCourseBundle(),
+            new SCSS\ReportBundle\SCSSReportBundle()
+,
+            new SCSS\UtilityBundle\SCSSUtilityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

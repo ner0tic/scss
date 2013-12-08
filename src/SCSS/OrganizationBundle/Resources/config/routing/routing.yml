@@ -1,0 +1,34 @@
+###############################################################################
+## Organization
+###############################################################################
+organizations:
+    pattern: /organizations
+    defaults: { _controller: SCSSOrganizationBundle:Organization:index }
+organization_show:
+    pattern: /organizations/{organization}
+    defaults: { _controller: SCSSOrganizationBundle:Organization:show }
+organization_new:
+    pattern: /organizations/new
+    defaults: { _controller: SCSSOrganizationBundle:Organization:new }
+organization_edit:
+    pattern: /organizations/{organization}/edit
+    defaults: { _controller: SCSSOrganizationBundle:Organization:edit }
+
+###############################################################################
+## Council
+###############################################################################
+councils:
+    pattern: /councils
+    defaults: { _controller: SCSSOrganizationBundle:Council:index }
+councils_by_organization:
+    pattern: /organizations/{organization}/councils
+    defaults: { _controller: SCSSOrganizationBundle:Council:organization }
+councils_show:
+    pattern: /councils/{council}
+    defaults: { _controller: SCSSOrganizationBundle:Council:show }
+councils_new:
+    pattern: /councils/new
+    defaults: { _controller: SCSSOrganizationBundle:Council:new }
+councils_edit:
+    pattern: /councils/{council}/edit
+    defaults: { _controller: SCSSOrganizationBundle:Council:edit }
