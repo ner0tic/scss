@@ -18,12 +18,12 @@ use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
  *     fields = "username",
  *     targetClass = "SCSS\UserBundle\Entity\User",
  *     message="fos_user.username.already_used"
- * )
+ *)
  * @UniqueEntity(
  *     fields = "email",
  *     targetClass = "SCSS\UserBundle\Entity\User",
  *     message="fos_user.email.already_used"
- * )
+ *)
  *
  */
 abstract class User extends BaseUser
@@ -58,7 +58,7 @@ abstract class User extends BaseUser
      *     groups={"Registration", "Profile"},
      *     max="255",
      *     maxMessage="The name is too long."
-     * )
+     *)
      */
     protected $firstName;
 
@@ -71,7 +71,7 @@ abstract class User extends BaseUser
      *     groups={"Registration", "Profile"},
      *     max="255",
      *     maxMessage="The name is too long."
-     * )
+     *)
      */
     protected $lastName;
 
@@ -160,7 +160,7 @@ abstract class User extends BaseUser
                 ' ',
                 '-',
                 $this->getName()
-            );
+           );
         }
 
         return $this;

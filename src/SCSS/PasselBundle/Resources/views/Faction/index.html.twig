@@ -25,30 +25,78 @@
 
         {% block datatable %}
         <table class="table table-striped">
-            <tr>
-                <th>
-                    <a href="#" class="sort-toggle">{{ 'name' | title }}</a>
-                </th>
-                <th>{{ 'description' | title }}</th>
-                <th>{{ 'status' | title }}</th>
-                <th>{{ 'category' | title }}</th>
-                <td></td>
-            </tr>
-            {% for faction in factions %}
-            <tr>
-                <td><a href="{{ path( 'scss_faction_show', { 'slug': faction.slug } ) }}">{{ faction.name }}</a></td>
-                <td>{{ faction.shortDescription }}</td>
-                <td><a href="{{ path( 'scss_status_show', { 'slug': faction.Status.slug } ) }}">{{ faction.Status.name }}</a></td>
-                <td><a href="{{ path( 'scss_category_show', { 'slug': faction.Category.slug } ) }}">{{ faction.Category.name }}</a></td>
-                {% include 'SCSSUserBundle:Datatable:datatable.controls.html.twig' with { 'slug': faction.slug, 'type': 'faction' } %}
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5">
-                    <em>{{ 'no factions found.' | title }}</em>
-                </td>
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    {# name #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'name' | title }}</a>
+                    </th>
+                    {# attendees #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'attendees' }} | title }}</a>
+                    </th>
+                    {# passel #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'passel' }} | title }}</a>
+                    </th>
+                    {# region #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'region' }} | title }}</a>
+                    </th>
+                    {# council #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'council' }} | title }}</a>
+                    </th>
+                    {# organization #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'organization' }} | title }}</a>
+                    </th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for faction in factions %}
+                <tr>
+                    <td>
+                        <a href="{{ path( 'scss_faction_show', { 'slug': faction.slug } ) }}">
+                            {{ faction.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_attendee_index_by_faction', { 'slug': faction.slug } ) }}">
+                            {{ faction.attendees | length }} {{ 'attendees' }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_passerl_show', { 'slug': faction.Passel.slug } ) }}">
+                            {{ faction.factions | length }} {{ 'factions' }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_region_show', { 'slug': faction.Region.slug } ) }}">
+                            {{ faction.Region.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_council_show', { 'slug': faction.Council.slug } ) }}">
+                            {{ faction.Council.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_organization_show', { 'slug': faction.Organization.slug } ) }}">
+                            {{ faction.Organization.name }}
+                        </a>
+                    </td>
+                    {% include 'SCSSUserBundle:Datatable:datatable.controls.html.twig' with { 'slug': faction.slug, 'type': 'faction' } %}
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">
+                        <em>{{ 'no factions found.' | title }}</em>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
         {% include 'SCSSUserBundle:Datatable:datatable.footer.html.twig' with { 'pager': pager } %}
         {% endblock %}

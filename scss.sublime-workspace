@@ -12,42 +12,42 @@
 	"buffers":
 	[
 		{
-			"file": "src/SCSS/UserBundle/Model/Attribute.php",
+			"file": "src/SCSS/PasselBundle/Form/Type/LeaderType.php",
 			"settings":
 			{
-				"buffer_size": 1084,
+				"buffer_size": 527,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/project-mgmt-system/src/PMS/ProjectBundle/Resources/views/Project/index.html.twig",
+			"file": "src/SCSS/PasselBundle/Entity/Leader.php",
 			"settings":
 			{
-				"buffer_size": 2227,
+				"buffer_size": 2110,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/SCSS/UserBundle/Resources/views/Base/menu.html.twig",
+			"file": "src/SCSS/PasselBundle/Entity/Level.php",
 			"settings":
 			{
-				"buffer_size": 3400,
+				"buffer_size": 2758,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "vendor/knplabs/knp-menu/src/Knp/Menu/Resources/views/knp_menu.html.twig",
+			"file": "src/SCSS/PasselBundle/Entity/Position.php",
 			"settings":
 			{
-				"buffer_size": 3227,
+				"buffer_size": 2322,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/project-mgmt-system/src/PMS/UserBundle/Resources/views/Datatable/datatable.controls.html.twig",
+			"file": "src/SCSS/UserBundle/Entity/User.php",
 			"settings":
 			{
-				"buffer_size": 1023,
+				"buffer_size": 8379,
 				"line_ending": "Unix"
 			}
 		}
@@ -55,19 +55,19 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 112.0,
+		"height": 292.0,
 		"selected_items":
 		[
 			[
-				"PHP Code Sniffer: ",
-				"PHP Code Sniffer: Sniff this file"
+				"Package Control: ",
+				"Package Control: Remove Package"
 			],
 			[
-				"Package Control: ",
-				"Package Control: Install Package"
+				"PHP Code Sniffer: ",
+				"PHP Code Sniffer: Sniff this file"
 			]
 		],
-		"width": 392.0
+		"width": 380.0
 	},
 	"console":
 	{
@@ -88,21 +88,74 @@
 	},
 	"file_history":
 	[
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Form/Type/FactionType.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Entity/Faction.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Entity/Attendee.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Form/Type/AttendeeType.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Form/Type/PasselType.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Entity/Passel.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Entity/Type.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Form/Type/TypeType.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Resources/views/Passel/show.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Resources/views/Faction/index.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Resources/views/Passel/index.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Resources/views/Attendee/index.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Resources/views/Leader/index.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Resources/views/Type/index.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/project-mgmt-system/src/PMS/UserBundle/Resources/views/Developer/index.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/dd.net/branches/2.2/src/Ddnet/UserBundle/Resources/views/Profile/index.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UtilityBundle/Menu/MenuBuilder.php",
+		"/home/ner0tic/.config/sublime-text-3/Packages/PhpCodeGen/phpcodegen.sublime-settings",
+		"/home/ner0tic/.config/sublime-text-3/Packages/User/phpcs.sublime-settings",
+		"/home/ner0tic/.config/sublime-text-3/Packages/DocBlockr/Base File.sublime-settings",
+		"/home/ner0tic/.config/sublime-text-3/Packages/Phpcs/phpcs.sublime-settings",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/app/config/services.yml",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UtilityBundle/Resources/views/Datatable/datatable.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Entity/User.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Entity/Admin.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/vendor/knplabs/knp-menu/src/Knp/Menu/Resources/views/knp_menu.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UtilityBundle/Resources/views/Datatable/datatable.controls.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UtilityBundle/Resources/views/Datatable/datatable.footer.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UtilityBundle/Traits/BlameableTrait.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UtilityBundle/Traits/GeolocatableTrait.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UtilityBundle/Traits/SluggableTrait.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UtilityBundle/Traits/TimestampableTrait.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Entity/AddressBook.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/ReportBundle/Entity/AttendeeAlphabeticalReport.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Entity/Position.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Entity/Level.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/PasselBundle/Entity/Leader.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/OrganizationBundle/Entity/Organization.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/OrganizationBundle/Entity/Council.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/OrganizationBundle/Entity/Region.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/FacilityBundle/Entity/Facility.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/FacilityBundle/Entity/Faculty.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/FacilityBundle/Entity/Quarters.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/FacilityBundle/Entity/Department.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/EnrollmentBundle/Entity/AttendeeEnrollment.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/EnrollmentBundle/Entity/PasselEnrollment.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/CourseBundle/Entity/FacilityCourse.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/CourseBundle/Entity/Period.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/CourseBundle/Entity/Requirement.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/CourseBundle/Entity/SCSSClass.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/CourseBundle/Entity/Week.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/CourseBundle/Entity/Course.php",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/project-mgmt-system/src/PMS/UserBundle/Resources/views/Datatable/datatable.controls.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Resources/views/Base/menu.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/project-mgmt-system/src/PMS/ProjectBundle/Resources/views/Project/index.html.twig",
+		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Model/Attribute.php",
 		"/home/ner0tic/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/ner0tic/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Interface/AttributeInterface.php",
 		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Interface/OptionInterface.php",
-		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Model/Attribute.php",
 		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/src/SCSS/UserBundle/Interface/OptionInterface.phjp",
 		"/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/scss/2_1/.gitignore",
 		"/home/ner0tic/.config/sublime-text-3/Packages/PHP Companion/PHP Companion.sublime-settings",
-		"/home/ner0tic/.config/sublime-text-3/Packages/User/phpcs.sublime-settings",
-		"/home/ner0tic/.config/sublime-text-3/Packages/Phpcs/phpcs.sublime-settings",
 		"/home/ner0tic/.config/sublime-text-3/Packages/Composer/composer-sublime.sublime-settings"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -116,13 +169,44 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" )",
+			"( ",
+			" )",
+			"( ",
+			" )",
+			"( ",
+			" )",
+			"( ",
+			"passel",
+			"attendee",
+			"passel",
+			" )",
+			"( ",
+			"namespace SCSS\\UserBundle\\Traits;",
+			"User"
 		],
 		"highlight": true,
 		"in_selection": false,
-		"preserve_case": false,
+		"preserve_case": true,
 		"regex": false,
 		"replace_history":
 		[
+			")",
+			"(",
+			")",
+			"(",
+			")",
+			"(",
+			")",
+			"(",
+			"type",
+			"leader",
+			"attendee",
+			"faction",
+			")",
+			"(",
+			"namespace SCSS\\UtilityBundle\\Traits;",
+			"Utility"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -133,43 +217,51 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/SCSS/UserBundle/Model/Attribute.php",
+					"file": "src/SCSS/PasselBundle/Form/Type/LeaderType.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1084,
+						"buffer_size": 527,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1014,
-								1014
+								527,
+								527
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 463.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
 					"buffer": 1,
-					"file": "/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/project-mgmt-system/src/PMS/ProjectBundle/Resources/views/Project/index.html.twig",
+					"file": "src/SCSS/PasselBundle/Entity/Leader.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2227,
+						"buffer_size": 2110,
 						"regions":
 						{
 						},
@@ -182,23 +274,23 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP-Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 45.0,
+						"translation.y": 855.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "src/SCSS/UserBundle/Resources/views/Base/menu.html.twig",
+					"file": "src/SCSS/PasselBundle/Entity/Level.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3400,
+						"buffer_size": 2758,
 						"regions":
 						{
 						},
@@ -211,23 +303,23 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP-Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 810.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "vendor/knplabs/knp-menu/src/Knp/Menu/Resources/views/knp_menu.html.twig",
-					"semi_transient": true,
+					"file": "src/SCSS/PasselBundle/Entity/Position.php",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3227,
+						"buffer_size": 2322,
 						"regions":
 						{
 						},
@@ -240,7 +332,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP-Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -252,11 +344,11 @@
 				},
 				{
 					"buffer": 4,
-					"file": "/media/e038fb3e-e183-41c4-a020-68290c953595/symfony/project-mgmt-system/src/PMS/UserBundle/Resources/views/Datatable/datatable.controls.html.twig",
+					"file": "src/SCSS/UserBundle/Entity/User.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1023,
+						"buffer_size": 8379,
 						"regions":
 						{
 						},
@@ -269,12 +361,12 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP-Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1260.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -284,7 +376,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -299,11 +391,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -316,7 +415,7 @@
 	"project": "scss.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":

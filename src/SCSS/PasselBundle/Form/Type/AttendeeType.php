@@ -7,31 +7,31 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class AttendeeType extends AbstractType
 {
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add( 'first_name' );
-        $builder->add( 'last_name' );
+        $builder->add('first_name');
+        $builder->add('last_name');
 
-        $minYr = date( 'Y' ) - 18;
-        $maxYr = date( 'Y' ) - 10;
+        $minYr = date('Y') - 18;
+        $maxYr = date('Y') - 10;
         $years = array();
 
-        for( $x=$maxYr; $x >= $minYr; $x-- )  $years[] = $x;
+        for($x=$maxYr; $x >= $minYr; $x--)  $years[] = $x;
 
-        $builder->add( 'birthdate',   'birthday', array( 'years' => $years, 'format' => 'M/dd/y' ) );
-        $builder->add( 'faction',   'entity',   array( 'property' =>  'name', 'class' => 'SCSS\PasselBundle\Entity\Faction' ) );
-        $builder->add( 'passel',  'entity',   array( 'property' =>  'name', 'class' => 'SCSS\PasselBundle\Entity\Passel' ) );
+        $builder->add('birthdate',   'birthday', array('years' => $years, 'format' => 'M/dd/y'));
+        $builder->add('faction',   'entity',   array('property' =>  'name', 'class' => 'SCSS\PasselBundle\Entity\Faction'));
+        $builder->add('passel',  'entity',   array('property' =>  'name', 'class' => 'SCSS\PasselBundle\Entity\Passel'));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults( array(
+        $resolver->setDefaults(array(
             'data_class' => 'SCSS\PasselBundle\Entity\Attendee'
-        ));
+       ));
     }
 
     public function getName()
     {
-        return 'SCSS_Passelbundle_attendeetype';
+        return 'attendee';
     }
 }

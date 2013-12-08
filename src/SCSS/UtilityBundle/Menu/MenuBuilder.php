@@ -24,10 +24,10 @@ class MenuBuilder implements ContainerAwareInterface
 
     public function createSuperAdminMenu(Request $request)
     {
-        $menu = $this->createAdminMenu( $request );
-        $menu->addChild( 'site mgmt',                       array(
+        $menu = $this->createAdminMenu($request);
+        $menu->addChild('site mgmt',                       array(
             'route'               =>  'site-mgmt'
-        ) );
+       ));
     }
 
     public function createAdminMenu(Request $request)
@@ -38,7 +38,7 @@ class MenuBuilder implements ContainerAwareInterface
 
     public function createFacilityMenu(Request $request)
     {
-        $menu = $this->createBaseMenu( $request );
+        $menu = $this->createBaseMenu($request);
 
         ////////////////////////////////////////////////////////////////////////
         // Faculty Menu
@@ -60,10 +60,10 @@ class MenuBuilder implements ContainerAwareInterface
                         'facility_slug'     =>  $user->getActiveEnrollment()
                                                      ->getFacility()
                                                      ->getSlug(),
-        ) ) );
+       )));
 
-        foreach ( $user->getActiveEnrollment()->getFacility()->getWeeks() as $week ) {
-            if ($week->getId() != $user->getActiveEnrollment()->getWeek()->getId() ) {
+        foreach ($user->getActiveEnrollment()->getFacility()->getWeeks() as $week) {
+            if ($week->getId() != $user->getActiveEnrollment()->getWeek()->getId()) {
                 $menu[ $this->activeEnrollLabel ]->addChild(
                         $user->getActiveEnrollment()->getFacility() . ' ' . $week,
                         array(
@@ -77,7 +77,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                              ->getFacility()
                                                              ->getSlug(),
                                 'week_slug'         =>  $week->getSlug()
-                ) ) );
+               )));
             }
         }
 
@@ -90,7 +90,7 @@ class MenuBuilder implements ContainerAwareInterface
                     'route'                   =>  'class_mgmt',
                     'routeParameters'       =>  array(
 
-        ) ) );
+       )));
 
         ////////////////////////////////////////////////////////////////////
         // Reports
@@ -99,12 +99,12 @@ class MenuBuilder implements ContainerAwareInterface
                 'reports',
                 array(
                     'route'                   =>  'reports',
-        ) );
+       ));
 
         ////////////////////////////////////////////////////////////////////////
         // Faculty Admin Menu Additions
         ////////////////////////////////////////////////////////////////////////
-        if ( $user->isGranted( 'ROLE_FACULTY_ADMIN' ) ) {
+        if ($user->isGranted('ROLE_FACULTY_ADMIN')) {
             $menu[ $this->activeEnrollLabel ]->addChild(
             'passel enrollments',
             array(
@@ -120,7 +120,7 @@ class MenuBuilder implements ContainerAwareInterface
                     'week_slug'         =>  $user->getActiveEnrollment()
                                                  ->getWeek()
                                                  ->getSlug(),
-            ) ) );
+           )));
             ////////////////////////////////////////////////////////////////////
             // Facility Mgmt Menu Item
             ////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'facility_slug'     =>  $user->getActiveEnrollment()
                                                          ->getFacility()
                                                          ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ 'facility management' ]->addChild(
                     'manage weeks',
@@ -150,7 +150,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'facility_slug'     =>  $user->getActiveEnrollment()
                                                          ->getFacility()
                                                          ->getSlug()
-            ) ) );
+           )));
 
             $menu[ 'facility management' ]->addChild(
                     'manage departments',
@@ -164,7 +164,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'facility_slug'     =>  $user->getActiveEnrollment()
                                                          ->getFacility()
                                                          ->getSlug()
-            ) ) );
+           )));
 
             $menu[ 'facility management' ]->addChild(
                     'manage quarters',
@@ -178,7 +178,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'facility_slug'     =>  $user->getActiveEnrollment()
                                                          ->getFacility()
                                                          ->getSlug()
-            ) ) );
+           )));
 
             $menu[ 'facility management' ]->addChild(
                     'manage faculty',
@@ -192,7 +192,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'facility_slug'     =>  $user->getActiveEnrollment()
                                                          ->getFacility()
                                                          ->getSlug()
-            ) ) );
+           )));
 
             $menu[ 'facility management' ]->addChild(
                     'manage periods',
@@ -206,7 +206,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'facility_slug'     =>  $user->getActiveEnrollment()
                                                          ->getFacility()
                                                          ->getSlug()
-            ) ) );
+           )));
 
             $menu[ 'facility management' ]->addChild(
                     'manage classes',
@@ -223,7 +223,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'         =>  $user->getActiveEnrollment()
                                                          ->getWeek()
                                                          ->getSlug()
-            ) ) );
+           )));
         }
 
     return $menu;
@@ -237,14 +237,14 @@ class MenuBuilder implements ContainerAwareInterface
      */
     public function createPasselMenu(Request $request)
     {
-        $menu = $this->createBaseMenu( $request );
+        $menu = $this->createBaseMenu($request);
 
         $this->activeEnrollLabel = $user->getActiveEnrollment()->getFacility() . ' - ' . $user->getActiveEnrollment()->getWeek();
 
         ////////////////////////////////////////////////////////////////////////
         // Passel Leader Menu
         ////////////////////////////////////////////////////////////////////////
-        if ( $user->isGranted( 'ROLE_PASSEL_LEADER' ) ) {
+        if ($user->isGranted('ROLE_PASSEL_LEADER')) {
             ////////////////////////////////////////////////////////////////////
             // Active Enrollment Menu Item
             ////////////////////////////////////////////////////////////////////
@@ -255,9 +255,9 @@ class MenuBuilder implements ContainerAwareInterface
                         'routeParameters'   =>  array(
                             'id'            =>  $user->getActiveEnrollment()
                                                      ->getPasselEnrollmentId()
-            ) ) );
+           )));
 
-            foreach ( $user->getActiveEnrollment()->getPassel()->getEnrollments() as $enrollment ) {
+            foreach ($user->getActiveEnrollment()->getPassel()->getEnrollments() as $enrollment) {
                 $menu[ $this->activeEnrollLabel ]->addChild(
                         $enrollment()->getFacility() . ' - ' . $enrollment()->getWeek(),
                         array(
@@ -265,7 +265,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'routeParameters'   =>  array(
                                 'facility_slug' =>  $enrollment()->getFacility()->getSlug(),
                                 'week_slug'     =>  $enrollment()->getWeek()->getSlug(),
-                ) ) );
+               )));
             }
 
             ////////////////////////////////////////////////////////////////////
@@ -283,7 +283,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'passel_slug'   =>  $user->getActiveEnrollmenr()
                                                      ->getPassel()
                                                      ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ 'passel management' ]->addChild(
                     'enrollment',
@@ -297,7 +297,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'passel_slug'   =>  $user->getActiveEnrollment()
                                                      ->getPassel()
                                                      ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ 'passel management' ]->addChild(
                     'manage factions',
@@ -311,7 +311,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'passel_slug'   =>  $user->getActiveEnrollment()
                                                      ->getPassel()
                                                      ->getSlug(),
-            ) ) );
+           )));
 
             ////////////////////////////////////////////////////////////////////
             // Reports Menu Item
@@ -320,7 +320,7 @@ class MenuBuilder implements ContainerAwareInterface
                     'reports',
                     array(
                         'route'               =>  'reports',
-            ) );
+           ));
 
             $menu[ 'reports' ]->addChild(
                     'alphabetical list',
@@ -334,7 +334,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'facility_slug' =>  $user->getActiveEnrollment()
                                                      ->getFacility()
                                                      ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ 'reports' ]->addChild(
                     'medlist',
@@ -347,7 +347,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'     =>  $user->getActiveEnrollment()
                                                      ->getWeek()
                                                      ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ 'reports' ]->addChild(
                     'master schedule',
@@ -360,7 +360,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'     =>  $user->getActiveEnrollment()
                                                      ->getWeek()
                                                      ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ 'reports' ]->addChild(
                     'incomplete attendee schedules',
@@ -373,12 +373,12 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'     =>  $user->getActiveEnrollment()
                                                      ->getWeek()
                                                      ->getSlug(),
-            ) ) );
+           )));
 
             ////////////////////////////////////////////////////////////////////
             // Passel Admin Menu Additions
             ////////////////////////////////////////////////////////////////////
-            if ( $user->isGranted( 'ROLE_PASSEL_ADMIN' ) ) {
+            if ($user->isGranted('ROLE_PASSEL_ADMIN')) {
                 $menu[ 'profile' ]->addChild(
                         'promote leader',
                         array(
@@ -391,7 +391,7 @@ class MenuBuilder implements ContainerAwareInterface
                                 'passel_slug'   =>  $user->getActiveEnrollment()
                                                          ->getPassel()
                                                          ->getSlug(),
-                ) ) );
+               )));
 
                 $menu[ $this->activeEnrollLabel ]->addChild(
                         'enroll in a facility',
@@ -405,7 +405,7 @@ class MenuBuilder implements ContainerAwareInterface
                                 'passel_slug'   =>  $user->getActiveEnrollment()
                                                          ->getPassel()
                                                          ->getSlug(),
-                ) ) );
+               )));
 
                 $menu->addChild(
                         'passel leader management',
@@ -419,14 +419,14 @@ class MenuBuilder implements ContainerAwareInterface
                                 'passel_slug'   =>  $user->getActiveEnrollment()
                                                          ->getPassel()
                                                          ->getSlug(),
-                ) ) );
+               )));
             }
 
         }
         ////////////////////////////////////////////////////////////////////////
         // Attendee Menu
         ////////////////////////////////////////////////////////////////////////
-        else if ( $user->isGranted( 'ROLE_PASSEL_USER' ) ) {
+        else if ($user->isGranted('ROLE_PASSEL_USER')) {
             ////////////////////////////////////////////////////////////////////
             // Active Enrollment Menu Item
             ////////////////////////////////////////////////////////////////////
@@ -437,7 +437,7 @@ class MenuBuilder implements ContainerAwareInterface
                         'routeParameters'   =>  array(
                             'id'            =>  $user->getActiveEnrollment()
                                                      ->getPasselEnrollmentId()
-            ) ) );
+           )));
 
             $menu[ $this->activeEnrollLabel ]->addChild(
                     'enroll',
@@ -450,7 +450,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'     =>  $user->getActiveEnrollment()
                                                      ->getWeek()
                                                      ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ $this->activeEnrollLabel ]->addChild(
                     'mealplan',
@@ -463,7 +463,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'     =>  $user->getActiveEnrollment()
                                                       ->getWeek()
                                                       ->getSlug(),
-            )));
+           )));
 
             $menu[ $this->activeEnrollLabel ]->addChild(
                     'packinglist',
@@ -476,7 +476,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'         =>  $user->getActiveEnrollment()
                                                          ->getWeek()
                                                          ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ $this->activeEnrollLabel ]->addChild(
                     'change facilities',
@@ -490,7 +490,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                          ->getPassel()
                                                          ->getRegion()
                                                          ->getSlug()
-            ) ) );
+           )));
 
             ////////////////////////////////////////////////////////////////////
             // Med List Menu Item
@@ -506,7 +506,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'         =>  $user->getActiveEnrollment()
                                                          ->getWeek()
                                                          ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ 'medlist' ]->addChild(
                     'add item',
@@ -519,7 +519,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'         =>  $user->getActiveEnrollment()
                                                          ->getWeek()
                                                          ->getSlug(),
-            ) ) );
+           )));
 
             ////////////////////////////////////////////////////////////////////
             // Reports
@@ -528,7 +528,7 @@ class MenuBuilder implements ContainerAwareInterface
                     'reports',
                     array(
                         'route'                   =>  'reports',
-            ) );
+           ));
 
             $menu[ 'reports' ]->addChild(
                     'schedule',
@@ -541,7 +541,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'         =>  $user->getActiveEnrollment()
                                                          ->getWeek()
                                                          ->getSlug(),
-            ) ) );
+           )));
 
             $menu[ 'reports' ]->addChild(
                     'medlist',
@@ -554,7 +554,7 @@ class MenuBuilder implements ContainerAwareInterface
                             'week_slug'         =>  $user->getActiveEnrollment()
                                                          ->getWeek()
                                                          ->getSlug(),
-            ) ) );
+           )));
         }
 
         return $menu;
@@ -570,13 +570,13 @@ class MenuBuilder implements ContainerAwareInterface
      */
     public function createMainMenu(Request $request)
     {
-        $menu = $this->factory->createItem( 'root' );
+        $menu = $this->factory->createItem('root');
 
         $menu->addChild(
                 'home',
                 array(
                     'route'             =>    'homepage'
-        ) );
+       ));
 
         $menu->addChild(
                 'profile',
@@ -584,14 +584,14 @@ class MenuBuilder implements ContainerAwareInterface
                     'route'             =>    'user_show',
                     'routeParameters' =>    array(
                         'user_slug'   =>    $user->getSlug()
-        ) ) );
+       )));
 
         $menu[ 'profile' ]->addChild(
                 'edit',
                 array(
                     'route'             =>    'user_profile_edit',
 
-        ) );
+       ));
 
         return $menu;
     }
@@ -609,31 +609,31 @@ class MenuBuilder implements ContainerAwareInterface
                 'home',
                 array(
                     'route'           =>  'homepage'
-        ) );
+       ));
 
         $menu->addChild(
                 'sign in',
                 array(
                     'route'           =>  'fos_user_security_login'
-        ) );
+       ));
 
         $menu->addChild(
                 'sign up',
                 array(
                     'route'           =>  'fos_user_registration_register'
-        ) );
+       ));
 
         $menu->addChild(
                 'about',
                 array(
                     'route'           =>  'about'
-        ) );
+       ));
 
         $menu->addChild(
                 'contact',
                 array(
                     'route'           =>  'contact'
-        ) );
+       ));
 
         return $menu;
     }

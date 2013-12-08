@@ -25,30 +25,78 @@
 
         {% block datatable %}
         <table class="table table-striped">
-            <tr>
-                <th>
-                    <a href="#" class="sort-toggle">{{ 'name' | title }}</a>
-                </th>
-                <th>{{ 'description' | title }}</th>
-                <th>{{ 'status' | title }}</th>
-                <th>{{ 'category' | title }}</th>
-                <td></td>
-            </tr>
-            {% for passel in passels %}
-            <tr>
-                <td><a href="{{ path( 'scss_passel_show', { 'slug': passel.slug } ) }}">{{ passel.name }}</a></td>
-                <td>{{ passel.shortDescription }}</td>
-                <td><a href="{{ path( 'scss_status_show', { 'slug': passel.Status.slug } ) }}">{{ passel.Status.name }}</a></td>
-                <td><a href="{{ path( 'scss_category_show', { 'slug': passel.Category.slug } ) }}">{{ passel.Category.name }}</a></td>
-                {% include 'SCSSUserBundle:Datatable:datatable.controls.html.twig' with { 'slug': passel.slug, 'type': 'passel' } %}
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5">
-                    <em>{{ 'no passels found.' | title }}</em>
-                </td>
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    {# name #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'name' | title }}</a>
+                    </th>
+                    {# factions #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'factions' | title }}</a>
+                    </th>
+                    {# attendees #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'attendees' | title }}</a>
+                    </th>
+                    {# region #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'region' | title }}</a>
+                    </th>
+                    {# council #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'council' | title }}</a>
+                    </th>
+                    {# organization #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'organization' | title }}</a>
+                    </th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for passel in passels %}
+                <tr>
+                    <td>
+                        <a href="{{ path( 'scss_passel_show', { 'slug': passel.slug } ) }}">
+                            {{ passel.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_faction_index_by_passel', { 'slug': passel.slug } ) }}">
+                            {{ passel.factions | length }} {{ 'factions' }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_attendee_index_by_passel', { 'slug': passel.slug } ) }}">
+                            {{ passel.attendees | length }} {{ 'attendees' }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_region_show', { 'slug': passel.Region.slug } ) }}">
+                            {{ passel.Region.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_council_show', { 'slug': passel.Council.slug } ) }}">
+                            {{ passel.Council.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_organization_show', { 'slug': passel.Organization.slug } ) }}">
+                            {{ passel.Organization.name }}
+                        </a>
+                    </td>
+                    {% include 'SCSSUserBundle:Datatable:datatable.controls.html.twig' with { 'slug': passel.slug, 'type': 'passel' } %}
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">
+                        <em>{{ 'no passels found.' | title }}</em>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
         {% include 'SCSSUserBundle:Datatable:datatable.footer.html.twig' with { 'pager': pager } %}
         {% endblock %}

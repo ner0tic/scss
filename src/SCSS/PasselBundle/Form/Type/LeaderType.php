@@ -3,18 +3,20 @@ namespace SCSS\PasselBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use SCSS\PasselBundle\Entity\Faction;
+use SCSS\PasselBundle\Entity\Leader;
 
-class FactionType extends AbstractType
+class LeaderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name');
-        $builder->add('avatar', 'file');
+        $builder->add('first_name');
+        $builder->add('last_name');
+        $builder->add('birthdate', 'birthday');
         $builder->add('passel');
     }
 
-    public function getName() {
-        return 'faction';
+    public function getName()
+    {
+        return 'leader';
     }
 }

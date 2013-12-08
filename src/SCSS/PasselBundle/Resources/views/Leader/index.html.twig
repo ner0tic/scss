@@ -6,54 +6,87 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('/bundles/scssuser/css/Base/new.css') }}" rel="stylesheet" />
-    <link href="{{ asset('/bundles/scssuser/css/Base/form.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssuser/css/Base/index.css') }}" rel="stylesheet" />
     <link href="{{ asset('/bundles/scsspassel/css/leader.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssuser/css/Base/datatable.css') }}" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
-<div class="row-fluid">
-    <div class="span8 container">
-        <h1>{{ 'update a leader' | title }}</h1>
-        <form action="{{ path( 'scss_leader_new' ) }}" method="post" {{ form_enctype( form ) }}>
-        {% block form %}
-            <div id="form-errors" class="hidden">
-                {{ form_errors( form ) }}
-            </div>
-            <div class="row-fluid">
-                <div id="left-pane" class="pull-left">
-                    <div>
-                        {{ form_row( form.name ) }}
-                    </div>
-                    <div>
-                        {{ form_row( form.status ) }}
-                    </div>
-                    <div>
-                        {{ form_row( form.category ) }}
-                    </div>
-                </div>
-                <div id="right-pane" class="pull-right">
-                    <div>
-                        {{ form_row( form.short_description ) }}
-                    </div>
-                    <div>
-                        {{ form_row( form.description ) }}
-                    </div>
-                    <div>
-                        {{ form_row( form.url ) }}
-                    </div>
-                    <div>
-                        {{ form_row( form.client ) }}
-                    </div>
-                </div>
-            </div>
-            <div>
-                {{ form_rest(form) }}
-                <button class="btn btn-primary btn-block pull-right" name="submit">{{ 'go' | upper }}</button>
-            </div>
+<div class="fluid-row">
+    <div class="span12">
+        <h1>
+            {{ 'leaders' | title }}
+            {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path( 'scss_leader_new' ) }}" alt="{{ 'add a leader' }}">
+                <i class="icon-plus on icon-check-empty pull-right"></i>
+           </a>
+           {% endif %}
+        </h1>
+
+        {% block datatable %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    {# last name #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'last name' | title }}</a>
+                    </th>
+                    {# last name #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'first name' | title }}</a>
+                    </th>
+                    {# birthdate #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'birthdate' | title }}</a>
+                    </th>
+                    {# passel #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'passel' | title }}</a>
+                    </th>
+                    {# admin #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'admin' | title }}</a>
+                    </th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for leader in leaders %}
+                <tr>
+                    <td>
+                        <a href="{{ path( 'scss_leader_show', { 'slug': leader.slug } ) }}">
+                            {{ leader.lastname }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_leader_show', { 'slug': leader.slug } ) }}">
+                            {{ leader.firstname }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ leader.birthdate }}
+                    </td>
+                    <td>
+                        <a href="{{ path( 'scss_passel_show', { 'slug': leader.Passel.slug } ) }}">
+                            {{ leader.Passel.name | title }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ leader.isAdmin }}
+                    </td>
+                    {% include 'SCSSUserBundle:Datatable:datatable.controls.html.twig' with { 'slug': leader.slug, 'type': 'leader' } %}
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">
+                        <em>{{ 'no leaders found.' | title }}</em>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include 'SCSSUserBundle:Datatable:datatable.footer.html.twig' with { 'pager': pager } %}
         {% endblock %}
-        </form>
     </div>
-    <div class="span4 container"></div>
 </div>
 {% endblock %}
