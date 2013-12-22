@@ -1,60 +1,66 @@
-scss_utility:
-    resource: "@SCSSUtilityBundle/Resources/config/routing.yml"
-    prefix:   /
+scss_course:
+    resource: "@SCSSCourseBundle/Controller/"
+    type: annotation
+    prefix: /courses
 
-scss_user_security:
-    resource: "@ScssUserBundle/Resources/config/routing/security.yml"
-scss_user_signup:
-    resource: "@ScssUserBundle/Resources/config/routing/signup.yml"
+scss_enrollment:
+    resource: "@SCSSEnrollmentBundle/Controller/"
+    type: annotation
+    prefix: /enrollments
+
+scss_facility:
+    resource: "@SCSSFacilityBundle/Controller/"
+    type: annotation
+    prefix: /facilities
+
+scss_organization:
+    resource: "@SCSSOrganizationBundle/Controller/"
+    type: annotation
+    prefix: /organizations
+
+scss_passel:
+    resource: "@SCSSPasselBundle/Controller/"
+    type: annotation
+    prefix: /passels
+
+scss_report:
+    resource: "@SCSSReportBundle/Controller/"
+    type: annotation
+    prefix: /reports
+
+scss_user:
+    resource: "@SCSSUserBundle/Controller/"
+    type: annotation
+    prefix: /
+
+fos_user_security_login:
+    pattern: /signin
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+fos_user_security_check:
+    pattern: /signin-check
+    defaults: { _controller: FOSUserBundle:Security:check }
+
+fos_user_security_logout:
+    pattern: /signout
+    defaults: { _controller: FOSUserBundle:Security_logout }
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix: /signup
-enrollment:
-    resource: "@ScssEnrollmentBundle/Resources/config/routing/routing.yml"
-    prefix: /
-organizaiton:
-    resource: "@ScssOrganizationBundle/Resources/config/routing/routing.yml"
-    prefix: /
-course:
-    resource: "@ScssCourseBundle/Resources/config/routing/routing.yml"
-    prefix: /
-facility:
-    resource: "@ScssFacilityBundle/Resources/config/routing/routing.yml"
-    prefix: /
-passel:
-    resource: "@ScssPasselBundle/Resources/config/routing/routing.yml"
-    prefix: /
-report:
-    resource: "@ScssReportBundle/Resources/config/routing/routing.yml"
-    prefix: /    
-#misc:
-#    resource: "@ScssUtilityBundle/Resources/config/routing/routing.yml"
-#    prefix: /
-#fos_user_resetting:
-#    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-#    prefix: /resetting
-#fos_user_change_password:
-#    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-#    prefix: /profile  
-homepage:
-    pattern: /
-    defaults: { _controller: ScssUserBundle:User:index }
-dashboard:
-    pattern: /dashboard
-    defaults: { _controller: ScssUserBundle:User:index }
-about:
-    pattern: /about
-    defaults: { _controller: ScssUserBundle:User:about }
-help:
-    pattern: /help
-    defaults: { _controller: ScssUserBundle:User:help }
-contact:
-    pattern: /contact
-    defaults: { _controller: ScssUserBundle:User:contact }
-attendee_registration:
-    pattern:  /signup/attendee
-    defaults: { _controller: ScssUserBundle:RegistrationAttendee:register }
-passel_leader_registration:
-    pattern:  /signup/passel-leader
-    defaults: { _controller: ScssUserBundle:RegistrationPasselLeader:register }    
-faculty_registration:
-    pattern: /signup/faculty
-    defaults: { _controller: ScssUserBundle:RegistrationFaculty:register }
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+_imagine:
+    resource: .
+    type:     imagine

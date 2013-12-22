@@ -2,9 +2,10 @@
 namespace SCSS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
-use SCSS\UtilityBundle\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use SCSS\UserBundle\Entity\User;
 use SCSS\UserBundle\Traits\AdminTrait;
 use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 

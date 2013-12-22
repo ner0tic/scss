@@ -2,24 +2,25 @@
 namespace SCSS\CourseBundle\Entity;
 
 use SCSS\CourseBundle\Entity\Course;
-use SCSS\CourseBundle\Entity\Course;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Entity(repositoryClass="SCSS\CourseBundle\Repository\CourseRepository")
- * @Table(name="course")
+ * @ORM\Entity(repositoryClass="SCSS\CourseBundle\Repository\CourseRepository")
+ * @ORM\Table(name="facility_course")
  */
 class FacilityCourse
 {
-    use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -47,7 +48,7 @@ class FacilityCourse
      */
     public function getCourse()
     {
-        return $this->course-;
+        return $this->course;
     }
 
     /**
@@ -65,31 +66,31 @@ class FacilityCourse
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="SCSS\CourseBundle\Entity\Course", inversedBy="class")
-     * @ORM\JoinColumn(name="course_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="SCSS\FacilityBundle\Entity\Facility", inversedBy="facility_courses")
+     * @ORM\JoinColumn(name="facility_id", referencedColumnName="id")
      */
-    protected $course = '';
+    protected $facility = '';
 
     /**
-     * Get course
+     * Get facility
      *
-     * @return Course
+     * @return Facility
      */
-    public function getCourse()
+    public function getFacility()
     {
-        return $this->course-;
+        return $this->facility;
     }
 
     /**
-     * Set course
+     * Set facility
      *
-     * @param Course $course course
+     * @param Facility $facility facility
      *
      * @return Class
      */
-    public function setCourse($course)
+    public function setFacility($facility)
     {
-        $this->course = $course;
+        $this->facility = $facility;
 
         return $this;
     }

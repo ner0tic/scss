@@ -2,9 +2,11 @@
 namespace SCSS\FacilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\FacilityBundle\Traits\FacilityTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**
@@ -14,7 +16,7 @@ use SCSS\UtilityBundle\Traits\TimestampableTrait;
 class Facility
 {
     use SluggableTrait;
-    use BlameableTrait;
+    
     use TimestampableTrait;
 
     /**
@@ -191,16 +193,6 @@ class Facility
     protected $faculty;
 
     /**
-     * Get faculty
-     *
-     * @return ArrayCollection
-     */
-    public function getFaculty()
-    {
-        return $this->faculty;
-    }
-
-    /**
      * Set faculty
      *
      * @param array $faculty faculty
@@ -235,8 +227,12 @@ class Facility
      *
      * @return Faculty
      */
-    public function getFaculty($faculty)
+    public function getFaculty($faculty = null)
     {
+        if (null == $faculty) {
+            return $this->faculty;
+        }
+        
         return $this->faculty->get($faculty);
     }
 

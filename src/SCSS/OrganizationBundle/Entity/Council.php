@@ -5,7 +5,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**
@@ -14,9 +13,12 @@ use SCSS\UtilityBundle\Traits\TimestampableTrait;
  */
 class Council
 {
+    use SluggableTrait;
+    use TimestampableTrait;
+
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -32,8 +34,13 @@ class Council
     }
 
     /**
-     * @ORM\Column(region="string")
-     * @Assert\MaxLength(250)
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;
@@ -63,7 +70,7 @@ class Council
     }
 
     /**
-     * @ORM\Column(region="text")
+     * @ORM\Column(type="text")
      */
     protected $description;
 
@@ -91,6 +98,19 @@ class Council
         return $this;
     }
 
+    protected $organization;
+
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    public function setOrganization(SCSS\OrganizationBundle\Entity\Organization $organization)
+    {
+        $this->organization = $organization;
+
+        return $this;
+    }
     /**
      * @ORM\OneToMany(targetEntity="Region", mappedBy="council")
      */
@@ -175,7 +195,7 @@ class Council
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Passel", mappedBy="council")
+     * @ORM\OneToMany(targetEntity="SCSS\PasselBundle\Entity\Passel", mappedBy="council")
      */
     protected $passels;
 
@@ -258,7 +278,7 @@ class Council
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Facility", mappedBy="council")
+     * @ORM\OneToMany(targetEntity="SCSS\FacilityBundle\Entity\Facility", mappedBy="council")
      */
     protected $facilities;
 
@@ -341,7 +361,7 @@ class Council
     }
 
         /**
-     * @ORM\OneToMany(targetEntity="Faculty", mappedBy="council")
+     * @ORM\OneToMany(targetEntity="SCSS\FacilityBundle\Entity\Faculty", mappedBy="council")
      */
     protected $facultys;
 
@@ -374,11 +394,11 @@ class Council
     }
 
     /**
-     * Has facultys
+     * Has faculty
      *
      * @return boolean
      */
-    public function hasFacultys()
+    public function hasFaculty()
     {
         return !$this->facultys->isEmpty();
     }

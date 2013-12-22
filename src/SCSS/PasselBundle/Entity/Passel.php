@@ -2,6 +2,8 @@
 namespace SCSS\PasselBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use SCSS\PasselBundle\Entity\Faction;
 use SCSS\PasselBundle\Entity\Leader;
@@ -11,7 +13,7 @@ use SCSS\EnrollmentBundle\Entity\Passel as PasselEnrollment;
 use SCSS\PasselBundle\Entity\Type;
 use SCSS\PasselBundle\Traits\HasAttendeesTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**
@@ -23,7 +25,7 @@ class Passel
     use HasAttendeesTrait;
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * @ORM\Id
@@ -44,7 +46,12 @@ class Passel
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\MaxLength(250)
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;
@@ -157,7 +164,7 @@ class Passel
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Council", inversedBy="passel")
+     * @ORM\ManyToOne(targetEntity="SCSS\OrganizationBundle\Entity\Council", inversedBy="passel")
      * @ORM\JoinColumn(name="council_id", referencedColumnName="id")
      */
     protected $council;
@@ -187,7 +194,7 @@ class Passel
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Region", inversedBy="passel")
+     * @ORM\ManyToOne(targetEntity="SCSS\OrganizationBundle\Entity\Region", inversedBy="passel")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      */
     protected $region;
@@ -325,7 +332,7 @@ class Passel
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="PasselEnrollment", mappedBy="passel")
+     * @ORM\OneToMany(targetEntity="SCSS\EnrollmentBundle\Entity\PasselEnrollment", mappedBy="passel")
      */
     protected $enrollments;
 

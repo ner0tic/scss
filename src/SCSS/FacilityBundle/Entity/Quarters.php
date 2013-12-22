@@ -2,10 +2,12 @@
 namespace SCSS\FacilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\FacilityBundle\Traits\QuartersTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
 
 /**
  * @ORM\Entity
@@ -15,7 +17,7 @@ class Quarters
 {
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     private $_types = array();
 

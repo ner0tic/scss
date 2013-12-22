@@ -6,7 +6,7 @@ use SCSS\UserBundle\Entity\User;
 trait BlameableTrait
 {
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="passel")
+     * @ORM\OneToMany(targetEntity="SCSS\UserBundle\Entity\User", mappedBy="passel")
      */
     protected $created_by;
 
@@ -21,7 +21,7 @@ trait BlameableTrait
     /**
      * @inheritdoc
      */
-    public function setCreatedBy(User $user)
+    public function setCreatedBy(SCSS\UserBundle\Entity\User $user)
     {
         $this->created_by = $user;
 
@@ -31,7 +31,7 @@ trait BlameableTrait
     /**
      * Document Update Author
      * @var Scss\UserBundle\Document\User
-     * @ODM\ReferenceOne(targetDocument="User")
+     * @ORM\OneToMany(targetEntity="SCSS\UserBundle\Entity\User", mappedBy="passel")
      */
     protected $updated_by;
 
@@ -46,7 +46,7 @@ trait BlameableTrait
     /**
      * @inheritdoc
      */
-    public function setUpdatedBy(User $user)
+    public function setUpdatedBy(SCSS\UserBundle\Entity\User $user)
     {
         $this->updated_by = $user;
 

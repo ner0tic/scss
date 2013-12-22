@@ -2,8 +2,10 @@
 namespace SCSS\PasselBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 use SCSS\UserBundle\Entity\User;
 
@@ -15,7 +17,7 @@ class Attendee extends User
 {
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity="SCSS\PasselBundle\Entity\Passel", inversedBy="attendee")

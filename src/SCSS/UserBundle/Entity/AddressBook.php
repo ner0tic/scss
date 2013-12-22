@@ -2,6 +2,8 @@
 namespace SCSS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 use SCSS\UserBundle\Traits\AddressTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\GeolocatableTrait;

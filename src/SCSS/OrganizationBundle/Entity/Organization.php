@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**
@@ -15,9 +14,12 @@ use SCSS\UtilityBundle\Traits\TimestampableTrait;
  */
 class Organization
 {
+    use SluggableTrait;
+    use TimestampableTrait;
+    
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -33,8 +35,13 @@ class Organization
     }
 
     /**
-     * @ORM\Column(region="string")
-     * @Assert\MaxLength(250)
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;
@@ -64,7 +71,7 @@ class Organization
     }
 
     /**
-     * @ORM\Column(region="text")
+     * @ORM\Column(type="text")
      */
     protected $description;
 
@@ -93,7 +100,7 @@ class Organization
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Type", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="SCSS\PasselBundle\Entity\Type", mappedBy="organization")
      */
     protected $types;
 
@@ -154,7 +161,7 @@ class Organization
      *
      * @return self
      */
-    public function addType(Type $type)
+    public function addType(SCSS\PasselBundle\Entity\Type $type)
     {
         $this->types->add($type);
 
@@ -342,7 +349,7 @@ class Organization
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Passel", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="SCSS\PasselBundle\Entity\Passel", mappedBy="organization")
      */
     protected $passels;
 
@@ -403,7 +410,7 @@ class Organization
      *
      * @return self
      */
-    public function addPassel(Passel $passel)
+    public function addPassel(SCSS\PasselBundle\Entity\Passel $passel)
     {
         $this->passels->add($passel);
 
@@ -425,7 +432,7 @@ class Organization
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Facility", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="SCSS\FacilityBundle\Entity\Facility", mappedBy="organization")
      */
     protected $facilities;
 
@@ -486,7 +493,7 @@ class Organization
      *
      * @return self
      */
-    public function addFacility(Facility $facility)
+    public function addFacility(SCSS\FacilityBundle\Entity\Facility $facility)
     {
         $this->facilities->add($facility);
 
@@ -508,7 +515,7 @@ class Organization
     }
 
         /**
-     * @ORM\OneToMany(targetEntity="Faculty", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="SCSS\FacilityBundle\Entity\Faculty", mappedBy="organization")
      */
     protected $facultys;
 
@@ -569,7 +576,7 @@ class Organization
      *
      * @return self
      */
-    public function addFaculty(Faculty $faculty)
+    public function addFaculty(SCSS\FacilityBundle\Entity\Faculty $faculty)
     {
         $this->facultys->add($faculty);
 

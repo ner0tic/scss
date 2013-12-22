@@ -5,17 +5,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 use SCSS\CourseBundle\Traits\WeekTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Entity(repositoryClass="SCSS\CourseBundle\Repository\WeekRepository")
- * @Table(name="week")
+ * @ORM\Entity(repositoryClass="SCSS\CourseBundle\Repository\WeekRepository")
+ * @ORM\Table(name="week")
  */
 class Week
 {
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * Constructor
@@ -27,7 +30,7 @@ class Week
 
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

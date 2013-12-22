@@ -1,11 +1,13 @@
 <?php
 namespace SCSS\ReportsBundle\Entity;
 
-use SCSS\ReportsBundle\Interface\ReportInterface;
+use SCSS\ReportBundle\Interfaces\ReportInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 class AttendeeAlphabeticalReport implements ReportInterface

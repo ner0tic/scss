@@ -5,7 +5,7 @@ trait PeriodTrait
 {
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

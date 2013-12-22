@@ -2,10 +2,12 @@
 namespace SCSS\PasselBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\PasselBundle\Entity\Passel;
 use SCSS\PasselBundle\Traits\HasAttendeesTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**
@@ -17,7 +19,7 @@ class Faction
     use HasAttendeesTrait;
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * @ORM\Column(type="integer")

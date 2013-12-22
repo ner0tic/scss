@@ -2,14 +2,16 @@
 namespace SCSS\PasselBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use SCSS\PasselBundle\Traits\HasAttendeesTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**
- * @ORM\Table(name="position")
+ * @ORM\Table(name="passel_position")
  * @ORM\Entity(repositoryClass="SCSS\PasselBundle\Repository\PositionRepository")
  */
 class Position
@@ -17,7 +19,23 @@ class Position
     use HasAttendeesTrait;
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Name

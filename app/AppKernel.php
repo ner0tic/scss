@@ -16,24 +16,28 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            
             new FOS\UserBundle\FOSUserBundle(),
             new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
+            
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            
             new SCSS\UserBundle\SCSSUserBundle(),
             new SCSS\PasselBundle\SCSSPasselBundle(),
             new SCSS\OrganizationBundle\SCSSOrganizationBundle(),
             new SCSS\FacilityBundle\SCSSFacilityBundle(),
             new SCSS\EnrollmentBundle\SCSSEnrollmentBundle(),
             new SCSS\CourseBundle\SCSSCourseBundle(),
-            new SCSS\ReportBundle\SCSSReportBundle()
-,
+            new SCSS\ReportBundle\SCSSReportBundle(),
             new SCSS\UtilityBundle\SCSSUtilityBundle(),
         );
 

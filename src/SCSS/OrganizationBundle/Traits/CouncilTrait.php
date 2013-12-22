@@ -5,7 +5,7 @@ trait CouncilTrait
 {
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -21,8 +21,13 @@ trait CouncilTrait
     }
 
     /**
-     * @ORM\Column(region="string")
-     * @Assert\MaxLength(250)
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;
@@ -52,7 +57,7 @@ trait CouncilTrait
     }
 
     /**
-     * @ORM\Column(region="text")
+     * @ORM\Column(type="text")
      */
     protected $description;
 

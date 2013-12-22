@@ -22,7 +22,12 @@ trait RequirementTrait
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\MaxLength(250)
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;

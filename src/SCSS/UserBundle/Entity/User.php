@@ -2,8 +2,8 @@
 namespace SCSS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 use FOS\UserBundle\Entity\User as BaseUser;
 use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
@@ -13,7 +13,7 @@ use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="fos_user")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"faculty" = "SCSS\FacilityBundle\Entity\Faculty", "passel_leader" = "SCSS\PasselBundle\Entity\Leader", "attendee" = "SCSS\PasselBundle\Entity\Attendee", admin" = "Admin"})
+ * @ORM\DiscriminatorMap({"faculty" = "SCSS\FacilityBundle\Entity\Faculty", "passel_leader" = "SCSS\PasselBundle\Entity\Leader", "attendee" = "SCSS\PasselBundle\Entity\Attendee", "admin" = "Admin"})
  * @UniqueEntity(
  *     fields = "username",
  *     targetClass = "SCSS\UserBundle\Entity\User",
@@ -76,7 +76,13 @@ abstract class User extends BaseUser
     protected $lastName;
 
     /**
-     * @ORM\Column(type="string",length="1")
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "1",
+     *      minMessage = "Must be at least {{ limit }} characters length",
+     *      maxMessage = "Cannot be longer than {{ limit }} characters length"
+     * )
      * @Assert\NotBlank()
      * @Assert\Choice(choices = {"M", "F"})
      */
@@ -137,7 +143,7 @@ abstract class User extends BaseUser
     protected $avatar = '/bundles/scssuser/img/avatars/default.png';
 
     /**
-    * @Gedmo\Slug(fields={"last_name", "first_name"})
+    * @Gedmo\Slug(fields={"lastName", "firstName"})
     * @ORM\Column(length=128, unique=true)
     */
     protected $slug;

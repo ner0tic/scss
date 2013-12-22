@@ -3,21 +3,24 @@ namespace SCSS\CourseBundle\Entity;
 
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Entity(repositoryClass="SCSS\CourseBundle\Repository\PeriodRepository")
- * @Table(name="period")
+ * @ORM\Entity(repositoryClass="SCSS\CourseBundle\Repository\PeriodRepository")
+ * @ORM\Table(name="period")
  */
 class Period
 {
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

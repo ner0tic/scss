@@ -1,9 +1,9 @@
 <?php
-    namespace SCSS\UserBundle\Listener;
+    namespace SCSS\UtilityBundle\Listener;
 
-    use Symfony\Component\HttpKernel\Event\GetResponseEvent,
-        Symfony\Component\DependencyInjection\ContainerAwareInterface,
-        Symfony\Component\DependencyInjection\ContainerInterface;
+    use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+    use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+    use Symfony\Component\DependencyInjection\ContainerInterface;
 
     class DoctrineExtensionListener implements ContainerAwareInterface
     {

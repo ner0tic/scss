@@ -2,6 +2,8 @@
 namespace SCSS\PasselBundle\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\PasselBundle\Entity\Passel;
 
 trait FactionTrait

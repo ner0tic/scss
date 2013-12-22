@@ -3,17 +3,20 @@ namespace SCSS\CourseBundle\Entity;
 
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Entity(repositoryClass="SCSS\CourseBundle\Repository\RequirementRepository")
- * @Table(name="requirement")
+ * @ORM\Entity(repositoryClass="SCSS\CourseBundle\Repository\RequirementRepository")
+ * @ORM\Table(name="requirement")
  */
 class Requirement
 {
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * @ORM\Id
@@ -34,7 +37,12 @@ class Requirement
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\MaxLength(250)
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;

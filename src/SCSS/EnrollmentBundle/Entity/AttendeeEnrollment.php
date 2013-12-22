@@ -2,7 +2,9 @@
     namespace SCSS\EnrollmentBundle\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
-    use SCSS\UtilityBundle\Traits\TimestampableTrait
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+    use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
     /**
      * @ORM\Entity(repositoryClass="SCSS\EnrollmentBundle\Repository\AttendeeEnrollmentRepository")
@@ -20,7 +22,7 @@
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SCSS\OrganizationBundle\Entity\Organizaiton", inversedBy="active_enrollment")
+     * @ORM\ManyToOne(targetEntity="SCSS\OrganizationBundle\Entity\Organization", inversedBy="active_enrollment")
      * @ORM\JoinColumn(name="organization_id", referencedColumnName="id")
      */
     protected $organization = null;

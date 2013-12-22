@@ -6,15 +6,14 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+
 class MenuBuilder implements ContainerAwareInterface
 {
     protected $activeEnrollLabel;
 
-    public function __construct(FactoryInterface $factory, ContainerInterface $container = null)
+    public function __construct(FactoryInterface $factory)
     {
         $this->factory = $factory;
-        $this->container = $container;
-        $this->user = $this->container->get('security.context')->getToken()->getUser();
     }
 
     public function setContainer(ContainerInterface $container = NULL)
@@ -25,8 +24,10 @@ class MenuBuilder implements ContainerAwareInterface
     public function createSuperAdminMenu(Request $request)
     {
         $menu = $this->createAdminMenu($request);
-        $menu->addChild('site mgmt',                       array(
-            'route'               =>  'site-mgmt'
+        $menu->addChild(
+            'site mgmt',
+            array(
+                'route'               =>  'site-mgmt'
        ));
     }
 
@@ -34,7 +35,10 @@ class MenuBuilder implements ContainerAwareInterface
     {
     }
 
-    public function createOrganizationMenu(Request $request) {}
+    public function createOrganizationMenu(Request $request)
+    {
+
+    }
 
     public function createFacilityMenu(Request $request)
     {
@@ -49,66 +53,9 @@ class MenuBuilder implements ContainerAwareInterface
         // Active Enrollment Menu Item
         ////////////////////////////////////////////////////////////////////
         $menu->addChild(
-                $this->activeEnrollLabel,
-                array(
-                    'route'                   =>  'weeks_by_facility',
-                    'routeParameters'       =>  array(
-                        'region_slug'       =>  $user->getActiveEnrollment()
-                                                     ->getFacility()
-                                                     ->getRegion()
-                                                     ->getSlug(),
-                        'facility_slug'     =>  $user->getActiveEnrollment()
-                                                     ->getFacility()
-                                                     ->getSlug(),
-       )));
-
-        foreach ($user->getActiveEnrollment()->getFacility()->getWeeks() as $week) {
-            if ($week->getId() != $user->getActiveEnrollment()->getWeek()->getId()) {
-                $menu[ $this->activeEnrollLabel ]->addChild(
-                        $user->getActiveEnrollment()->getFacility() . ' ' . $week,
-                        array(
-                            'route'               =>  'change-active-week',
-                            'routeParamters'    =>  array(
-                                'region_slug'       =>  $user->getActiveEnrollment()
-                                                             ->getFacility()
-                                                             ->getRegion()
-                                                             ->getSlug(),
-                                'facility_slug'     =>  $user->getActiveEnrollment()
-                                                             ->getFacility()
-                                                             ->getSlug(),
-                                'week_slug'         =>  $week->getSlug()
-               )));
-            }
-        }
-
-        ////////////////////////////////////////////////////////////////////
-        // Class Mgmt Menu Item
-        ////////////////////////////////////////////////////////////////////
-        $menu->addChild(
-                'class management',
-                array(
-                    'route'                   =>  'class_mgmt',
-                    'routeParameters'       =>  array(
-
-       )));
-
-        ////////////////////////////////////////////////////////////////////
-        // Reports
-        ////////////////////////////////////////////////////////////////////
-        $menu->addChild(
-                'reports',
-                array(
-                    'route'                   =>  'reports',
-       ));
-
-        ////////////////////////////////////////////////////////////////////////
-        // Faculty Admin Menu Additions
-        ////////////////////////////////////////////////////////////////////////
-        if ($user->isGranted('ROLE_FACULTY_ADMIN')) {
-            $menu[ $this->activeEnrollLabel ]->addChild(
-            'passel enrollments',
+            $this->activeEnrollLabel,
             array(
-                'route'                   =>  'passel_enrollments',
+                'route'                   =>  'weeks_by_facility',
                 'routeParameters'       =>  array(
                     'region_slug'       =>  $user->getActiveEnrollment()
                                                  ->getFacility()
@@ -117,112 +64,169 @@ class MenuBuilder implements ContainerAwareInterface
                     'facility_slug'     =>  $user->getActiveEnrollment()
                                                  ->getFacility()
                                                  ->getSlug(),
-                    'week_slug'         =>  $user->getActiveEnrollment()
-                                                 ->getWeek()
-                                                 ->getSlug(),
+       )));
+
+        foreach ($user->getActiveEnrollment()->getFacility()->getWeeks() as $week) {
+            if ($week->getId() != $user->getActiveEnrollment()->getWeek()->getId()) {
+                $menu[$this->activeEnrollLabel]->addChild(
+                    $user->getActiveEnrollment()->getFacility() . ' ' . $week,
+                    array(
+                        'route'               =>  'change-active-week',
+                        'routeParamters'    =>  array(
+                            'region_slug'       =>  $user->getActiveEnrollment()
+                                                         ->getFacility()
+                                                         ->getRegion()
+                                                         ->getSlug(),
+                            'facility_slug'     =>  $user->getActiveEnrollment()
+                                                         ->getFacility()
+                                                         ->getSlug(),
+                            'week_slug'         =>  $week->getSlug()
+               )));
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////
+        // Class Mgmt Menu Item
+        ////////////////////////////////////////////////////////////////////
+        $menu->addChild(
+            'class management',
+            array(
+                'route'                   =>  'class_mgmt',
+                'routeParameters'       =>  array(
+
+       )));
+
+        ////////////////////////////////////////////////////////////////////
+        // Reports
+        ////////////////////////////////////////////////////////////////////
+        $menu->addChild(
+            'reports',
+            array(
+                'route'                   =>  'reports',
+       ));
+
+        ////////////////////////////////////////////////////////////////////////
+        // Faculty Admin Menu Additions
+        ////////////////////////////////////////////////////////////////////////
+        if ($user->isGranted('ROLE_FACULTY_ADMIN')) {
+            $menu[$this->activeEnrollLabel]->addChild(
+                'passel enrollments',
+                array(
+                    'route'                   =>  'passel_enrollments',
+                    'routeParameters'       =>  array(
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug(),
+                        'week_slug'         =>  $user->getActiveEnrollment()
+                                                     ->getWeek()
+                                                     ->getSlug(),
            )));
             ////////////////////////////////////////////////////////////////////
             // Facility Mgmt Menu Item
             ////////////////////////////////////////////////////////////////////
             $menu->addChild(
-                    'facility management',
-                    array(
-                        'route'                   =>  'facility_mgmt',
-                        'routeParameters'       =>  array(
-                            'region_slug'       =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getRegion()
-                                                         ->getSlug(),
-                            'facility_slug'     =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getSlug(),
+                'facility management',
+                array(
+                    'route'                   =>  'facility_mgmt',
+                    'routeParameters'       =>  array(
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug(),
            )));
 
-            $menu[ 'facility management' ]->addChild(
-                    'manage weeks',
-                    array(
-                        'route'                   =>  'week_mgmt',
-                        'routeParameters'       =>  array(
-                            'region_slug'       =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getRegion()
-                                                         ->getSlug(),
-                            'facility_slug'     =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getSlug()
+            $menu['facility management']->addChild(
+                'manage weeks',
+                array(
+                    'route'                   =>  'week_mgmt',
+                    'routeParameters'       =>  array(
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug()
            )));
 
-            $menu[ 'facility management' ]->addChild(
-                    'manage departments',
-                    array(
-                        'route'                   =>  'dept_mgmt',
-                        'routeParameters'       =>  array(
-                            'region_slug'       =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getRegion()
-                                                         ->getSlug(),
-                            'facility_slug'     =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getSlug()
+            $menu['facility management']->addChild(
+                'manage departments',
+                array(
+                    'route'                   =>  'dept_mgmt',
+                    'routeParameters'       =>  array(
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug()
            )));
 
-            $menu[ 'facility management' ]->addChild(
-                    'manage quarters',
-                    array(
-                        'route'                   =>  'quarters_mgmt',
-                        'routeParameters'       =>  array(
-                            'region_slug'       =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getRegion()
-                                                         ->getSlug(),
-                            'facility_slug'     =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getSlug()
+            $menu['facility management']->addChild(
+                'manage quarters',
+                array(
+                    'route'                   =>  'quarters_mgmt',
+                    'routeParameters'       =>  array(
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug()
            )));
 
-            $menu[ 'facility management' ]->addChild(
-                    'manage faculty',
-                    array(
-                        'route'                   =>  'faculty_mgmt',
-                        'routeParameters'       =>  array(
-                            'region_slug'       =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getRegion()
-                                                         ->getSlug(),
-                            'facility_slug'     =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getSlug()
+            $menu['facility management']->addChild(
+                'manage faculty',
+                array(
+                    'route'                   =>  'faculty_mgmt',
+                    'routeParameters'       =>  array(
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug()
            )));
 
-            $menu[ 'facility management' ]->addChild(
-                    'manage periods',
-                    array(
-                        'route'                   =>  'period_mgmt',
-                        'routeParameters'       =>  array(
-                            'region_slug'       =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getRegion()
-                                                         ->getSlug(),
-                            'facility_slug'     =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getSlug()
+            $menu['facility management']->addChild(
+                'manage periods',
+                array(
+                    'route'                   =>  'period_mgmt',
+                    'routeParameters'       =>  array(
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug()
            )));
 
-            $menu[ 'facility management' ]->addChild(
-                    'manage classes',
-                    array(
-                        'route'                   =>  'class_mgmt',
-                        'routeParameters'       =>  array(
-                            'region_slug'       =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getRegion()
-                                                         ->getSlug(),
-                            'facility_slug'     =>  $user->getActiveEnrollment()
-                                                         ->getFacility()
-                                                         ->getSlug(),
-                            'week_slug'         =>  $user->getActiveEnrollment()
-                                                         ->getWeek()
-                                                         ->getSlug()
+            $menu['facility management']->addChild(
+                'manage classes',
+                array(
+                    'route'                   =>  'class_mgmt',
+                    'routeParameters'       =>  array(
+                        'region_slug'       =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getRegion()
+                                                     ->getSlug(),
+                        'facility_slug'     =>  $user->getActiveEnrollment()
+                                                     ->getFacility()
+                                                     ->getSlug(),
+                        'week_slug'         =>  $user->getActiveEnrollment()
+                                                     ->getWeek()
+                                                     ->getSlug()
            )));
         }
 
@@ -249,22 +253,22 @@ class MenuBuilder implements ContainerAwareInterface
             // Active Enrollment Menu Item
             ////////////////////////////////////////////////////////////////////
             $menu->addChild(
-                    $this->activeEnrollLabel,
-                    array(
-                        'route'               =>  'passel_enrollment_show',
-                        'routeParameters'   =>  array(
-                            'id'            =>  $user->getActiveEnrollment()
-                                                     ->getPasselEnrollmentId()
+                $this->activeEnrollLabel,
+                array(
+                    'route'               =>  'passel_enrollment_show',
+                    'routeParameters'   =>  array(
+                        'id'            =>  $user->getActiveEnrollment()
+                                                 ->getPasselEnrollmentId()
            )));
 
             foreach ($user->getActiveEnrollment()->getPassel()->getEnrollments() as $enrollment) {
-                $menu[ $this->activeEnrollLabel ]->addChild(
-                        $enrollment()->getFacility() . ' - ' . $enrollment()->getWeek(),
-                        array(
-                            'route'               =>  'change-enrollment',
-                            'routeParameters'   =>  array(
-                                'facility_slug' =>  $enrollment()->getFacility()->getSlug(),
-                                'week_slug'     =>  $enrollment()->getWeek()->getSlug(),
+                $menu[$this->activeEnrollLabel]->addChild(
+                    $enrollment()->getFacility() . ' - ' . $enrollment()->getWeek(),
+                    array(
+                        'route'               =>  'change-enrollment',
+                        'routeParameters'   =>  array(
+                            'facility_slug' =>  $enrollment()->getFacility()->getSlug(),
+                            'week_slug'     =>  $enrollment()->getWeek()->getSlug(),
                )));
             }
 
@@ -285,7 +289,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                      ->getSlug(),
            )));
 
-            $menu[ 'passel management' ]->addChild(
+            $menu['passel management']->addChild(
                     'enrollment',
                     array(
                         'route'               =>  'attendee_enrollment',
@@ -299,7 +303,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                      ->getSlug(),
            )));
 
-            $menu[ 'passel management' ]->addChild(
+            $menu['passel management']->addChild(
                     'manage factions',
                     array(
                         'route'               =>  'faction_mgmt',
@@ -322,7 +326,7 @@ class MenuBuilder implements ContainerAwareInterface
                         'route'               =>  'reports',
            ));
 
-            $menu[ 'reports' ]->addChild(
+            $menu['reports']->addChild(
                     'alphabetical list',
                     array(
                         'route'               =>  'reports_alpha',
@@ -336,7 +340,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                      ->getSlug(),
            )));
 
-            $menu[ 'reports' ]->addChild(
+            $menu['reports']->addChild(
                     'medlist',
                     array(
                         'route'               =>  'report_medlist',
@@ -349,7 +353,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                      ->getSlug(),
            )));
 
-            $menu[ 'reports' ]->addChild(
+            $menu['reports']->addChild(
                     'master schedule',
                     array(
                         'route'               =>  'report_master_sched',
@@ -362,7 +366,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                      ->getSlug(),
            )));
 
-            $menu[ 'reports' ]->addChild(
+            $menu['reports']->addChild(
                     'incomplete attendee schedules',
                     array(
                         'route'               =>  'report_inc_attendees',
@@ -379,7 +383,7 @@ class MenuBuilder implements ContainerAwareInterface
             // Passel Admin Menu Additions
             ////////////////////////////////////////////////////////////////////
             if ($user->isGranted('ROLE_PASSEL_ADMIN')) {
-                $menu[ 'profile' ]->addChild(
+                $menu['profile']->addChild(
                         'promote leader',
                         array(
                             'route'               =>  'promote_leader',
@@ -393,7 +397,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                          ->getSlug(),
                )));
 
-                $menu[ $this->activeEnrollLabel ]->addChild(
+                $menu[$this->activeEnrollLabel]->addChild(
                         'enroll in a facility',
                         array(
                             'route'               =>  'passel_enrollment_new',
@@ -439,7 +443,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                      ->getPasselEnrollmentId()
            )));
 
-            $menu[ $this->activeEnrollLabel ]->addChild(
+            $menu[$this->activeEnrollLabel]->addChild(
                     'enroll',
                     array(
                         'route'               =>  'attendee_enrollment_new',
@@ -452,7 +456,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                      ->getSlug(),
            )));
 
-            $menu[ $this->activeEnrollLabel ]->addChild(
+            $menu[$this->activeEnrollLabel]->addChild(
                     'mealplan',
                     array(
                         'route'               =>  'mealplan',
@@ -465,7 +469,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                       ->getSlug(),
            )));
 
-            $menu[ $this->activeEnrollLabel ]->addChild(
+            $menu[$this->activeEnrollLabel]->addChild(
                     'packinglist',
                     array(
                         'route'               =>  'packing-list',
@@ -478,7 +482,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                          ->getSlug(),
            )));
 
-            $menu[ $this->activeEnrollLabel ]->addChild(
+            $menu[$this->activeEnrollLabel]->addChild(
                     'change facilities',
                     array(
                         'route'                   =>  'passel_enrollments_by_passel',
@@ -508,7 +512,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                          ->getSlug(),
            )));
 
-            $menu[ 'medlist' ]->addChild(
+            $menu['medlist']->addChild(
                     'add item',
                     array(
                         'route'                   =>  'medlist_new',
@@ -530,7 +534,7 @@ class MenuBuilder implements ContainerAwareInterface
                         'route'                   =>  'reports',
            ));
 
-            $menu[ 'reports' ]->addChild(
+            $menu['reports']->addChild(
                     'schedule',
                     array(
                         'route'                   =>  'report_attendee_schedule',
@@ -543,7 +547,7 @@ class MenuBuilder implements ContainerAwareInterface
                                                          ->getSlug(),
            )));
 
-            $menu[ 'reports' ]->addChild(
+            $menu['reports']->addChild(
                     'medlist',
                     array(
                         'route'                   =>  'report_medlist',
@@ -586,7 +590,7 @@ class MenuBuilder implements ContainerAwareInterface
                         'user_slug'   =>    $user->getSlug()
        )));
 
-        $menu[ 'profile' ]->addChild(
+        $menu['profile']->addChild(
                 'edit',
                 array(
                     'route'             =>    'user_profile_edit',

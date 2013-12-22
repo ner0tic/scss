@@ -3,8 +3,8 @@ namespace SCSS\OrganizationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**
@@ -32,7 +32,12 @@ class Region
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\MaxLength(250)
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;
@@ -91,7 +96,7 @@ class Region
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Passel", mappedBy="council")
+     * @ORM\OneToMany(targetEntity="SCSS\PasselBundle\Entity\Passel", mappedBy="region")
      */
     protected $passels;
 
@@ -152,7 +157,7 @@ class Region
      *
      * @return self
      */
-    public function addPassel(Passel $passel)
+    public function addPassel(SCSS\PasselBundle\Entity\Passel $passel)
     {
         $this->passels->add($passel);
 
@@ -174,7 +179,7 @@ class Region
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Facility", mappedBy="council")
+     * @ORM\OneToMany(targetEntity="SCSS\FacilityBundle\Entity\Facility", mappedBy="region")
      */
     protected $facilities;
 
@@ -235,7 +240,7 @@ class Region
      *
      * @return self
      */
-    public function addFacility(Facility $facility)
+    public function addFacility(SCSS\FacilityBundle\Entity\Facility $facility)
     {
         $this->facilities->add($facility);
 
@@ -257,7 +262,7 @@ class Region
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Faculty", mappedBy="council")
+     * @ORM\OneToMany(targetEntity="SCSS\FacilityBundle\Entity\Faculty", mappedBy="region")
      */
     protected $faculty;
 
@@ -311,7 +316,7 @@ class Region
      *
      * @return self
      */
-    public function addFaculty(Faculty $faculty)
+    public function addFaculty(SCSS\FacilityBundle\Entity\Faculty $faculty)
     {
         $this->faculty->add($faculty);
 

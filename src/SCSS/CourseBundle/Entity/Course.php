@@ -3,21 +3,24 @@ namespace SCSS\CourseBundle\Entity;
 
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Entity(repositoryClass="SCSS\CourseBundle\Repository\CourseRepository")
- * @Table(name="course")
+ * @ORM\Entity(repositoryClass="SCSS\CourseBundle\Repository\CourseRepository")
+ * @ORM\Table(name="course")
  */
 class Course
 {
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -33,8 +36,13 @@ class Course
     }
 
     /**
-     * @ORM\Column(region="string")
-     * @Assert\MaxLength(250)
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;
@@ -64,7 +72,7 @@ class Course
     }
 
     /**
-     * @ORM\Column(region="text")
+     * @ORM\Column(type="text")
      */
     protected $description;
 
@@ -183,37 +191,7 @@ class Course
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="SCSS\CourseBundle\Entity\Type", inversedBy="course")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
-     */
-    protected $type = null;
-
-    /**
-     * Get type
-     *
-     * @return Type
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set type
-     *
-     * @param Type $type type
-     *
-     * @return Course
-     */
-    public function setType(Type $type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * @ORM\OneToMany(targetEntity="Class", mappedBy="course")
+     * @ORM\OneToMany(targetEntity="SCSSClass", mappedBy="course")
      */
     protected $classes = array();
 
@@ -258,9 +236,9 @@ class Course
     /**
      * Get a class
      *
-     * @param Class|String $class class
+     * @param SCSSClass|String $class class
      *
-     * @return Class
+     * @return SCSSClass
      */
     public function getClass($class)
     {
@@ -270,11 +248,11 @@ class Course
     /**
      * Add a class
      *
-     * @param Class $class class
+     * @param SCSSClass $class class
      *
      * @return self
      */
-    public function addClass(Class $class)
+    public function addClass(SCSSClass $class)
     {
         $this->classes->add($class);
 

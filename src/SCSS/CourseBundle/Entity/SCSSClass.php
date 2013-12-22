@@ -3,21 +3,24 @@ namespace SCSS\CourseBundle\Entity;
 
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Entity(repositoryClass="SCSS\CourseBundle\Repository\SCSSClassRepository")
- * @Table(name="scss_class")
+ * @ORM\Entity(repositoryClass="SCSS\CourseBundle\Repository\SCSSClassRepository")
+ * @ORM\Table(name="scss_class")
  */
 class SCSSClass
 {
     use SluggableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
+    
 
     /**
      * @ORM\Id
-     * @ORM\Column(region="integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -33,8 +36,13 @@ class SCSSClass
     }
 
     /**
-     * @ORM\Column(region="string")
-     * @Assert\MaxLength(250)
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = "1",
+     *      max = "250",
+     *      minMessage = "Name must be at least {{ limit }} characters length",
+     *      maxMessage = "Name cannot be longer than {{ limit }} characters length"
+     * )
      * @var string
      */
     protected $name;
@@ -115,7 +123,7 @@ class SCSSClass
      */
     public function getDepartment()
     {
-        return $this->department-;
+        return $this->department;
     }
 
     /**
@@ -132,7 +140,7 @@ class SCSSClass
         return $this;
     }
 
-    **
+    /**
      * @ORM\ManyToOne(targetEntity="SCSS\FacilityBundle\Entity\Faculty", inversedBy="class")
      * @ORM\JoinColumn(name="faculty_id", referencedColumnName="id")
      */
@@ -145,7 +153,7 @@ class SCSSClass
      */
     public function getFaculty()
     {
-        return $this->faculty-;
+        return $this->faculty;
     }
 
     /**

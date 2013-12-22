@@ -2,8 +2,10 @@
 namespace SCSS\FacilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-use SCSS\UtilityBundle\Traits\BlameableTrait;
+
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**
@@ -13,7 +15,7 @@ use SCSS\UtilityBundle\Traits\TimestampableTrait;
 class Department
 {
   use SluggableTrait;
-  use BlameableTrait;
+  
   use TimestampableTrait;
 
   /**

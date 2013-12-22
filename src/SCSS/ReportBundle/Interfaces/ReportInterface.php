@@ -1,5 +1,5 @@
 <?php
-namespace SCSS\ReportsBundle\Interface;
+namespace SCSS\ReportBundle\Interfaces;
 
 interface ReportInterface
 {
