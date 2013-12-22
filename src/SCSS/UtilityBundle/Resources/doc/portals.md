@@ -2,9 +2,9 @@
 
 1. Attendee Portal
 2. Passel Leader Portal
-    a. Passel Leader Admin Portal
+  a. Passel Leader Admin Portal
 3. Faculty Portal
-    a. Faculty Admin Portal
+  a. Faculty Admin Portal
 4. Site Admin Portal
 
 
