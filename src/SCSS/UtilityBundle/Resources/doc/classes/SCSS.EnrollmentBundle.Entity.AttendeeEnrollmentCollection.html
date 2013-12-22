@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/SCSS.html">\SCSS</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">824</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-558143345"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-558143345" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-324016824"></a>
+                                <a href="../namespaces/SCSS.html" style="margin-left: 30px; padding-left: 0">SCSS</a>
+            </div>
+            <div id="namespace-324016824" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-789281044"></a>
+                                <a href="../namespaces/SCSS.EnrollmentBundle.html" style="margin-left: 30px; padding-left: 0">EnrollmentBundle</a>
+            </div>
+            <div id="namespace-789281044" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-847119148"></a>
+                                <a href="../namespaces/SCSS.EnrollmentBundle.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-847119148" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/SCSS.EnrollmentBundle.Traits.ActiveEnrollmentTrait.html">ActiveEnrollmentTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.EnrollmentBundle.Traits.PasselEnrollmentTrait.html">PasselEnrollmentTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.EnrollmentBundle.Traits.AttendeeEnrollmentCollectionTrait.html">AttendeeEnrollmentCollectionTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-856612635"></a>
+                                <a href="../namespaces/SCSS.EnrollmentBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-856612635" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollment.html">AttendeeEnrollment</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html">AttendeeEnrollmentCollection</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.Entity.ActiveEnrollment.html">ActiveEnrollment</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.Entity.PasselEnrollment.html">PasselEnrollment</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1685038564"></a>
+                                <a href="../namespaces/SCSS.EnrollmentBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1685038564" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.Controller.PasselEnrollmentController.html">PasselEnrollmentController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.Controller.AttendeeEnrollmentController.html">AttendeeEnrollmentController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.Controller.ActiveEnrollmentController.html">ActiveEnrollmentController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-653689762"></a>
+                                <a href="../namespaces/SCSS.EnrollmentBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-653689762" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.DependencyInjection.SCSSEnrollmentExtension.html">SCSSEnrollmentExtension</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-332263355"></a>
+                                <a href="../namespaces/SCSS.EnrollmentBundle.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-332263355" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1848779714"></a>
+                                <a href="../namespaces/SCSS.EnrollmentBundle.Tests.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1848779714" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.Tests.Controller.DefaultControllerTest.html">DefaultControllerTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.EnrollmentBundle.SCSSEnrollmentBundle.html">SCSSEnrollmentBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-851105273"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.html" style="margin-left: 30px; padding-left: 0">PasselBundle</a>
+            </div>
+            <div id="namespace-851105273" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-312299210"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-312299210" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Entity.Attendee.html">Attendee</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Entity.Faction.html">Faction</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Entity.Type.html">Type</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Entity.Position.html">Position</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Entity.Leader.html">Leader</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Entity.Passel.html">Passel</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Entity.Level.html">Level</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-213807443"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-213807443" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/SCSS.PasselBundle.Traits.LeaderTrait.html">LeaderTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.PasselBundle.Traits.PositionTrait.html">PositionTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.PasselBundle.Traits.LevelTrait.html">LevelTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.PasselBundle.Traits.HasAttendeesTrait.html">HasAttendeesTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.PasselBundle.Traits.FactionTrait.html">FactionTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.PasselBundle.Traits.AttendeeTrait.html">AttendeeTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.PasselBundle.Traits.PasselTrait.html">PasselTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.PasselBundle.Traits.TypeTrait.html">TypeTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-979854166"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-979854166" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Controller.LeaderController.html">LeaderController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Controller.AttendeeController.html">AttendeeController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Controller.PasselController.html">PasselController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Controller.TypeController.html">TypeController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Controller.LevelController.html">LevelController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Controller.FactionController.html">FactionController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Controller.PositionController.html">PositionController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1124708444"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
+            </div>
+            <div id="namespace-1124708444" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-184529433"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.Form.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-184529433" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.LeaderType.html">LeaderType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.ProfileAttendeeFormType.html">ProfileAttendeeFormType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.RegistrationPasselLeaderFormType.html">RegistrationPasselLeaderFormType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.RankType.html">RankType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.TypeType.html">TypeType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.RegistrationAttendeeFormType.html">RegistrationAttendeeFormType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.ProfilePasselLeaderFormType.html">ProfilePasselLeaderFormType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.AttendeeType.html">AttendeeType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.PasselType.html">PasselType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Form.Type.FactionType.html">FactionType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1111630285"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-1111630285" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.DependencyInjection.SCSSPasselExtension.html">SCSSPasselExtension</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1808072848"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-1808072848" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1255259342"></a>
+                                <a href="../namespaces/SCSS.PasselBundle.Tests.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1255259342" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.Tests.Controller.DefaultControllerTest.html">DefaultControllerTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.PasselBundle.SCSSPasselBundle.html">SCSSPasselBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-504082575"></a>
+                                <a href="../namespaces/SCSS.GeographyBundle.html" style="margin-left: 30px; padding-left: 0">GeographyBundle</a>
+            </div>
+            <div id="namespace-504082575" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-913629833"></a>
+                                <a href="../namespaces/SCSS.GeographyBundle.DataFixtures.html" style="margin-left: 30px; padding-left: 0">DataFixtures</a>
+            </div>
+            <div id="namespace-913629833" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1151228600"></a>
+                                <a href="../namespaces/SCSS.GeographyBundle.DataFixtures.ORM.html" style="margin-left: 30px; padding-left: 0">ORM</a>
+            </div>
+            <div id="namespace-1151228600" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.GeographyBundle.DataFixtures.ORM.LoadAddressBookData.html">LoadAddressBookData</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.GeographyBundle.DataFixtures.ORM.LoadRegionData.html">LoadRegionData</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-62473363"></a>
+                                <a href="../namespaces/SCSS.UserBundle.html" style="margin-left: 30px; padding-left: 0">UserBundle</a>
+            </div>
+            <div id="namespace-62473363" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-665628075"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-665628075" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Model.Attribute.html">Attribute</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1614627348"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-1614627348" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-518467899"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Entity.Repository.html" style="margin-left: 30px; padding-left: 0">Repository</a>
+            </div>
+            <div id="namespace-518467899" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Entity.Repository.UserRepository.html">UserRepository</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Entity.AddressBook.html">AddressBook</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Entity.User.html">User</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Entity.Admin.html">Admin</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-843435500"></a>
+                                <a href="../namespaces/SCSS.UserBundle.DataFixtures.html" style="margin-left: 30px; padding-left: 0">DataFixtures</a>
+            </div>
+            <div id="namespace-843435500" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1907987241"></a>
+                                <a href="../namespaces/SCSS.UserBundle.DataFixtures.ORM.html" style="margin-left: 30px; padding-left: 0">ORM</a>
+            </div>
+            <div id="namespace-1907987241" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.DataFixtures.ORM.LoadUserData.html">LoadUserData</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-149894140"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-149894140" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/SCSS.UserBundle.Traits.UserTrait.html">UserTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.UserBundle.Traits.AddressTrait.html">AddressTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.UserBundle.Traits.AdminTrait.html">AdminTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1545410319"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1545410319" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Controller.UserController.html">UserController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-773858907"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
+            </div>
+            <div id="namespace-773858907" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1216155378"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Form.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-1216155378" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Form.Type.UserType.html">UserType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Form.Type.RegistrationFormType.html">RegistrationFormType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1671647232"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Form.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-1671647232" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Form.Model.Registration.html">Registration</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1198396418"></a>
+                                <a href="../namespaces/SCSS.UserBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-1198396418" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.DependencyInjection.SCSSUserExtension.html">SCSSUserExtension</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.UserBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-14031838"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-14031838" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-682088537"></a>
+                                <a href="../namespaces/SCSS.UserBundle.Tests.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-682088537" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.Tests.Controller.DefaultControllerTest.html">DefaultControllerTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UserBundle.SCSSUserBundle.html">SCSSUserBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1378190868"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.html" style="margin-left: 30px; padding-left: 0">FacilityBundle</a>
+            </div>
+            <div id="namespace-1378190868" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1460204339"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-1460204339" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/SCSS.FacilityBundle.Traits.DepartmentTrait.html">DepartmentTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.FacilityBundle.Traits.FacilityTrait.html">FacilityTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.FacilityBundle.Traits.FacultyTrait.html">FacultyTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1116217575"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-1116217575" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Entity.Faculty.html">Faculty</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Entity.Position.html">Position</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Entity.Facility.html">Facility</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Entity.Department.html">Department</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Entity.FacultyQuaters.html">FacultyQuaters</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Entity.PasselQuarters.html">PasselQuarters</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Entity.Quarters.html">Quarters</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-473728991"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
+            </div>
+            <div id="namespace-473728991" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-696744696"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.Form.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-696744696" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Form.Type.FacilityType.html">FacilityType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Form.Type.FacultyType.html">FacultyType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Form.Type.ProfileFacultyFormType.html">ProfileFacultyFormType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Form.Type.RegistrationFacultyFormType.html">RegistrationFacultyFormType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Form.Type.PasselEnrollmentType.html">PasselEnrollmentType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Form.Type.DepartmentType.html">DepartmentType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-54509351"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-54509351" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Controller.FacultyController.html">FacultyController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Controller.QuartersController.html">QuartersController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Controller.DepartmentController.html">DepartmentController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Controller.FacilityController.html">FacilityController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1644073592"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-1644073592" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.DependencyInjection.SCSSFacilityExtension.html">SCSSFacilityExtension</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2024175574"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-2024175574" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1303081663"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.Tests.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1303081663" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Tests.Controller.DefaultControllerTest.html">DefaultControllerTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-482331651"></a>
+                                <a href="../namespaces/SCSS.FacilityBundle.Repository.html" style="margin-left: 30px; padding-left: 0">Repository</a>
+            </div>
+            <div id="namespace-482331651" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.Repository.FacultyRepository.html">FacultyRepository</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.FacilityBundle.SCSSFacilityBundle.html">SCSSFacilityBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-823439129"></a>
+                                <a href="../namespaces/SCSS.CourseBundle.html" style="margin-left: 30px; padding-left: 0">CourseBundle</a>
+            </div>
+            <div id="namespace-823439129" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-552125245"></a>
+                                <a href="../namespaces/SCSS.CourseBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-552125245" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Entity.Course.html">Course</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Entity.Requirement.html">Requirement</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Entity.SCSSClass.html">SCSSClass</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Entity.FacilityCourse.html">FacilityCourse</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Entity.Period.html">Period</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Entity.Week.html">Week</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1995665714"></a>
+                                <a href="../namespaces/SCSS.CourseBundle.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
+            </div>
+            <div id="namespace-1995665714" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-795578746"></a>
+                                <a href="../namespaces/SCSS.CourseBundle.Form.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-795578746" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Form.Type.WeekType.html">WeekType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Form.Type.SCSSClassType.html">SCSSClassType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Form.Type.MeritBadgeType.html">MeritBadgeType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Form.Type.RequirementType.html">RequirementType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Form.Type.CourseType.html">CourseType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Form.Type.PeriodType.html">PeriodType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1938544325"></a>
+                                <a href="../namespaces/SCSS.CourseBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-1938544325" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.DependencyInjection.SCSSCourseExtension.html">SCSSCourseExtension</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-357521936"></a>
+                                <a href="../namespaces/SCSS.CourseBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-357521936" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Controller.FacilityCourseController.html">FacilityCourseController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Controller.SCSSClassController.html">SCSSClassController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Controller.PeriodController.html">PeriodController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Controller.RequirementController.html">RequirementController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Controller.CourseController.html">CourseController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.Controller.WeekController.html">WeekController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-469247181"></a>
+                                <a href="../namespaces/SCSS.CourseBundle.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-469247181" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/SCSS.CourseBundle.Traits.PeriodTrait.html">PeriodTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.CourseBundle.Traits.RequirementTrait.html">RequirementTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.CourseBundle.Traits.WeekTrait.html">WeekTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.CourseBundle.SCSSCourseBundle.html">SCSSCourseBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1719575362"></a>
+                                <a href="../namespaces/SCSS.ReportsBundle.html" style="margin-left: 30px; padding-left: 0">ReportsBundle</a>
+            </div>
+            <div id="namespace-1719575362" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1025813996"></a>
+                                <a href="../namespaces/SCSS.ReportsBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-1025813996" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.ReportsBundle.Entity.AttendeeAlphabeticalReport.html">AttendeeAlphabeticalReport</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1518137466"></a>
+                                <a href="../namespaces/SCSS.UtilityBundle.html" style="margin-left: 30px; padding-left: 0">UtilityBundle</a>
+            </div>
+            <div id="namespace-1518137466" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-750232387"></a>
+                                <a href="../namespaces/SCSS.UtilityBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-750232387" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UtilityBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.UtilityBundle.DependencyInjection.SCSSUtilityExtension.html">SCSSUtilityExtension</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1973302567"></a>
+                                <a href="../namespaces/SCSS.UtilityBundle.Listener.html" style="margin-left: 30px; padding-left: 0">Listener</a>
+            </div>
+            <div id="namespace-1973302567" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UtilityBundle.Listener.DoctrineExtensionListener.html">DoctrineExtensionListener</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-993139596"></a>
+                                <a href="../namespaces/SCSS.UtilityBundle.Menu.html" style="margin-left: 30px; padding-left: 0">Menu</a>
+            </div>
+            <div id="namespace-993139596" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UtilityBundle.Menu.MenuBuilder.html">MenuBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-426712765"></a>
+                                <a href="../namespaces/SCSS.UtilityBundle.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-426712765" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-602052790"></a>
+                                <a href="../namespaces/SCSS.UtilityBundle.Tests.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-602052790" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UtilityBundle.Tests.Controller.DefaultControllerTest.html">DefaultControllerTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.UtilityBundle.SCSSUtilityBundle.html">SCSSUtilityBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-19353968"></a>
+                                <a href="../namespaces/SCSS.ReportBundle.html" style="margin-left: 30px; padding-left: 0">ReportBundle</a>
+            </div>
+            <div id="namespace-19353968" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-406339135"></a>
+                                <a href="../namespaces/SCSS.ReportBundle.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-406339135" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1820387299"></a>
+                                <a href="../namespaces/SCSS.ReportBundle.Tests.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1820387299" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.ReportBundle.Tests.Controller.DefaultControllerTest.html">DefaultControllerTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1688716687"></a>
+                                <a href="../namespaces/SCSS.ReportBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1688716687" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.ReportBundle.Controller.ReportController.html">ReportController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1755791267"></a>
+                                <a href="../namespaces/SCSS.ReportBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-1755791267" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.ReportBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.ReportBundle.DependencyInjection.SCSSReportExtension.html">SCSSReportExtension</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1690200136"></a>
+                                <a href="../namespaces/SCSS.ReportBundle.Interfaces.html" style="margin-left: 30px; padding-left: 0">Interfaces</a>
+            </div>
+            <div id="namespace-1690200136" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/SCSS.ReportBundle.Interfaces.ReportInterface.html">ReportInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.ReportBundle.SCSSReportBundle.html">SCSSReportBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-100446437"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.html" style="margin-left: 30px; padding-left: 0">OrganizationBundle</a>
+            </div>
+            <div id="namespace-100446437" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-602377580"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-602377580" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.DependencyInjection.SCSSOrganizationExtension.html">SCSSOrganizationExtension</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1055364232"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
+            </div>
+            <div id="namespace-1055364232" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1543312571"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.Form.Type.html" style="margin-left: 30px; padding-left: 0">Type</a>
+            </div>
+            <div id="namespace-1543312571" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Form.Type.OrganizationType.html">OrganizationType</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Form.Type.OrganizationType.html">OrganizationType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1114259947"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.DataFixtures.html" style="margin-left: 30px; padding-left: 0">DataFixtures</a>
+            </div>
+            <div id="namespace-1114259947" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1081963908"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.DataFixtures.ORM.html" style="margin-left: 30px; padding-left: 0">ORM</a>
+            </div>
+            <div id="namespace-1081963908" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.DataFixtures.ORM.LoadCouncilData.html">LoadCouncilData</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.DataFixtures.ORM.LoadOrganizationData.html">LoadOrganizationData</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1125784508"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1125784508" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Controller.CouncilController.html">CouncilController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Controller.OrganizationController.html">OrganizationController</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Controller.RegionController.html">RegionController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-840985365"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-840985365" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Entity.Region.html">Region</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Entity.Council.html">Council</a></li>
+                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Entity.Organization.html">Organization</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-883817805"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-883817805" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/SCSS.OrganizationBundle.Traits.OrganizationTrait.html">OrganizationTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.OrganizationBundle.Traits.RegionTrait.html">RegionTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.OrganizationBundle.Traits.CouncilTrait.html">CouncilTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-768932012"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-768932012" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1637525725"></a>
+                                <a href="../namespaces/SCSS.OrganizationBundle.Tests.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1637525725" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.Tests.Controller.DefaultControllerTest.html">DefaultControllerTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/SCSS.OrganizationBundle.SCSSOrganizationBundle.html">SCSSOrganizationBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1058730423"></a>
+                                <a href="../namespaces/SCSS.UtilItybundLe.html" style="margin-left: 30px; padding-left: 0">UtilItybundLe</a>
+            </div>
+            <div id="namespace-1058730423" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2130192769"></a>
+                                <a href="../namespaces/SCSS.UtilItybundLe.traits.html" style="margin-left: 30px; padding-left: 0">traits</a>
+            </div>
+            <div id="namespace-2130192769" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/SCSS.UtilItybundLe.traits.GeolocatableTrait.html">GeolocatableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.UtilItybundLe.traits.SluggableTrait.html">SluggableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.UtilItybundLe.traits.BlameableTrait.html">BlameableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/SCSS.UtilItybundLe.traits.TimestampableTrait.html">TimestampableTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/SCSS.EnrollmentBundle.Entity.html">\SCSS\EnrollmentBundle\Entity</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\SCSS\EnrollmentBundle\Entity</small>AttendeeEnrollmentCollection</h1>
+                    <p><em></em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_getId" class="">getId()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_addAttendeeEnrollment" class="">addAttendeeEnrollment()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_getEnrollments" class="">getEnrollments()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_setAttendee" class="">setAttendee()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_getAttendee" class="">getAttendee()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_setFacility" class="">setFacility()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_getFacility" class="">getFacility()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_setWeek" class="">setWeek()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_getWeek" class="">getWeek()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_addEnrollment" class="">addEnrollment()</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#method_removeEnrollment" class="">removeEnrollment()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#property_id" class="">$id</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#property_enrollments" class="">$enrollments</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#property_attendee" class="">$attendee</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#property_facility" class="">$facility</a><br />
+                                                                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html#property_week" class="">$week</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/EnrollmentBundle.Entity.AttendeeEnrollmentCollection.php.html"><div class="path-wrapper">EnrollmentBundle/Entity/AttendeeEnrollmentCollection.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                ORM\Entity
+                            </th>
+                            <td>
+                                                                    <p>(repositoryClass="SCSS\EnrollmentBundle\Repository\AttendeeEnrollmentCollectionRepository")</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                ORM\Table
+                            </th>
+                            <td>
+                                                                    <p>(name="attendee_enrollment_collection")</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$id</h3>
+                <pre class="signature">$id</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Id
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type="integer")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\GeneratedValue
+                        </th>
+                        <td>
+                                                            <p>(strategy="AUTO")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_enrollments" name="property_enrollments" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$enrollments</h3>
+                <pre class="signature">$enrollments</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\OneToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="AttendeeEnrollment", mappedBy="attendee_enrollment_collection")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_attendee" name="property_attendee" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$attendee</h3>
+                <pre class="signature">$attendee</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="SCSS\PasselBundle\Entity\Attendee", inversedBy="attendee_enrollment_collection")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(name="attendee_id", referencedColumnName="id")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_facility" name="property_facility" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$facility</h3>
+                <pre class="signature">$facility</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="SCSS\FacilityBundle\Entity\Facility", inversedBy="attendee_enrollment_collection")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(name="facility_id", referencedColumnName="id")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_week" name="property_week" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$week</h3>
+                <pre class="signature">$week</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity="SCSS\CourseBundle\Entity\Week", inversedBy="attendee_enrollment_collection")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(name="week_id", referencedColumnName="id")</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct()</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getId" name="method_getId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getId() : integer</pre>
+                <p><em>Get id</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addAttendeeEnrollment" name="method_addAttendeeEnrollment" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addAttendeeEnrollment()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addAttendeeEnrollment(\SCSS\EnrollmentBundle\Entity\SCSS\EnrollmentBundle\Entity\AttendeeEnrollment <span class="argument">$enrollments</span>) : \SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</pre>
+                <p><em>Add enrollments</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\SCSS\EnrollmentBundle\Entity\SCSS\EnrollmentBundle\Entity\AttendeeEnrollment</td>
+                                <td>$enrollments</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html">\SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getEnrollments" name="method_getEnrollments" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getEnrollments()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getEnrollments() : \SCSS\EnrollmentBundle\Entity\Doctrine\Common\Collections\Collection</pre>
+                <p><em>Get enrollments</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \SCSS\EnrollmentBundle\Entity\Doctrine\Common\Collections\Collection
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAttendee" name="method_setAttendee" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAttendee()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setAttendee(\SCSS\EnrollmentBundle\Entity\SCSS\PasselBundle\Entity\Attendee <span class="argument">$attendee</span>) : \SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</pre>
+                <p><em>Set attendee</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\SCSS\EnrollmentBundle\Entity\SCSS\PasselBundle\Entity\Attendee</td>
+                                <td>$attendee</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html">\SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAttendee" name="method_getAttendee" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAttendee()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAttendee() : \SCSS\EnrollmentBundle\Entity\SCSS\PasselBundle\Entity\Attendee</pre>
+                <p><em>Get attendee</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \SCSS\EnrollmentBundle\Entity\SCSS\PasselBundle\Entity\Attendee
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFacility" name="method_setFacility" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setFacility()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFacility(\SCSS\EnrollmentBundle\Entity\SCSS\FacilityBundle\Entity\Facility <span class="argument">$facility</span>) : \SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</pre>
+                <p><em>Set facility</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\SCSS\EnrollmentBundle\Entity\SCSS\FacilityBundle\Entity\Facility</td>
+                                <td>$facility</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html">\SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFacility" name="method_getFacility" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFacility()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFacility() : \SCSS\EnrollmentBundle\Entity\SCSS\FacilityBundle\Entity\Facility</pre>
+                <p><em>Get facility</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \SCSS\EnrollmentBundle\Entity\SCSS\FacilityBundle\Entity\Facility
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setWeek" name="method_setWeek" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setWeek()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setWeek(\SCSS\EnrollmentBundle\Entity\SCSS\CourseBundle\Entity\Week <span class="argument">$week</span>) : \SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</pre>
+                <p><em>Set week</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\SCSS\EnrollmentBundle\Entity\SCSS\CourseBundle\Entity\Week</td>
+                                <td>$week</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html">\SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getWeek" name="method_getWeek" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getWeek()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getWeek() : \SCSS\EnrollmentBundle\Entity\SCSS\CourseBundle\Entity\Week</pre>
+                <p><em>Get week</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \SCSS\EnrollmentBundle\Entity\SCSS\CourseBundle\Entity\Week
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addEnrollment" name="method_addEnrollment" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addEnrollment()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addEnrollment(\SCSS\EnrollmentBundle\Entity\SCSS\EnrollmentBundle\Entity\AttendeeEnrollment <span class="argument">$enrollments</span>) : \SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</pre>
+                <p><em>Add enrollments</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\SCSS\EnrollmentBundle\Entity\SCSS\EnrollmentBundle\Entity\AttendeeEnrollment</td>
+                                <td>$enrollments</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/SCSS.EnrollmentBundle.Entity.AttendeeEnrollmentCollection.html">\SCSS\EnrollmentBundle\Entity\AttendeeEnrollmentCollection</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeEnrollment" name="method_removeEnrollment" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeEnrollment()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeEnrollment(\SCSS\EnrollmentBundle\Entity\SCSS\EnrollmentBundle\Entity\AttendeeEnrollment <span class="argument">$enrollments</span>)</pre>
+                <p><em>Remove enrollments</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\SCSS\EnrollmentBundle\Entity\SCSS\EnrollmentBundle\Entity\AttendeeEnrollment</td>
+                                <td>$enrollments</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">AttendeeEnrollmentCollection.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/EnrollmentBundle/Entity/AttendeeEnrollmentCollection.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/SCSS.html">\SCSS</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on December 22nd, 2013 at 18:02.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
