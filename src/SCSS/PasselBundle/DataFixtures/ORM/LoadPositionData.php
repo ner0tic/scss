@@ -10,13 +10,13 @@ class LoadPositionData extends AbstractFixture implements OrderedFixtureInterfac
 {
     public function load(ObjectManager $manager)
     {
-        // T805 :: Bears
-        $bears = new position();
-        $bears->setName('bears');
-        $bears->setAvatar('default.png');
-        $bears->setPassel($this->getReference('bsa-troop-805'));
-        $manager->persist($bears);
-        $this->addReference('troop-805-bears', $bears);
+        // T805 :: faction leader
+        $fl = new Position();
+        $fl->setName('patrol leader');
+        $fl->setAvatar('default.png');
+        $fl->setPassel($this->getReference('bsa-troop-805'));
+        $manager->persist($position);
+        $this->addReference('troop-805-position', $fl);
 
         // T805 :: Pirates
         $pirates = new position();
