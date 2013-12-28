@@ -10,11 +10,21 @@ class LoadCouncilData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        // BSA :: PTC
         $ptc = new Council();
         $ptc->setName('pine tree council');
         $ptc->setDescription('ptc');
+        $ptc->setOrganization($this->getReference('org-bsa'));
         $manager->persist($ptc);
-        $this->addReference('bsa-ptc');
+        $this->addReference('bsa-ptc', $ptc);
+
+        // TEST :: CNCL
+        $cncl = new Council();
+        $cncl->setName('test council');
+        $cncl->setDescription('cncl');
+        $cncl->setOrganization($this->getReference('org-test'));
+        $manager->persist($cncl);
+        $this->addReference('council-test', $cncl);
 
         $manager->flush();
     }

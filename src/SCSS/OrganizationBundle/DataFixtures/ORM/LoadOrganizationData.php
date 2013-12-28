@@ -10,11 +10,18 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
 {
     public function load(ObjectManager $manager)
     {
+        // BSA
         $bsa = new Organization();
         $bsa->setName('boy scouts of america');
-        $test->setDescription('boy scouts');
+        $bsa->setDescription('boy scouts');
         $manager->persist($bsa);
-        $this->addReference('bsa');
+        $this->addReference('org-bsa', $bsa);
+
+        $test = new Organization();
+        $test->setName('test organization');
+        $test->setDescription('test data');
+        $manager->persist($test);
+        $this->addReference('org-test', $test);        
 
         $manager->flush();
     }

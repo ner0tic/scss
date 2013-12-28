@@ -14,16 +14,38 @@ class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface,
     {
         $geo = $this->container->get('ivory_google_map.geocoder');
 
-        // Casco Bay District
+        // BSA :: PTC :: cb
         $result = $geo->gecode('Portland Maine');
-        $CB = new Region();
-        $CB->setName('casco bay district');
-        $CB->setOrganization($this->getReference('bsa'));
-        $CB->setCouncil($this->getReference('bsa-ptc'));
-        $CB->setLatitude($result->getGeometry()->getLocation()->getLatitude());
-        $CB->setLogitude($result->getGeometry()->getLocation()->getLogitude());
-        $manager->persist($CB);
-        $this->setReference('casco-bay', $CB);
+        $cb = new Region();
+        $cb->setName('casco bay district');
+        $cb->setOrganization($this->getReference('org-bsa'));
+        $cb->setCouncil($this->getReference('bsa-ptc'));
+        $cb->setLatitude($result->getGeometry()->getLocation()->getLatitude());
+        $cb->setLogitude($result->getGeometry()->getLocation()->getLogitude());
+        $manager->persist($cb);
+        $this->setReference('ptc-cb', $cb);
+
+        // BSA :: PTC :: yk
+        $result = $geo->gecode('Alfred Maine');
+        $yk = new Region();
+        $yk->setName('york district');
+        $yk->setOrganization($this->getReference('org-bsa'));
+        $yk->setCouncil($this->getReference('bsa-ptc'));
+        $yk->setLatitude($result->getGeometry()->getLocation()->getLatitude());
+        $yk->setLogitude($result->getGeometry()->getLocation()->getLogitude());
+        $manager->persist($yk);
+        $this->setReference('ptc-yk', $yk);
+
+        // TEST :: TEST :: TEST
+        $result = $geo->gecode('Boise Idaho');
+        $test = new Region();
+        $test->setName('casco bay district');
+        $test->setOrganization($this->getReference('org-test'));
+        $test->setCouncil($this->getReference('council-test'));
+        $test->setLatitude($result->getGeometry()->getLocation()->getLatitude());
+        $test->setLogitude($result->getGeometry()->getLocation()->getLogitude());
+        $manager->persist($test);
+        $this->setReference('region-test', $test);
 
         $manager->flush();
     }

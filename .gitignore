@@ -1,19 +1,20 @@
-*/cache/*
-app/config/parameters.ini
-vendor/*
-app/bootstrap*
 web/uploads/*
-composer.lock
-web/bundles/*
-# Misc
-# Bootstrap
-scss.sublime-project
-/src/.Scss
-# Symfony directories
-# Configuration files
-/nbproject
+app/bootstrap*
 # Composer
-*~
+composer.lock
+*/cache/*
+vendor/*
+app/config/parameters.ini
+# Bootstrap
+/nbproject
+# Misc
+/src/.Scss
 composer.phar
-app/config/parameters.yml
 */logs/*
+web/bundles/*
+# Configuration files
+# Symfony directories
+app/config/parameters.yml
+scss.sublime-*
+/vagrant/.vagrant
+*~

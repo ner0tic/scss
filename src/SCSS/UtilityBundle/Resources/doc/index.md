@@ -1,3 +1,3 @@
 SCSS :: Summer Camp Scheduling System
 
-[documentation](index.html)
+[documentation](index.html);
