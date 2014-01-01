@@ -1,0 +1,21 @@
+# Vhost name
+$vhost = "app"
+
+# VM
+$vm_ip = "192.168.56.101"
+$vm_portforward_guest = 80
+$vm_portforward_host = 8080
+
+# Use NFS?
+$use_nfs = true
+
+# Base box - must be debian based.
+$base_box = "precise64"
+$base_box_url = "http://files.vagrantup.com/precise64.box"
+
+# Mysql
+$mysql_db = ${vhost}
+$mysql_user = "${vhost}_user"
+$mysql_password = "abcdograyme123"
+$mysql_host = 'localhost'
+$mysql_root_password = ${mysql_password}
