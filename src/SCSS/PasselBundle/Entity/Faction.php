@@ -7,7 +7,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use SCSS\PasselBundle\Entity\Passel;
 use SCSS\PasselBundle\Traits\HasAttendeesTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**

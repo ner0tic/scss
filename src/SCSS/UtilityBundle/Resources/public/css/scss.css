@@ -50,7 +50,7 @@ logo
 *******************************************************************************/
 #logo {
     height: 37px;
-    font-family: "gill sans mt", veranda, arial;
+    font-family: "Oxygen", sans-serif;
     font-size: 24pt;
     font-weight: bold;
     letter-spacing: -3px;
@@ -89,86 +89,29 @@ logo
 img.logo { 
     display: none;
 }
-/*******************************************************************************
-nav-bar
-*******************************************************************************/
-ul#top-links { 
-    float: right;
-    margin: 15px 0 0;
-    padding: 0;
-}
-ul#top-links li {
-    color: #474747;
-    float: left;
-    font-size: 12px;
-    font-weight: bold;
-    list-style: none;
-    margin: 0;
-    padding-right: 7px;
-}
-#top-links li a,
-#top-links li input {
-    border-left: 1px solid #ccc;
-    padding-left: 7px;
-    text-decoration: none;
-}
-#top-links li:first-child a {border: none;}
-#top-links li#active-enrollment {position: relative;}
-#top-links li#active-enrollment a { 
-    color: #474747;
-    text-decoration: none;
-    padding-left: 1px;
-}
-#top-links li#active-enrollment a:hover {text-decoration: underline;}
-#top-links li#active-enrollment em { 
-    color: #777;
-    font-style: normal;
-    font-weight: normal;
-}
-#top-links li#active-enrollment input[type=text] {
-    background: #fff;
-    border: 1px solid #d9d9d9;
-    color: #555;
-    font: inherit;
-    font-size: 12px;
-    font-weight: bold;
-    margin: -6px 0 0 7px;
-    padding: 5px;
-    width: 100px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-#active-enrollment { text-align: right; }
-#top-links a.active-troop { 
-    padding:4px 6px 6px;
-    text-decoration:none;
-    font-weight:bold;
-    color:#fff;
-    -webkit-border-radius:4px;
-    -moz-border-radius:4px;
-    border-radius:4px;
-    *background:transparent url("/images/active-bg-ie.png") no-repeat 0 0; padding:4px 12px 6px;
-}
-#top-links a.active-troop:hover { 
-    background: #d4ba48;
-    *background: transparent url("/images/active-bg-hover-ie.png") no-repeat 0 0;
-    *padding: 4px 12px 6px;
-}
-#top-links a.active-troop,
-#top-links a.active-troop:hover { *background-position:0 3px!important; }
-a.active-troop { postion: relative; margin-left: 3px; }
-a.active-troop span { background-image:url("/images/toggle_down_light.png"); background-repeat:no-repeat; background-position:100% 50%; padding:4px 16px 6px 4px;}
-#top-links a.menu-open { background:#efece0 !important; color:#666!important; outline:none; }
-a.active-troop.menu-open span { background-image:url("/images/toggle_up_dark.png"); color:#789; }
-#active-enrollment-menu { -moz-border-radius-topleft:5px; -moz-border-radius-bottomleft:5px; -moz-border-radius-bottomright:5px; -webkit-border-top-left-radius:5px; -webkit-border-bottom-left-radius:5px; -webkit-border-bottom-right-radius:5px; display:none; background-color:#eae1be; position:absolute; width:250px; z-index:1000; border:1px transparent; text-align:left; padding:12px; top: 14px; right: 7px; margin-top:5px; margin-right: 0px; *margin-right: -1px; color:#789; font-size:11px; min-height: 400px; }
+/* Masthead */
 
-menu { width: 100%; margin-top: 2px; }
-menu ul { width: 100%;}
-menu ul li { display: inline-block; padding-left: 6px; padding-right: 6px; min-width: 166px; padding-top: 2px; text-align: center; vertical-align: middle; height: 20px;  }
-menu ul li:hover { background-color: #efece0 !important; }
-menu ul li:hover a, menu a { color: #76ad3b !important; }
-menu a { color: #76ad3b !important; }
+.masthead {
+    margin-bottom: 10px;
+}
+
+.masthead h1 {
+    color: #ad983b;
+}
+
+.masthead .nav {
+    margin-top: 44px;
+}
+
+.masthead .nav li {
+    margin-left: 10px;
+    font-family: "Oxygen", sans-serif;
+    display: inline-block;
+    font-size: 16pt;
+    font-weight: normal;
+    padding-top: 0px;
+    vertical-align: bottom;
+}
 
 /*******************************************************************************
 ** Footer **********************************************************************

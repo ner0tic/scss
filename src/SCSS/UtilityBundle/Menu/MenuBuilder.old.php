@@ -7,52 +7,148 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class MenuBuilder implements ContainerAwareInterface
+class OldMenuBuilder implements ContainerAwareInterface
 {
-    protected $activeEnrollLabel;
+    protected $user;
 
+    /**
+     * @param  FactoryInterface $factory
+     */
+    protected $factory;
+
+    /**
+     * Constructor
+     * 
+     * @param FactoryInterface $factory factory
+     */
     public function __construct(FactoryInterface $factory)
     {
         $this->factory = $factory;
     }
 
-    public function setContainer(ContainerInterface $container = NULL)
+    /**
+     * Set container
+     * 
+     * @param ContainerInterface $container can be null
+     * 
+     * @return MenuItem $menu
+     */
+    public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
     }
 
+    /**
+     * Create super admin menu
+     * 
+     * @param Request $request request
+     * 
+     * @return  MenuItem $menu
+     */
     public function createSuperAdminMenu(Request $request)
     {
+        $menu = $this->factory->createItem('root');
+        ///////////////////////////////////////////////////////////////////////////
+        // Admin Menu /////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
         $menu = $this->createAdminMenu($request);
+        ///////////////////////////////////////////////////////////////////////////
+        // Manage SCSS ////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
         $menu->addChild(
-            'site mgmt',
+            'manage scss',
             array(
-                'route'               =>  'site-mgmt'
-       ));
+                'route' => 'configuration_show',
+                'routeParameters' => array('system')
+            )
+        );
+
+        return $menu;
     }
 
+    /**
+     * Create admin menu
+     * 
+     * @param Request $request request
+     * 
+     * @return MenuItem $menu
+     */
     public function createAdminMenu(Request $request)
     {
+        $menu = $this->factory->createItem('root');
+
+        return $menu;
     }
 
+    /**
+     * Create organization menu
+     * 
+     * @param Request $request request
+     * 
+     * @return MenuItem $menu
+     */
     public function createOrganizationMenu(Request $request)
     {
+        $menu = $this->factory->createItem('root');
+        ///////////////////////////////////////////////////////////////////////////
+        // Manage Organizations ///////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        $menu->addChild(
+            'manage organizations',
+            array('route' => 'organization_index')
+        );
+        ///////////////////////////////////////////////////////////////////////////
+        // Add Organization ///////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        $menu['manage organizations']->addChild(
+            'add an organization',
+            array('route' => 'organization_new')
+        );
+        ///////////////////////////////////////////////////////////////////////////
+        // Council Menu ///////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        $menu->addChild($this->createCouncilMenu($request, false));
+        ///////////////////////////////////////////////////////////////////////////
+        // Region Menu ////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        $menu->addChild($this->createRegionMenu($request));
 
+        return $menu;
     }
 
+    public function createActiveEnrollmentMenu(Request $request. $label = null)
+    {
+        $label = (null == $label ? $this->activeEnrollLabel : $label);
+        $menu = $this->factory->createItem('root');
+
+        $menu->addChild($label);
+        $menu[$label]->addChild(
+            'enroll'
+        );
+    }
+
+    /**
+     * Create facility menu
+     * 
+     * @param Request $request request
+     * 
+     * @return MenuItem $menu
+     */
     public function createFacilityMenu(Request $request)
     {
-        $menu = $this->createBaseMenu($request);
-
-        ////////////////////////////////////////////////////////////////////////
-        // Faculty Menu
-        ////////////////////////////////////////////////////////////////////////
-        $this->activeEnrollLabel = $user->getActiveEnrollment()->getFacility() . ' ' . $user->getActiveEnrollment()->getWeek();
-
-        ////////////////////////////////////////////////////////////////////
-        // Active Enrollment Menu Item
-        ////////////////////////////////////////////////////////////////////
-        $menu->addChild(
+        $this->activeEnrollLabel = $this->user->getActiveEnrollment()->getFacility() . ' ' . $this->user->getActiveEnrollment()->getWeek();
+        $menu = $this->factory->CreateItem('root');        
+        ///////////////////////////////////////////////////////////////////////////
+        // Active Enrollment Menu /////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
+        $menu->addChild($this->createActiveEnrollmentMenu($request);
             $this->activeEnrollLabel,
             array(
                 'route'                   =>  'weeks_by_facility',

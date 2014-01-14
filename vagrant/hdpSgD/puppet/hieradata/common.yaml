@@ -1,0 +1,130 @@
+---
+vagrantfile-local:
+    vm:
+        box: debian-wheezy72-x64-vbox43
+        box_url: 'http://box.puphpet.com/debian-wheezy72-x64-vbox43.box'
+        hostname: null
+        network:
+            private_network: 192.168.56.101
+            forwarded_port:
+                3xRi7g1LIpij:
+                    host: ''
+                    guest: ''
+        provider:
+            virtualbox:
+                modifyvm:
+                    name: scss
+                    natdnshostresolver1: on
+                    memory: '512'
+                setextradata:
+                    VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
+        provision:
+            puppet:
+                manifests_path: puppet/manifests
+                options:
+                    - --verbose
+                    - '--hiera_config /vagrant/hiera.yaml'
+                    - '--parser future'
+        synced_folder:
+            blGvrOEHL1Lr:
+                id: vagrant-root
+                source: ../
+                target: /var/www/scss
+                nfs: 'true'
+        usable_port_range: 2200..2250
+    ssh:
+        host: null
+        port: null
+        private_key_path: null
+        username: vagrant
+        guest_port: null
+        keep_alive: true
+        forward_agent: false
+        forward_x11: false
+        shell: 'bash -l'
+    vagrant:
+        host: ':detect'
+server:
+    packages:
+        - vim
+        - screenr
+        - pear
+    dot_files:
+        -
+            bash_aliases: null
+    _prevent_empty: ''
+apache:
+    modules:
+        - php
+        - rewrite
+    vhosts:
+        NyyNIsRIu9h0:
+            servername: scss.dev
+            docroot: /var/www/scss/web
+            port: '80'
+            setenv:
+                - 'APP_ENV dev'
+            override:
+                - All
+    user: www-data
+    group: www-data
+    default_vhost: true
+    mpm_module: prefork
+php:
+    version: '55'
+    composer: '1'
+    modules:
+        php:
+            - cli
+            - intl
+            - mcrypt
+            - curl
+            - geoip
+            - imagick
+            - sqlite
+        pear:
+            - PHP_CodeSniffer
+            - PHP_DocBlockGenerator
+            - Services_Amazon_S3
+            - VersionControl_Git
+            - Services_Facebook
+            - Services_Google
+            - Services_YouTube
+        pecl:
+            - pecl_http
+            - mongo
+    ini:
+        display_errors: On
+        error_reporting: '-1'
+        session.save_path: /var/lib/php/session
+    timezone: America/New_York
+drush:
+    install: 0
+    settings:
+        drush.tag_branch: 6.x
+xdebug:
+    install: '1'
+    settings:
+        xdebug.default_enable: '1'
+        xdebug.remote_autostart: '0'
+        xdebug.remote_connect_back: '1'
+        xdebug.remote_enable: '1'
+        xdebug.remote_handler: dbgp
+        xdebug.remote_port: '9000'
+xhprof:
+    install: '1'
+    location: /var/www/xhprof
+mysql:
+    root_password: g4t0rade
+    phpmyadmin: '1'
+    adminer: '1'
+    databases:
+        kfIbdvFgAXJV:
+            grant:
+                - ALL
+            name: scss
+            host: localhost
+            user: ner0tic
+            password: g4t0rade
+            sql_file: ''
+

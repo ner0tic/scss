@@ -2,6 +2,8 @@
 
 {% block stylesheets %}
     <link href="{{ asset('/bundles/scssutility/css/index.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssutility/css/carousel.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssutility/css/homepage.css') }}" rel="stylesheet" />
     {{ parent() }}
 {% endblock %}
 
@@ -12,50 +14,84 @@
 
 {% block content %}
 <div class="fluid-container">
-    {% block signin %}
-    <div class="span4">
-        {{ form }}
-    </div>
-    {% endblock %}
-    {% block carousel %}
-    <div class="span8">
-        <div class="carousel slide" id="mainCarousel">
-            {% for key, item in carousel.items %}
-            <div class="item {{ 'item'~key }}">
-                <p class="caption">{{ item.caption }}</p>
+    <div class="row">
+        {% block signin %}
+        <div class="span4">
+            <br />
+            <br />
+            <br />
+            <h1>{{ 'sign in' | title }}</h1>
+            <div class="center-block">
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <p>
+                        <label for="username">{{ 'email address' | title }}</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" class="text-input" />
+                    </p>
+                    <p>
+                        <label for="password">{{ 'password' | title }}</label>
+                        <input type="password" id="password" name="_password" class="text-input" />
+                    </p>
+                    <p>
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" class="pull-left"/>
+                        <label for="remember_me"> {{ 'remember me' | title }}</label>
+                        <input type="submit" id="_submit" name="_submit" value="sign in &raquo;" class="greenButton" class="pull-right"/>
+                    </p>
+                </form>
             </div>
-            {% endfor %}
         </div>
-        <a class="carousel-control left" href="#mainCarousel" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#mainCarousel" data-slide="next">&rsaquo;</a>
+        {% endblock %}
+        {% block carousel %}
+        <div class="span8">
+            <div class="carousel slide" id="mainCarousel">
+                <div class="carousel-inner">
+                {% for key, item in carousel.items %}
+                    {% set active = (0 == key ? 'active' : '') %}
+                    <div class="item {{ active~' item'~(1+key) }}" style="background: transparent url('{{ item.image }}');">
+                        <p class="caption">{{ item.caption }}</p>
+                    </div>
+                {% else %}
+                    <div class="item active">
+                        <p class="caption"></p>
+                    </div>
+                {% endfor %}
+                </div>
+                {% if 1 < carousel.items|length %}
+                <a class="carousel-control left" href="#mainCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#mainCarousel" data-slide="next">&rsaquo;</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endblock %}
     </div>
-    {% endblock %}
-    {% block home_cols %}
-    <div class="span12">
-        <div class="row home-columns">
-            <div class="span4 home-column clearfix">
-                <i class="icon-th pull-left"></i>
-                <div class="content">
-                    <h2>Multi-Facility Interface</h2>
-                    <p>blah blah blah blah blah!</p>
+    <div class="row">
+        {% block home_cols %}
+        <div class="span12">
+            <div class="row home-columns">
+                <div class="span4 home-column clearfix">
+                    <i class="fa fa-th pull-left"></i>
+                    <div class="content">
+                        <h2>Multi-Facility Interface</h2>
+                        <p>blah blah blah blah blah!</p>
+                    </div>
                 </div>
-            </div>
-            <div class="span4 home-column clearfix">
-                <i class="icon-sitemap pull-left"></i>
-                <div class="content">
-                    <h2>Point And Print Reports</h2>
-                    <p>blah blah blah blah blah!</p>
+                <div class="span4 home-column clearfix">
+                    <i class="fa fa-print pull-left"></i>
+                    <div class="content">
+                        <h2>Point And Print Reports</h2>
+                        <p>blah blah blah blah blah!</p>
+                    </div>
                 </div>
-            </div>
-            <div class="span4 home-column clearfix">
-                <i class="icon-picture pull-left"></i>
-                <div class="content">
-                    <h2>User Portals</h2>
-                    <p>blah blah blah blah blah!</p>
+                <div class="span4 home-column clearfix">
+                    <i class="fa fa-desktop pull-left"></i>
+                    <div class="content">
+                        <h2>User Portals</h2>
+                        <p>blah blah blah blah blah!</p>
+                    </div>
                 </div>
-            </div>
-        </div>      
+            </div>      
+        </div>
+        {% endblock %}
     </div>
-    {% endblock %}
 </div>
 {% endblock %}

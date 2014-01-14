@@ -13,7 +13,6 @@ use SCSS\EnrollmentBundle\Entity\Passel as PasselEnrollment;
 use SCSS\PasselBundle\Entity\Type;
 use SCSS\PasselBundle\Traits\HasAttendeesTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
-
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
 /**

@@ -1,0 +1,22 @@
+/* Slideshow */
+
+.carousel {
+    margin-bottom: 30px;
+}
+
+.carousel .item {
+    background: #f2f2f2;
+    height: 400px;
+}
+
+.carousel .item p.caption {
+    position: absolute;
+    color: #000;
+    font-size: 36px;
+    font-weight: thin;
+    font-family: "Oxygen", sans-serif;
+    background-color: #f2f2f2;
+    bottom: 0px;
+    padding: 6px;
+    border-radius: 15px;
+}

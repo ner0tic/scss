@@ -33,6 +33,14 @@ scss_user:
     type: annotation
     prefix: /
 
+about:
+    pattern: /about
+    defaults: { _controller: SCSSUserBundle:User:AboutSCSS }
+
+contact:
+    pattern: /contact
+    defaults: { _controller: SCSSUserBundle:User:ContactSCSS }
+
 fos_user_security_login:
     pattern: /signin
     defaults: { _controller: FOSUserBundle:Security:login }

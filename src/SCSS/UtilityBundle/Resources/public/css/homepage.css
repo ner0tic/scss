@@ -1,0 +1,16 @@
+/* Columns */
+
+.home-columns {
+    margin-bottom: 20px;
+}
+
+.home-columns i {
+    font-size: 64px;
+    margin: 15px 20px 60px 0;
+    color: #CCC;
+}
+
+.home-columns h2 {
+    color: #3B3B3B;
+    margin-bottom: 0;
+}

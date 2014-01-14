@@ -32,3 +32,12 @@ services:
         scope: request
         tags:
             - { name: knp_menu.menu, alias: nonauth }
+
+    scss_menu.menu.datatable_controls:
+        class: Knp\Menu\MenuItem
+        factory_service: scss_menu.menu_builder
+        factory_method: createDatatableControlMenu
+        arguments: [ "@request", "@service_container" ]
+        scope: request
+        tags:
+            - { name: knp_menu.menu, alias: datatable_controls }
