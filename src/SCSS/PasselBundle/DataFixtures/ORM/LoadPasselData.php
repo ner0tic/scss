@@ -17,7 +17,7 @@ class LoadPasselData extends AbstractFixture implements OrderedFixtureInterface
         $t805->setRegion($this->getReference('ptc-cb'));
         $t805->setType($this->getReference('passel-type-troop'));
         $manager->persist($t805);
-        $this->addReference('bsa-troop-805', $t805);
+        $this->addReference('passel-t805', $t805);
 
         // Passel :: Test
         $test = new Passel();
@@ -31,8 +31,8 @@ class LoadPasselData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
     }
 
-    public function getOrder() 
-    { 
-        return 5; 
+    public function getOrder()
+    {
+        return 6;
     }
 }

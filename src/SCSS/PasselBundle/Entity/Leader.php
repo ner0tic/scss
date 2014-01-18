@@ -67,7 +67,7 @@ class Leader extends User
      */
     public function isAdmin($admin = null)
     {
-        if (null != $admin) {
+        if (null != $admin && is_bool($admin)) {
             $this->admin = $admin;
 
             return $this;

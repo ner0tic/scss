@@ -18,6 +18,14 @@ class LoadCouncilData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($ptc);
         $this->addReference('bsa-ptc', $ptc);
 
+        // BSA :: KAC
+        $kac = new Council();
+        $kac->setName('katahdin area council');
+        $kac->setDescription('kac');
+        $kac->setOrganization($this->getReference('org-bsa'));
+        $manager->persist($kac);
+        $this->addReference('bsa-kac', $kac);
+
         // TEST :: CNCL
         $cncl = new Council();
         $cncl->setName('test council');
@@ -31,6 +39,6 @@ class LoadCouncilData extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 2;
+        return 3;
     }
 }

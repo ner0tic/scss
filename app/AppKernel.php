@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new SCSS\CourseBundle\SCSSCourseBundle(),
             new SCSS\ReportBundle\SCSSReportBundle(),
             new SCSS\UtilityBundle\SCSSUtilityBundle(),
+            new SCSS\AttributeBundle\SCSSAttributeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

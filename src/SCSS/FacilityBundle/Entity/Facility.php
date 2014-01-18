@@ -4,6 +4,7 @@ namespace SCSS\FacilityBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 use SCSS\FacilityBundle\Traits\FacilityTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 
@@ -289,32 +290,166 @@ class Facility
     protected $departments;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SCSS\FacilityBundle\Entity\Department", inversedBy="department")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * Get departments
+     *
+     * @return ArrayCollection
+     */
+    public function getDepartments()
+    {
+        return $this->departments;
+    }
+
+    /**
+     * Set departments
+     *
+     * @param array $departments departments
+     *
+     * @return self
+     */
+    public function setDepartments(array $departments)
+    {
+        if (! $departments instanceof ArrayCollection) {
+            $departments = new ArrayCollection($departments);
+        }
+
+        $this->departments = $departments;
+
+        return $this;
+    }
+
+    /**
+     * Has departments
+     *
+     * @return boolean
+     */
+    public function hasDepartments()
+    {
+        return !$this->departments->isEmpty();
+    }
+
+    /**
+     * Get a department
+     *
+     * @param Department|String $department department
+     *
+     * @return Department
+     */
+    public function getDepartment($department)
+    {
+        return $this->departments->get($department);
+    }
+
+    /**
+     * Add a department
+     *
+     * @param Department $department department
+     *
+     * @return self
+     */
+    public function addDepartment(Department $department)
+    {
+        $this->departments->add($department);
+
+        return $this;
+    }
+
+    /**
+     * Remove a department
+     *
+     * @param Department|String $department department
+     *
+     * @return self
+     */
+    public function removeDepartment($department)
+    {
+        $this->departments->remove($department);
+
+        return $this;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SCSS\CourseBundle\Entity\Season", inversedBy="facility")
+     * @ORM\JoinColumn(name="season_id", referencedColumnName="id")
      */
     protected $seasons;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=true)
-     * @var type
+     * Get seasons
+     *
+     * @return ArrayCollection
      */
-    protected $phone;
+    public function getSeasons()
+    {
+        return $this->seasons;
+    }
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=true)
-     * @var type
+     * Set seasons
+     *
+     * @param array $seasons seasons
+     *
+     * @return self
      */
-    protected $fax;
+    public function setSeasons(array $seasons)
+    {
+        if (! $seasons instanceof ArrayCollection) {
+            $seasons = new ArrayCollection($seasons);
+        }
+
+        $this->seasons = $seasons;
+
+        return $this;
+    }
 
     /**
-     * @ORM\Column(type="string", length=250, nullable=true)
-     * @var type
+     * Has seasons
+     *
+     * @return boolean
      */
-    protected $url;
+    public function hasSeasons()
+    {
+        return !$this->seasons->isEmpty();
+    }
 
     /**
-     * @ORM\Column(type="string", length=150, nullable=true)
-     * @var type
+     * Get a season
+     *
+     * @param Season|String $season season
+     *
+     * @return Season
      */
-    protected $email;
+    public function getSeason($season)
+    {
+        return $this->seasons->get($season);
+    }
+
+    /**
+     * Add a season
+     *
+     * @param Season $season season
+     *
+     * @return self
+     */
+    public function addSeason(Season $season)
+    {
+        if (!in_array($season, $this->seasons)) {
+            $this->seasons[] = $season;
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Remove a season
+     *
+     * @param Season|String $season season
+     *
+     * @return self
+     */
+    public function removeSeason($season)
+    {
+        $this->seasons->remove($season);
+
+        return $this;
+    }
 }

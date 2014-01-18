@@ -53,6 +53,10 @@ class Faculty extends User
         return $this;
     }
 
+    /**
+     * @ORM\ManyToOne(targetEntity="SCSS\FacilityBundle\Entity\Facility", inversedBy="facility")
+     * @ORM\JoinColumn(name="facility_id", referencedColumnName="id")
+     */
     protected $facility;
 
     /**

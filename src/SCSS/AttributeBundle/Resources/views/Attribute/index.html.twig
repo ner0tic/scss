@@ -1,0 +1,60 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/bundles/scssutility/css/Base/index.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssattribute/css/attribute.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssutilty/css/Base/datatable.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="fluid-row">
+    <div class="span12">
+        <h1>
+            {{ 'attributes' | title }}
+            {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path( 'scss_attribute_new' ) }}" alt="{{ 'add a attribute' }}">
+                <i class="icon-plus on icon-check-empty pull-right"></i>
+           </a>
+           {% endif %}
+        </h1>
+
+        {% block datatable %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    {# name #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'name' | title }}</a>
+                    </th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for attribute in attributes %}
+                <tr>
+                    <td>
+                        <a href="{{ path( 'scss_attribute_show', { 'slug': attribute.slug } ) }}">
+                            {{ attribute.name }}
+                        </a>
+                    </td>
+                    {% include 'SCSSUtilityBundle:Datatable:datatable.controls.html.twig' with { 'slug': attribute.slug, 'type': 'attribute' } %}
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">
+                        <em>{{ 'no attributes found.' | title }}</em>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include 'SCSSUtilityBundle:Datatable:datatable.footer.html.twig' with { 'pager': pager } %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

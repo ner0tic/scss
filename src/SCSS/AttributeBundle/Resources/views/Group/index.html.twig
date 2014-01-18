@@ -1,0 +1,60 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/bundles/scssutility/css/Base/index.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssattribute/css/group.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/bundles/scssutility/css/Base/datatable.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="fluid-row">
+    <div class="span12">
+        <h1>
+            {{ 'groups' | title }}
+            {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path( 'scss_group_new' ) }}" alt="{{ 'add a group' }}">
+                <i class="icon-plus on icon-check-empty pull-right"></i>
+           </a>
+           {% endif %}
+        </h1>
+
+        {% block datatable %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    {# name #}
+                    <th>
+                        <a href="#" class="sort-toggle">{{ 'name' | title }}</a>
+                    </th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for group in groups %}
+                <tr>
+                    <td>
+                        <a href="{{ path( 'scss_group_show', { 'slug': group.slug } ) }}">
+                            {{ group.name }}
+                        </a>
+                    </td>
+                    {% include 'SCSSUtilityBundle:Datatable:datatable.controls.html.twig' with { 'slug': group.slug, 'type': 'group' } %}
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">
+                        <em>{{ 'no groups found.' | title }}</em>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include 'SCSSUtilityBundle:Datatable:datatable.footer.html.twig' with { 'pager': pager } %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

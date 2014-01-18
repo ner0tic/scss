@@ -29,8 +29,8 @@ class LoadTypeData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
     }
 
-    public function getOrder() 
-    { 
-        return 4; 
+    public function getOrder()
+    {
+        return 5;
     }
 }

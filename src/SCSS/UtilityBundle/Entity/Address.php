@@ -1,8 +1,42 @@
 <?php
-namespace SCSS\UserBundle\Traits;
+namespace SCSS\UserBundle\Entity;
 
-trait AddressTrait
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+use SCSS\UserBundle\Traits\AddressTrait;
+use SCSS\UtilityBundle\Traits\SluggableTrait;
+use SCSS\UtilityBundle\Traits\GeolocatableTrait;
+use SCSS\UtilityBundle\Traits\TimestampableTrait;
+
+/**
+* @ORM\Entity
+* @ORM\Table(name="address_book")
+*/
+class Address
 {
+    use AddressTrait;
+    use GeolocatableTrait;
+    use TimestampableTrait;
+    use SluggableTrait;
+
+    /**
+    * @ORM\Id
+    * @ORM\Column(type="integer")
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    protected $id;
+
+    /**
+    * Get id
+    *
+    * @return integer
+    */
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /**
     * @ORM\Column(type="string", length=150)
     */
@@ -23,7 +57,7 @@ trait AddressTrait
     *
     * @param string $name
     *
-    * @return AddressBook
+    * @return Address
     */
     public function setName($name)
     {
@@ -52,7 +86,7 @@ trait AddressTrait
     *
     * @param string $street
     *
-    * @return AddressBook
+    * @return Address
     */
     public function setStreet($street)
     {
@@ -81,7 +115,7 @@ trait AddressTrait
     *
     * @param string $suburb
     *
-    * @return AddressBook
+    * @return Address
     */
     public function setSuburb($suburb)
     {
@@ -110,7 +144,7 @@ trait AddressTrait
     *
     * @param string $city
     *
-    * @return AddressBook
+    * @return Address
     */
     public function setCity($city)
     {
@@ -139,7 +173,7 @@ trait AddressTrait
     *
     * @param string $zone
     *
-    * @return AddressBook
+    * @return Address
     */
     public function setZone($zone)
     {
@@ -168,7 +202,7 @@ trait AddressTrait
     *
     * @param string $country
     *
-    * @return AddressBook
+    * @return Address
     */
     public function setCountry($country)
     {
@@ -197,12 +231,51 @@ trait AddressTrait
     *
     * @param string $postalCode
     *
-    * @return AddressBook
+    * @return Address
     */
     public function setPostalCode($postalCode)
     {
         $this->postalCode = $postalCode;
 
         return $this;
+    }
+
+    /**
+     * Formats an address in an array form
+     *
+     * @param array  $address The address array (required keys: firstname, lastname, address1, postcode, city, country_code)
+     * @param string $sep     The address separator
+     *
+     * @return string
+     */
+    public static function formatAddress(array $address, $sep = ", ")
+    {
+        $values = array_map(
+            'trim',
+            array(
+                sprintf("%s %s", $address['first_name'], $address['last_name']),
+                $address['address'],
+                $address['postal_code'],
+                $address['city']
+            )
+        );
+
+        foreach ($values as $key => $val) {
+            if (!$val) {
+                unset($values[$key]);
+            }
+        }
+
+        $fullAddress = implode($sep, $values);
+
+        if ($countryCode = trim($address['country_code'])) {
+            if ($fullAddress) {
+                $fullAddress .= " ";
+            }
+
+            $fullAddress .= sprintf("(%s)", $countryCode);
+        }
+
+        return $fullAddress;
     }
 }

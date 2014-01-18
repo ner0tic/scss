@@ -36,6 +36,17 @@ class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface,
         $manager->persist($yk);
         $this->setReference('ptc-yk', $yk);
 
+        // BSA :: KAC :: AB
+        $result = $geo->gecode('Bangor Maine');
+        $ab = new Region();
+        $ab->setName('aura borealis');
+        $ab->setOrganization($this->getReference('org-bsa'));
+        $ab->setCouncil($this->getReference('bsa-kac'));
+        $ab->setLatitude($result->getGeometry()->getLocation()->getLatitude());
+        $ab->setLogitude($result->getGeometry()->getLocation()->getLogitude());
+        $manager->persist($ab);
+        $this->setReference('kac-ab', $ab);
+
         // TEST :: TEST :: TEST
         $result = $geo->gecode('Boise Idaho');
         $test = new Region();
@@ -50,8 +61,8 @@ class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface,
         $manager->flush();
     }
 
-    public function getOrder() 
-    { 
-        return 3; 
+    public function getOrder()
+    {
+        return 4;
     }
 }

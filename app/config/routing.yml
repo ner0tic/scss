@@ -1,3 +1,13 @@
+scss_attribute:
+    resource: "@SCSSAttributeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+scss_address:
+    resource: "@SCSSAddressBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 scss_course:
     resource: "@SCSSCourseBundle/Controller/"
     type: annotation

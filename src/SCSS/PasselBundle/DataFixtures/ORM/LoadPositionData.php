@@ -10,35 +10,27 @@ class LoadPositionData extends AbstractFixture implements OrderedFixtureInterfac
 {
     public function load(ObjectManager $manager)
     {
-        // T805 :: faction leader
-        $fl = new Position();
-        $fl->setName('patrol leader');
-        $fl->setAvatar('default.png');
-        $fl->setPassel($this->getReference('bsa-troop-805'));
+        // Position :: BSA :: patrol leader
+        $apl = new Position();
+        $apl->setName('patrol leader');
+        $apl->setDescription('patrol leader');
+        $apl->setOrganization($this->getReference('org-bsa'));
+        $manager->persist($apl);
+        $this->addReference('passel-position-bsa-pl', $apl);
+
+        // Position :: BSA :: assistant patrol leader
+        $apl = new Position();
+        $apl->setName('assistant patrol leader');
+        $apl->setDescription('assistant patrol leader');
+        $apl->setOrganization($this->getReference('org-bsa'));
         $manager->persist($position);
-        $this->addReference('troop-805-position', $fl);
+        $this->addReference('passel-position-bsa-apl', $apl);
 
-        // T805 :: Pirates
-        $pirates = new position();
-        $pirates->setName('pirates');
-        $pirates->setAvatar('default.png');
-        $pirates->setPassel($this->getReference('bsa-troop-805'));
-        $manager->persist($pirates);
-        $this->addReference('troop-805-pirates', $pirates);
-
-        // Test Passel :: Test Position
-        $test = new position();
-        $test->setName('test position');
-        $test->setAvatar('default.png');
-        $this->setPassel($this->getReference('passel-test'));
-        $manager->persist($test);
-        $this->addReference('position-test', $test);
-
-        $manager->flush();
+        $manager->aplush();
     }
 
-    public function getOrder() 
-    { 
-        return 6; 
+    public function getOrder()
+    {
+        return 9;
     }
 }
