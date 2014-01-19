@@ -95,6 +95,11 @@ class Option implements OptionInterface
         return $this->public;
     }
 
+    public function setPublic(boolean $public)
+    {
+        return $this->isPublic($public);
+    }
+
     public function getAttributes()
     {
         return $this->attributes;
@@ -102,12 +107,12 @@ class Option implements OptionInterface
 
     public function getAttribute($attribute)
     {
-        return ($this->hasAttribute($attribute)) ? $this->attributes[$attribute] : false;
+        return $this->attributes->get($attribute);
     }
 
     public function hasAttribute($attribute)
     {
-        return in_array($attribute, $this->attributes);
+        return !$this->attributes->isEmpty();
     }
 
     public function setName($name)

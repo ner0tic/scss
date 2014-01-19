@@ -4,10 +4,10 @@ namespace SCSS\FacilityBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+
 use SCSS\FacilityBundle\Traits\QuartersTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-
 
 /**
  * @ORM\Entity
@@ -90,8 +90,8 @@ class Quarters
      */
     public function setType($type)
     {
-        if (!in_array($type,$this->_types)) {
-          return false;
+        if (!in_array($type, $this->_types)) {
+            return false;
         }
 
         $this->type = $type;

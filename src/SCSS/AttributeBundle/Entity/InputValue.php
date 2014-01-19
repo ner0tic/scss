@@ -1,5 +1,5 @@
 <?php
-namespace SCSS\AttribUtebundle\Entity;
+namespace SCSS\AttributeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;

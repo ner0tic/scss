@@ -4,7 +4,6 @@ namespace SCSS\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-use SCSS\UserBundle\Traits\AddressTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\GeolocatableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
@@ -15,7 +14,6 @@ use SCSS\UtilityBundle\Traits\TimestampableTrait;
 */
 class Address
 {
-    use AddressTrait;
     use GeolocatableTrait;
     use TimestampableTrait;
     use SluggableTrait;

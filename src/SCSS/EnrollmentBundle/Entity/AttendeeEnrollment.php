@@ -6,15 +6,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
     use SCSS\UtilityBundle\Traits\TimestampableTrait;
 
-    /**
-     * @ORM\Entity(repositoryClass="SCSS\EnrollmentBundle\Repository\AttendeeEnrollmentRepository")
-     * @ORM\Table(name="attendee_enrollment")
-     */
-    class AttendeeEnrollment
-    {
-        use TimestampableTrait;
+/**
+ * @ORM\Entity(repositoryClass="SCSS\EnrollmentBundle\Repository\AttendeeEnrollmentRepository")
+ * @ORM\Table(name="attendee_enrollment")
+ */
+class AttendeeEnrollment
+{
+    use TimestampableTrait;
 
-        /**
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -62,4 +62,4 @@ use Symfony\Component\Validator\Constraints as Assert;
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
-    }
+}

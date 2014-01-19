@@ -4,12 +4,12 @@ namespace SCSS\FacilityBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
+
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
-
 use SCSS\UserBundle\Entity\User;
 use SCSS\FacilityBundle\Traits\FacultyTrait;
-use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity

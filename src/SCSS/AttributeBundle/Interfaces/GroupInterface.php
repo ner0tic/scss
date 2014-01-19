@@ -3,8 +3,9 @@ namespace SCSS\AttributeBundle\Interfaces;
 
 use SCSS\AttributeBundle\Entity\Option;
 use SCSS\AttributeBundle\Entity\Group;
+use SCSS\AttributeBundle\Entity\Attribute;
 
-interface OptionInterface
+interface GroupInterface
 {
     public function getName();
 
@@ -18,7 +19,7 @@ interface OptionInterface
 
     public function setDescription($dec);
 
-    public function setAttributes($attributes);
+    public function setAttributes(array $attributes);
 
     public function addAttribute(Attribute $attribute);
 }

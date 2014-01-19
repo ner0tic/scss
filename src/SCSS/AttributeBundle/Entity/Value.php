@@ -1,12 +1,12 @@
 <?php
-namespace SCSS\AttribUtebundle\Entity;
+namespace SCSS\AttributeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use SCSS\AttribUtebundle\Entity\Option;
+use SCSS\AttributeBundle\Entity\Option;
 use SCSS\AttributeBundle\Interfaces\ValueInterface;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
@@ -19,7 +19,7 @@ use SCSS\UtilityBundle\Traits\TimestampableTrait;
  * @ORM\DiscriminatorMap({
  *     "value" = "Value",
  *     "inputValue" = "InputValue"
- * }
+ * })
  */
 class Value implements ValueInterface
 {
@@ -96,6 +96,11 @@ class Value implements ValueInterface
         return $this->public;
     }
 
+    public function setPublic(boolean $public)
+    {
+        return $this->isPublic($public);
+    }
+
     public function getOptions()
     {
         return $this->options;
@@ -103,12 +108,12 @@ class Value implements ValueInterface
 
     public function getOption($option)
     {
-        return ($this->hasOption($option)) ? $this->options[$option] : false;
+        return $this->hasOption->get($option);
     }
 
     public function hasOption($option)
     {
-        return in_array($option, $this->options);
+        return !$this->options->isEmpty();
     }
 
     public function setName($name)

@@ -5,6 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+
 use SCSS\CourseBundle\Entity\Week;
 use SCSS\CourseBundle\Entity\Period;
 use SCSS\FacilityBundle\Entity\Facility;

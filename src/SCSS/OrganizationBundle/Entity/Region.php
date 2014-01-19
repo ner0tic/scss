@@ -336,4 +336,13 @@ class Region
 
         return $this;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->passels = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->facilities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->faculty = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 }

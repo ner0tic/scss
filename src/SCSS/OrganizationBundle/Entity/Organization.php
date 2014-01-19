@@ -596,4 +596,17 @@ class Organization
 
         return $this;
     }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->types = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->councils = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->regions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->passels = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->facilities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->facultys = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 }

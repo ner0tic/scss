@@ -166,7 +166,7 @@ abstract class User extends BaseUser
                 ' ',
                 '-',
                 $this->getName()
-           );
+            );
         }
 
         return $this;

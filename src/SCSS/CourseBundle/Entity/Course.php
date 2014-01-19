@@ -355,4 +355,13 @@ class Course
 
         return $this;
     }
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->classes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->requirements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 }

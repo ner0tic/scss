@@ -100,6 +100,11 @@ class Group implements GroupInterface
         return $this->public;
     }
 
+    public function setPublic(boolean $public)
+    {
+        return $this->isPublic($public);
+    }
+
     public function getAttributes()
     {
         return $this->attributes;
@@ -107,12 +112,12 @@ class Group implements GroupInterface
 
     public function getAttribute($attribute)
     {
-        return ($this->hasAttribute($attribute)) ? $this->attributes[$attribute] : false;
+        return $this->attributea->get($attribute);
     }
 
     public function hasAttribute($attribute)
     {
-        return in_array($attribute, $this->attributes);
+        return !$this->attributes->isEmpty();
     }
 
     public function setName($name)
@@ -168,7 +173,7 @@ class Group implements GroupInterface
      *
      * @return self
      */
-    public function removeAttribute($attribute)
+    public function removeAttribute(Attribute $attribute)
     {
         $this->attributes->remove($attribute);
 

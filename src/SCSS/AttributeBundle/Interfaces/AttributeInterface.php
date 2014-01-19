@@ -3,6 +3,7 @@ namespace SCSS\AttributeBundle\Interfaces;
 
 use SCSS\AttributeBundle\Entity\Option;
 use SCSS\AttributeBundle\Entity\Group;
+use SCSS\AttributeBundle\Entity\
 
 interface AttributeInterface
 {
@@ -18,13 +19,13 @@ interface AttributeInterface
 
     public function setDescription($desc);
 
-    public function setOptions($options);
+    public function setOptions(array $options);
 
     public function addOption(Option $option);
 
     public function removeOption(Option $option);
 
-    public function setGroups($groups);
+    public function setGroups(array $groups);
 
     public function addGroup(Group $group);
 

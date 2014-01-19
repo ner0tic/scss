@@ -114,22 +114,22 @@ class Attribute implements AttributeInterface
 
     public function hasOption($option)
     {
-        return in_array($option, $this->options);
+        return !$this->options->isEmtpty();
     }
 
     public function getGroups()
     {
-        return $this->gropus;
+        return $this->groups;
     }
 
     public function getGroup($group)
     {
-        return ($this->inGroup($group)) ? $this->groups[$group] : false;
+        return $this->groups->get($group);
     }
 
     public function inGroup($group)
     {
-        return in_array($group, $this->groups);
+        return !$this->groups->isEmpty();
     }
 
     public function setName($name)
@@ -217,7 +217,7 @@ class Attribute implements AttributeInterface
      *
      * @return self
      */
-    public function removeOption($option)
+    public function removeOption(Option $option)
     {
         $this->options->remove($option);
 
@@ -231,7 +231,7 @@ class Attribute implements AttributeInterface
      *
      * @return self
      */
-    public function removeGroup($group)
+    public function removeGroup(Group $group)
     {
         $this->groups->remove($group);
 

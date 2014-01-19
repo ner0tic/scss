@@ -10,10 +10,6 @@ interface OptionInterface
 
     public function getDescription();
 
-    public function getOptions();
-
-    public function getOption($option);
-
     public function getAttributes();
 
     public function getAttribute($attribute);
@@ -22,11 +18,7 @@ interface OptionInterface
 
     public function setDescription($dec);
 
-    public function setOptions($options);
-
-    public function addOption(Option $option);
-
-    public function setAttributes($attributes);
+    public function setAttributes(array $attributes);
 
     public function addAttribute(Attribute $attribute);
 }

@@ -1,12 +1,7 @@
 scss_attribute:
     resource: "@SCSSAttributeBundle/Controller/"
     type:     annotation
-    prefix:   /
-
-scss_address:
-    resource: "@SCSSAddressBundle/Controller/"
-    type:     annotation
-    prefix:   /
+    prefix:   "/{attr_path}/"
 
 scss_course:
     resource: "@SCSSCourseBundle/Controller/"
