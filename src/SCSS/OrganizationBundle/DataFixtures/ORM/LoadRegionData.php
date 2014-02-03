@@ -6,10 +6,18 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use SCSS\GeographyBundle\Entity\Region;
+use SCSS\OrganizationBundle\Entity\Region;
 
 class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     public function load(ObjectManager $manager)
     {
         $geo = $this->container->get('ivory_google_map.geocoder');
@@ -63,6 +71,6 @@ class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface,
 
     public function getOrder()
     {
-        return 4;
+        return 5;
     }
 }

@@ -5,12 +5,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use SCSS\PasselBundle\Entity\Attendee;
-use SCSS\PasselBundle\Form\Type\AttendeeType;
+
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\View\TwitterBootstrapView;
+
+use SCSS\PasselBundle\Entity\Attendee;
+use SCSS\PasselBundle\Form\Type\AttendeeType;
 
 class AttendeeController extends Controller
 {
@@ -40,7 +42,7 @@ class AttendeeController extends Controller
      * @Route("/{slug}", name="scss_attendee_show")
      * @Template("SCSSPasselBundle:Attendee:show.html.twig")
      */
-    public function showAction( $slug )
+    public function showAction($slug)
     {
         $attendee = $this->getDoctrine()
             ->getRepository('SCSSPasselbundle:Attendee')
@@ -84,7 +86,7 @@ class AttendeeController extends Controller
                     'SCSSPasselbundle:Attendee:show.html.twig',
                     array(
                         'attendee' => $attendee
-                    )
+                   )
                 );
             }
         }

@@ -37,6 +37,6 @@ class LoadFacilityData extends AbstractFixture implements OrderedFixtureInterfac
 
     public function getOrder()
     {
-        return 13;
+        return 14;
     }
 }

@@ -87,7 +87,7 @@
 
         "knplabs/knp-menu":                                             "2.0.x-dev",
         "knplabs/knp-menu-bundle":                                     "dev-master",
-
+       
         "liip/imagine-bundle":                                          "dev-master"
     },
     "require-dev": {

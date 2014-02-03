@@ -1,154 +1,165 @@
 millwright_menu:
-  renderers:
-    navigation:
-      renderer: null
-      rendererOptions:
-        template: ScssUserBundle:Base:menu.html.twig
-    active_enrollment:
-      renderer: null
-      rendererOptions:
-        template: ScssUserBundle:User:active-enrollment-menu.html.twig
-  items:
+    renderers:
+        navigation:
+            renderer: null
+            rendererOptions:
+                template: ScssUtilityBundle:Menu:layout.html.twig
+    items:
 ###############################################################################
 ## Globals
 ###############################################################################	
-    homepage:
-      label: 'home'
-      roles: IS_AUTHENTICATED_ANONYMOUSLY
-    signin:
-      roles: IS_AUTHENTICATED_ANONYMOUSLY
-      route: fos_user_security_login
-    signup:
-      roles: IS_AUTHENTICATED_ANONYMOUSLY
-      route: fos_user_registration_register
-    signout:
-      route: fos_user_security_logout
-    profile:
-      route: settings
-    profile_edit:
-      route: settings-edit
-    change_pw:
-      route: fos_user_change_password
-    help: 
-      roles: IS_AUTHENTICATED_ANONYMOUSLY
-    about: 
-      roles: IS_AUTHENTICATED_ANONYMOUSLY
-    contact: 
-      roles: IS_AUTHENTICATED_ANONYMOUSLY
+      homepage:
+          label: 'home'
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+      signin:
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+          route: fos_user_security_login
+      signup:
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+          route: fos_user_registration_register
+      signout:
+          route: fos_user_security_logout
+      profile:
+          route: fos_user_profile_index
+      profile_edit:
+          route: fos_user_profile_edit
+      change_pw:
+          route: fos_user_change_password
+      help: 
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+      about: 
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+      contact: 
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
 ###############################################################################
 ## Organization Menu
 ###############################################################################
-    organization_add:
-      label: 'add organization'
-    organization_edit: ~
-    organization_mgmt: ~
+      organization_add:
+          label: 'add organization'
+      organization_edit: ~
+      organization_mgmt: ~
+      organizations: ~
 ###############################################################################
 ## Council Menu
 ###############################################################################
-    council_add:
-      label: 'add council'
-    council_edit: ~
-    council_mgmt: ~
+      council_add:
+          label: 'add council'
+      council_edit: ~
+      council_mgmt: ~
+      councils: ~
 ###############################################################################
 ## Region Menu
 ###############################################################################
-    region_add:
-      label: 'add region'
-    region_edit: ~
-    region_mgmt: ~		
+      region_add:
+          label: 'add region'
+      region_edit: ~
+      region_mgmt: ~
+      regions: ~		
 ###############################################################################
 ## Passel Menu
 ###############################################################################
-    passel_add:
-      label: 'add passel'
-      roles: ROLE_FACILITY_ADMIN
-    passel_edit: ~
-    passel_mgmt: ~
-    passel_enroll: 
-      label: 'passel enrollment'
-    chg_passel_enroll: 
-      label: 'change passel enrollment'
+      passel_add:
+          label: 'add passel'
+          roles: ROLE_FACILITY_ADMIN
+      passel_edit: ~
+      passel_mgmt: ~
+      passels: ~
+      passel_enroll: 
+          label: 'passel enrollment'
+      chg_passel_enroll: 
+          label: 'change passel enrollment'
 ###############################################################################
 ## Faction Menu
 ###############################################################################
-    faction_add:
-      label: 'add faction'
-    faction_edit: ~
-    faction_mgmt: ~
+      faction_add:
+          label: 'add faction'
+      faction_edit: ~
+      faction_mgmt: ~
+      factions: ~
 ###############################################################################
 ## Attendee Menu
 ###############################################################################
-    attendee_add:
-      label: 'add attendee'
-    attendee_edit: ~
-    attendee_mgmt: ~
-    attendee_enroll:
-      label: 'attendee enrollment'
+      attendee_add:
+          label: 'add attendee'
+      attendee_edit: ~
+      attendee_mgmt: ~
+      attendee_enroll:
+          label: 'attendee enrollment'
+      attendees: ~
 ###############################################################################
 ## Facility Menu
 ###############################################################################
-    facility_add:
-      label: 'add facility'
-    facility_edit: ~
-    facility_mgmt: ~
+      facility_add:
+          label: 'add facility'
+      facility_edit: ~
+      facility_mgmt: ~
+      facilities: ~
 ###############################################################################
 ## Department Menu
 ###############################################################################
-    department_add:
-      label: 'add department'
-    department_edit: ~
-    department_mgmt: ~
+      department_add:
+          label: 'add department'
+      department_edit: ~
+      department_mgmt: ~
+      departments: ~
 ###############################################################################
 ## Faculty Menu
 ###############################################################################
-    faculty_add:
-      label: 'add faculty'
-    faculty_edit: ~
-    faculty_mgmt: ~
+      faculty_add:
+          label: 'add faculty'
+      faculty_edit: ~
+      faculty_mgmt: ~
+      faculty: ~
 ###############################################################################
 ## Class Menu
 ###############################################################################
-    class_add:
-      label: 'add class'
-    class_edit: ~
-    class_mgmt: ~
-    class_attendence: ~
-    class_activation: ~
+      class_add:
+          label: 'add class'
+      class_edit: ~
+      class_mgmt: ~
+      class_attendence: ~
+      class_activation: ~
+      classes: ~
 ###############################################################################
 ## Quarters Menu
 ###############################################################################
-    quarters_add:
-      label: 'add quarters'
-    quarters_edit: ~
-    quarters_mgmt: ~
-    quarters_passel_mgmt: ~
-    quarters_faculty_mgmt: ~
+      quarters_add:
+          label: 'add quarters'
+      quarters_edit: ~
+      quarters_mgmt: ~
+      quarters_passel_mgmt: ~
+      quarters_faculty_mgmt: ~
+      quarters: ~
 ###############################################################################
 ## Week Menu
 ###############################################################################
-    week_add:
-      label: 'add week'
-    week_edit: ~
-    week_mgmt: ~
+      week_add:
+          label: 'add week'
+      week_edit: ~
+      week_mgmt: ~
+      weeks: ~
 ###############################################################################
 ## Period Menu
 ###############################################################################
-    period_add:
-      label: 'add period'
-    period_edit: ~
-    period_mgmt: ~
+      period_add:
+          label: 'add period'
+      period_edit: ~
+      period_mgmt: ~
+      peiods: ~
 ###############################################################################
 ## Course Menu
 ###############################################################################
-    course_add:
-      label: 'add course'
-    course_edit: ~
-    course_mgmt: ~		
+      course_add:
+          label: 'add course'
+      course_edit: ~
+      course_mgmt: ~		
+      courses: ~
 ###############################################################################
 ## Reports Menu
 ###############################################################################
-    reports_add:
-      label: 'add report'
+      reports_add:
+          label: 'add report'
+      reports: ~
 #    reports_master_sched: ~
 #    reports_pasel_sched: ~
 #    reports_attendee_sched: ~
@@ -157,15 +168,26 @@ millwright_menu:
 #    reports_facility_list: ~
 #    reports_attendee_list: ~
 #    reports_class_list: ~
-  tree:
-    nonAuthMenu:
-      type: navigation
-      children:
-        homepage: ~
-        about: ~
-        signup: ~
-        signin: ~
-        reports: ~
+    tree:
+      nonAuthMenu:
+          type: navigation
+          children:
+              homepage: ~
+              about: ~
+              signup: ~
+              signin: ~
+              reports: ~
+      mainMenu:
+          type: navigation
+          children:
+              homepage: ~
+              active_enrollment: ~
+              organization_mgmt:
+                  roles: ROLE_ORGANIZATION_ADMIN
+              organizations:
+                  roles: ROLE_REGION_USER
+                  children:
+                      
 #          children:
 #            class_list: ~
 #            facility_list: ~

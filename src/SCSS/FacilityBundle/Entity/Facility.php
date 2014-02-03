@@ -6,9 +6,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use SCSS\FacilityBundle\Traits\FacilityTrait;
 use SCSS\UtilityBundle\Traits\SluggableTrait;
 use SCSS\UtilityBundle\Traits\TimestampableTrait;
+use SCSS\UtiltyBundle\Entity\Address;
 
 /**
  * @ORM\Entity
@@ -69,7 +69,7 @@ class Facility
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="SCSS\UserBundle\Entity\AddressBook", inversedBy="facility")
+     * @ORM\ManyToOne(targetEntity="SCSS\UserBundle\Entity\Address", inversedBy="facility")
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      */
     protected $address;

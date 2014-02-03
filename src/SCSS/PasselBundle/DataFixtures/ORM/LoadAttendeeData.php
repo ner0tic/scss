@@ -37,6 +37,6 @@ class LoadAttendeeData extends AbstractFixture implements OrderedFixtureInterfac
 
     public function getOrder()
     {
-        return 11;
+        return 12;
     }
 }

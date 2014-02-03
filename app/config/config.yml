@@ -3,7 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
     - { resource: services.yml }
-#    - { resource: menu.yml }
+ #   - { resource: menu.yml }
 
 #####################################################################################
 ## Framwork Configuration
@@ -185,6 +185,8 @@ jms_aop:
 knp_menu:
     twig: # false
         template: SCSSUtilityBundle:Menu:layout.html.twig
+#        template: MillwrightMenuBundle:Default:knp_menu.html.twig
+
     default_renderer: twig
 
 ################################################################################
