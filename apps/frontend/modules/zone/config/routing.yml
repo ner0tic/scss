@@ -1,7 +1,0 @@
-zone:
-  class: sfDcotrineRouteCollection
-  options:
-    model: ScssZone
-    module: zone
-    prefix_path: /:country_slug/zones
-    column: zone_slug

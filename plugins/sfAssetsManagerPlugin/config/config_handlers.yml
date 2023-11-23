@@ -1,3 +1,0 @@
-config/assets_manager.yml:
-  file: %SF_PLUGINS_DIR%/sfAssetsManagerPlugin/lib/config/sfAssetsManagerConfigHandler.class.php
-  class: sfAssetsManagerConfigHandler
