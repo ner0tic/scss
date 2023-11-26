@@ -1,4 +1,4 @@
-### Project: Attendee and Group Scheduling System
+### Project: Attendee and Group Scheduling System.
 
 #### Project Overview:
 Develop a web-based scheduling system that allows users to schedule attendees and groups to multiple facilities. This system should consider the availability of facilities, group preferences, and individual attendee preferences.

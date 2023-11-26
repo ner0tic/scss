@@ -30,12 +30,11 @@ from datetime import datetime
 from flask import current_app as app
 from flask import make_response, redirect, render_template, request, url_for
 
-from .models import User, db
-from app import create_app,db,login_manager,bcrypt
+from app import create_app # ,db,login_manager,bcrypt
 from models import User
 from forms import login_form,register_form
 
-@login_manager.user_loader
+# @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
