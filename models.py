@@ -1,10 +1,10 @@
-# scss/models.py
+# models.py
 # """Data models."""
 from sqlalchemy import Column, DateTime, Integer, String, Text, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship, backref
-from database import engine
+#from database import engine
 
 Base = declarative_base()
 
@@ -38,13 +38,13 @@ class Faculty(User):
     __tablename__ = "faculty"
     user_id = Column(Integer, ForeignKey('user.id'), primary_key = True)
     user_role = Column(String(255), nullable=False, default="faculty")
-    enrollment_id = Column(Integer, ForeignKey('enrollment.id'))
+    enrollment_id = Column(Integer, ForeignKey('faculty_enrollment.id'))
     facility_id = Column(Integer, ForeignKey('facility.id'))
     
 class FacultyEnrollment(Base):
     __tablename__ = "faculty_enrollment"
     id = Column(Integer, primary_key=True, autoincrement="auto")
-    faculty_id = Column(Integer, ForeignKey('faculty.id'))
+    faculty_id = Column(Integer, ForeignKey('faculty.user_id'))
     quarters_id = Column(Integer, ForeignKey('quarters.id'))
     temporal_hierarchy_id = Column(Integer, ForeignKey('temporal_hierarchy.id'))
     class_enrollments = relationship("FacultyClassEnrollment", back_populates="faculty_enrollment")
@@ -69,7 +69,7 @@ class Leader(User):
 class LeaderEnrollment(Base):
     __tablename__ = "leader_enrollment"
     id = Column(Integer, primary_key=True, autoincrement="auto")
-    leader_id = Column(Integer, ForeignKey('leader.id'))
+    leader_id = Column(Integer, ForeignKey('leader.user_id'))
     faction_enrollment_id = Column(Integer, ForeignKey('faction_enrollment.id'))
     quarters_id = Column(Integer, ForeignKey('quarters.id'))
     created_at = Column(DateTime, server_default=func.now())
@@ -85,7 +85,7 @@ class Attendee(User):
 class AttendeeEnrollment(Base):
     __tablename__ = "attendee_enrollment"
     id = Column(Integer, primary_key=True, autoincrement="auto")
-    attendee_id = Column(Integer, ForeignKey('attendee.id'))
+    attendee_id = Column(Integer, ForeignKey('attendee.user_id'))
     faction_enrollment_id = Column(Integer, ForeignKey('faction_enrollment.id'))
     quarters_id = Column(Integer, ForeignKey('quarters.id'))
     class_enrollments = relationship("AttendeeClassEnrollment", back_populates="attendee_enrollment")
@@ -171,6 +171,34 @@ class Faction(Base):
     attendees = relationship("attendee", backref='faction', lazy=True)
     leaders = relationship("leader", backref='faction', lazy=True)
     enrollments = relationship("faction_enrollment", backref='faction', lazy=True)
+    
+class FactionEnrollment(Base):
+    """
+    Class representing a faction enrollment.
+
+    Attributes:
+        id (int): The unique identifier of the faction enrollment.
+        faction_id (int): The ID of the faction associated with the enrollment.
+        temporal_hierarchy_id (int): The ID of the temporal hierarchy associated with the enrollment.
+        quarters_id (int): The ID of the quarters associated with the enrollment.
+        created_at (DateTime): The timestamp of when the enrollment was created.
+        updated_at (DateTime): The timestamp of when the enrollment was last updated.
+
+    Examples:
+        enrollment = FactionEnrollment()
+        enrollment.faction_id = 1
+        enrollment.temporal_hierarchy_id = 2
+        enrollment.quarters_id = 3
+        print(enrollment.id)  # None
+    """
+        
+    __tablename__ = 'faction_enrollment'
+    id = Column(Integer, primary_key = True, autoincrement = "auto")
+    faction_id = Column(Integer, ForeignKey('faction.id'))
+    temporal_hierarchy_id = Column(Integer, ForeignKey('temporal_hierarchy.id'))
+    quarters_id = Column(Integer, ForeignKey('quarters.id'))
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
 class TemporalHierarchy(Base):
     """
@@ -332,10 +360,20 @@ class FacilityClass(Base):
     id = Column(Integer, primary_key=True, autoincrement="auto")
     course_id = Column(Integer, ForeignKey('course.id'))
     temporal_hierarchy_id = Column(Integer, ForeignKey('temporal_hierarchy.id'))
-    faculty_id = Column(Integer, ForeignKey('faculty.id'))
+    faculty_id = Column(Integer, ForeignKey('faculty.user_id'))
     department_id = Column(Integer, ForeignKey('department.id'))
     capacity = Column(Integer, nullable = False)
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
-    
+class Address(Base):
+    __tablename__ = 'address'
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    name = Column(String(255), nullable = False)
+    street = Column(String(255), nullable = False)
+    street2 = Column(String(255))
+    city = Column(String(255), nullable = False)
+    zone = Column(String(255), nullable = False)
+    country = Column(String(255), nullable = False)
+    postal_code = Column(String(255), nullable = False)
+    phone_number = Column(String(255))

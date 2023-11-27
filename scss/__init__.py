@@ -3,23 +3,26 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import config
 
-# Initialize Database
-db = SQLAlchemy()
-
 def create_app():
     """Construct the core application."""
-    
     # Initialize Flask App
     app = Flask(__name__, instance_relative_config=False)
     # Load Config data from env file
     app.config.from_object("config.Config")
-    # Initialize Database Plugin
-    db.init_app(app)
+    # Initialize Database
+    db = SQLAlchemy(app)
 
     with app.app_context():
-        # Import routes
-        from . import routes  
-        # Create database tables for our data models
-        db.create_all()  
+        return _create_tables(db, app)
 
-        return app
+def _create_tables(db, app):
+    # Import routes & models
+    from . import routes
+    import models
+    from database import engine, session
+    
+    # Create database tables for our data models
+    db.create_all()
+    models.Base.metadata.create_all(engine)
+
+    return app
