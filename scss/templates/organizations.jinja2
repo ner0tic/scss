@@ -1,0 +1,30 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+  <div class="container">
+    {% for organization in organizations %}
+      <ul id="organization.name">
+        <li>
+          <span class="field-name">User:</span>
+          <span class="field-value">{{ organization.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Email:</span>
+          <span class="field-value">{{ organization.email }}</span>
+        </li>
+        <li>
+          <span class="field-name">Description:</span>
+          <span class="field-value">{{ organization.description }}</span>
+        </li>
+        <li>
+          <span class="field-name">Parent:</span>
+          <span class="field-value">{{ organization.parent.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Created:</span>
+          <span class="field-value">{{ organization.created_at }}</span>
+        </li>
+      </ul>
+    {% endfor %}
+  </div>
+{% endblock %}

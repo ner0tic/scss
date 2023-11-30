@@ -1,63 +1,55 @@
-from flask import (
-    Flask,
-    render_template,
-    redirect,
-    flash,
-    url_for,
-    session
-)
-from datetime import timedelta
-from sqlalchemy.exc import (
-    IntegrityError,
-    DataError,
-    DatabaseError,
-    InterfaceError,
-    InvalidRequestError,
-)
-from werkzeug.routing import BuildError
-from flask_bcrypt import Bcrypt,generate_password_hash, check_password_hash
-from flask_login import (
-    UserMixin,
-    login_user,
-    LoginManager,
-    current_user,
-    logout_user,
-    login_required,
-)
 """Application routes."""
 from datetime import datetime
+from flask import current_app as app, render_template, request, redirect, url_for, make_response
+from database import engine, session
+from scss.models import User, Organization
 
-from flask import current_app as app
-from flask import make_response, redirect, render_template, request, url_for
-
-from app import create_app # ,db,login_manager,bcrypt
-from models import User
-from forms import login_form,register_form
 
 # @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-app = create_app()
+# app = create_app()
+@app.route("/users/", methods=("GET", "POST"), strict_slashes=False)
+def user_records():
+    print('entering user_records')  
+    """Create a user via query string parameters."""
+    username = request.args.get("user")
+    email = request.args.get("email")
+    if username and email:
+        if existing_user := User.query.filter(
+            User.username == username or User.email == email
+        ).first():
+            return make_response(f"{username} ({email}) already created!")
+        new_user = User(
+            username=username,
+            email=email,
+            created=datetime.now(),
+            bio="In West Philadelphia born and raised, \
+            on the playground is where I spent most of my days",
+            admin=False,
+        )  # Create an instance of the User class
+        session.add(new_user)  # Adds new User record to database
+        session.commit()  # Commits all changes
+        redirect(url_for("user_records"))
+    return render_template("users.jinja2", users=session.query(User).all(), title="All Users")
 
-# Home route
-@app.route("/", methods=("GET", "POST"), strict_slashes=False)
-def index():
-    return render_template("index.html",title="Home")
-
-# Login route
-@app.route("/login/", methods=("GET", "POST"), strict_slashes=False)
-def login():
-    form = login_form()
-
-    return render_template("auth.html",form=form)
-
-# Register route
-@app.route("/register/", methods=("GET", "POST"), strict_slashes=False)
-def register():
-    form = register_form()
-
-    return render_template("auth.html",form=form)
- 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route("/organizations/", methods=["GET"], strict_slashes=False)
+def organization_records():
+    print('entering organization_records')
+    """Create a user via query string parameters."""
+    organization_name = request.args.get("organization_name")
+    if organization_name:
+        if existing_organization := Organization.query.filter(
+            Organization.organization_name == organization_name
+        ).first():
+            return make_response(f"{organization_name} already created!")
+        new_organization = Organization(
+            organization_name=organization_name,
+            created=datetime.now(),
+            admin=False,
+        )  # Create an instance of the User class
+        session.add(new_organization)  # Adds new User record to database
+        session.commit()  # Commits all changes
+        redirect(url_for("organization_records"))
+    return render_template("organizations.jinja2", organizations=session.query(Organization).all(), title="All Organizations")
