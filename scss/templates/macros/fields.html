@@ -8,3 +8,21 @@
     {% endfor %}
 </div>
 {% endmacro %}
+
+{% macro render_select_field(field) %}
+<div class="form__group">
+    {{ field.label(class_="form__label") }}
+    {{ field(class_="form__field")}}
+
+    {%- for error in field.errors %}
+        <span class="form__error">{{ error }}</span>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro render_hidden_field(field) %}
+<div class="form__group">
+    {{ field.label(class_='form__label') }}
+    {{ field(class_='form__field') }}
+</div>
+{% endmacro %}

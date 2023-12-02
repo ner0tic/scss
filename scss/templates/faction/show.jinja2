@@ -1,0 +1,36 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ faction.name }}</h1>
+    <p>{{ msg }}</p>
+      <ul id="faction.name">
+        <li>
+          <span class="field-name">Name:</span>
+          <span class="field-value">{{ faction.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Abbreviation:</span>
+          <span class="field-value">{{ faction.short_name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Description:</span>
+          <span class="field-value">{{ faction.description }}</span>
+        </li>
+        {% if faction.parent is defined and faction.parent %}
+        <li>
+          <span class="field-name">Parent:</span>
+          <span class="field-value">{{ faction.parent.name }}</span>
+        </li>
+        {% endif %}
+        <li>
+          <span class="field-name">Children:</span>
+          <span class="field-value">{{ faction.children | length }}</span>
+        </li>
+        <li>
+          <span class="field-name">Created:</span>
+          <span class="field-value">{{ faction.created_at }}</span>
+        </li>
+      </ul>
+  </div>
+{% endblock %}

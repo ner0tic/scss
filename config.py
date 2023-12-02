@@ -14,6 +14,7 @@ class Config:
 
     # Session variables
     SECRET_KEY = getenv("SECRET_KEY")
+    CSRF_SECRET_KEY = getenv("CSRF_SECRET_KEY")
     
     # Database connection variables
     DATABASE_USERNAME = getenv("DATABASE_USERNAME")
@@ -26,7 +27,6 @@ class Config:
     attach_ca_file = f"?ssl_ca={DATABASE_CERT_FILE}" if DATABASE_CERT_FILE is not None else ""   
     SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}{attach_ca_file}"
     
-
     # Reset data after each run
     CLEANUP_DATA = False
     

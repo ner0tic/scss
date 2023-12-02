@@ -1,40 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>{{title}}</title>
-  <meta name="description" content="Connect your Flask app to a database using Flask-SQLAlchemy."/>
-  <meta name="HandheldFriendly" content="True"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <meta name="theme-color" content="#5eb9d7"/>
-  {# <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon"/> #}
-  <meta property="og:site_name" content="Hackers and Slackers"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Hackers and Slackers - Hackers and Slackers"/>
-  <meta property="og:description" content="Connect your Flask app to a database using Flask-SQLAlchemy."/>
-  <meta property="og:url" content="https://flasksqlalchemy.hackersandslackers.com/"/>
-  <meta name="twitter:title" content="{{ title }}"/>
-  <meta name="twitter:description" content="Connect your Flask app to a database using Flask-SQLAlchemy."/>
-  <meta name="twitter:url" content="https://flasksqlalchemy.hackersandslackers.com/"/>
-  <meta name="twitter:site" content="@hackersslackers"/>
-  <meta name="twitter:creator" content="@toddrbirchard"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image"
-        content=" https://storage.googleapis.com/hackersandslackers-cdn/2019/06/flasklogin@2x.jpg"/>
-  <meta property="og:image" content=" https://storage.googleapis.com/hackersandslackers-cdn/2019/06/flasklogin@2x.jpg"/>
-  <meta property="og:image:width" content="1000"/>
-  <meta property="og:image:height" content="523"/>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
-  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
-  <meta name="theme-color" content="#5eb9d7" />
-  {# <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo@2x.png') }}" type="image/x-icon"/> #}
-</head>
-
-<body class="{{template}}">
-  {% block content %}{% endblock %}
-  {% include 'analytics.jinja2' %}
-</body>
-
+<!doctype html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <!--<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
+  </head>
+  <body class="{{ tempalte }}">
+    <div class="container">
+      <h1>{{ title }}</h1>
+      <hr>
+      {% block content %}{% endblock %}
+    </div>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+    {% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable();
+    });
+  </script>
+{% endblock %}
+  </body>
 </html>

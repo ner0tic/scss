@@ -1,0 +1,35 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Abbreviation</th>
+        <th>Description</th>
+        <th>Children</th>
+        <th>Parent</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for faction in factions %}
+        <tr>
+          <td>{{ faction.name }}</td>
+          <td>{{ faction.short_name }}</td>
+          <td>{{ faction.description | truncate(30) }}</td>
+          <td>{{ faction.children | length }}</td>
+          {% if faction.parent is not none %}
+            <td><a href={{ url_for("faction_detail", faction_id=faction.parent.id) }}>{{ faction.parent.name }}</a></td>
+          {% else %}
+            <td></td>
+          {% endif %}
+          <td>
+            <a href="{{ url_for("faction_edit", faction_id=faction.id) }}">edit</a>
+            <a href="{{ url_for("faction_delete", faction_id=faction.id) }}">delete</a>
+        </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

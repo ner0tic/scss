@@ -1,10 +1,19 @@
 from sqlalchemy import Column, DateTime, Integer, String, Boolean, Text, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, relationship
 from sqlalchemy.sql import func
+from wtforms.csrf.session import SessionCSRF
+from flask import current_app as app
 # from scss.models import Base
 
 class Base(DeclarativeBase):
-    pass
+    class Meta:
+        csrf = True
+        csrf_class = SessionCSRF
+        csrf_secret = app.config['CSRF_SECRET_KEY']
+
+        @property
+        def csrf_context(self):
+            return session
 
 class User(Base):
     """User account."""
@@ -148,7 +157,9 @@ class Faction(Base):
     avatar_url = Column(String(255))
     organization_id = Column(Integer, ForeignKey('organization.id'))
 #    organization = relationship("Faction", backref='factions', lazy=True)
-    patrols = relationship("Patrol", backref='parent', remote_side=[id])
+    parent_id = Column(Integer, ForeignKey('faction.id'))
+    parent = relationship("Faction", remote_side=[id], backref="children", overlaps="children")
+#    patrols = relationship("Patrol", backref='faction')
     attendees = relationship("Attendee", backref='faction', lazy=True)
     leaders = relationship("Leader", backref='faction', lazy=True)
     enrollments = relationship("FactionEnrollment", backref='faction', lazy=True)

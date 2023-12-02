@@ -18,7 +18,8 @@ def create_app():
 def _create_tables(db, app):
     # Import routes & models
     from . import routes
-    import models
+    import scss.models
+   
     from database import engine, session
     
     # Create database tables for our data models
