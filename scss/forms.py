@@ -1,10 +1,16 @@
 from flask import Flask
 from flask_wtf import FlaskForm 
-from wtforms import StringField, PasswordField ,SubmitField, TextAreaField, SelectField, HiddenField
+from wtforms import StringField, PasswordField ,SubmitField, TextAreaField, SelectField, HiddenField, BooleanField, FormField
 from wtforms.validators import InputRequired, Length
-from scss.models import User, Organization, Faction
+from wtform_address import CountrySelectField, StateSelectField
 
-"""
+class DeleteConfirmationForm(FlaskForm):
+    confirm = BooleanField("Confirm deletion?")
+    id = HiddenField("Element ID")
+    submit = SubmitField('Delete')
+
+class OrganizationAddForm(FlaskForm):
+    """
 The `OrganizationAddForm` class represents a form for adding an organization.
 
 Args:
@@ -22,22 +28,21 @@ Returns:
     None
 
 """
-class OrganizationAddForm(FlaskForm):
-    organization_name = StringField('Organization Name', validators=[InputRequired('Organization Name required!'),  
-               Length(min=5, max=25, message='Organization Name must be in 5 to 25 characters')])
-    organization_short_name = StringField('Organization Short Name', validators=[Length(min=2, max=25, message='Organization Short Name must be in 3 to 25 characters')])
-    organization_description = TextAreaField('Organization Description', validators=[Length(min=5, max=25, message='Organization Description must be in 5 to 25 characters')])
-    organization_avatar_url = StringField('Organization Avatar URL')
-    organization_parent = SelectField('Organization Parent', coerce=int, validators=[InputRequired('Organization Parent required!')])
-    organization_factions = HiddenField('Organization Factions', default=0) # , validators=[InputRequired('Organization Factions required!')])
+    name = StringField('Organization Name', validators=[InputRequired('Organization Name required!'),  
+                Length(min=5, max=25, message='Organization Name must be in 5 to 25 characters')])
+    short_name = StringField('Organization Short Name', validators=[Length(min=2, max=25, message='Organization Short Name must be in 3 to 25 characters')])
+    description = TextAreaField('Organization Description', validators=[Length(min=5, max=25, message='Organization Description must be in 5 to 25 characters')])
+    avatar_url = StringField('Organization Avatar URL')
+    parent = SelectField('Organization Parent', coerce=int, validators=[InputRequired('Organization Parent required!')])
+    factions = HiddenField('Organization Factions', default=0) # , validators=[InputRequired('Organization Factions required!')])
     submit = SubmitField('Submit')
 
 class UserAddForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired('Username required!'),
-               Length(min=5, max=25, message='Username must be in 5 to 25 characters')])
+                Length(min=5, max=25, message='Username must be in 5 to 25 characters')])
     password = PasswordField('Password', validators=[InputRequired('Password required!')])
     email = StringField('Email', validators=[InputRequired('Email required!'), 
-               Length(min=5, max=25, message='Email must be in 5 to 25 characters')])
+                Length(min=5, max=25, message='Email must be in 5 to 25 characters')])
     first_name = StringField('First Name')
     last_name = StringField('Last Name')
     address_id = StringField('Address ID')
@@ -51,14 +56,14 @@ class AdminAddForm(FlaskForm):
     organization_id = SelectField('Organization', coerce=int, validators=[InputRequired('Organization required!')])
 
 class AddressAddForm(FlaskForm):
-    name = StringField('Name')
-    line1 = StringField('Line 1', validators=[InputRequired('Line 1 required!')])
-    line2 = StringField('Line 2')
+    # name = StringField('Name')
+    line1 = StringField('Address', validators=[InputRequired('Line 1 required!')])
+    line2 = StringField('Address Line 2')
     city = StringField('City', validators=[InputRequired('City required!')])
-    state = StringField('State', validators=[InputRequired('State required!')])
+    state = StateSelectField(default="US-ME") # StringField('State', validators=[InputRequired('State required!')])
     postal_code = StringField('Postal Code', validators=[InputRequired('Postal Code required!')])
-    country = StringField('Country', validators=[InputRequired('Country required!')])
-
+    country = CountrySelectField(default="US") # StringField('Country', validators=[InputRequired('Country required!')])
+    # submit = SubmitField('Submit')
 
 class FactionAddForm(FlaskForm):
     name = StringField('Faction Name', validators=[InputRequired('Faction Name required!')])
@@ -71,6 +76,10 @@ class FactionAddForm(FlaskForm):
     attendees = HiddenField('Faction Attendees', default=0) # , validators=[InputRequired('Faction Attendees required!')])
 
 class AttendeeAddForm(FlaskForm):
+    def __init__(self, label=None, validators=None, false_values=None, **kwargs):
+        super().__init__(label=label, validators=validators, **kwargs)
+        if false_values is not None:
+            self.false_values = false_values
     user_id = StringField('User ID')
     user_role = StringField('User Role', validators=[InputRequired('User Role required!')])
     faction_id = StringField('Faction ID')
@@ -87,7 +96,10 @@ class FacilityAddForm(FlaskForm):
     name = StringField('Name', validators=[InputRequired('Name required!')])
     description = StringField('Description')
     avatar = StringField('Avatar')
-    address_id = StringField('Address ID')
+    address_id = FormField(AddressAddForm, label='Address') # StringField('Address ID')
+    organization_id = SelectField('Organization', coerce=int, validators=[InputRequired('Organization required!')])
+    factions = HiddenField('Factions', default=0) # , validators=[InputRequired('Organization Factions required!')])
+    submit = SubmitField('Submit')
 
 class FacultyAddForm(FlaskForm):
     user_id = StringField('User ID')
@@ -168,3 +180,24 @@ class CourseAddForm(FlaskForm):
     description = StringField('Description', validators=[InputRequired('Description required!')])
     avatar_url = StringField('Avatar URL')
     organization_id = StringField('Organization ID')
+
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[InputRequired('Email required!'),
+                Length(min=5, max=25, message='Email must be in 5 to 25 characters')])
+    password = PasswordField('Password', validators=[InputRequired('Password required!')])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+    
+class RegistrationForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired('Username required!'),
+                Length(min=5, max=25, message='Username must be in 5 to 25 characters')])
+    password = PasswordField('Password', validators=[InputRequired('Password required!')])
+    email = StringField('Email', validators=[InputRequired('Email required!'), 
+                Length(min=5, max=25, message='Email must be in 5 to 25 characters')])
+    first_name = StringField('First Name')
+    last_name = StringField('Last Name')
+    address_id = FormField(AddressAddForm, label="Address") # StringField('Address ID')
+    avatar_url = StringField('Avatar URL')
+    role = HiddenField('Role', default='user')
+    #last_seen = StringField('Last Seen')
+    submit = SubmitField('Register')

@@ -1,21 +1,22 @@
 from sqlalchemy import Column, DateTime, Integer, String, Boolean, Text, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, relationship
 from sqlalchemy.sql import func
-from wtforms.csrf.session import SessionCSRF
-from flask import current_app as app
+#from wtforms.csrf.session import SessionCSRF
+from flask_login import  UserMixin
 # from scss.models import Base
 
 class Base(DeclarativeBase):
-    class Meta:
-        csrf = True
-        csrf_class = SessionCSRF
-        csrf_secret = app.config['CSRF_SECRET_KEY']
+    # class Meta:
+    #     csrf = True
+    #     csrf_class = SessionCSRF
+    #     csrf_secret = app.config['CSRF_SECRET_KEY']
 
-        @property
-        def csrf_context(self):
-            return session
+    #     @property
+    #     def csrf_context(self):
+    #         return session
+    pass
 
-class User(Base):
+class User(UserMixin, Base):
     """User account."""
 
     __tablename__ = "user"
@@ -84,6 +85,7 @@ class Organization(Base):
     parent = relationship("Organization", remote_side=[id], backref="children", overlaps="children")
 #     children = relationship('Organization', remote_side=[parent_id], backref="parent", overlaps="parent", uselist=True)
     # councils = relationship("Council", backref="organization.id")
+    facilities = relationship("Facility", backref="organization", lazy=True)
     factions = relationship("Faction", backref="organization", lazy=True)
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
@@ -166,18 +168,6 @@ class Faction(Base):
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
-# Patrol Related Models
-class Patrol(Base):
-    __tablename__ = "patrol"
-    id = Column(Integer, primary_key = True, autoincrement = "auto")
-    name = Column(String(255), nullable = False)
-    description = Column(String(255), nullable = False)
-    avatar_url = Column(String(255))
-    faction_id = Column(Integer, ForeignKey('faction.id'))
-    attendees = relationship("Attendee", backref='patrol', lazy=True)
-    created_at = Column(DateTime, server_default=func.now())
-    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
-    
 # Attendee Related Models
 class Attendee(User):
     __tablename__ = 'attendee'
@@ -207,15 +197,33 @@ class Facility(Base):
     avatar = Column(String(255))
     address_id = Column(Integer, ForeignKey('address.id'))
 #    address = relationship("Address", backref="facility")
+    organization_id = Column(Integer, ForeignKey('organization.id'))
     quarters = relationship("Quarters", backref="facility")
     departments = relationship("Department", backref="facility")
     faculty = relationship("Faculty", backref="facility")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
-    
+    faculty_quarters = []
+    attendee_quarters = []
+    faction_quarters = []
+    leader_quarters = []
+
     def __repr__(self):
         return f"<Facility(name='{self.name}', description='{self.description}', avatar='{self.avatar}', address='{self.address}', created_at='{self.created_at}', updated_at='{self.updated_at}')>"
 
+    def __init__(self, *args, **kwargs):
+        for q in self.quarters:
+            if q.quarters_type == Quarters.FACULTY_QUARTERS:
+                self.faculty_quarters.append(q)
+            elif q.quarters_type == Quarters.FACTION_QUARTERS:
+                self.faction_quarters.append(q)
+            elif q.quarters_type == Quarters.ATTENDEE_QUARTERS:
+                self.attendee_quarters.append(q)
+            elif q.quarters_type == Quarters.LEADER_QUARTERS:
+                self.leader_quarters.append(q) 
+                 
+    
+    
 # Faculty Related Models
 class Faculty(User):
     __tablename__ = "faculty"
@@ -232,18 +240,18 @@ class Faculty(User):
 
 # Quarters Related Models
 class Quarters(Base):
-    PASSEL_QUARTERS = 0
+    FACTION_QUARTERS = 0
     LEADER_QUARTERS = 1
     ATTENDEE_QUARTERS = 2
     FACULTY_QUARTERS = 3
     OTHER_QUARTERS = 4
-    
+        
     __tablename__ = 'quarters'
     id = Column(Integer, primary_key=True, autoincrement="auto")
     name = Column(String(255), nullable=False)
     description = Column(Text)
     avatar = Column(String(255))
-    quarters_type = Column(Integer, nullable=False, default=PASSEL_QUARTERS)  
+    quarters_type = Column(Integer, nullable=False, default=FACTION_QUARTERS)  
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     facility_id = Column(Integer, ForeignKey('facility.id'))

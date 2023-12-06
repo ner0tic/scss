@@ -1,7 +1,14 @@
 """Initialize Flask app."""
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+# from flask_login import LoginManager
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import sessionmaker
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import sessionmaker
+# from scss.models import Base
 import config
+# from . import routes
 
 def create_app():
     """Construct the core application."""
@@ -11,6 +18,13 @@ def create_app():
     app.config.from_object("config.Config")
     # Initialize Database
     db = SQLAlchemy(app)
+    # Create database engine
+    
+    
+    # Initialize LoginManager
+    #login_manager = LoginManager()
+    
+
 
     with app.app_context():
         return _create_tables(db, app)

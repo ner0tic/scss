@@ -26,3 +26,139 @@
     {{ field(class_='form__field') }}
 </div>
 {% endmacro %}
+
+{% macro render_boolean_field(field) %}
+<div> class="form__group">
+    {{ field(class_="form__field")}}
+    {{ field.label(class_="form__label") }}
+    
+    {%- for error in field.errors %}
+        <span class="form__error">{{ error }}</span>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro render_form_field(field, form_label) %}
+<div class="form__group">
+    {% if form_label != None%}
+    {{ form_label }}
+    {% endif %}
+    {{ field(class_="form__field")}}
+    
+    {%- for error in field.errors %}
+        <span class="form__error">{{ error }}</span>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro render_form_fields(form, action_url, ignore_csrf_field=False, wrap_with_fieldset=False) -%}
+    {% if form.type and form.type == 'FormField' %}
+        {% set legend = form.label.text %}
+        {% set form = form.form %}
+    {% endif %}
+
+    {{ form.hidden_tag() if form.hidden_tag }}
+    {% if wrap_with_fieldset %}
+    <fieldset>
+    <legend>{{ legend }}</legend>
+    {% endif %}
+    {% if caller %}
+        {{ caller() }}
+    {% else %}
+        {% for f in form %}
+            {% if f.type == 'FormField' %}
+                {{ render_form_fields(f, ignore_csrf_field=True, wrap_with_fieldset=True) }}
+            {% elif f.type == 'MultiCheckboxField' %}
+                {{ render_multi_checkbox_field(f) }}
+            {% elif f.type == 'BooleanField' %}
+                {{ render_checkbox_field(f) }}
+            {% elif f.type == 'RadioField' %}
+                {{ render_radio_field(f) }}
+            {% elif f.type == 'CSRFTokenField' or f.type == 'SubmitField' %}
+                {% if not ignore_csrf_field %}
+                    {{ render_field(f, label_visible=False) }}
+                {% endif %}
+            {% else %}
+                {{ render_field(f) }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if wrap_with_fieldset %}
+    </fieldset>
+    {% endif %}
+{%- endmacro %}
+
+{% macro render_field(field, label_visible=true) -%}
+    <div class="form-group {% if field.errors %}has-error{% endif %} {{ kwargs.pop('class_', '') }}">
+        {% if (field.type is not in ['HiddenField', 'CSRFTokenField']) and label_visible %}
+            <label for="{{ field.id }}" class="control-label">{{ field.label.text }}</label>
+        {% endif %}
+
+        {{ field(class_='form-control', **kwargs) }}
+
+        {% if field.description %}
+            <p class="help-block">{{ field.description }}</p>
+        {% endif %}
+
+        {% if field.errors %}
+            {% for e in field.errors %}
+                <p class="help-block">{{ e }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{%- endmacro %}
+
+{# Renders checkbox fields since they are represented differently in bootstrap
+    Params:
+        field - WTForm field (there are no check, but you should put here only BooleanField.
+        kwargs - pass any arguments you want in order to put them into the html attributes.
+        There are few exceptions: for - for_, class - class_, class__ - class_
+    Example usage:
+        {{ macros.render_checkbox_field(form.remember_me) }}
+ #}
+{% macro render_checkbox_field(field) -%}
+    <div class="checkbox">
+        <label for="{{ field.id }}">{{ field(type='checkbox', **kwargs) }} {{ field.label.text }}</label>
+        {% if field.description %}
+            <p class="help-block">{{ field.description }}</p>
+        {% endif %}
+    </div>
+{%- endmacro %}
+
+
+{% macro render_multi_checkbox_field(field) -%}
+    {% if field %}
+    <div class="checkbox-group{% if field.errors %} has-error{% endif %}">
+        <ul>
+            {% for f in field %}
+           <li>
+               {{ render_checkbox_field(f) }}
+           </li>
+            {% endfor %}
+        </ul>
+        {% if field.errors %}
+            {% for e in field.errors %}
+                <p class="help-block">{{ e }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% endif %}
+{%- endmacro %}
+
+
+{# Renders radio field
+    Params:
+        field - WTForm field (there are no check, but you should put here only BooleanField.
+        kwargs - pass any arguments you want in order to put them into the html attributes.
+        There are few exceptions: for - for_, class - class_, class__ - class_
+    Example usage:
+        {{ macros.render_radio_field(form.answers) }}
+ #}
+{% macro render_radio_field(field) -%}
+    {% for value, label, checked in field.iter_choices() %}
+        <div class="radio">
+            <input type="radio" name="{{ field.name }}" id="{{ field.id }}" value="{{ value }}"{% if checked %} checked=”true”{% endif %}>{{ label }}
+        </div>
+    {% endfor %}
+{%- endmacro %}

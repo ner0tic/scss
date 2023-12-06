@@ -11,16 +11,24 @@
         </li>
         <li>
           <span class="field-name">Description:</span>
-          <span class="field-value">{{ facility.description | truncate(30)}}</span>
+          <span class="field-value">{{ facility.description }}</span>
         </li>
         <li>
+          <span class="field-name">Address:</span>
+          <span class="field-value">{{ facility.address }}</span>
+        </li>
+       <li>
           <span class="field-name">Department:</span>
           <span class="field-value">{{ facility.departments | length }}</span>
         </li>
         <li>
+          <span class="field-name">Quarters:</span>
+          <span class="field-value">{{ facility.quarters | length }}</span>
+        </li>
+        <li>
           <span class="field-name">Faculty:</span>
           <span class="field-value">{{ facility.faculty | length }}</span>
-          </li>
+        </li>
         <li>
           <span class="field-name">Created:</span>
           <span class="field-value">{{ facility.created_at }}</span>

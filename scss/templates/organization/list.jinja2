@@ -20,7 +20,7 @@
           <td>{{ organization.description | truncate(30) }}</td>
           <td>{{ organization.children | length }}</td>
           {% if organization.parent is not none %}
-            <td><a href={{ url_for("organization_detail", organization_id=organization.parent.x id) }}>{{ organization.parent.name }}</a></td>
+            <td><a href={{ url_for("organization_show", organization_id=organization.parent.id) }}>{{ organization.parent.name }}</a></td>
           {% else %}
             <td></td>
           {% endif %}

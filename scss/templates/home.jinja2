@@ -1,0 +1,12 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+  <div class="container">
+    <h1>home.</h1>
+    {% if current_user.is_authenticated %}
+    <h1>You are logged in</h1>
+    {% else %}
+    <h1>You are not logged in</h1>
+    {% endif %}
+  </div>
+  {% endblock %}
