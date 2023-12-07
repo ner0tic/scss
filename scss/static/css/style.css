@@ -1,6 +1,9 @@
 body {
     background: #e1eaf5;
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding-top: 70px;
+    padding-bottom: 70px;
 }
 
 .container {
@@ -9,6 +12,14 @@ body {
     margin: 40px auto 0;
     box-shadow: 0 0 5px rgba(65, 67, 144, 0.15);
     padding: 50px;
+    max-width: 100%;
+}
+
+.pagination_total {
+    height: 34px;
+    position: relative;
+    top: -12px;
+    margin-left: 10px;
 }
 
 .page-header {
