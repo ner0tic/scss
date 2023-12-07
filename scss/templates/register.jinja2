@@ -1,30 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Sign Up</title>
-	<style>
-	h1 {
-		color: green;
-	}
-	</style>
-</head>
-<body>
-	<nav>
-	<ul>
-		<li><a href="/login">Login</a></li>
-		<li><a href="/register">Create account</a></li>
-	</ul>
-	</nav>
-	<h1>Create an account</h1>
-	<form action="#" method="post">
-	<label for="username">Username:</label>
-	<input type="text" name="username" />
-	<label for="password">Password:</label>
-	<input type="password" name="password" />
-	<button type="submit">Submit</button>
-	</form>
-</body>
-</html>
+{% from "macros/fields.html" import render_text_field, render_select_field %}
+{% extends "layout.jinja2" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Register</h1>
+    {% if msg != None %}<p>{{msg}}</p>{% endif %}
+    <form name="register" method="post" novalidate class="form">
+        <div class="form__container">
+			{{ render_text_field(form.first_name) }}
+			{{ render_text_field(form.last_name) }}
+            {{ render_text_field(form.username) }}
+            {{ render_text_field(form.email) }}
+            {{ render_text_field(form.password) }}
+			{{ render_text_field(form.confirm_password) }}
+			{{ render_text_field(form.avatar) }}
+            {{ render_form_field(form.address_id) }}
+            {{form.hidden_tag()}}
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+  </div>
+{% endblock %}

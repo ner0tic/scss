@@ -192,6 +192,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired('Username required!'),
                 Length(min=5, max=25, message='Username must be in 5 to 25 characters')])
     password = PasswordField('Password', validators=[InputRequired('Password required!')])
+    confirm_password = PasswordField('Confirm Password', validators=[InputRequired('Confirm Password required!')])
     email = StringField('Email', validators=[InputRequired('Email required!'), 
                 Length(min=5, max=25, message='Email must be in 5 to 25 characters')])
     first_name = StringField('First Name')

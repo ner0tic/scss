@@ -28,9 +28,14 @@ def login():
             return redirect(url_for("home"))
     return render_template("login.jinja2", title="Login", form=form)
 
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    logout_user()
+    return redirect(url_for("home"))
+
 @app.route('/register', methods=["GET", "POST"])
 def register():
-    form = forms.RegisterForm(request.form)
+    form = forms.RegistrationForm(request.form)
     if request.method == "POST":
         user = models.User(
                 username=request.form.get("username"),
