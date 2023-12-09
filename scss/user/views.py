@@ -1,7 +1,7 @@
 from flask import request, redirect, url_for, render_template, flash, g
 from flask_babel import gettext
 from flask_login import login_required
-from app.user.models import User
+from scss.user.models import User
 from .forms import EditUserForm
 
 from ..user import user
@@ -11,11 +11,11 @@ from ..user import user
 @login_required
 def list():
 
-    from app.database import DataTable
+    from scss.database import DataTable
     datatable = DataTable(
         model=User,
         columns=[User.remote_addr],
-        sortable=[User.username, User.email, User.created_ts],
+        sortable=[User.username, User.email, User.created_at],
         searchable=[User.username, User.email],
         filterable=[User.active],
         limits=[25, 50, 100],
@@ -37,7 +37,7 @@ def edit(id):
         form.populate_obj(user)
         user.update()
         flash(
-            gettext('User {username} edited'.format(username=user.username)),
+            gettext(f'User {user.username} edited'),
             'success'
         )
     return render_template('edit.html', form=form, user=user)

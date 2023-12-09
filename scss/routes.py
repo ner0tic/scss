@@ -7,15 +7,20 @@ from database import session
 import scss.models as models
 import scss.forms as forms
 
+@app.context_processor
+def inject_user():
+    if
+    return dict(current_user=None)
+
 # Creates a user loader callback that returns the user object given an id
 # @login_manager.user_loader
 def loader_user(user_id):
 	return session.query(models.User).get(user_id)
 
-@app.route("/")
-def home():
+# @app.route("/")
+# def home():
 	# Render home.html on "/" route
-	return render_template("home.jinja2", title="Summer Camp Scheduling System", current_user=None)
+# 	return render_template("home.jinja2", title="Summer Camp Scheduling System")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -26,7 +31,7 @@ def login():
         if user.password == request.form.get("password"):
             login_user(user)
             return redirect(url_for("home"))
-    return render_template("login.jinja2", title="Login", form=form)
+    return render_template("login.jinja2", title="Login", form=form, current_user=None)
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
@@ -52,7 +57,7 @@ def register():
         session.commit()
 		
         return redirect(url_for("login"))
-    return render_template("register.jinja2", title="Register", form=form)
+    return render_template("register.jinja2", title="Register", form=form, current_user=None)
 
 def generate_organization_children(organization_id: int) -> list:
     """Generates a list of child organizations for a given organization ID.

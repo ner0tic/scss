@@ -1,20 +1,19 @@
-from flask_wtf import Form
-from flask_babel import gettext
-from wtforms import TextField, PasswordField
+from flask_wtf import FlaskForm as Form
+from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
-
-from app.user.models import User
+from flask_babel import gettext
+from scss.user.models import User
 
 
 class LoginForm(Form):
-    username = TextField(gettext('Username'), validators=[DataRequired()])
+    username = StringField(gettext('Username'), validators=[DataRequired()])
     password = PasswordField(gettext('Password'), validators=[DataRequired()])
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.user = None
 
-    def validate(self):
+    def validate(self, extra_validators=None):
         rv = Form.validate(self)
         if not rv:
             return False

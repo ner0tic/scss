@@ -1,0 +1,6 @@
+{% macro link_to(name, path) %}
+    {% if not name %}
+        {% set name = path %}
+    {% endif %}
+    <a href="{{ url_for(path ) }}">{{ name }}</a>
+{% endmacro %}

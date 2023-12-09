@@ -1,0 +1,25 @@
+{% from "macros/fields.html" import render_text_field, render_password_field %}
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="container">
+    <h1>Please login below.</h1>
+    {% if msg != None %}<p>{{msg}}</p>{% endif %}
+    <form name="login" method="post" novalidate class="form">
+        <div class="form__container">
+            {{ form.csrf_token }}
+            {{ render_text_field(form.username) }}
+            {{ render_password_field(form.password) }}
+            {# form.remember_me() #}
+            {{ form.hidden_tag() }}
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-default" style="margin-right: 1em;">
+                    <i class="fa fa-sign-in"></i> {% trans %}Login{% endtrans %}
+                </button>
+                <span style="margin-right: 1em;">{% trans %}or{% endtrans %}</span>
+                <a href="{{ url_for('auth.register') }}">{% trans %}Register{% endtrans %}</a>
+            </div>
+        </div>
+    </form>
+</div>
+  {% endblock %}

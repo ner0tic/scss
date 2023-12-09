@@ -4,10 +4,12 @@ from flask import (
 from flask_babel import gettext
 from flask_login import login_user, login_required, logout_user
 from itsdangerous import URLSafeSerializer, BadSignature
-from app.extensions import lm
-from app.jobs import send_registration_email
-from app.user.models import User
-from app.user.forms import RegisterUserForm
+from scss.extensions import lm
+from scss.jobs import send_registration_email
+from scss.user.models import User
+from scss.utils.models import Address
+from scss.utils.forms import AddressAddForm
+from scss.user.forms import RegisterUserForm
 from .forms import LoginForm
 from ..auth import auth
 
@@ -31,7 +33,7 @@ def login():
             'success'
         )
         return redirect(request.args.get('next') or url_for('index'))
-    return render_template('login.html', form=form)
+    return render_template('login.jinja2', title='[SCSS] Login', form=form)
 
 
 @auth.route('/logout', methods=['GET'])
@@ -44,13 +46,26 @@ def logout():
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegisterUserForm()
+    form = RegisterUserForm(request.form)
     if form.validate_on_submit():
-
+        print(form.data['address_id'])
+        address = Address.create(
+            line1=form.data['address_id']['line1'],
+            line2=form.data['address_id']['line2'],
+            city=form.data['address_id']['city'],
+            state=form.data['address_id']['state'],
+            postal_code=form.data['address_id']['postal_code'],
+            country=form.data['address_id']['country'])
+        
         user = User.create(
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
+            first_name = form.data['first_name'],
+            last_name = form.data['last_name'],
+            address_id = address.id,
+            avatar_url = form.data['avatar_url'],
+            role = form.data['role'],
             remote_addr=request.remote_addr,
         )
 
@@ -68,7 +83,7 @@ def register():
             'success'
         )
         return redirect(url_for('index'))
-    return render_template('register.html', form=form)
+    return render_template('register.jinja2', form=form)
 
 
 @auth.route('/verify/<token>', methods=['GET'])

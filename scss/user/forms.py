@@ -1,15 +1,17 @@
-from flask_wtf import Form
+from flask import Flask
+from flask_wtf import FlaskForm as Form
+from wtforms import StringField, PasswordField ,SubmitField, TextAreaField, SelectField, HiddenField, BooleanField, FormField
+from wtforms.validators import InputRequired, Length, DataRequired, Email, EqualTo, ValidationError
+from wtform_address import CountrySelectField, StateSelectField
 from flask_babel import gettext
-from wtforms import TextField, PasswordField, BooleanField
-from wtforms.validators import DataRequired, Email, EqualTo, Length
-from app.user.models import User
-
+from scss.user.models import User
+from scss.utils.forms import AddressAddForm
 
 class UserForm(Form):
-    username = TextField(
+    username = StringField(
         gettext('Username'), validators=[DataRequired(), Length(min=2, max=20)]
     )
-    email = TextField(
+    email = StringField(
         gettext('Email'), validators=[Email(), DataRequired(), Length(max=128)]
     )
 
@@ -18,14 +20,21 @@ class UserForm(Form):
 
 
 class RegisterUserForm(UserForm):
-    password = PasswordField(
-        gettext('Password'),
+    username = StringField('Username', validators=[InputRequired('Username required!'),
+                Length(min=5, max=25, message='Username must be in 5 to 25 characters')])
+    email = StringField('Email', validators=[InputRequired('Email required!'),
+                Length(min=5, max=25, message='Email must be in 5 to 25 characters')])
+    first_name = StringField('First Name', validators=[InputRequired('First Name required!'),
+                Length(min=5, max=25, message='First Name must be in 5 to 25 characters')])
+    last_name = StringField('Last Name', validators=[InputRequired('Last Name required!'),
+                Length(min=5, max=25, message='Last Name must be in 5 to 25 characters')])
+    address_id = FormField(AddressAddForm, label="Address") # StringField('Address ID')
+    avatar_url = StringField('Avatar URL')
+    role = HiddenField('Role', default='user')
+    password = PasswordField(gettext('Password'),
         validators=[
             DataRequired(),
-            EqualTo(
-                'confirm',
-                message=gettext('Passwords must match')
-            ),
+            EqualTo('confirm', message=gettext('Passwords must match')),
             Length(min=6, max=20)
         ]
     )
@@ -40,7 +49,7 @@ class RegisterUserForm(UserForm):
         Form.__init__(self, *args, **kwargs)
         self.user = None
 
-    def validate(self):
+    def validate(self, extra_validators=None):
         rv = Form.validate(self)
         if not rv:
             return False
