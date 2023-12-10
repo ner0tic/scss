@@ -32,7 +32,7 @@ def login():
             ),
             'success'
         )
-        return redirect(request.args.get('next') or url_for('index'))
+        return redirect(request.args.get('next') or url_for('dashboard'))
     return render_template('login.jinja2', title='[SCSS] Login', form=form)
 
 

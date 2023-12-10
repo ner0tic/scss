@@ -1,0 +1,10 @@
+{% from "macros/fields.html" import render_text_field, render_password_field, render_checkbox_field, render_form_field %}
+{% extends "layout.jinja2" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Dashboard</h1>
+    {% if msg != None %}<p>{{msg}}</p>{% endif %}
+    
+  </div>
+{% endblock %}

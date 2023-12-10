@@ -10,7 +10,6 @@ from ..user import user
 @user.route('/list', methods=['GET', 'POST'])
 @login_required
 def list():
-
     from scss.database import DataTable
     datatable = DataTable(
         model=User,

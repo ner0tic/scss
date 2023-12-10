@@ -1,12 +1,15 @@
 {% extends "layout.jinja2" %}
 
 {% block content %}
-  <div class="container">
-    <h1>home.</h1>
-    {% if current_user.is_authenticated %}
-    <h1>You are logged in</h1>
+<div class="container">
+  {% if current_user.is_authenticated %}
+    {% if current_user.is_admin %}
+      {% include "admin/index.jinja2" %}
     {% else %}
-    <h1>You are not logged in</h1>
+      {% include "user/index.jinja2" %}
     {% endif %}
-  </div>
-  {% endblock %}
+  {% else %}
+    <h1>You are not logged in</h1>
+  {% endif %}
+</div>
+{% endblock %}

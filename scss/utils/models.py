@@ -11,8 +11,14 @@ class Address(CRUDMixin, db.Model):
     state = db.Column(db.String(255), nullable=False)
     postal_code = db.Column(db.String(255), nullable=False)
     country = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, server_default=func.now())
-    updated_at = db.Column(db.DateTime, onupdate=func.now())
+    created_at = db.Column(
+        db.DateTime(timezone=True),
+        default=datetime.datetime.utcnow
+    )
+    updated_at = db.Column(
+        db.DateTime(timezone=True),
+        default=datetime.datetime.utcnow
+    )
     
     def __repr__(self):
         return f"<Address(line1='{self.line1}', line2='{self.line2}', city='{self.city}', state='{self.state}', postal_code='{self.postal_code}', country='{self.country}', created_at='{self.created_at}', updated_at='{self.updated_at}')>"

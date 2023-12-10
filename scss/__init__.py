@@ -1,6 +1,7 @@
 import time
 
 from flask import Flask, g, render_template, request
+from flask_login import login_required
 import arrow
 import requests
 
@@ -12,6 +13,8 @@ from scss.database import db
 from scss.extensions import lm, travis, mail, migrate, bcrypt, babel, rq, limiter, cache
 from scss.user import user
 from scss.utils import utils, url_for_other_page
+from scss.organization import organization
+from scss.enrollment import enrollment
 
 
 def create_app(config=config.base_config):
@@ -41,6 +44,7 @@ def create_app(config=config.base_config):
         return render_template('layout.jinja2', title='Summer Camp Scheduling System')
     
     @app.route('/home', methods=['GET'])
+    @login_required
     def home():
         """Returns the applications home page."""
         return render_template('home.jinja2', title='Summer Camp Scheduling System')
@@ -78,6 +82,8 @@ def register_blueprints(app):
     app.register_blueprint(utils)
     app.register_blueprint(user, url_prefix='/user')
     app.register_blueprint(auth)
+    app.register_blueprint(organization)
+    app.register_blueprint(enrollment)
 
 
 
