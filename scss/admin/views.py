@@ -1,33 +1,14 @@
-from flask import (
-    Blueprint,
-    abort,
-    flash,
-    redirect,
-    render_template,
-    request,
-    url_for,
-)
-from flask_login import current_user, login_required
-from flask_rq import get_queue
+from flask import request, redirect, url_for, render_template, flash, g
+from flask_babel import gettext
+from flask_login import login_required, current_user
+from scss.user.models import User
+from scss.utils import generate_choices_from_list
+from scss.admin.forms import EditUserForm
 
-from app import db
-from app.admin.forms import (
-    ChangeAccountInfoForm,
-    ChangeAccountTypeForm,
-    ChangeUserEmailForm,
-    InviteUserForm,
-    NewUserForm,
-)
-from app.decorators import admin_required
-from app.email import send_email
-from app.models import EditableHTML, Role, User
-
-admin = Blueprint('admin', __name__)
-
+from ..admin import admin
 
 @admin.route('/')
 @login_required
-@admin_required
 def index():
     """Admin dashboard page."""
     return render_template('admin/index.jinja2')
@@ -35,7 +16,6 @@ def index():
 
 @admin.route('/new-user', methods=['GET', 'POST'])
 @login_required
-@admin_required
 def new_user():
     """Create a new user."""
     form = NewUserForm()
@@ -55,7 +35,6 @@ def new_user():
 
 @admin.route('/invite-user', methods=['GET', 'POST'])
 @login_required
-@admin_required
 def invite_user():
     """Invites a new user to create an account and set their own password."""
     form = InviteUserForm()
@@ -64,7 +43,8 @@ def invite_user():
             role=form.role.data,
             first_name=form.first_name.data,
             last_name=form.last_name.data,
-            email=form.email.data)
+            email=form.email.data,
+            password=None)
         db.session.add(user)
         db.session.commit()
         token = user.generate_confirmation_token()
@@ -88,7 +68,6 @@ def invite_user():
 
 @admin.route('/users')
 @login_required
-@admin_required
 def registered_users():
     """View all registered users."""
     users = User.query.all()
@@ -100,7 +79,6 @@ def registered_users():
 @admin.route('/user/<int:user_id>')
 @admin.route('/user/<int:user_id>/info')
 @login_required
-@admin_required
 def user_info(user_id):
     """View a user's profile."""
     user = User.query.filter_by(id=user_id).first()
@@ -111,7 +89,6 @@ def user_info(user_id):
 
 @admin.route('/user/<int:user_id>/change-account-info', methods=['GET', 'POST'])
 @login_required
-@admin_required
 def change_account_info(user_id):
     """Change a account information."""
     user = User.query.filter_by(id=user_id).first()
@@ -129,7 +106,6 @@ def change_account_info(user_id):
 
 @admin.route('/user/<int:user_id>/change-email', methods=['GET', 'POST'])
 @login_required
-@admin_required
 def change_user_email(user_id):
     """Change a user's email."""
     user = User.query.filter_by(id=user_id).first()
@@ -148,7 +124,6 @@ def change_user_email(user_id):
 @admin.route(
     '/user/<int:user_id>/change-account-type', methods=['GET', 'POST'])
 @login_required
-@admin_required
 def change_account_type(user_id):
     """Change a user's account type."""
     if current_user.id == user_id:
@@ -171,7 +146,6 @@ def change_account_type(user_id):
 
 @admin.route('/user/<int:user_id>/delete')
 @login_required
-@admin_required
 def delete_user_request(user_id):
     """Request deletion of a user's account."""
     user = User.query.filter_by(id=user_id).first()
@@ -182,7 +156,6 @@ def delete_user_request(user_id):
 
 @admin.route('/user/<int:user_id>/_delete')
 @login_required
-@admin_required
 def delete_user(user_id):
     """Delete a user's account."""
     if current_user.id == user_id:
@@ -198,7 +171,6 @@ def delete_user(user_id):
 
 @admin.route('/_update_editor_contents', methods=['POST'])
 @login_required
-@admin_required
 def update_editor_contents():
     """Update the contents of an editor."""
 

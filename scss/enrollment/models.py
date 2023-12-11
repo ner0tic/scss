@@ -31,7 +31,7 @@ class TemporalHierarchy(CRUDMixin, db.Model):
     description = db.Column(db.String(255), nullable = False)
     avatar_url = db.Column(db.String(255))
     parent_id = db.Column(db.Integer, db.ForeignKey('temporal_hierarchy.id'))
-    parent = db.relationship("TemporalHierarchy", remote_side=[id], backref="children") # , overlaps="children")
+#     parent = db.relationship("TemporalHierarchy", remote_side=[id], backref="children") # , overlaps="children")
     children = db.relationship('TemporalHierarchy', remote_side=[parent_id], backref="parent") # , overlaps="parent", uselist=True)
     organization_id = db.Column(db.Integer, db.ForeignKey('organization.id'))
     start = db.Column(db.DateTime(timezone=True), nullable = False)
@@ -44,7 +44,16 @@ class TemporalHierarchy(CRUDMixin, db.Model):
         db.DateTime(timezone=True),
         default=datetime.datetime.utcnow
     )
-
+class FacilityEnrollment(TemporalHierarchy):
+    id = db.Column(db.Integer, db.ForeignKey('temporal_hierarchy.id'), primary_key = True)
+    facility_id = db.Column(db.Integer, db.ForeignKey('facility.id'))
+    name = db.Column(db.String(255), nullable = False)
+    
+    def __init__(self, *args, **kwargs):
+        super(FacilityEnrollment, self).__init__(*args, **kwargs)
+        self.name = kwargs.get('name', None)
+        self.facility_id = kwargs.get('facility_id', None)
+    
 # Enrollment Related Models
 class FactionEnrollment(CRUDMixin, db.Model):
     __tablename__ = 'faction_enrollment'
@@ -52,6 +61,9 @@ class FactionEnrollment(CRUDMixin, db.Model):
     faction_id = db.Column(db.Integer, db.ForeignKey('faction.id'))
     temporal_hierarchy_id = db.Column(db.Integer, db.ForeignKey('temporal_hierarchy.id'))
     quarters_id = db.Column(db.Integer, db.ForeignKey('quarters.id'))
+    parent_id = db.Column(db.Integer, db.ForeignKey('temporal_hierarchy.id'))
+    parent = db.relationship("Faction", remote_side=[id], backref="children") # , overlaps="children")
+#    children = db.relationship('Faction', remote_side=[parent_id], backref="parent") # , overlaps="parent", uselist=True)
     created_at = db.Column(
         db.DateTime(timezone=True),
         default=datetime.datetime.utcnow
@@ -64,7 +76,7 @@ class FactionEnrollment(CRUDMixin, db.Model):
 class FacultyEnrollment(CRUDMixin, db.Model):
     __tablename__ = "faculty_enrollment"
     id = db.Column(db.Integer, primary_key=True, autoincrement="auto")
-    faculty_id = db.Column(Integer, db.ForeignKey('faculty.user_id'))
+    faculty_id = db.Column(db.Integer, db.ForeignKey('faculty.user_id'))
     quarters_id = db.Column(db.Integer, db.ForeignKey('quarters.id'))
     temporal_hierarchy_id = db.Column(db.Integer, db.ForeignKey('temporal_hierarchy.id'))
 #    temporal_hierarchy = relationship("TemporalHierarchy", backref="faculty_enrollment")

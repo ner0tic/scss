@@ -1,1 +1,5 @@
-from app.admin.views import admin
+from flask import Blueprint
+
+admin = Blueprint('admin', __name__, template_folder='templates')
+
+from . import views

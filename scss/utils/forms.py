@@ -3,7 +3,7 @@ from wtforms import StringField
 from wtforms.validators import InputRequired
 from wtform_address import CountrySelectField, StateSelectField
 
-class AddressAddForm(FlaskForm):
+class AddressForm(FlaskForm):
     """
 Module: forms
 
@@ -41,3 +41,12 @@ Classes:
     postal_code = StringField('Postal Code', validators=[InputRequired('Postal Code required!')])
     country = CountrySelectField(default="US") # StringField('Country', validators=[InputRequired('Country required!')])
     # submit = SubmitField('Submit')
+
+class AddressAddForm(AddressForm):
+    def __init__(self, *args, **kwargs):
+        super(AddressAddForm, self).__init__(*args, **kwargs)
+        self.submit.label.text = 'Add Address'
+class EditAddressForm(AddressForm):
+    def __init__(self, *args, **kwargs):
+        super(EditAddressForm, self).__init__(*args, **kwargs)
+        self.submit.label.text = 'Update Address'

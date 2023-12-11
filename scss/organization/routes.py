@@ -1,32 +1,25 @@
-from flask import request, redirect, url_for, render_template, flash, g
-from flask_babel import gettext
-from flask_login import login_required
-from .models import Organization
-from .forms import EditOrganizationForm
-
-from scss.utils import generate_choices_from_list
-from ..organization import organization
+from flask import Blueprint
 
 
-@organization.route('/list', methods=['GET'])
-def list():
-    from scss.database import DataTable
-    datatable = DataTable(
-        model=Organization,
-        columns=[Organization.description],
-        sortable=[Organization.name, Organization.short_name, Organization.parent_id, Organization.created_at],
-        searchable=[Organization.name, Organization.short_name],
-        filterable=[Organization.active],
-        limits=[25, 50, 100],
-        request=request
-    )
+# Defining a blueprint
+organization_bp = Blueprint(
+    'organization_bp', __name__,
+    template_folder='templates',
+    static_folder='static'
+)
 
-    if g.pjax:
-        return render_template('organizations.jinja2l', datatable=datatable)
+@organization_bp.route('/organizations', methods=["GET"], strict_slashes=False)
+def organization_list():
+    """Renders a template to display a list of organizations.
+    Returns:
+        The rendered template for displaying the list of organizations.
+    """
 
-    return render_template('list.jinja2', datatable=datatable)
+    return render_template("organization_bp./list.jinja2",
+                            organizations=session.query(models.Organization).all(),
+                            title="All Organizations")
     
-@organization.route("/organizations/<int:organization_id>", methods=["GET"], strict_slashes=False)
+@app.route("/organizations/<int:organization_id>", methods=["GET"], strict_slashes=False)
 def organization_show(organization_id):
     """Renders a template to display the details of a specific organization.
     Args:
@@ -39,12 +32,12 @@ def organization_show(organization_id):
                             organization=session.query(models.Organization).filter(models.Organization.id == organization_id).first(),
                             title="Organization Details")
 
-@organization.route("/organizations/<int:organization_id>/edit", methods=["GET", "POST"], strict_slashes=False)
+@app.route("/organizations/<int:organization_id>/edit", methods=["GET", "POST"], strict_slashes=False)
 def organization_edit(organization_id):
     # @TODO: Implement organization editing
     pass
 
-@organization.route("/organizations/<int:organization_id>/delete", methods=["GET", "POST"], strict_slashes=False)
+@app.route("/organizations/<int:organization_id>/delete", methods=["GET", "POST"], strict_slashes=False)
 def organization_delete(organization_id):
     """Renders a template to delete an organization based on the provided organization ID.
     Args:
@@ -83,7 +76,7 @@ def organization_delete(organization_id):
                             title="Delete Organization",
                             msg=msg)
     
-@organization.route("/organizations/add", methods=["GET", "POST"], strict_slashes=False)
+@app.route("/organizations/add", methods=["GET", "POST"], strict_slashes=False)
 def organization_add():
     """Renders a template to add a new organization.
     Returns:

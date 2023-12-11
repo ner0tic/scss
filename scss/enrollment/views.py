@@ -6,7 +6,7 @@ from scss.organization.models import Organization
 from scss.utils import generate_choices_from_list
 from .forms import EditTemporalHierarchyForm
 
-from ..enrollmemnt import enrollment
+from ..enrollment import enrollment
 
 
 @enrollment.route('/list', methods=['GET', 'POST'])
