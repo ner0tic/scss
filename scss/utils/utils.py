@@ -1,5 +1,8 @@
-
 from flask import request, url_for
+
+INTERNAL_SERVER_ERROR = 500
+NOT_FOUND = 404
+UNAUTHORIZED = 401
 
 def url_for_other_page(**kwargs):
     """Returns a URL aimed at the current request endpoint and query args."""

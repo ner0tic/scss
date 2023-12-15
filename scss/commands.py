@@ -1,9 +1,8 @@
+""" Defines the command line commands for the flask application. """
 from faker import Faker
 import click
-
-from scss.database import db
-from scss.user.models import User
-
+from .database import db
+from .user.models import User
 
 @click.option('--num_users', default=5, help='Number of users.')
 def populate_db(num_users):

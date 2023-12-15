@@ -1,11 +1,10 @@
 from flask import Flask
 from flask_wtf import FlaskForm as Form
-from wtforms import StringField, PasswordField ,SubmitField, TextAreaField, SelectField, HiddenField, BooleanField, FormField
-from wtforms.validators import InputRequired, Length, DataRequired, Email, EqualTo, ValidationError
-from wtform_address import CountrySelectField, StateSelectField
+from wtforms import StringField, PasswordField, SelectField, HiddenField, BooleanField, FormField
+from wtforms.validators import InputRequired, Length, DataRequired, Email, EqualTo
 from flask_babel import gettext
-from scss.user.models import User
-from scss.utils.forms import AddressAddForm
+from ..utils.forms import AddressAddForm
+from .models import User
 
 class UserForm(Form):
     username = StringField(

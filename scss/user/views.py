@@ -1,16 +1,24 @@
+""" User views. """
 from flask import request, redirect, url_for, render_template, flash, g
 from flask_babel import gettext
 from flask_login import login_required
-from scss.user.models import User
+from .models import User
 from .forms import EditUserForm
-
+from ..database import DataTable
 from ..user import user
-
 
 @user.route('/list', methods=['GET', 'POST'])
 @login_required
-def list():
-    from scss.database import DataTable
+def user_list():
+    """
+    Render the user list page.
+
+    This function renders the user list page, which displays a table of users. The table is generated using the DataTable class, which provides sorting, searching, filtering, and pagination functionality. The table columns include the user's remote address, username, email, and creation date.
+
+    Returns:
+        rendered_template: The rendered HTML template for the user list page.
+    """
+
     datatable = DataTable(
         model=User,
         columns=[User.remote_addr],
@@ -26,29 +34,48 @@ def list():
 
     return render_template('list.html', datatable=datatable)
 
-
 @user.route('/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
-    user = User.query.filter_by(id=id).first_or_404()
-    form = EditUserForm(obj=user)
+    """
+    Edit a user.
+
+    This function handles the editing of a user based on the provided user ID. It retrieves the user from the database, populates an EditUserForm with the user's data, and renders the edit template. If the form is submitted and passes validation, the user's data is updated and saved to the database. Finally, a success message is flashed and the edit template is rendered.
+
+    Args:
+        id: The ID of the user to edit.
+
+    Returns:
+        rendered_template: The rendered HTML template for editing the user.
+    """
+
+    usr = User.query.filter_by(id=id).first_or_404()
+    form = EditUserForm(obj=usr)
     if form.validate_on_submit():
-        form.populate_obj(user)
-        user.update()
-        flash(
-            gettext(f'User {user.username} edited'),
-            'success'
-        )
-    return render_template('edit.html', form=form, user=user)
+        form.populate_obj(usr)
+        usr.update()
+        flash(gettext(f'User {usr.username} edited'), 'success')
+
+    return render_template('edit.html', form=form, user=usr)
 
 
 @user.route('/delete/<int:id>', methods=['GET'])
 @login_required
 def delete(id):
-    user = User.query.filter_by(id=id).first_or_404()
-    user.delete()
-    flash(
-        gettext('User {username} deleted').format(username=user.username),
-        'success'
-    )
+    """
+    Delete a user.
+
+    This function handles the deletion of a user based on the provided user ID. It retrieves the user from the database, deletes it, and flashes a success message. Finally, it redirects to the user list page.
+
+    Args:
+        id: The ID of the user to delete.
+
+    Returns:
+        redirect: A redirect response to the user list page.
+    """
+
+    usr = User.query.filter_by(id=id).first_or_404()
+    usr.delete()
+    flash(gettext(f'User {usr.username} deleted'), 'success')
+
     return redirect(url_for('.list'))

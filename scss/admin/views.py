@@ -1,10 +1,10 @@
+"""Admin views."""
 from flask import request, redirect, url_for, render_template, flash, g
 from flask_babel import gettext
 from flask_login import login_required, current_user
-from scss.user.models import User
-from scss.utils import generate_choices_from_list
-from scss.admin.forms import EditUserForm
-
+from ..user.models import User
+from ..utils.utils import generate_choices_from_list
+from ..admin.forms import EditUserForm
 from ..admin import admin
 
 @admin.route('/')

@@ -1,27 +1,30 @@
-import time
-
+""" The main application package. """
+import datetime
 from flask import Flask, g, render_template, request
 from flask_login import login_required
 import arrow
 import requests
-
-from scss import config
-from scss.assets import assets
-from scss.auth import auth
-from scss.commands import create_db, drop_db, populate_db, recreate_db
-from scss.database import db
-from scss.extensions import lm, travis, mail, migrate, bcrypt, babel, rq, limiter, cache
-from scss.user import user
-from scss.utils import utils, url_for_other_page
-from scss.organization import organization
-from scss.enrollment import enrollment
-from scss.facility import facility
-from scss.faction import faction
-from scss.admin import admin
-
+from . import config
+from .assets import assets
+from .auth import auth
+from .commands import create_db, drop_db, populate_db, recreate_db
+from .database import db
+from .extensions import lm, travis, mail, migrate, bcrypt, babel, rq, limiter, cache
+from .user import user
+from .utils import utils_bp
+from .utils.utils import url_for_other_page, INTERNAL_SERVER_ERROR, NOT_FOUND, UNAUTHORIZED
+from .organization import organization
+from .enrollment import enrollment
+from .facility import facility
+from .faction import faction
+from .admin import admin
+from .course import course
+from .attendee import attendee
+from .leader import leader
 
 def create_app(config=config.base_config):
     """Returns an initialized Flask application."""
+
     app = Flask(__name__)
     app.config.from_object(config)
 
@@ -30,22 +33,22 @@ def create_app(config=config.base_config):
     register_errorhandlers(app)
     register_jinja_env(app)
     register_commands(app)
-    
+
     with app.app_context():
         db.create_all()
 
     @app.before_request
     def before_request():
         """Prepare some things before the application handles a request."""
-        g.request_start_time = time.time()
-        g.request_time = lambda: '%.5fs' % (time.time() - g.request_start_time)
+        g.request_start_time = datetime.time()
+        g.request_time = lambda: '%.5fs' % (datetime.time() - g.request_start_time)
         g.pjax = 'X-PJAX' in request.headers
 
     @app.route('/', methods=['GET'])
     def index():
         """Returns the applications index page."""
         return render_template('layout.jinja2', title='Summer Camp Scheduling System')
-    
+
     @app.route('/home', methods=['GET'])
     @login_required
     def home():
@@ -80,19 +83,19 @@ def register_extensions(app):
     cache.init_app(app, config={'CACHE_TYPE': 'SimpleCache'})
 
 
-def register_blueprints(app):
+def register_blueprints(app):  
     """Register blueprints with the Flask application."""
+    app.register_blueprint(attendee)
+    app.register_blueprint(leader)
     app.register_blueprint(faction)
-    app.register_blueprint(utils)
+    app.register_blueprint(course)
+    app.register_blueprint(utils_bp)
     app.register_blueprint(user, url_prefix='/user')
     app.register_blueprint(auth)
     app.register_blueprint(admin, url_prefix='/admin')
     app.register_blueprint(organization)
     app.register_blueprint(facility)
     app.register_blueprint(enrollment)
-    
-
-
 
 def register_errorhandlers(app):
     """Register error handlers with the Flask application."""
@@ -101,12 +104,11 @@ def register_errorhandlers(app):
         return render_template(f'errors/{e.code}.html'), e.code
 
     for e in [
-        requests.codes.INTERNAL_SERVER_ERROR,
-        requests.codes.NOT_FOUND,
-        requests.codes.UNAUTHORIZED,
+        INTERNAL_SERVER_ERROR,
+        NOT_FOUND,
+        UNAUTHORIZED,
     ]:
         app.errorhandler(e)(render_error)
-
 
 def register_jinja_env(app):
     """Configure the Jinja env to enable some functions in templates."""

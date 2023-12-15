@@ -1,6 +1,6 @@
 '''Enrollment Related Models'''
 import datetime
-from scss.database import db, CRUDMixin
+from ..database import db, CRUDMixin
 
 # Temporal Hierarchy Related Models
 class TemporalHierarchy(CRUDMixin, db.Model):
@@ -31,8 +31,8 @@ class TemporalHierarchy(CRUDMixin, db.Model):
     description = db.Column(db.String(255), nullable = False)
     avatar_url = db.Column(db.String(255))
     parent_id = db.Column(db.Integer, db.ForeignKey('temporal_hierarchy.id'))
-#     parent = db.relationship("TemporalHierarchy", remote_side=[id], backref="children") # , overlaps="children")
-    children = db.relationship('TemporalHierarchy', remote_side=[parent_id], backref="parent") # , overlaps="parent", uselist=True)
+    parent = db.relationship("TemporalHierarchy", remote_side=[id], backref="children", overlaps="childrenS")
+#    children = db.relationship('TemporalHierarchy', remote_side=[parent_id], backref="parent") # , overlaps="parent", uselist=True)
     organization_id = db.Column(db.Integer, db.ForeignKey('organization.id'))
     start = db.Column(db.DateTime(timezone=True), nullable = False)
     end = db.Column(db.DateTime(timezone=True), nullable = False)
@@ -55,23 +55,7 @@ class FacilityEnrollment(TemporalHierarchy):
         self.facility_id = kwargs.get('facility_id', None)
     
 # Enrollment Related Models
-class FactionEnrollment(CRUDMixin, db.Model):
-    __tablename__ = 'faction_enrollment'
-    id = db.Column(db.Integer, primary_key = True, autoincrement = "auto")
-    faction_id = db.Column(db.Integer, db.ForeignKey('faction.id'))
-    temporal_hierarchy_id = db.Column(db.Integer, db.ForeignKey('temporal_hierarchy.id'))
-    quarters_id = db.Column(db.Integer, db.ForeignKey('quarters.id'))
-    parent_id = db.Column(db.Integer, db.ForeignKey('temporal_hierarchy.id'))
-    parent = db.relationship("Faction", remote_side=[id], backref="children") # , overlaps="children")
-#    children = db.relationship('Faction', remote_side=[parent_id], backref="parent") # , overlaps="parent", uselist=True)
-    created_at = db.Column(
-        db.DateTime(timezone=True),
-        default=datetime.datetime.utcnow
-    )
-    updated_at = db.Column(
-        db.DateTime(timezone=True),
-        default=datetime.datetime.utcnow
-    )
+
 
 class FacultyEnrollment(CRUDMixin, db.Model):
     __tablename__ = "faculty_enrollment"
@@ -122,47 +106,4 @@ class FacilityClass(CRUDMixin, db.Model):
         default=datetime.datetime.utcnow
     )
 
-class LeaderEnrollment(CRUDMixin, db.Model):
-    __tablename__ = "leader_enrollment"
-    id = db.Column(db.Integer, primary_key=True, autoincrement="auto")
-    leader_id = db.Column(db.Integer, db.ForeignKey('leader.user_id'))
-    faction_enrollment_id = db.Column(db.Integer, db.ForeignKey('faction_enrollment.id'))
-    quarters_id = db.Column(db.Integer, db.ForeignKey('quarters.id'))
-    created_at = db.Column(
-        db.DateTime(timezone=True),
-        default=datetime.datetime.utcnow
-    )
-    updated_at = db.Column(
-        db.DateTime(timezone=True),
-        default=datetime.datetime.utcnow
-    )
 
-class AttendeeEnrollment(CRUDMixin, db.Model):
-    __tablename__ = "attendee_enrollment"
-    id = db.Column(db.Integer, primary_key=True, autoincrement="auto")
-    attendee_id = db.Column(db.Integer, db.ForeignKey('attendee.user_id'))
-    faction_enrollment_id = db.Column(db.Integer, db.ForeignKey('faction_enrollment.id'))
-    quarters_id = db.Column(db.Integer, db.ForeignKey('quarters.id'))
-    class_enrollments = db.relationship("AttendeeClassEnrollment", backref="attendee_enrollment")
-    created_at = db.Column(
-        db.DateTime(timezone=True),
-        default=datetime.datetime.utcnow
-    )
-    updated_at = db.Column(
-        db.DateTime(timezone=True),
-        default=datetime.datetime.utcnow
-    )
-
-class AttendeeClassEnrollment(CRUDMixin, db.Model):
-    __tablename__ = "attendee_class_enrollment"
-    id = db.Column(db.Integer, primary_key=True, autoincrement="auto")
-    attendee_enrollment_id = db.Column(db.Integer, db.ForeignKey('attendee_enrollment.id'))
-    facility_class_id = db.Column(db.Integer, db.ForeignKey('facility_class.id'))
-    created_at = db.Column(
-        db.DateTime(timezone=True),
-        default=datetime.datetime.utcnow
-    )
-    updated_at = db.Column(
-        db.DateTime(timezone=True),
-        default=datetime.datetime.utcnow
-    )

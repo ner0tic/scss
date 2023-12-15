@@ -10,7 +10,7 @@ from flask_rq2 import RQ
 from flask_travis import Travis
 from flask_caching import Cache
 
-assets = Environment()
+# assets = Environment()
 babel = Babel()
 bcrypt = Bcrypt()
 cache = Cache()

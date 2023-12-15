@@ -1,8 +1,8 @@
 from flask import render_template
 from flask_mail import Message
 
-from scss.extensions import mail, rq
-from scss.user.models import User
+from .extensions import mail, rq
+from .user.models import User
 
 
 @rq.job

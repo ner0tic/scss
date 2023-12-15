@@ -1,16 +1,16 @@
-from flask import (
-    current_app, request, redirect, url_for, render_template, flash, abort,
-)
+""" Auth views. """
+from flask import current_app, request, redirect, url_for, render_template, flash, abort
 from flask_babel import gettext
 from flask_login import login_user, login_required, logout_user
 from itsdangerous import URLSafeSerializer, BadSignature
-from scss.extensions import lm
-from scss.jobs import send_registration_email
-from scss.user.models import User
-from scss.utils.models import Address
-from scss.utils.forms import AddressAddForm
-from scss.user.forms import RegisterUserForm
 from .forms import LoginForm
+from ..extensions import lm
+from ..jobs import send_registration_email
+from ..user.models import User
+from ..utils.models import Address
+from ..utils.forms import AddressAddForm
+from ..user.forms import RegisterUserForm
+
 from ..auth import auth
 
 

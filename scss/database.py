@@ -157,4 +157,4 @@ class DataTable(object):
 
     def paginate(self, page, limit):
         """Paginate the query based on a page & limit."""
-        self.query = self.query.paginate(page, limit)
+        self.query = self.query.paginate(page=page, per_page=limit)

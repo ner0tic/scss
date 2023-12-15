@@ -1,7 +1,6 @@
 """ Course models. """
 from datetime import datetime
-
-from scss.database import db, CRUDMixin
+from ..database import db, CRUDMixin
 
 class Course(CRUDMixin, db.Model):
     """Represents a course in the system.
@@ -35,7 +34,7 @@ class Course(CRUDMixin, db.Model):
     description = db.Column(db.Text, nullable=False)
     avatar_url = db.Column(db.String(255))
     requirements = db.relationship('Requirement', backref='course', lazy=True)
-    prerequisites = db.relationship('Requirement', backref='course', lazy=True)
+#    prerequisites = db.relationship('Requirement', backref='course', lazy=True)
     course_type = db.Column(db.String(50))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
@@ -69,7 +68,8 @@ class Requirement(CRUDMixin, db.Model):
     name = db.Column(db.String(50), nullable=False)
     course_id = db.Column(db.Integer, db.ForeignKey('course.id'), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    parent_id = db.Column(db.Integer, db.ForeignKey('requirement.id'), nullable=True)
-    children = db.relationship('Requirement', backref='parent', lazy=True)
+    parent_id = db.Column(db.Integer, db.ForeignKey('requirement.id'))
+    parent = db.relationship('Requirement', remote_side=[id], backref='children', overlaps='children')
+#    children = db.relationship('Requirement', backref='parent', lazy=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now)

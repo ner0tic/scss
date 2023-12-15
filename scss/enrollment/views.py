@@ -1,18 +1,26 @@
-from flask import request, redirect, url_for, render_template, flash, g
+from flask import request, render_template, flash, g
 from flask_babel import gettext
 from flask_login import login_required
-from scss.enrollment.models import TemporalHierarchy
-from scss.organization.models import Organization
-from scss.utils import generate_choices_from_list
 from .forms import EditTemporalHierarchyForm
-
+from .models import TemporalHierarchy
+from ..organization.models import Organization
+from ..utils.utils import generate_choices_from_list
+from ..database import DataTable
 from ..enrollment import enrollment
 
 
 @enrollment.route('/list', methods=['GET', 'POST'])
 @login_required
 def temporal_hierarchy_list():
-    from scss.database import DataTable
+    """
+    Render the temporal hierarchy list page.
+
+    This function renders the temporal hierarchy list page, which displays a table of temporal hierarchies. The table is generated using the DataTable class, which provides sorting, searching, filtering, and pagination functionality. The table columns include the temporal hierarchy's description, name, short name, and creation date.
+
+    Returns:
+        rendered_template: The rendered HTML template for the temporal hierarchy list page.
+    """
+
     datatable = DataTable(
         model=TemporalHierarchy,
         columns=[TemporalHierarchy.description],

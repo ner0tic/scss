@@ -1,13 +1,13 @@
-from flask import request, redirect, url_for, render_template, flash, g
+from flask import render_template
 from flask_babel import gettext
 from flask_login import login_required
 from ..utils.models import Address
 # from scss.utils import generate_choices_from_list
 from .forms import EditAddressForm
 
-from ..utils import utils
+from ..utils import utils_bp
 
-@utils.route('/list', methods=['GET'])
+@utils_bp.route('/list', methods=['GET'])
 @login_required
 def address_list():
     """Renders a template to display a list of organizations.
@@ -17,5 +17,5 @@ def address_list():
 
     return render_template("list.jinja2",
                             addresses=Address.query().all(),
-                            title="All Addresses")
+                            title=gettext("All Addresses"))
     

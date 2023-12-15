@@ -1,6 +1,6 @@
-'''Enrollment Related Models'''
+""" This module defines the models for the organization blueprint. """
 import datetime
-from scss.database import db, CRUDMixin
+from ..database import db, CRUDMixin
 
 # Organization Related Models.
 class Organization(CRUDMixin, db.Model):

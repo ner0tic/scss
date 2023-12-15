@@ -1,6 +1,7 @@
+""" Facility Models """
 import datetime
-from scss.database import db, CRUDMixin
-from scss.user.models import User
+from ..database import db, CRUDMixin
+from ..user.models import User
 
 # Facility Related Models
 class Facility(CRUDMixin, db.Model):
