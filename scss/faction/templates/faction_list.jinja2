@@ -1,0 +1,36 @@
+{% extends 'layout.jinja2' %}
+
+{% block title %}
+    {% if not title %}Factions{% else %}{{ title }}{% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url_for('faction.faction_list') }}">Admin</a></li>
+        <li class="active">Factions</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    {% if datatable %}
+    <div id="pjax-container">
+        {% include 'factions.jinja2' %}
+    </div>
+    {% else %}
+    <h1>Factions</h1>
+    <ul>
+        {% for faction in factions %}
+            <li>
+                <a href="{{ url_for('faction.faction_show', id=faction.id) }}">
+                    {{ faction.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="{{ url_for('faction.faction_add') }}">Add New Faction</a>
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}

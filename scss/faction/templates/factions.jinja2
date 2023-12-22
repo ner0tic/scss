@@ -1,0 +1,35 @@
+{% from 'components/table.html' import table_header %}
+{% from 'components/pagination.html' import pagination %}
+{% from 'components/search.html' import search %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{ search('Search for a faction') }}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            {{ table_header(datatable, actions=True) }}
+            <tbody>
+                {% for f in datatable.query.items %}
+                    <tr>
+                        <td><a href="{{ url_for('faction.faction_.edit', id=f.id) }}">{{ f.name }}</a></td>
+                        <td>{{ f.short_name }}</td>
+                        <td>{{ Organization(f.organization_id).name }}</td>
+                        <td>{{ f.parent }}</td>
+                        <td>
+                            {% set dialogue = f'Are you sure you want to delete {f.name}?' %}
+                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.'+request.blueprint+'_delete', id=f.id) }}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="{{ datatable.colspan }}">No results found for: {{ request.values.get('query') }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        {{ pagination(datatable.query, datatable.limits) }}
+    </div>
+</div>
