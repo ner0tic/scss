@@ -29,7 +29,7 @@ class EditOrganizationForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
-class OrganizationAddForm(FlaskForm):
+class OrganizationForm(FlaskForm):
     """
     The `OrganizationAddForm` class represents a form for adding an organization.
 

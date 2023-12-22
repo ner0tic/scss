@@ -1,0 +1,43 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}{{ organization.name }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ organization.name }}</h1>
+      <ul id="organization.name">
+        <li>
+          <span class="field-name">Name:</span>
+          <span class="field-value">{{ organization.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Abbreviation:</span>
+          <span class="field-value">{{ organization.short_name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Description:</span>
+          <span class="field-value">{{ organization.description }}</span>
+        </li>
+        {% if organization.parent is defined and organization.parent %}
+        <li>
+          <span class="field-name">Parent:</span>
+          <span class="field-value">{{ organization.parent.name }}</span>
+        </li>
+        {% endif %}
+        <li>
+          <span class="field-name">Factions:</span>
+          <span class="field-value">{{ organization.factions | length }}</span>
+        </li>
+        <li>
+          <span class="field-name">Facilities:</span>
+          <span class-"field-value">{{ organization.facilities | length }}</span>
+        </li>
+        <li>
+          <span class="field-name">Attendees:</span>
+          <span class="field-value">{{ organization.attendees | length }}</span>
+      </ul>
+      {% if current_user.is_admin %}
+      {% include "components/mini_menu.html" %}
+      {% endif %}
+  </div>
+{% endblock %}
