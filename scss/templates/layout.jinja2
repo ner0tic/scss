@@ -14,7 +14,7 @@
 <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<!-- CSS : implied media="all" 
+<!-- CSS : implied media="all"
     <link href="{{ url_for('static', filename='css/reset.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url_for('static', filename='css/header.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
@@ -22,29 +22,38 @@
     <!-- CSS : custom styles -->
     {% assets "js_all" -%}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.5/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     {%- endassets %}
     {% assets "css_all" -%}
         <link rel="stylesheet" href="{{ ASSET_URL }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {%- endassets %}
-<!--    <script src="/js/libs/modernizr-1.6.min.js"></script> -->
 </head>
 <body>
+{% block body %}{% block breadcrumbs %}{% endblock %}
   <div id="header">
     <div class="container">
       <ul id="top-links">
-        <li>{{ link_to('Help', 'home') }}</li>
-        <li>{% if current_user.is_authenticated %}{{ link_to('Settings', 'home') }}{% else %}{{ link_to('Signup', 'auth.register') }}{% endif %}</li>
+        <li>{{ link_to('Help', 'utils_bp.home') }}</li>
+        <li>{% if current_user.is_authenticated %}{{ link_to('Settings', 'utils_bp.home') }}{% else %}{{ link_to('Signup', 'auth.register') }}{% endif %}</li>
         <li>{% if current_user.is_authenticated %}{{ link_to('Logout', 'auth.logout') }}{% else %}{{ link_to('Login', 'auth.login') }}{% endif %}</li>
       </ul>
       <div id="logo">
-        {{ link_to('summercamp<span>schedulingsystem</span>', 'index') }}<sup>BETA</sup>
+        {{ link_to('summercamp<span>schedulingsystem</span>', 'utils_bp.index') }}<sup>BETA</sup>
       </div>
-      {# nav menu goes here #}
+      {# {% include "components/menu.html" %} #}
+      <div class="menu">
+      </div>
     </div>
   </div>
   <div id="main-content" class="container">
+    {% include 'components/flash.html' %}
     {% block content %}{% endblock %}<br /> <br /> <br /><br /><br /><br />
   </div>
+  {% block footer %}
   <div id="footer">
     <div class="copyright">&copy; 2010, 2011 SCSS; all rights reserved</div>
     <div class="footer-links">
@@ -53,6 +62,7 @@
       <span class="donate-tab">Donate</span>
     </div>
   </div>
+  {% block donate_window %}
   <div id="donate-window" class="window">
     <span class="window-close"></span>
     <div>
@@ -92,6 +102,8 @@
       </form>
     </div>
   </div>
+  {% endblock %}
+  {% block privacy_window %}
   <div id="privacy-window" class="window">
     <span class="window-close"></span>
     <div>
@@ -199,6 +211,8 @@ Users may opt out of the use of the DART cookie by visiting the Google ad and co
       </table>
     </div>
   </div>
+  {% endblock %}
+  {% block about_window %}
   <div id="about-window" class="window">
     <span class="window-close"></span>
     <div>
@@ -221,7 +235,9 @@ Users may opt out of the use of the DART cookie by visiting the Google ad and co
       </table>
     </div>
   </div>
+  {% endblock %}
   <br /><br />
-    <script src="/js/libs/jquery-1.4.2.min.js"></script>
+  {% endblock %}
 </body>
+{% endblock %}
 </html>
