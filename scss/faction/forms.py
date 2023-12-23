@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, FormField
 from wtforms.validators import InputRequired
-from ..utils.forms import AddressAddForm, DeleteConfirmationForm
+from ..utils.forms import AddressForm, DeleteConfirmationForm
 from ..user.forms import UserForm
 
 # Faction Related Forms ###########################################################################
@@ -16,7 +16,7 @@ class FactionForm(FlaskForm):
     short_name = StringField("Short Name")
     description = StringField("Description")
     avatar_url = StringField("Avatar")
-    address_id = FormField(AddressAddForm, label="Address")
+#    address_id = FormField(AddressForm, label="Address")
     organization_id = SelectField(
         "Organization",
         coerce=int,

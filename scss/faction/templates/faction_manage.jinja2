@@ -1,4 +1,4 @@
-{% from "macros/fields.html" import render_text_field, render_select_field %}
+{% from "macros/fields.html" import render_text_field, render_select_field, render_form_field %}
 {% extends "layout.jinja2" %}
 
 {% block title %}
@@ -7,14 +7,15 @@
 
 {% block content %}
   <div class="container">
-    {% if faction %}Manage{% else %}Add{% endif %} An Faction
-    <form name="add_faction" method="post" novalidate class="form">
+    {% if faction %}Manage{% else %}Add{% endif %} A Faction
+    <form name="faction_manage" method="post" novalidate class="form">
         <div class="form__container">
             {{ render_text_field(form.name) }}
             {{ render_text_field(form.short_name) }}
             {{ render_text_field(form.description) }}
             {{ render_select_field(form.organization_id)}}
             {{ render_select_field(form.parent) }}
+            {#{{ render_form_field(form.address_id) }}#}
             {{form.hidden_tag()}}
         </div>
         <div>

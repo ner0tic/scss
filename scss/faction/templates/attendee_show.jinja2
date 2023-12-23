@@ -1,0 +1,30 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}{{ attendee.name }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ attendee.name }}</h1>
+      <ul id="attendee.name">
+        <li>
+          <span class="field-name">Name:</span>
+          <span class="field-value">{{ attendee.first_name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Abbreviation:</span>
+          <span class="field-value">{{ attendee.last_name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Faction:</span>
+          <span class="field-value">{{ attendee.faction_id.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Organization:</span>
+          <span class="field-value">{{ attendee.organization_id }}</span>
+        </li>
+      </ul>
+      {% if current_user.is_admin %}
+      {#{% include "components/mini_menu.html" %}#}
+      {% endif %}
+  </div>
+{% endblock %}

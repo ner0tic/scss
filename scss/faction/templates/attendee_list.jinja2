@@ -1,0 +1,36 @@
+{% extends 'layout.jinja2' %}
+
+{% block title %}
+    {% if not title %}Attendees{% else %}{{ title }}{% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url_for('faction.attendee_list') }}">Admin</a></li>
+        <li class="active">Attendees</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    {% if datatable %}
+    <div id="pjax-container">
+        {% include 'attendees.jinja2' %}
+    </div>
+    {% else %}
+    <h1>Attendees</h1>
+    <ul>
+        {% for attendee in attendees %}
+            <li>
+                <a href="{{ url_for('faction.attendee_show', id=faction.id) }}">
+                    {{ faction.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="{{ url_for('faction.attendee_add') }}">Add New Attendee</a>
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}
