@@ -23,9 +23,10 @@ js = Bundle(
 css = Bundle(
     'css/reset.css',
     'css/header.css',
+    'css/splash.css',
     'css/footer.css',
+    'css/forms.css',
     'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
     'css/style.css',
     filters=('cssmin','cssrewrite'),
     output='gen/packed.css'

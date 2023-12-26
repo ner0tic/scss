@@ -7,27 +7,16 @@ from .models import Organization
 from .forms import OrganizationForm
 from ..database import DataTable
 from ..utils.forms import DeleteConfirmationForm
-from ..utils.utils import generate_choices_from_list
+from ..utils.utils import set_form_choices, generate_choices_from_list
 from ..organization import organization
+
 
 def index():
     organizations = Organization.query.all()
-    return render_template('organization_list.jinja2', organizations=organizations)
+    return render_template("organization_list.jinja2", organizations=organizations)
 
-def set_form_choices(form):
-    """Sets the choices for the organization parent and factions in a given form.
-    Args:
-        form: The form to set the choices for.
-    Returns:
-        None.
-    """
-    form = OrganizationForm()
-    form.parent.choices = generate_choices_from_list(
-            Organization.query.order_by("name")
-        )
-    form.factions.choices = generate_choices_from_list()
 
-@organization.route('/organizations', methods=['GET'], strict_slashes=False)
+@organization.route("/organizations", methods=["GET"], strict_slashes=False)
 def organization_list():
     """
     Render the organization list page.
@@ -40,7 +29,7 @@ def organization_list():
 
     datatable = DataTable(
         model=Organization,
-        columns=['Name', 'Abbreviation', 'Description', 'Parent', 'Created At'],
+        columns=["Name", "Abbreviation", "Description", "Parent", "Created At"],
         sortable=[
             Organization.name,
             Organization.short_name,
@@ -49,31 +38,41 @@ def organization_list():
             Organization.created_at,
         ],
         searchable=[Organization.name, Organization.short_name],
-        filterable=[], # Organization.active],
+        filterable=[],  # Organization.active],
         limits=[25, 50, 100],
         request=request,
     )
 
-#    if g.pjax:
-#        return render_template("organizations.jinja2", datatable=datatable)
+    #    if g.pjax:
+    #        return render_template("organizations.jinja2", datatable=datatable)
 
     return render_template("organization_list.jinja2", datatable=datatable)
 
-@organization.route('/organizations/<int:id>', methods=['GET'])
+
+@organization.route("/organizations/<int:id>", methods=["GET"])
 def organization_show(id):
     org = Organization.query.get_or_404(id)
-    return render_template('organization_show.jinja', organization=org)
+    return render_template("organization_show.jinja", organization=org)
+
 
 def slugify(name: str) -> str:
     return slug.slug(name)
 
-@organization.route('/organizations/add', methods=['GET', 'POST'])
+
+@organization.route("/organizations/add", methods=["GET", "POST"])
 @login_required
 def organization_add():
+    form = OrganizationForm(request.form)
+    set_form_choices(
+        form,
+        {
+            "parent_id": generate_choices_from_list(
+                Organization.query.order_by('name')
+            )
+        },
+    )
+
     if request.method == "POST":
-        form = OrganizationForm(request.form)
-        set_form_choices(form)
-        
         if Organization.query.filter(
             and_(
                 Organization.name == form.name.data,
@@ -89,27 +88,25 @@ def organization_add():
                 short_name=form.short_name.data,
                 description=form.description.data,
                 slug=form.slug.data,
-                parent_id = (
-                    None
-                    if form.parent.data == 0
-                    else form.parent.data
-                ),
-                address_id=form.address_id.data
-
+                parent_id=(None if form.parent.data == 0 else form.parent.data),
+                address_id=form.address_id.data,
             )
             new_organization.create()
 
-            flash('Organization created successfully.', 'success')
-            return redirect(url_for('organization.organization_list'))
-    form = OrganizationForm()
-    set_form_choices(form)
-    return render_template('organization_manage.jinja2', form=form)
+            flash("Organization created successfully.", "success")
+            return redirect(url_for("organization.organization_list"))
 
-@organization.route('/organizations/<int:id>/manage', methods=['GET', 'POST'])
+    return render_template("organization_manage.jinja2", form=form)
+
+
+@organization.route("/organizations/<int:id>/manage", methods=["GET", "POST"])
 def organization_manage(id):
     org = Organization.query.get_or_404(id)
     form = OrganizationForm(obj=org)
-    set_form_choices(form)
+    set_form_choices(
+        form,
+        {"parent_id": generate_choices_from_list(Organization.query.order_by("name"))},
+    )
 
     if form.validate_on_submit():
         org.name = form.name.data
@@ -118,27 +115,40 @@ def organization_manage(id):
         org.slug = form.slug.data
         org.parent_id = form.parent.data
         org.address_id = form.address_id.data
-        
+
         org.save()
 
-        flash('Organization updated successfully.', 'success')
-        return redirect(url_for('organization.organization_show', id=org.id))
-    return render_template('organization_manage.jinja2', form=form, organization=org)
+        flash("Organization updated successfully.", "success")
+        return redirect(url_for("organization.organization_show", id=org.id))
+    return render_template("organization_manage.jinja2", form=form, organization=org)
 
-@organization.route('/organizations/<int:id>/delete', methods=['GET', 'POST'])
+
+@organization.route("/organizations/<int:id>/delete", methods=["GET", "POST"])
 def organization_delete(id):
+    """
+    Render the organization delete page.
+
+    This function renders the organization delete page, which displays a form for confirming the
+    deletion of an organization. If the form is submitted, the organization is deleted from the
+    database.
+
+    Args:
+        id (int): The ID of the organization to delete.
+
+    Returns:
+        rendered_template: The rendered HTML template for the organization delete page.
+    """
     form = DeleteConfirmationForm(request.form)
     form.id = id
 
-    if request.method == 'POST' and form.validate():
+    if request.method == "POST" and form.validate():
         if form.confirm.data:
             # Remove all child organizations, factions, attendees, enrollments, and events
             org = Organization.query.get_or_404(id)
             org.delete()
 
-            flash('Organization deleted successfully.', 'success')
+            flash("Organization deleted successfully.", "success")
         else:
-
-            flash('Organization deletion cancelled.')
-        return redirect(url_for('organization.organization_list'))
-    return render_template('organization_delete.jinja2', form=form)
+            flash("Organization deletion cancelled.")
+        return redirect(url_for("organization.organization_list"))
+    return render_template("delete.jinja2", form=form)

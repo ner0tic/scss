@@ -3,8 +3,9 @@ from datetime import datetime
 from ..database import db, CRUDMixin
 from ..user.models import User
 
-
+###################################################################################################
 # Faction Related Models ##########################################################################
+###################################################################################################
 class Faction(CRUDMixin, db.Model):
     """Class representing a Faction.
 
@@ -68,7 +69,6 @@ class Faction(CRUDMixin, db.Model):
         super().__init__(*args, **kwargs)
         self.short_name = self.name
 
-
 class FactionEnrollment(CRUDMixin, db.Model):
     """Class representing a Faction Enrollment.
 
@@ -93,8 +93,9 @@ class FactionEnrollment(CRUDMixin, db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 
-
+###################################################################################################
 # Attendee Related Models #########################################################################
+###################################################################################################
 class Attendee(User, CRUDMixin):
     """Class representing an Attendee.
 
@@ -126,7 +127,6 @@ class Attendee(User, CRUDMixin):
         super().__init__(*args, **kwargs)
         self.user_role = "attendee"
 
-
 class AttendeeEnrollment(CRUDMixin, db.Model):
     """Class representing an Attendee Enrollment.
 
@@ -155,7 +155,6 @@ class AttendeeEnrollment(CRUDMixin, db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 
-
 class AttendeeFacilityClassEnrollment(CRUDMixin, db.Model):
     """Class representing an Attendee Class Enrollment.
 
@@ -177,3 +176,37 @@ class AttendeeFacilityClassEnrollment(CRUDMixin, db.Model):
     facility_class_id = db.Column(db.Integer, db.ForeignKey("facility_class.id"))
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
+
+###################################################################################################
+# Leader Related Models ###########################################################################
+###################################################################################################
+class Leader(User, CRUDMixin):
+    """Class representing a Leader.
+
+    This class represents a Leader, which is a type of User in the system. A Leader has a user ID, a user role, and can be associated with a Faction, a Leader Enrollment, and an Organization.
+
+    Attributes:
+        user_id (int): The ID of the User associated with the Leader.
+        user_role (str): The role of the Leader.
+        faction_id (int): The ID of the Faction associated with the Leader.
+        enrollment_id (int): The ID of the Leader Enrollment associated with the Leader.
+        organization_id (int): The ID of the Organization associated with the Leader.
+
+    Methods:
+        __repr__(): Returns a string representation of the Leader.
+        __init__(*args, **kwargs): Initializes a new Leader instance.
+    """
+
+    __tablename__ = "leader"
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
+    user_role = db.Column(db.String(255), nullable=False, default="leader")
+    faction_id = db.Column(db.Integer, db.ForeignKey("faction.id"))
+    enrollment_id = db.Column(db.Integer, db.ForeignKey("leader_enrollment.id"))
+    organization_id = db.Column(db.Integer, db.ForeignKey("organization.id"))
+
+    def __repr__(self):
+        return f"<Leader(user_id='{self.user_id}', user_role='{self.user_role}', enrollment_id='{self.enrollment_id}', faction_id='{self.faction_id}')>"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user_role = "leader"

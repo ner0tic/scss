@@ -34,8 +34,8 @@ class AddressForm(FlaskForm):
                 An instance of the CountrySelectField class."""
 
     # name = StringField('Name')
-    line1 = StringField("Address", validators=[InputRequired("Line 1 required!")])
-    line2 = StringField("Address Line 2")
+    line1 = StringField("Street", validators=[InputRequired("Street required!")])
+    line2 = StringField("Street Line 2")
     city = StringField("City", validators=[InputRequired("City required!")])
     state = StateSelectField(
         default="US-ME"
@@ -46,37 +46,7 @@ class AddressForm(FlaskForm):
     country = CountrySelectField(
         default="US"
     )
-    submit = SubmitField("Submit")
-
-class AddressAddForm(AddressForm):
-    """
-    Class representing an Address Add Form.
-
-    This class extends the AddressForm class and represents a form for adding a new address. It initializes the form by calling the parent class's constructor and updates the label of the submit button to 'Add Address'.
-
-    Attributes:
-        None
-    """
-
-    def __init__(self, *args, **kwargs):
-        super(AddressAddForm, self).__init__(*args, **kwargs)
-        self.submit.label.text = "Add Address"
-
-
-class EditAddressForm(AddressForm):
-    """
-    Class representing an Edit Address Form.
-
-    This class extends the AddressForm class and represents a form for editing an existing address. It initializes the form by calling the parent class's constructor and updates the label of the submit button to 'Update Address'.
-
-    Attributes:
-        None
-    """
-
-    def __init__(self, *args, **kwargs):
-        super(EditAddressForm, self).__init__(*args, **kwargs)
-        self.submit.label.text = "Update Address"
-
+#    submit = SubmitField("Submit")
 
 class DeleteConfirmationForm(FlaskForm):
     """
@@ -94,4 +64,4 @@ class DeleteConfirmationForm(FlaskForm):
 
     confirm = BooleanField("Confirm deletion?")
     id = HiddenField("Element ID")
-    submit = SubmitField("Delete")
+#    submit = SubmitField("Delete")

@@ -7,7 +7,7 @@
 
 {% block content %}
   <div class="container">
-    {% if organization %}Manage{% else %}Add{% endif %} An Organization
+    <h1>{% if organization %}Manage{% else %}Add{% endif %} An Organization</h1>
     <form name="manage_organization" method="post" novalidate class="form">
         <div class="form__container">
             {{ render_text_field(form.name) }}

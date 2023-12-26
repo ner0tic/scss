@@ -1,0 +1,36 @@
+{% extends 'layout.jinja2' %}
+
+{% block title %}
+    {% if not title %}Faculty{% else %}{{ title }}{% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url_for('facility.faculty_list') }}">Admin</a></li>
+        <li class="active">Faculty</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    {% if datatable %}
+    <div id="pjax-container">
+        {% include 'faculty.jinja2' %}
+    </div>
+    {% else %}
+    <h1>Faculty</h1>
+    <ul>
+        {% for faculty in faculty %}
+            <li>
+                <a href="{{ url_for('facility.faculty_show', id=facility.id) }}">
+                    {{ facility.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="{{ url_for('facility.faculty_add') }}">Add New Faculty</a>
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}

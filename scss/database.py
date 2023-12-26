@@ -3,48 +3,47 @@ from sqlalchemy import or_
 
 db = SQLAlchemy()
 
-
 class CRUDMixin(object):
     """
-Class: CRUDMixin
+    Class: CRUDMixin
 
-A mixin class that provides basic CRUD (Create, Read, Update, Delete) functionality for SQLAlchemy models.
+    A mixin class that provides basic CRUD (Create, Read, Update, Delete) functionality for SQLAlchemy models.
 
-Methods:
-    get_by_id(id) -> Optional[CRUDMixin]:
-        Retrieves a model instance by its ID.
-        Args:
-            id: The ID of the model instance.
-        Returns:
-            The model instance with the specified ID, or None if not found.
+    Methods:
+        get_by_id(id) -> Optional[CRUDMixin]:
+            Retrieves a model instance by its ID.
+            Args:
+                id: The ID of the model instance.
+            Returns:
+                The model instance with the specified ID, or None if not found.
 
-    create(**kwargs) -> CRUDMixin:
-        Creates a new model instance with the given attributes and saves it to the database.
-        Args:
-            Keyword arguments representing the attributes of the model instance.
-        Returns:
-            The created model instance.
+        create(**kwargs) -> CRUDMixin:
+            Creates a new model instance with the given attributes and saves it to the database.
+            Args:
+                Keyword arguments representing the attributes of the model instance.
+            Returns:
+                The created model instance.
 
-    update(commit=True, **kwargs) -> CRUDMixin:
-        Updates the attributes of the model instance with the given values.
-        Args:
-            commit: Whether to commit the changes to the database (default: True).
-            Keyword arguments representing the attributes to be updated.
-        Returns:
-            The updated model instance.
+        update(commit=True, **kwargs) -> CRUDMixin:
+            Updates the attributes of the model instance with the given values.
+            Args:
+                commit: Whether to commit the changes to the database (default: True).
+                Keyword arguments representing the attributes to be updated.
+            Returns:
+                The updated model instance.
 
-    save(commit=True) -> CRUDMixin:
-        Saves the model instance to the database.
-        Args:
-            commit: Whether to commit the changes to the database (default: True).
-        Returns:
-            The saved model instance.
+        save(commit=True) -> CRUDMixin:
+            Saves the model instance to the database.
+            Args:
+                commit: Whether to commit the changes to the database (default: True).
+            Returns:
+                The saved model instance.
 
-    delete(commit=True) -> None:
-        Deletes the model instance from the database.
-        Args:
-            commit: Whether to commit the changes to the database (default: True).
-"""
+        delete(commit=True) -> None:
+            Deletes the model instance from the database.
+            Args:
+                commit: Whether to commit the changes to the database (default: True).
+    """
 
     __table_args__ = {'extend_existing': True}
 

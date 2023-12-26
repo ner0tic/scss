@@ -1,0 +1,25 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}{{ department.name }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ department.name }}</h1>
+      <ul id="department.name">
+        <li>
+          <span class="field-name">Name:</span>
+          <span class="field-value">{{ department.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Description:</span>
+          <span class="field-value">{{ department.description }}</span>
+        <li>
+          <span class="field-name">Facility:</span>
+          <span class="field-value">{{ department.facility_id.name }}</span>
+        </li>
+      </ul>
+      {% if current_user.is_admin %}
+      {#{% include "components/mini_menu.html" %}#}
+      {% endif %}
+  </div>
+{% endblock %}

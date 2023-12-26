@@ -2,39 +2,13 @@
 from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_required
 from ..database import DataTable
-from ..utils.utils import generate_choices_from_list, gettext
+from ..utils.utils import set_form_choices, gettext
 from ..utils.forms import DeleteConfirmationForm
 from ..utils.models import Address
 from ..organization.models import Organization
-from .forms import FactionForm, AttendeeForm
-from .models import Faction, Attendee
+from .forms import FactionForm, AttendeeForm, LeaderForm
+from .models import Faction, Attendee, Leader
 from ..faction import faction
-
-def set_form_choices(form):
-    """Sets the choices for the organization parent and factions in a given form.
-    ToDo:
-        * Move this function to the utils module.
-        * Add a parameter to specify the model to use for the choices.
-        * Add a parameter to specify the field to use for the choices.
-        * Add a parameter to specify the order to use for the choices.
-        * Add a parameter to specify the filter to use for the choices.
-    Args:
-        form: The form to set the choices for.
-    Returns:
-        None.
-    """
-    if 'parent' in form._fields:
-        form.parent.choices = generate_choices_from_list(
-                Faction.query.order_by("name")
-            )
-    if 'organization_id' in form._fields:
-        form.organization_id.choices = generate_choices_from_list(
-                Organization.query.order_by("name")
-        )
-    if 'faction_id' in form._fields:
-        form.faction_id.choices = generate_choices_from_list(
-                Faction.query.order_by("name")
-        )
 
 ###################################################################################################
 # Faction Related Routes ##########################################################################
@@ -91,7 +65,10 @@ def faction_add():
         The rendered template for adding a new faction.
     """
     form = FactionForm(request.form)
-    set_form_choices(form)
+    set_form_choices(form, {
+        'organization_id': Organization.query.all(),
+        'parent_id': Faction.query.all()
+    })
 
     if request.method == 'POST':
         if form.validate():
@@ -151,6 +128,7 @@ def faction_manage(id):
     return render_template("faction_manage.jinja2", form=form, faction=fac)
 
 @faction.route('/factions/<int:id>/delete', methods=['GET', 'POST'])
+@login_required
 def faction_delete(id):
     """
     Delete a faction.
@@ -166,7 +144,6 @@ def faction_delete(id):
 
     if request.method == 'POST' and form.validate():
         if form.confirm.data:
-            # Remove all child organizations, factions, attendees, enrollments, and events
             fac = Faction.query.get_or_404(id)
             fac.delete()
 
@@ -174,13 +151,14 @@ def faction_delete(id):
         else:
 
             flash('Faction deletion cancelled.')
-        return redirect(url_for('organization.organization_list'))
-    return render_template('organization_delete.jinja2', form=form)
+        return redirect(url_for('faction.faction_list'))
+    return render_template('faction_delete.jinja2', form=form)
 
 ###################################################################################################
 # Attendee Related Routes #########################################################################
 ###################################################################################################
 @faction.route("/attendees", methods=["GET"], strict_slashes=False)
+@login_required
 def attendee_list():
     """Renders a template to display a list of attendees.
     Returns:
@@ -211,6 +189,7 @@ def attendee_list():
     return render_template("attendee_list.jinja2", datatable=datatable)
 
 @faction.route("/attendees/<int:id>", methods=["GET"], strict_slashes=False)
+@login_required
 def attendee_show(id):
     """Renders a template to display the details of a specific attendee.
         Args:
@@ -230,7 +209,11 @@ def attendee_add():
         The rendered template for adding a new attendee.
     """
     form = AttendeeForm(request.form)
-    set_form_choices(form)
+    set_form_choices(form, {
+        'organization_id': Organization.query.all(),
+        'faction_id': Faction.query.all()
+    })
+
     if request.method == "POST":
         if form.validate():
             addr = Address.create(
@@ -276,7 +259,10 @@ def attendee_manage(id):
 
     att = Attendee.get_or_404(id)
     form = AttendeeForm(obj=att)
-    set_form_choices(form)
+    set_form_choices(form, {
+        'organization_id': Organization.query.all(),
+        'faction_id': Faction.query.all()
+    })
     
     if form.validate_on_submit():
         att.first_name = form.first_name.data
@@ -294,7 +280,17 @@ def attendee_manage(id):
     return render_template("attendee_manage.jinja2", form=form, attendee=att)
 
 @faction.route('/attendees/<int:id>/delete', methods=['GET', 'POST'])
+@login_required
 def attendee_delete(id):
+    """
+    Delete an attendee.
+    
+    Args:
+        id: The ID of the attendee to delete.
+        
+    Returns:
+
+    """
     form = DeleteConfirmationForm(request.form)
     form.id = id
 
@@ -309,3 +305,157 @@ def attendee_delete(id):
             flash('Attendee deletion cancelled.')
         return redirect(url_for('faction.attendee_list'))
     return render_template('attendee_delete.jinja2', form=form)
+
+###################################################################################################
+# Leader Related Routes ###########################################################################
+###################################################################################################
+@faction.route("/leaders", methods=["GET"], strict_slashes=False)
+@login_required
+def leader_list():
+    """Renders a template to display a list of leaders.
+    Returns:
+        The rendered template for displaying the list of leaders.
+    Raises:
+        None.
+    """
+
+    datatable = DataTable(
+        model=Leader,
+        columns=[],
+        sortable=[
+            Leader.first_name,
+            Leader.last_name,
+            Leader.faction_id,
+            Leader.organization_id,
+            Leader.created_at,
+        ],
+        searchable=[Leader.last_name, Leader.first_name],
+        filterable=[Leader.faction_id, Leader.organization_id],
+        limits=[25, 50, 100],
+        request=request,
+    )
+    
+#    if g.pjax:
+#        return render_template("leaders.jinja2", datatable=datatable)
+
+    return render_template("leader_list.jinja2", datatable=datatable)
+
+@faction.route("/leaders/<int:id>", methods=["GET"], strict_slashes=False)
+@login_required
+def leader_show(id):
+    """Renders a template to display the details of a specific leader.
+        Args:
+            id: The ID of the leader to display.
+
+        Returns:
+            The rendered template for displaying the leader details.
+    """
+    lead = Leader.query.get_or_404(id)
+    return render_template("leader_show.jinja2", leader=lead)
+
+@faction.route("/leaders/add", methods=["GET", "POST"])
+@login_required
+def leader_add():
+    """Renders a template to add a new leader.
+    Returns:
+        The rendered template for adding a new leader.
+    """
+    form = LeaderForm(request.form)
+    set_form_choices(form, {
+        'organization_id': Organization.query.all(),
+        'faction_id': Faction.query.all()
+    })
+
+    if request.method == "POST":
+        if form.validate():
+            addr = Address.create(
+                line1=form.data['address_id']['line1'],
+                line2=form.data['address_id']['line2'],
+                city=form.data['address_id']['city'],
+                state=form.data['address_id']['state'],
+                postal_code=form.data['address_id']['postal_code'],
+                country=form.data['address_id']['country'])
+
+            lead = Leader.create(
+                first_name = form.first_name.data,
+                last_name = form.last_name.data,
+                username = form.username.data,
+                email = form.email.data,
+                password = form.password.data,
+                role = 'leader',
+                address_id = addr.id,
+                avatar_url = form.avatar_url.data,
+                organization_id = form.organization_id.data,
+                faction_id = form.faction_id.data,)
+
+            flash("Leader added successfully!")
+            return render_template("leader_show.jinja2", leader=lead)
+        else:
+            msg = ''
+            for field, errors in form.errors.items():
+                for error in errors:
+                    msg += f"Error in field '{field}': {error}"
+            flash(msg)
+    return render_template("leader_manage.jinja2", form=form)
+
+@faction.route("/leaders/<int:id>/manage", methods=["GET", "POST"], strict_slashes=False)
+@login_required
+def leader_manage(id):
+    """Edit the details of a leader.
+
+    Args:
+        id: The ID of the leader to edit.
+
+    Returns:
+        The rendered template for editing the leader details.
+
+    """
+
+    lead = Leader.get_or_404(id)
+    form = LeaderForm(obj=lead)
+    set_form_choices(form, {
+        'organization_id': Organization.query.all(),
+        'faction_id': Faction.query.all()
+    })
+
+    if form.validate_on_submit():
+        lead.first_name = form.first_name.data
+        lead.last_name = form.last_name.data
+        lead.username = form.username.data
+        lead.role = 'leader'
+        lead.avatar_url = form.avatar_url.data
+        lead.organization_id = form.organization.data
+        lead.faction_id = form.faction.data
+        lead.save()
+
+        flash("Leader updated successfully!")
+        return render_template("leader_show.jinja2", leader=lead)
+
+    return render_template("leader_manage.jinja2", form=form, leader=lead)
+
+@faction.route('/leaders/<int:id>/delete', methods=['GET', 'POST'])
+@login_required
+def leader_delete(id):
+    """
+    Delete a leader.
+    
+    Args:
+        id: The ID of the leader to delete.
+        
+    Returns:
+
+    """
+    form = DeleteConfirmationForm(request.form)
+    form.id = id
+
+    if request.method == 'POST' and form.validate():
+        if form.confirm.data:
+            lead = Leader.query.get_or_404(id)
+            lead.delete()
+
+            flash('Leader deleted successfully.', 'success')
+        else:
+
+            flash('Leader deletion cancelled.')
+        return redirect(url_for('faction.leader_list'))
+    return render_template('delete.jinja2', form=form)

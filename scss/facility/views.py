@@ -1,30 +1,58 @@
-from flask import request, redirect, url_for, render_template, flash
-from flask_babel import gettext
+""" This module contains the routes for the facility blueprint. """
+from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_required
-from ..organization.models import Organization
-from ..utils.utils import generate_choices_from_list
+from ..database import DataTable
+from ..utils.utils import set_form_choices, gettext
 from ..utils.forms import DeleteConfirmationForm
 from ..utils.models import Address
-from ..facility.forms import FacilityAddForm, EditFacilityForm
-from ..facility.models import Facility
+from ..utils.debug import debug_form
+from ..organization.models import Organization
+from .forms import FacilityForm, FacultyForm, DepartmentForm, QuartersForm
+from .models import Facility, Faculty, Department, Quarters
 from ..facility import facility
 
-
-# Facility Related Routes
+###################################################################################################
+# Facility Related Routes #########################################################################
+###################################################################################################
 @facility.route("/facilities/", methods=["GET"], strict_slashes=False)
 def facility_list():
-    """Renders a template to display a list of facilities.
+    """
+    Render the facility list page.
+
+    This function renders the facility list page, which displays a table of facility.
+    The table is generated using the DataTable class, which provides sorting, searching,
+    filtering, and pagination functionality. The table columns include the facility's
+    description, name, short name, organization ID, and creation date.
+
     Returns:
-        The rendered template for displaying the list of facilities.
+       rendered_template: The rendered HTML template for the facility list page.
     """
 
-    return render_template(
-        "list.jinja2", facilities=Facility.query().all(), title="All Facilities"
+    datatable = DataTable(
+        model=Facility,
+        columns=[],
+        sortable=[
+            Facility.name,
+            Facility.organization_id,
+            Facility.created_at,
+        ],
+        searchable=[Facility.name],
+        filterable=[Facility.organization_id],
+        limits=[25, 50, 100],
+        request=request,
     )
 
+    #    if g.pjax:
+    #       return render_template("facilities.jinja2", datatable=datatable)
 
-@facility.route("/facilities/<int:facility_id>", methods=["GET"], strict_slashes=False)
-def facility_detail(facility_id):
+    return render_template(
+        "facility_list.jinja2",
+        datatable=datatable,
+        title=gettext("Facility"),
+    )
+
+@facility.route("/facilities/<int:id>", methods=["GET"], strict_slashes=False)
+def facility_show(id):
     """Renders a template to edit a specific facility.
     Args:
         facility_id: The ID of the facility to edit.
@@ -32,155 +60,514 @@ def facility_detail(facility_id):
         The rendered template for editing the facility.
     """
 
-    return render_template(
-        "facility/show.jinja2",
-        facility=Facility.query().filter(Facility.id == facility_id).first(),
-        title="Facility Details",
-    )
+    fac = Facility.query.get_or_404(id)
+    return render_template("facility_show.jinja2", facility=fac)
 
-@facility.route(
-    "/facilities/<int:facility_id>/edit",
-    methods=["GET", "POST"],
-    strict_slashes=False,
-)
-def facility_edit(facility_id):
+@facility.route("/facilities/add", methods=["GET", "POST"])
+@login_required
+def facility_add():
+    """Renders a template to add a new facility.
+    Returns:
+        The rendered template for adding a new facility.
     """
-    Edit a facility.
+    form = FacilityForm(request.form)
+    set_form_choices(form, {"organization_id": Organization.query.order_by("name")})
 
-    This function handles the editing of a facility based on the provided facility ID. 
-    It retrieves the facility from the database, populates an EditFacilityForm with the facility's data, 
-    and renders the edit template. If the form is submitted and passes validation, the facility's data is updated
-    and saved to the database. Finally, the function redirects to the facility's details page.
+    debug_form(form, label="before request check")
+
+    if request.method == "POST":
+        debug_form(form, label="before validation check")
+        if form.validate():
+            debug_form(form, label="after validation check")
+            addr = Address.create(
+                line1=form.data["address_id"]["line1"],
+                line2=form.data["address_id"]["line2"],
+                city=form.data["address_id"]["city"],
+                state=form.data["address_id"]["state"],
+                postal_code=form.data["address_id"]["postal_code"],
+                country=form.data["address_id"]["country"],
+            )
+            debug_form(form, label="after address obj creation")
+            fac = Facility.create(
+                name=form.data["name"],
+                description=form.data["description"],
+                avatar=form.data["avatar"],
+                organization_id=form.data["organization_id"],
+                address_id=addr.id,
+            )
+            debug_form(form, label="after facility object creation")
+            flash("Facility added successfully!")
+            return render_template("facility_show.jinja2", facility=fac)
+        else:
+            msg = ""
+            for field, errors in form.errors.items():
+                for error in errors:
+                    msg += f"Error in field '{field}': {error}\n"
+            flash(msg)
+    return render_template("facility_manage.jinja2", form=form)
+
+@facility.route("/facilities/<int:id>/manage", methods=["GET", "POST"])
+@login_required
+def facility_manage(id):
+    """Edit the details of a facility.
 
     Args:
-        facility_id: The ID of the facility to edit.
+        id: The ID of the facility to edit.
 
     Returns:
-        rendered_template: The rendered HTML template for editing the facility.
+        The rendered template for editing the facility details.
     """
 
-    org = Facility.query().filter(Facility.id == facility_id).first()
-    form = EditFacilityForm(obj=org)
+    fac = Facility.query.get_or_404(id)
+    form = FacilityForm(obj=fac)
+    set_form_choices(form, {"organization_id": Organization.query.order_by("name")})
+
+    if form.validate_on_submit():
+        fac.name = form.name.data
+        fac.description = form.description.data
+        fac.avatar = form.avatar.data
+        fac.organization_id = form.organization.data
+        fac.save()
+
+        flash("Facility updated successfully!")
+        return render_template("facility_show.jinja2", facility=fac)
+
+    return render_template("facility_manage.jinja2", form=form, facility=fac)
+
+@facility.route("/facilities/<int:id>/delete", methods=["GET", "POST"])
+def facility_delete(id):
+    """
+    Delete a facility.
+
+    Args:
+        id: The ID of the facility to delete.
+
+    Returns:
+        Union[Response, str]: A redirect response or a rendered template.
+    """
+    form = DeleteConfirmationForm(request.form)
+    form.id = id
 
     if request.method == "POST" and form.validate():
-        org.name = form.name.data
-        org.short_name = form.short_name.data
-        org.description = form.description.data
-        org.parent_id = form.parent_id.data
-        org.factions = form.factions.data
+        if form.confirm.data:
+            # Remove all child organizations, facilities, faculty, enrollments, and events
+            fac = Facility.query.get_or_404(id)
+            fac.delete()
 
-        org.save()
-        flash(gettext("Facility updated successfully!"), "success")
-        return redirect(url_for("facility.facility_show", facility_id=org.id))
+            flash("Facility deleted successfully.", "success")
+        else:
+            flash("Facility deletion cancelled.")
+        return redirect(url_for("facility.facility_list"))
+    return render_template("delete.jinja2", form=form)
 
-    return render_template("edit.jinja2", form=form, title="Edit Facility")
-
-
-@facility.route(
-    "/factions/<int:facility_id>/delete", methods=["GET"], strict_slashes=False
-)
-def facility_delete_get(facility_id):
-    """Handles the GET request to display the delete confirmation page for a facility.
-    Args:
-        facility_id: The ID of the facility to delete.
+###################################################################################################
+# Faculty Related Routes ##########################################################################
+###################################################################################################
+@facility.route("/faculty", methods=["GET"], strict_slashes=False)
+def faculty_list():
+    """Renders a template to display a list of faculty.
     Returns:
-        The rendered template for the delete confirmation page.
-
-    """
-
-    form = DeleteConfirmationForm(request.form)
-    form.id = facility_id
-
-    return render_template(
-        "delete.jinja2",
-        facility=Facility.query().filter(Facility.id == facility_id).first(),
-        form=form,
-        title="Delete Facility",
-    )
-
-
-@facility.route(
-    "/facilities/<int:facility_id>/delete", methods=["POST"], strict_slashes=False
-)
-def facility_delete_post(facility_id):
-    """Handles the POST request to delete a facility.
-    Args:
-        facility_id: The ID of the facility to delete.
-    Returns:
-        The rendered template for displaying the list of facilities after deletion.
-    """
-
-    form = DeleteConfirmationForm(request.form)
-    form.id = facility_id
-    if not form.validate() or not form.confirm.data:
-        flash("Facility deletion cancelled!")
-        # redirect(url_for("facility.facility_list"))
-        return render_template(
-            "list.jinja2", facilities=Facility.query().all(), title="All Facilities"
-        )
-
-    # Remove all child facilities, attendees, enrollments, and events
-    # @todo: implement removal of all child-related objects
-    # Remove Facility
-    Facility.query().filter(Facility.id == facility_id).delete()
-
-    flash("Facility deleted successfully!")
-    return render_template(
-        "list.jinja2", facilities=Facility.query().all(), title="All Facilities"
-    )
-
-
-@facility.route("/facilities/add", methods=["GET", "POST"], strict_slashes=False)
-def facility_add():
-    """
-    Renders a template to add a new facility.
-
-    Returns:
-        The rendered template Renders a template for adding a to add a new facility.
-
-    new facility.
-
+        The rendered template for displaying the list of faculty.
     Raises:
-        Returns:
         None.
     """
 
-    fac = Facility()
+    datatable = DataTable(
+        model=Faculty,
+        columns=[],
+        sortable=[
+            Faculty.first_name,
+            Faculty.last_name,
+            Faculty.facility_id,
+            Faculty.department_id,
+            Faculty.created_at,
+        ],
+        searchable=[Faculty.last_name, Faculty.first_name],
+        filterable=[Faculty.facility_id, Faculty.department_id],
+        limits=[25, 50, 100],
+        request=request,
+    )
+
+    #    if g.pjax:
+    #        return render_template("faculty.jinja2l", datatable=datatable)
+
+    return render_template("faculty_list.jinja2", datatable=datatable)
+
+@facility.route("/faculty/<int:id>", methods=["GET"], strict_slashes=False)
+def faculty_show(id):
+    """Renders a template to display the details of a specific faculty.
+    Args:
+        id: The ID of the faculty to display.
+
+    Returns:
+        The rendered template for displaying the faculty details.
+    """
+    fac = Faculty.query.get_or_404(id)
+    return render_template("faculty_show.jinja2", faculty=fac)
+
+@facility.route("/faculty/add", methods=["GET", "POST"])
+@login_required
+def faculty_add():
+    """Renders a template to add a new faculty.
+    Returns:
+        The rendered template for adding a new faculty.
+    """
+    form = FacultyForm(request.form)
+    set_form_choices(form, {
+        'department_id': Department.query.order_by('name'),
+        'facility_id': Facility.query.order_by('name')
+    })
 
     if request.method == "POST":
-        form = FacilityAddForm(request.form)
-        form.organization_id.choices = generate_choices_from_list(
-            Organization.query().order_by("name")
-        )
-        # address_form = AddressAddForm(form.address_id.form)
-
         if form.validate():
-            fac.name = form.name.data
-            fac.description = form.description.data
-            fac.avatar = form.avatar.data
-            fac.organization_id = form.organization_id.data
-
-            addy = Address(
-                # name = form.address_id.name,
-                line1=form.address_id.line1.data,
-                line2=form.address_id.line2.data,
-                city=form.address_id.city.data,
-                state=form.address_id.state.data,
-                postal_code=form.address_id.postal_code.data,
-                country=form.address_id.country.data,
+            addr = Address.create(
+                line1=form.data["address_id"]["line1"],
+                line2=form.data["address_id"]["line2"],
+                city=form.data["address_id"]["city"],
+                state=form.data["address_id"]["state"],
+                postal_code=form.data["address_id"]["postal_code"],
+                country=form.data["address_id"]["country"],
             )
-            addy.save()
 
-            fac.address_id = addy.id
-            fac.save()
+            fac = Faculty.create(
+                first_name=form.first_name.data,
+                last_name=form.last_name.data,
+                username=form.username.data,
+                email=form.email.data,
+                password=form.password.data,
+                role="faculty",
+                address_id=addr.id,
+                avatar_url=form.avatar_url.data,
+                department_id=form.department_id.data,
+                facility_id=form.facility_id.data,
+            )
 
-            flash("Facility added successfully!")
-            return render_template("show.jinja2", facility=fac)
-    else:
-        form = FacilityAddForm(obj=facility)
-        form.organization_id.choices = generate_choices_from_list(
-            Organization.query().order_by("name")
-        )
-        form.address_id.label = "Address"
+            flash("Faculty added successfully!")
+            return render_template("faculty_show.jinja2", faculty=fac)
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    flash(f"Error in field '{field}': {error}")
+    return render_template("faculty_manage.jinja2", form=form)
 
-    return render_template("add.jinja2", form=form, title="Add Facility")
+@facility.route(
+    "/faculty/<int:id>/manage", methods=["GET", "POST"], strict_slashes=False
+)
+@login_required
+def faculty_manage(id):
+    """Edit the details of an faculty.
+
+    Args:
+        id: The ID of the faculty to edit.
+
+    Returns:
+        The rendered template for editing the faculty details.
+
+    """
+
+    fac = Faculty.get_or_404(id)
+    form = FacultyForm(obj=fac)
+    set_form_choices(form, {
+        'department_id': Department.query.order_by('name'),
+        'facility_id': Facility.query.order_by('name')
+    })
+
+    if form.validate_on_submit():
+        fac.first_name = form.first_name.data
+        fac.last_name = form.last_name.data
+        fac.username = form.username.data
+        fac.role = "faculty"
+        fac.avatar_url = form.avatar_url.data
+        fac.department_id = form.department_id.data
+        fac.facility_id = form.facility_id.data
+        fac.save()
+
+        flash("Faculty updated successfully!")
+        return render_template("faculty_show.jinja2", faculty=fac)
+
+    return render_template("faculty_manage.jinja2", form=form, faculty=fac)
+
+@facility.route("/faculty/<int:id>/delete", methods=["GET", "POST"])
+def faculty_delete(id):
+    form = DeleteConfirmationForm(request.form)
+    form.id = id
+
+    if request.method == "POST" and form.validate():
+        if form.confirm.data:
+            fac = Faculty.query.get_or_404(id)
+            fac.delete()
+
+            flash("Faculty deleted successfully.", "success")
+        else:
+            flash("Faculty deletion cancelled.")
+        return redirect(url_for("facility.faculty_list"))
+    return render_template("delete.jinja2", form=form)
+
+###################################################################################################
+# Department Related Routes #######################################################################
+###################################################################################################
+@facility.route("/departments", methods=["GET"], strict_slashes=False)
+def department_list():
+    """Renders a template to display a list of department.
+    Returns:
+        The rendered template for displaying the list of department.
+    Raises:
+        None.
+    """
+
+    datatable = DataTable(
+        model=Department,
+        columns=[],
+        sortable=[
+            Department.name,
+            Department.facility_id,
+            Department.created_at,
+        ],
+        searchable=[Department.name],
+        filterable=[Department.facility_id],
+        limits=[25, 50, 100],
+        request=request,
+    )
+
+    #    if g.pjax:
+    #        return render_template("departments.jinja2l", datatable=datatable)
+
+    return render_template("department_list.jinja2", datatable=datatable)
+
+@facility.route("/departments/<int:id>", methods=["GET"], strict_slashes=False)
+def department_show(id):
+    """Renders a template to display the details of a specific department.
+    Args:
+        id: The ID of the department to display.
+
+    Returns:
+        The rendered template for displaying the department details.
+    """
+    dept = Department.query.get_or_404(id)
+    return render_template("department_show.jinja2", department=dept)
+
+@facility.route("/departments/add", methods=["GET", "POST"])
+@login_required
+def department_add():
+    """Renders a template to add a new department.
+    Returns:
+        The rendered template for adding a new department.
+    """
+    form = DepartmentForm(request.form)
+    set_form_choices(form, {
+        'parent_id': Department.query.order_by('name'),
+        'facility_id': Facility.query.order_by('name')
+    })
+
+    if request.method == "POST":
+        if form.validate():
+            dept = Department.create(
+                name=form.first_name.data,
+                description=form.last_name.data,
+                avatar=form.avatar.data,
+                parent_id=form.parent_id.data,
+                facility_id=form.facility_id.data,
+            )
+
+            flash("Department added successfully!")
+            return render_template("department_show.jinja2", department=dept)
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    flash(f"Error in field '{field}': {error}")
+    return render_template("department_manage.jinja2", form=form)
+
+@facility.route(
+    "/departments/<int:id>/manage", methods=["GET", "POST"], strict_slashes=False
+)
+@login_required
+def department_manage(id):
+    """Edit the details of an department.
+
+    Args:
+        id: The ID of the department to edit.
+
+    Returns:
+        The rendered template for editing the department details.
+
+    """
+
+    dept = Department.get_or_404(id)
+    form = DepartmentForm(obj=dept)
+    set_form_choices(form, {
+        'parent_id': Department.query.order_by('name'),
+        'facility_id': Facility.query.order_by('name')
+    })
+
+    if form.validate_on_submit():
+        dept.name = form.name.data
+        dept.description = form.description.data
+        dept.avatar = form.avatar.data
+        dept.parent_id = form.parent_id.data
+        dept.facility_id = form.facility_id.data
+        dept.save()
+
+        flash("Department updated successfully!")
+        return render_template("department_show.jinja2", department=dept)
+
+    return render_template("department_manage.jinja2", form=form, department=dept)
+
+@facility.route("/departments/<int:id>/delete", methods=["GET", "POST"])
+def department_delete(id):
+    form = DeleteConfirmationForm(request.form)
+    form.id = id
+
+    if request.method == "POST" and form.validate():
+        if form.confirm.data:
+            dept = Department.query.get_or_404(id)
+            dept.delete()
+
+            flash("Department deleted successfully.", "success")
+        else:
+            flash("Department deletion cancelled.")
+        return redirect(url_for("facility.department_list"))
+    return render_template("delete.jinja2", form=form)
+
+###################################################################################################
+# Quarters Related Routes #########################################################################
+###################################################################################################
+@facility.route("/quarters", methods=["GET"], strict_slashes=False)
+def quarters_list():
+    """Renders a template to display a list of quarters.
+    Returns:
+        The rendered template for displaying the list of quarters.
+    Raises:
+        None.
+    """
+
+    datatable = DataTable(
+        model=Quarters,
+        columns=[],
+        sortable=[
+            Quarters.name,
+            Quarters.quarters_type,
+            Quarters.facility_id,
+            Quarters.created_at,
+        ],
+        searchable=[Quarters.name],
+        filterable=[Quarters.facility_id, Quarters.quarters_type],
+        limits=[25, 50, 100],
+        request=request,
+    )
+
+    #    if g.pjax:
+    #        return render_template("quarters.jinja2l", datatable=datatable)
+
+    return render_template("quarters_list.jinja2", datatable=datatable)
+
+@facility.route("/quarters/<int:id>", methods=["GET"], strict_slashes=False)
+def quarters_show(id):
+    """Renders a template to display the details of a specific quarters.
+    Args:
+        id: The ID of the quarters to display.
+
+    Returns:
+        The rendered template for displaying the quarters details.
+    """
+    qtr = Quarters.query.get_or_404(id)
+    return render_template("quarters_show.jinja2", quarters=qtr)
+
+@facility.route("/quarters/add", methods=["GET", "POST"])
+@login_required
+def quarters_add():
+    """Renders a template to add a new quarters.
+    Returns:
+        The rendered template for adding a new quarters.
+    """
+    form = QuartersForm(request.form)
+    set_form_choices(
+        form,
+        {
+            "quarters_type": [
+                (Quarters.FACTION_QUARTERS, "Faction Quarters"),
+                (Quarters.LEADER_QUARTERS, "Leader Quarters"),
+                (Quarters.ATTENDEE_QUARTERS, "Attendee Quarters"),
+                (Quarters.FACULTY_QUARTERS, "Faculty Quarters"),
+                (Quarters.OTHER_QUARTERS, "Other Quarters"),
+            ],
+            "facility_id": Facility.query.order_by("name"),
+        },
+    )
+
+    if request.method == "POST":
+        if form.validate():
+            qtr = Quarters.create(
+                name=form.first_name.data,
+                description=form.last_name.data,
+                avatar=form.avatar.data,
+                quarters_type=form.quarters_type.data,
+                facility_id=form.facility_id.data,
+            )
+
+            flash("Quarters added successfully!")
+            return render_template("quarters_show.jinja2", quarters=qtr)
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    flash(f"Error in field '{field}': {error}")
+    return render_template("quarters_manage.jinja2", form=form)
+
+@facility.route(
+    "/quarters/<int:id>/manage", methods=["GET", "POST"], strict_slashes=False
+)
+@login_required
+def quarters_manage(id):
+    """Edit the details of an quarters.
+
+    Args:
+        id: The ID of the quarters to edit.
+
+    Returns:
+        The rendered template for editing the quarters details.
+
+    """
+
+    qtr = Quarters.get_or_404(id)
+    form = QuartersForm(obj=qtr)
+    set_form_choices(
+        form,
+        {
+            "quarters_type": [
+                (Quarters.FACTION_QUARTERS, "Faction Quarters"),
+                (Quarters.LEADER_QUARTERS, "Leader Quarters"),
+                (Quarters.ATTENDEE_QUARTERS, "Attendee Quarters"),
+                (Quarters.FACULTY_QUARTERS, "Faculty Quarters"),
+                (Quarters.OTHER_QUARTERS, "Other Quarters"),
+            ],
+            "facility_id": Facility.query.order_by("name"),
+        },
+    )
+
+    if form.validate_on_submit():
+        qtr.name = form.name.data
+        qtr.description = form.description.data
+        qtr.avatar = form.avatar.data
+        qtr.quarters_type = form.quarters_type.data
+        qtr.facility_id = form.facility_id.data
+        qtr.save()
+
+        flash("Quarters updated successfully!")
+        return render_template("quarters_show.jinja2", quarters=qtr)
+
+    return render_template("quarters_manage.jinja2", form=form, quarters=qtr)
+
+@facility.route("/quarters/<int:id>/delete", methods=["GET", "POST"])
+def quarters_delete(id):
+    form = DeleteConfirmationForm(request.form)
+    form.id = id
+
+    if request.method == "POST" and form.validate():
+        if form.confirm.data:
+            qtr = Quarters.query.get_or_404(id)
+            qtr.delete()
+
+            flash("Quarters deleted successfully.", "success")
+        else:
+            flash("Quarters deletion cancelled.")
+        return redirect(url_for("facility.quarters_list"))
+    return render_template("delete.jinja2", form=form)

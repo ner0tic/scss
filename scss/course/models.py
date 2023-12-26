@@ -5,8 +5,9 @@ from ..database import db, CRUDMixin
 class Course(CRUDMixin, db.Model):
     """Represents a course in the system.
 
-    This class provides a model for storing information about a course, including its name, description, avatar URL,
-    requirements, prerequisites, course type, and creation/update timestamps.
+    This class provides a model for storing information about a course, including its name,
+    description, avatar URL, requirements, prerequisites, course type, and creation/update
+    timestamps.
 
     Args:
         name (str): The name of the course.
@@ -15,7 +16,7 @@ class Course(CRUDMixin, db.Model):
         requirements (list of Requirement, optional): The requirements for the course.
         prerequisites (list of Requirement, optional): The prerequisites for the course.
         course_type (str, optional): The type of the course.
-    
+
     Attributes:
         id (int): The unique identifier of the course.
         name (str): The name of the course.
@@ -27,22 +28,31 @@ class Course(CRUDMixin, db.Model):
         created_at (datetime): The timestamp when the course was created.
         updated_at (datetime): The timestamp when the course was last updated.
     """
-
-    __tablename__ = 'course'
+    __tablename__ = "course"
+    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text, nullable=False)
     avatar_url = db.Column(db.String(255))
-    requirements = db.relationship('Requirement', backref='course', lazy=True)
-#    prerequisites = db.relationship('Requirement', backref='course', lazy=True)
+    # Relationships
+    requirements = db.relationship("Requirement", backref="course", lazy=True)
     course_type = db.Column(db.String(50))
+    # Timestamps
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+
+    def __init__(self, name, requirements=None):
+        self.name = name
+        self.requirements = requirements if requirements is not None else []
+
+    def __repr__(self):
+        return f"<Course(name='{self.name}')>"
 
 class Requirement(CRUDMixin, db.Model):
     """Represents a requirement for a course.
 
-    This class provides a model for storing information about a requirement, including its name, course ID,
+    This class provides a model for storing information about a requirement, including its name,
+    course ID,
     description, parent requirement, children requirements, and creation/update timestamps.
 
     Args:
@@ -50,8 +60,9 @@ class Requirement(CRUDMixin, db.Model):
         course_id (int): The ID of the course that the requirement belongs to.
         description (str): The description of the requirement.
         parent (Requirement, optional): The parent requirement of the current requirement.
-        children (list of Requirement, optional): The children requirements of the current requirement.
-    
+        children (list of Requirement, optional): The children requirements of the current
+            requirement.
+
     Attributes:
         id (int): The unique identifier of the requirement.
         name (str): The name of the requirement.
@@ -62,14 +73,22 @@ class Requirement(CRUDMixin, db.Model):
         created_at (datetime): The timestamp when the requirement was created.
         updated_at (datetime): The timestamp when the requirement was last updated.
     """
-
-    __tablename__ = 'requirement'
+    __tablename__ = "requirement"
+    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    course_id = db.Column(db.Integer, db.ForeignKey('course.id'), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    parent_id = db.Column(db.Integer, db.ForeignKey('requirement.id'))
-    parent = db.relationship('Requirement', remote_side=[id], backref='children', overlaps='children')
-#    children = db.relationship('Requirement', backref='parent', lazy=True)
+    # Relationships
+    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
+    parent_id = db.Column(db.Integer, db.ForeignKey("requirement.id"))
+    parent = db.relationship(
+        "Requirement", remote_side=[id], backref="children", overlaps="children"
+    )
+    # Timestamps
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+
+    def __init__(self, name):
+        self.name = name
+    def __repr__(self):
+        return f"<Requirement(name='{self.name}')>"

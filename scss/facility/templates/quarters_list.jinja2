@@ -1,0 +1,36 @@
+{% extends 'layout.jinja2' %}
+
+{% block title %}
+    {% if not title %}Quarters{% else %}{{ title }}{% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url_for('facility.quarters_list') }}">Admin</a></li>
+        <li class="active">Quarters</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    {% if datatable %}
+    <div id="pjax-container">
+        {% include 'quarters.jinja2' %}
+    </div>
+    {% else %}
+    <h1>Quarters</h1>
+    <ul>
+        {% for quarters in quarters %}
+            <li>
+                <a href="{{ url_for('facility.quarters_show', id=facility.id) }}">
+                    {{ facility.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="{{ url_for('facility.quarters_add') }}">Add New Quarters</a>
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}

@@ -1,6 +1,6 @@
 """ Auth views. """
 from flask import current_app, request, redirect, url_for, render_template, flash, abort
-from flask_babel import gettext
+#from flask_babel import gettext
 from flask_login import login_user, login_required, logout_user
 from itsdangerous import URLSafeSerializer, BadSignature
 from .forms import LoginForm
@@ -8,7 +8,8 @@ from ..extensions import lm
 from ..jobs import send_registration_email
 from ..user.models import User
 from ..utils.models import Address
-from ..utils.forms import AddressAddForm
+from ..utils.forms import AddressForm
+from ..utils.utils import gettext
 from ..user.forms import RegisterUserForm
 
 from ..auth import auth
@@ -32,7 +33,7 @@ def login():
             ),
             'success'
         )
-        return redirect(request.args.get('next') or url_for('dashboard'))
+        return redirect(request.args.get('next') or url_for('auth.dashboard'))
     return render_template('login.jinja2', title='[SCSS] Login', form=form)
 
 
@@ -43,10 +44,11 @@ def logout():
     flash(gettext('You were logged out'), 'success')
     return redirect(url_for('.login'))
 
-
+@auth.route('/signup', methods=['GET', 'POST'])
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterUserForm(request.form)
+    form.address_id.form
     if form.validate_on_submit():
         print(form.data['address_id'])
         address = Address.create(
@@ -72,16 +74,9 @@ def register():
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
 
-        send_registration_email.queue(user.id, token)
+        #send_registration_email.queue(user.id, token)
 
-        flash(
-            gettext(
-                'Sent verification email to {email}'.format(
-                    email=user.email
-                )
-            ),
-            'success'
-        )
+        #flash(gettext(f'Sent verification email to {user.email}'), 'success')
         return redirect(url_for('index'))
     return render_template('register.jinja2', form=form)
 
@@ -110,3 +105,8 @@ def verify(token):
             'success'
         )
         return redirect(url_for('auth.login'))
+    
+@auth.route('/dashboard', methods=['GET'])
+@login_required
+def dashboard():
+    return render_template('dashboard.jinja2', title='[SCSS] Dashboard')

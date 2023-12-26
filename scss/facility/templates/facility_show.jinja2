@@ -1,0 +1,29 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}{{ facility.name }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ facility.name }}</h1>
+      <ul id="facility.name">
+        <li>
+          <span class="field-name">Name:</span>
+          <span class="field-value">{{ facility.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Description:</span>
+          <span class="field-value">{{ facility.description }}</span>
+        </li>
+        <li>
+          <span class="field-name">Address:</span>
+          <span class="field-value">{{ facility.address_id.name }}</span>
+        <li>
+          <span class="field-name">Organization:</span>
+          <span class="field-value">{{ facility.organization_id.name }}</span>
+        </li>
+      </ul>
+      {% if current_user.is_admin %}
+      {#{% include "components/mini_menu.html" %}#}
+      {% endif %}
+  </div>
+{% endblock %}

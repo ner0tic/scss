@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, TextAreaField, HiddenField
 from wtforms.validators import InputRequired
 
-class EditCourseForm(FlaskForm):
+class CourseForm(FlaskForm):
     """Form for editing a course.
 
     This form provides fields for editing the name, short name, description, 
@@ -33,7 +33,7 @@ class EditCourseForm(FlaskForm):
 
     submit = SubmitField('Submit')
 
-class EditRequirementForm(FlaskForm):
+class RequirementForm(FlaskForm):
     """ Form for editing a requirement.
 
         This form provides fields for editing the name, description, parent, avatar URL, course type, and parent ID of a requirement.
@@ -60,7 +60,7 @@ class EditRequirementForm(FlaskForm):
     description = TextAreaField('Description', validators=[InputRequired()])
     parent = SelectField('Parent', coerce=int, validators=[InputRequired('Parent required!')])
     avatar_url = StringField('Avatar URL')
-    course_type = HiddenField('Course Type', default='course')
+    course_type = HiddenField(default='course')
     parent_id = SelectField('Parent ID',
                             coerce=int,
                             validators=[InputRequired('Parent ID required!')])

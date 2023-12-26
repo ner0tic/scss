@@ -39,7 +39,7 @@
 {% endmacro %}
 
 {% macro render_boolean_field(field) %}
-<div> class="form__group">
+<div class="form__group">
     {{ field(class_="form__field")}}
     {{ field.label(class_="form__label") }}
     
@@ -51,20 +51,13 @@
 
 {% macro render_form_field(field, form_label) %}
 <div class="form__group">
-    {% if form_label != None%}
-    {{ form_label }}
-    {% endif %}
     {{ field(class_="form__field")}}
-    
-    {%- for error in field.errors %}
-        <span class="form__error">{{ error }}</span>
-    {% endfor %}
 </div>
 {% endmacro %}
 
 {% macro render_form_fields(form, action_url, ignore_csrf_field=False, wrap_with_fieldset=False) -%}
     {% if form.type and form.type == 'FormField' %}
-        {% set legend = form.label.text %}
+        {% set legend = form.label.text if form.label else 'More Details' %}
         {% set form = form.form %}
     {% endif %}
 

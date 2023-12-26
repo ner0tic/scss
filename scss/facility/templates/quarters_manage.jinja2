@@ -1,0 +1,25 @@
+{% from "macros/fields.html" import render_text_field, render_select_field, render_form_field, render_password_field, render_checkbox_field %}
+{% extends "layout.jinja2" %}
+
+{% block title %}
+  {% if quarters %}Manage{% else %}Add{% endif %} An Quarters
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% if quarters %}Manage{% else %}Add{% endif %} A Quarters
+    <form name="quarters_manage" method="post" novalidate class="form">
+        <div class="form__container">
+          {{ form.csrf_token }}
+          {{ render_text_field(form.name) }}
+          {{ render_text_field(form.description) }}
+  {{ render_select_field(form.quarters_type) }}
+          {{ render_form_field(form.quarters_id) }}
+          {{form.hidden_tag()}}
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+      </form>
+  </div>
+{% endblock %}

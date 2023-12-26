@@ -25,6 +25,7 @@ logo
     max-width: 550px;
     position: relative;
     index: 999;
+    top: -10px;
 }
 #logo > a {
     text-decoration: none;
@@ -154,10 +155,10 @@ a.dropdown.dropdown-active span { background:url(../static/images/toggle_up_dark
 }
 
 .menu {
-  font-family: Proxima-nova-lt, sans-serif;
-  z-index: 100;
-  position: relative;
-  top: -4px;
+    font-family: Proxima-nova-lt, sans-serif;
+    z-index: 100;
+    position: relative;
+    /*top: -4px;*/
     list-style: none;
     padding: 0 20px;
     margin: 0;
@@ -171,13 +172,13 @@ a.dropdown.dropdown-active span { background:url(../static/images/toggle_up_dark
   position: relative;
 }
 .menu li a, .menu li a:link, .menu li a:active, .menu li a:visited {
-  font: bold 1.22em/25px Proxima-nova, sans-serif;
-  color: #f8f8f5;
-  display: block;
-  padding: 0 9px;
-  text-transform: lowercase;
-  text-decoration: none;
-      font-size: 12pt;
+    font: bold 1.22em/25px Proxima-nova, sans-serif;
+    color: #f8f8f5;
+    display: block;
+    padding: 0 9px;
+    text-transform: lowercase;
+    text-decoration: none;
+    font-size: 12pt;
     font-weight: bold;
     list-style: none;
     margin: 0;

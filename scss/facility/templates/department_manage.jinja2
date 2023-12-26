@@ -1,0 +1,24 @@
+{% from "macros/fields.html" import render_text_field, render_select_field, render_form_field, render_password_field, render_checkbox_field %}
+{% extends "layout.jinja2" %}
+
+{% block title %}
+  {% if facility %}Manage{% else %}Add{% endif %} An Facility
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% if facility %}Manage{% else %}Add{% endif %} A Facility
+    <form name="facility_manage" method="post" novalidate class="form">
+        <div class="form__container">
+          {{ form.csrf_token }}
+          {{ render_text_field(form.name) }}
+          {{ render_text_field(form.description) }}
+          {{ render_form_field(form.facility_id) }}
+          {{form.hidden_tag()}}
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+      </form>
+  </div>
+{% endblock %}

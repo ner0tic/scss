@@ -1,0 +1,402 @@
+.b01__fv {
+    position: relative;
+    overflow: hidden
+}
+
+.b01__fv_slider {
+    z-index: 100
+}
+
+.b01__fv_slider .swiper-slide-active .item,.b01__fv_slider .swiper-slide-duplicate-active .item,.b01__fv_slider .swiper-slide-prev .item {
+    animation: zoomUp 10s linear 0s 1 normal both
+}
+
+@keyframes zoomUp {
+    0% {
+        transform: scale(1)
+    }
+
+    to {
+        transform: scale(1.1)
+    }
+}
+
+.b01__fv_content {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 106
+}
+
+.b01__fv_bnr,.b01__fv_bnr2 {
+    z-index: 107;
+    display: inline-block;
+    border-radius: 5px;
+    transition: .5s;
+    overflow: hidden
+}
+
+.b01__fv_bnr2.is-hide,.b01__fv_bnr.is-hide {
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.1)
+}
+
+.b01__fv_bnr2 a,.b01__fv_bnr a {
+    position: relative;
+    display: inline-block;
+    z-index: 1
+}
+
+.b01__fv_bnr2 .close,.b01__fv_bnr .close {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    background: #1d7412;
+    color: #fff;
+    transition: .5s;
+    transform-origin: right top;
+    cursor: pointer
+}
+
+.b01__fv_bnr2 .close:hover,.b01__fv_bnr .close:hover {
+    background: #ba0b18;
+    transform: scale(1.5)
+}
+
+.b01__fv_bnr2 .close {
+    background: #1e3655
+}
+
+.b01__fv_logo {
+    position: absolute
+}
+
+.b01__fv_logo .logo {
+    position: absolute;
+    bottom: 0
+}
+
+.b01__info_contents {
+    margin: 0 auto
+}
+
+.b01__info_links_item {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    background-color: #f2efeb;
+    transition: .3s
+}
+
+.b01__info_links_item:hover {
+    background-color: #248471;
+    color: #fff
+}
+
+.b01__info_links_item:hover .m__pdf {
+    background-color: #fff;
+    color: #248471
+}
+
+.b01__info_weather {
+    position: relative;
+    background-color: #f2efeb;
+    font-weight: 700
+}
+
+.b01__info_weather_ttl {
+    background-color: #1e3655;
+    color: #fff;
+    text-align: center
+}
+
+.b01__info_weather_data {
+    position: relative;
+    text-align: center
+}
+
+.b01__info_weather_data .txt {
+    height: 100%
+}
+
+.b01__info_weather_data .txt span {
+    color: #d85f56
+}
+
+.b01__info_weather .ill_man {
+    position: absolute
+}
+
+.b01__camp {
+    position: relative;
+    background-color: #f2efeb
+}
+
+.b01__camp_img {
+    overflow: hidden
+}
+
+.b01__camp .img_ill {
+    position: relative
+}
+
+.b01__camp .img_ill .ill_tent,.b01__camp .img_ill .ill_woman {
+    position: absolute
+}
+
+.b01__map {
+    position: relative
+}
+
+.b01__map_light_l {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100 -1
+}
+
+.b01__map_light_r {
+    position: absolute;
+    right: 0;
+    z-index: 100 -1
+}
+
+.b01__map_light_r .ill_lamp {
+    position: absolute;
+    height: auto;
+    transform-origin: top center;
+    animation: yurayura 3s linear infinite
+}
+
+.b01__map_height {
+    z-index: 106
+}
+
+.b01__map_height,.b01__map_height .ill_height2,.b01__map_height .ill_height3 {
+    position: absolute
+}
+
+.b01__map_kanban,.b01__map_mountain,.b01__map_sleep {
+    position: absolute;
+    z-index: 106
+}
+
+.b01__map_sleep .ill_sleep2,.b01__map_sleep .ill_sleep3 {
+    position: absolute
+}
+
+@keyframes yurayura {
+    0% {
+        transform: translate(0) rotate(0deg)
+    }
+
+    25% {
+        transform: translateY(2px) rotate(7deg)
+    }
+
+    50% {
+        transform: translate(0) rotate(0deg)
+    }
+
+    75% {
+        transform: translate(0) rotate(-7deg)
+    }
+
+    to {
+        transform: translate(0) rotate(0deg)
+    }
+}
+
+.b01__map_plan {
+    margin: 0 auto
+}
+
+.b01__map_img {
+    position: relative
+}
+
+.b01__map_img .map {
+    overflow: hidden
+}
+
+.b01__map_txt {
+    color: #fff
+}
+
+.b01__map_btns .m__link:hover span {
+    color: #d8d056
+}
+
+.b01__pickup_item .icon {
+    display: block
+}
+
+.b01__pickup_txt {
+    background-color: #fff;
+    border-radius: 1px solid #eee
+}
+
+.b01__outdoor {
+    position: relative;
+    background-color: #1e3655
+}
+
+.b01__outdoor_txt {
+    color: #fff
+}
+
+.b01__outdoor_txt .ttl {
+    font-family: Montserrat,sans-serif;
+    font-weight: 700
+}
+
+.b01__outdoor_txt .btn {
+    margin-left: 0
+}
+
+.b01__outdoor_img {
+    display: flex;
+    justify-content: space-between
+}
+
+.b01__outdoor_img .item {
+    text-align: center
+}
+
+.b01__outdoor_img .item .en {
+    color: #d8d056;
+    font-family: Montserrat,sans-serif;
+    font-weight: 700
+}
+
+.b01__outdoor_img .item .jp {
+    color: #fff;
+    font-weight: 700
+}
+
+.b01__spots {
+    position: relative;
+    background-color: #f2efeb
+}
+
+.b01__spots_ship {
+    position: absolute;
+    z-index: 105
+}
+
+.b01__spots_bnr {
+    box-shadow: 0 0 12px 4px rgba(0,0,0,.05);
+    margin: 0 auto
+}
+
+.b01__spots_bnr_img {
+    display: flex;
+    justify-content: space-between
+}
+
+.b01__spots_bnr_img .img {
+    position: relative
+}
+
+.b01__spots_bnr_img .pin {
+    position: absolute
+}
+
+.b01__spots_bnr_img .txt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #1e3655;
+    color: #fff;
+    text-align: center;
+    font-weight: 700
+}
+
+.b01__spots_bnr .ttl {
+    font-weight: 700
+}
+
+.b01__news {
+    position: relative
+}
+
+.b01__news_ttl .ttl {
+    font-weight: 700
+}
+
+.b01__news_more {
+    text-align: right
+}
+
+.b01__news_more .svg-arrow {
+    fill: #16695f
+}
+
+.b01__news_more .svg-arrow-2 {
+    fill: #fff
+}
+
+.b01__news_more .m__link:hover {
+    color: #16695f
+}
+
+.b01__footer {
+    position: relative
+}
+
+.b01__footer_camp {
+    position: absolute
+}
+
+.c__localnav_list {
+    display: flex;
+    justify-content: center;
+    overflow: hidden
+}
+
+.c__localnav_item {
+    position: relative;
+    text-align: center
+}
+
+.c__localnav_item:hover .label {
+    color: #16695f
+}
+
+.c__localnav_item:hover .gif--off {
+    display: none
+}
+
+.c__localnav_item:hover .gif--on {
+    display: block
+}
+
+.c__localnav_item .icon {
+    position: relative
+}
+
+.c__localnav_item .gif {
+    height: auto;
+    margin: 0 auto
+}
+
+.c__localnav_item .gif--off {
+    display: block
+}
+
+.c__localnav_item .gif--on {
+    display: none
+}
+
+.c__localnav_item .label {
+    display: inline-block;
+    width: 100%;
+    font-weight: 700;
+    transition: .3s
+}

@@ -5,7 +5,9 @@ from wtforms.validators import InputRequired
 from ..utils.forms import AddressForm, DeleteConfirmationForm
 from ..user.forms import UserForm
 
-# Faction Related Forms ###########################################################################
+###############################################################################################
+# Faction Related Forms #######################################################################
+###############################################################################################
 class FactionEnrollmentAddForm(FlaskForm):
     faction_id = StringField("Faction ID")
     temporal_hierarchy_id = StringField("Temporal Hierarchy ID")
@@ -32,12 +34,16 @@ class FactionForm(FlaskForm):
 class FactionDeleteForm(DeleteConfirmationForm):
     pass
 
-# Attendee Related Forms ##########################################################################
+###############################################################################################
+# Attendee Related Forms ######################################################################
+###############################################################################################
 class AttendeeForm(UserForm):
     """
     Class representing an Attendee Form.
 
-    This class represents a form for creating an Attendee. It includes fields for the attendee's first name, last name, faction ID, and organization ID. The form can be submitted to create the attendee.
+    This class represents a form for creating an Attendee. It includes fields for the attendee's
+    first name, last name, faction ID, and organization ID. The form can be submitted to create
+    the attendee.
 
     Attributes:
         first_name (StringField): The field for the attendee's first name.
@@ -111,3 +117,31 @@ class AttendeeFacilityClassEnrollmentForm(FlaskForm):
 
     submit = SubmitField("Submit")
 
+###############################################################################################
+# Leader Related Forms ########################################################################
+###############################################################################################
+class LeaderForm(UserForm):
+    """
+    Class representing a Leader Form.
+
+    This class represents a form for creating a Leader. It includes fields for the leader's
+    first name, last name, and faction ID. The form can be submitted to create the leader.
+
+    Attributes:
+        first_name (StringField): The field for the leader's first name.
+        last_name (StringField): The field for the leader's last name.
+        faction_id (SelectField): The field for selecting the leader's faction.
+        organization_id (SelectField): The field for selecting the leader's organization.
+        submit (SubmitField): The field for submitting the form.
+    """
+
+    first_name = StringField("First Name", validators=[InputRequired()])
+    last_name = StringField("Last Name", validators=[InputRequired()])
+    faction_id = SelectField(
+        "Faction", coerce=int, validators=[InputRequired("Faction required!")]
+    )
+    organization_id = SelectField(
+        "Organization", coerce=int, validators=[InputRequired("Organization required!")]
+    )
+
+    submit = SubmitField("Submit")
