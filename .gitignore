@@ -16,3 +16,18 @@ build/
 .env
 .vscode/launch.json
 .vscode/settings.json
+scss/static/.webassets-cache/
+scss/static/gen/packed.css
+scss/static/gen/packed.js
+migrations/*
+test/
+
+*.old.*
+lib/
+plugins/
+scss/static/images/color picker/
+scss/static/images/jPicker/
+scss/static/images/splash/
+*.psd
+*.webp
+symfony

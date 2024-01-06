@@ -1,5 +1,7 @@
 """ This module defines the models for the organization blueprint. """
 import datetime
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 from ..database import db, CRUDMixin
 
 # Organization Related Models.
@@ -27,32 +29,40 @@ class Organization(CRUDMixin, db.Model):
 
     ### Methods
     - `__repr__()`:
-        - Returns a string representation of the organization.
+        - Returns a String representation of the organization.
     """
-
     __tablename__ = "organization"
-    id = db.Column(db.Integer, primary_key=True, autoincrement="auto")
-    name = db.Column(db.String(255), nullable=False)
-    short_name = db.Column(db.String(50))
-    description = db.Column(db.String(255), nullable=False)
-    avatar_url = db.Column(db.String(255))
-    parent_id = db.Column(db.Integer, db.ForeignKey('organization.id'))
-#    address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
-#    slug = db.Column(db.String(255), nullable=False, unique=True)
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    name = Column(String(255), nullable=False)
+    abbreviation = Column(String(50))
+    description = Column(Text)
+    avatar_url = Column(String(255))
+    slug = Column(String(255), nullable=False, unique=True)
+
     # Relationships
-    parent = db.relationship("Organization", remote_side=[id], backref="children")
-#    address = db.relationship("Address", backref="organization", lazy=True)
-    facilities = db.relationship("Facility", backref="organization", lazy=True)
-    factions = db.relationship("Faction", backref="organization", lazy=True)
+    parent_id = Column(Integer, ForeignKey('organization.id'))
+    parent = relationship("Organization", remote_side=[id])
+
+    address_id = Column(Integer, ForeignKey('address.id'))
+    address = relationship("Address")
+
+
+    facilities = relationship("Facility", backref="organization", lazy=True)
+    factions = relationship("Faction", backref="organization", lazy=True)
+
     # Timestamps
-    created_at = db.Column(
-        db.DateTime(timezone=True),
+    created_at = Column(
+        DateTime(timezone=True),
         default=datetime.datetime.utcnow
     )
-    updated_at = db.Column(
-        db.DateTime(timezone=True),
+    updated_at = Column(
+        DateTime(timezone=True),
         default=datetime.datetime.utcnow
     )
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.name!r})"
+
+    def __str__(self):
+        return self.name
