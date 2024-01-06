@@ -1,0 +1,26 @@
+{% from "macros/fields.html" import render_text_field, render_select_field %}
+{% extends "layout.jinja2" %}
+
+{% block title %}
+  {% if address %}Manage{% else %}Add{% endif %} An Address
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>{% if address %}Manage{% else %}Add{% endif %} An Address</h1>
+    <form name="manage_address" method="post" novalidate class="form">
+        <div class="form__container">
+            {{ render_text_field(form.name) }}
+            {{ render_text_field(form.line1) }}
+            {{ render_text_field(form.line2) }}
+            {{ render_text_field(form.city) }}
+            {{ render_select_field(form.state) }}
+            {{ render_select_field(form.country) }}
+            {{ render_text_field(form.postal_code) }}
+            {{form.hidden_tag()}}
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+  </div>
+{% endblock %}

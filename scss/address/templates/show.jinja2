@@ -1,0 +1,43 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}{{ address.name }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>{% if address.name %}{{ address.name }}{% else %}Address{% endif %}</h1>
+      <ul id="address.id">
+        <li>
+          <span class="field-name">Name:</span>
+          <span class="field-value">{{ address.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Street:</span>
+          <span class="field-value">{{ address.line1 }}</span>
+        </li>
+        {% if address.line2 is defined and address.line2 %}
+        <li>
+          <span class="field-name">Line 2:</span>
+          <span class="field-value">{{ address.line2 }}</span>
+        </li>
+        {% endif %}
+        <li>
+          <span class="field-name">City:</span>
+          <span class="field-value">{{ address.city }}</span>
+        </li>
+        <li>
+          <span class="field-name">State:</span>
+          <span class="field-value">{{ address.state }}</span>
+        </li>
+        <li>
+          <span class="field-name">Country:</span>
+          <span class-"field-value">{{ address.country }}</span>
+        </li>
+        <li>
+          <span class="field-name">Postal Code:</span>
+          <span class="field-value">{{ address.postal_code }}</span>
+      </ul>
+      {% if current_user.is_admin %}
+      {% include "components/mini_menu.html" %}
+      {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout.jinja2' %}
+
+{% block title %}
+    {% if not title %}Organizations{% else %}{{ title }}{% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url_for('organization.organization_list') }}">Admin</a></li>
+        <li class="active">Organizations</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    {% if datatable %}
+    <div id="pjax-container">
+        {% include 'organizations.jinja2' %}
+    </div>
+    {% else %}
+    <h1>Organizations</h1>
+    <ul>
+        {% for organization in organizations %}
+            <li>
+                <a href="{{ url_for('organization.organization_show', id=organization.id) }}">
+                    {{ organization.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="{{ url_for('organization.organization_add') }}">Add New Organization</a>
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}
