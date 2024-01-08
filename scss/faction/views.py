@@ -1,19 +1,23 @@
-""" This module contains the routes for the faction blueprint. """
+""" Faction Related Views. """
 from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_required
+
 from ..database import DataTable
-from ..utils.utils import set_form_choices, gettext
-from ..utils.forms import DeleteConfirmationForm
-from ..utils.models import Address
-from ..organization.models import Organization
+from ..utils.forms import DeleteConfirmationForm,set_form_choices
+
+from ..organization.models.organization import Organization
+from ..faction import bp as fac_bp
+
+from .models.faction import Faction
+from .models.attendee import Attendee
+from .models.leader import Leader
 from .forms import FactionForm, AttendeeForm, LeaderForm
-from .models import Faction, Attendee, Leader
-from ..faction import faction
+
 
 ###################################################################################################
 # Faction Related Routes ##########################################################################
 ###################################################################################################
-@faction.route("/factions", methods=["GET"], strict_slashes=False)
+@fac_bp.route("/factions", methods=["GET"], strict_slashes=False)
 def faction_list():
     """
     Render the faction list page.
@@ -45,7 +49,8 @@ def faction_list():
 
     return render_template("faction_list.jinja2", datatable=datatable, title=gettext("Faction"), )
 
-@faction.route("/factions/<int:id>", methods=["GET"], strict_slashes=False)
+
+@fac_bp.route("/factions/<int:id>", methods=["GET"], strict_slashes=False)
 def faction_show(id):
     """Renders a template to display the details of a specific faction.
         Args:
@@ -57,7 +62,8 @@ def faction_show(id):
     fac = Faction.query.get_or_404(id)
     return render_template("faction_show.jinja2", faction=fac)
 
-@faction.route('/factions/add', methods=['GET', 'POST'])
+
+@fac_bp.route('/factions/add', methods=['GET', 'POST'])
 @login_required
 def faction_add():
     """Renders a template to add a new faction.
@@ -72,14 +78,6 @@ def faction_add():
 
     if request.method == 'POST':
         if form.validate():
-#            addr = Address.create(
-#            line1=form.data['address_id']['line1'],
-#            line2=form.data['address_id']['line2'],
-#            city=form.data['address_id']['city'],
-#            state=form.data['address_id']['state'],
-#            postal_code=form.data['address_id']['postal_code'],
-#            country=form.data['address_id']['country'])
-
             fac = Faction.create(
                 name = form.name.data,
                 short_name = form.short_name.data,
@@ -97,7 +95,8 @@ def faction_add():
                     flash(f"Error in field '{field}': {error}")
     return render_template("faction_manage.jinja2", form=form)
 
-@faction.route("/factions/<int:id>/manage", methods=["GET", "POST"])
+
+@fac_bp.route("/factions/<int:id>/manage", methods=["GET", "POST"])
 @login_required
 def faction_manage(id):
     """Edit the details of a faction.
@@ -127,7 +126,8 @@ def faction_manage(id):
 
     return render_template("faction_manage.jinja2", form=form, faction=fac)
 
-@faction.route('/factions/<int:id>/delete', methods=['GET', 'POST'])
+
+@fac_bp.route('/factions/<int:id>/delete', methods=['GET', 'POST'])
 @login_required
 def faction_delete(id):
     """
@@ -152,12 +152,13 @@ def faction_delete(id):
 
             flash('Faction deletion cancelled.')
         return redirect(url_for('faction.faction_list'))
-    return render_template('faction_delete.jinja2', form=form)
+    return render_template('delete.jinja2', form=form)
+
 
 ###################################################################################################
 # Attendee Related Routes #########################################################################
 ###################################################################################################
-@faction.route("/attendees", methods=["GET"], strict_slashes=False)
+@fac_bp.route("/attendees", methods=["GET"], strict_slashes=False)
 @login_required
 def attendee_list():
     """Renders a template to display a list of attendees.
@@ -188,7 +189,8 @@ def attendee_list():
 
     return render_template("attendee_list.jinja2", datatable=datatable)
 
-@faction.route("/attendees/<int:id>", methods=["GET"], strict_slashes=False)
+
+@fac_bp.route("/attendees/<int:id>", methods=["GET"], strict_slashes=False)
 @login_required
 def attendee_show(id):
     """Renders a template to display the details of a specific attendee.
@@ -201,7 +203,8 @@ def attendee_show(id):
     att = Attendee.query.get_or_404(id)
     return render_template("show.jinja2", attendee=att)
 
-@faction.route("/attendees/add", methods=["GET", "POST"])
+
+@fac_bp.route("/attendees/add", methods=["GET", "POST"])
 @login_required
 def attendee_add():
     """Renders a template to add a new attendee.
@@ -244,7 +247,8 @@ def attendee_add():
                     flash(f"Error in field '{field}': {error}")
     return render_template("attendee_manage.jinja2", form=form)
 
-@faction.route("/attendees/<int:id>/manage", methods=["GET", "POST"], strict_slashes=False)
+
+@fac_bp.route("/attendees/<int:id>/manage", methods=["GET", "POST"], strict_slashes=False)
 @login_required
 def attendee_manage(id):
     """Edit the details of an attendee.
@@ -279,7 +283,8 @@ def attendee_manage(id):
 
     return render_template("attendee_manage.jinja2", form=form, attendee=att)
 
-@faction.route('/attendees/<int:id>/delete', methods=['GET', 'POST'])
+
+@fac_bp.route('/attendees/<int:id>/delete', methods=['GET', 'POST'])
 @login_required
 def attendee_delete(id):
     """
@@ -304,12 +309,13 @@ def attendee_delete(id):
 
             flash('Attendee deletion cancelled.')
         return redirect(url_for('faction.attendee_list'))
-    return render_template('attendee_delete.jinja2', form=form)
+    return render_template('delete.jinja2', form=form)
+
 
 ###################################################################################################
 # Leader Related Routes ###########################################################################
 ###################################################################################################
-@faction.route("/leaders", methods=["GET"], strict_slashes=False)
+@fac_bp.route("/leaders", methods=["GET"], strict_slashes=False)
 @login_required
 def leader_list():
     """Renders a template to display a list of leaders.
@@ -334,13 +340,14 @@ def leader_list():
         limits=[25, 50, 100],
         request=request,
     )
-    
+
 #    if g.pjax:
 #        return render_template("leaders.jinja2", datatable=datatable)
 
     return render_template("leader_list.jinja2", datatable=datatable)
 
-@faction.route("/leaders/<int:id>", methods=["GET"], strict_slashes=False)
+
+@fac_bp.route("/leaders/<int:id>", methods=["GET"], strict_slashes=False)
 @login_required
 def leader_show(id):
     """Renders a template to display the details of a specific leader.
@@ -353,7 +360,8 @@ def leader_show(id):
     lead = Leader.query.get_or_404(id)
     return render_template("leader_show.jinja2", leader=lead)
 
-@faction.route("/leaders/add", methods=["GET", "POST"])
+
+@fac_bp.route("/leaders/add", methods=["GET", "POST"])
 @login_required
 def leader_add():
     """Renders a template to add a new leader.
@@ -398,7 +406,8 @@ def leader_add():
             flash(msg)
     return render_template("leader_manage.jinja2", form=form)
 
-@faction.route("/leaders/<int:id>/manage", methods=["GET", "POST"], strict_slashes=False)
+
+@fac_bp.route("/leaders/<int:id>/manage", methods=["GET", "POST"], strict_slashes=False)
 @login_required
 def leader_manage(id):
     """Edit the details of a leader.
@@ -433,7 +442,8 @@ def leader_manage(id):
 
     return render_template("leader_manage.jinja2", form=form, leader=lead)
 
-@faction.route('/leaders/<int:id>/delete', methods=['GET', 'POST'])
+
+@fac_bp.route('/leaders/<int:id>/delete', methods=['GET', 'POST'])
 @login_required
 def leader_delete(id):
     """

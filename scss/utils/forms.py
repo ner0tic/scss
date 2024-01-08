@@ -1,52 +1,6 @@
+""" Utility Forms. """
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField, HiddenField
-from wtforms.validators import InputRequired
-from wtform_address import CountrySelectField, StateSelectField
-
-
-class AddressForm(FlaskForm):
-    """
-    Module: forms
-
-    This module defines form fields for address information.
-
-    Classes:
-        StringField:
-            A form field for a string input.
-            Args:
-                label: The label for the field.
-                validators: Optional list of validators for the field.
-            Returns:
-                An instance of the StringField class.
-
-        StateSelectField:
-            A form field for selecting a state.
-            Args:
-                default: The default value for the field.
-            Returns:
-                An instance of the StateSelectField class.
-
-        CountrySelectField:
-            A form field for selecting a country.
-            Args:
-                default: The default value for the field.
-            Returns:
-                An instance of the CountrySelectField class."""
-
-    # name = StringField('Name')
-    line1 = StringField("Street", validators=[InputRequired("Street required!")])
-    line2 = StringField("Street Line 2")
-    city = StringField("City", validators=[InputRequired("City required!")])
-    state = StateSelectField(
-        default="US-ME"
-    )
-    postal_code = StringField(
-        "Postal Code", validators=[InputRequired("Postal Code required!")]
-    )
-    country = CountrySelectField(
-        default="US"
-    )
-#    submit = SubmitField("Submit")
+from wtforms import BooleanField, HiddenField # , SubmitField
 
 class DeleteConfirmationForm(FlaskForm):
     """
@@ -65,3 +19,42 @@ class DeleteConfirmationForm(FlaskForm):
     confirm = BooleanField("Confirm deletion?")
     id = HiddenField("Element ID")
 #    submit = SubmitField("Delete")
+
+def set_form_choices(form, choices_mapping):
+    """Sets the choices for select form fields in a given form.
+    Args:
+        form: The form to set the choices for.
+        choices_mapping: A dictionary mapping field names to choices.
+            Each key-value pair represents a form field name and its corresponding choices.
+            The value can be a list of tuples or a query object.
+    Returns:
+        None.
+    """
+    for field_name, choices in choices_mapping.items():
+        if field_name in form._fields:
+            if isinstance(choices, list):
+                form._fields[field_name].choices = choices
+            else:
+                form._fields[field_name].choices = generate_choices_from_query(choices)
+
+def generate_choices_from_list(list, label_attr='name', value_attr='id'):
+    """Generates choices from a list.
+    Args:
+        list: The list to generate choices from.
+        label_attr: The attribute of the list item to use as the choice label. Default is 'name'.
+        value_attr: The attribute of the list item to use as the choice value. Default is 'id'.
+    Returns:
+        A list of tuples representing the choices.
+    """
+    return [(0, 'None')]+[(getattr(item, value_attr), getattr(item, label_attr)) for item in list]
+
+def generate_choices_from_query(query, label_attr='name', value_attr='id'):
+    """Generates choices from a query object.
+    Args:
+        query: The query object to generate choices from.
+        label_attr: The attribute of the query object to use as the choice label. Default is 'name'.
+        value_attr: The attribute of the query object to use as the choice value. Default is 'id'.
+    Returns:
+        A list of tuples representing the choices.
+    """
+    return [(0, 'None')]+[(getattr(item, value_attr), getattr(item, label_attr)) for item in query]

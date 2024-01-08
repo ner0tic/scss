@@ -1,17 +1,19 @@
 """ This module defines the routes for the course blueprint. """
 from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_required
+
 from ..database import DataTable
-from ..utils.utils import set_form_choices, gettext
-from ..utils.forms import DeleteConfirmationForm
+from ..utils.utils import  gettext
+from ..utils.forms import set_form_choices, DeleteConfirmationForm
+from ..course import bp as crs_bp
+
 from .models import Course, Requirement
 from .forms import CourseForm, RequirementForm
-from ..course import course
 
 ###################################################################################################
 # Course Related Routes ###########################################################################
 ###################################################################################################
-@course.route("/courses/", methods=["GET"], strict_slashes=False)
+@crs_bp.route("/courses/", methods=["GET"], strict_slashes=False)
 def course_list():
     """
     Render the course list page.
@@ -49,7 +51,7 @@ def course_list():
         title=gettext("Course"),
     )
 
-@course.route("/courses/<int:id>", methods=["GET"], strict_slashes=False)
+@crs_bp.route("/courses/<int:id>", methods=["GET"], strict_slashes=False)
 def course_show(id):
     """Renders a template to edit a specific course.
     Args:
@@ -61,7 +63,7 @@ def course_show(id):
     crs = Course.query.get_or_404(id)
     return render_template("course_show.jinja2", course=crs)
 
-@course.route("/courses/add", methods=["GET", "POST"])
+@crs_bp.route("/courses/add", methods=["GET", "POST"])
 @login_required
 def course_add():
     """Renders a template to add a new course.
@@ -89,7 +91,7 @@ def course_add():
             flash(msg)
     return render_template("course_manage.jinja2", form=form)
 
-@course.route("/courses/<int:id>/manage", methods=["GET", "POST"])
+@crs_bp.route("/courses/<int:id>/manage", methods=["GET", "POST"])
 @login_required
 def course_manage(id):
     """Edit the details of a course.
@@ -117,7 +119,7 @@ def course_manage(id):
 
     return render_template("course_manage.jinja2", form=form, course=crs)
 
-@course.route("/courses/<int:id>/delete", methods=["GET", "POST"])
+@crs_bp.route("/courses/<int:id>/delete", methods=["GET", "POST"])
 def course_delete(id):
     """
     Delete a course.
@@ -146,7 +148,7 @@ def course_delete(id):
 ###################################################################################################
 # Requirement Related Routes ######################################################################
 ###################################################################################################
-@course.route("/courses/<int:id>/requirements", methods=["GET"], strict_slashes=False)
+@crs_bp.route("/courses/<int:id>/requirements", methods=["GET"], strict_slashes=False)
 def requirement_list(id):
     """
     Render the requirement list page.
@@ -185,7 +187,7 @@ def requirement_list(id):
         title=gettext("Requirement"),
     )
     
-@course.route("/courses/<int:id>/requirements/<int:rid>", methods=["GET"], strict_slashes=False)    
+@crs_bp.route("/courses/<int:id>/requirements/<int:rid>", methods=["GET"], strict_slashes=False)    
 def requirement_show(id, rid):
     """Renders a template to edit a specific requirement.
     Args:
@@ -197,7 +199,7 @@ def requirement_show(id, rid):
     req = Requirement.query.get_or_404(rid)
     return render_template("requirement_show.jinja2", requirement=req)
 
-@course.route("/courses/<int:id>/requirements/add", methods=["GET", "POST"])
+@crs_bp.route("/courses/<int:id>/requirements/add", methods=["GET", "POST"])
 @login_required
 def requirement_add(id):
     """Renders a template to add a new requirement.
@@ -225,7 +227,7 @@ def requirement_add(id):
             flash(msg)
     return render_template("requirement_manage.jinja2", form=form)
 
-@course.route("/courses/<int:id>/requirements/<int:rid>/manage", methods=["GET", "POST"])
+@crs_bp.route("/courses/<int:id>/requirements/<int:rid>/manage", methods=["GET", "POST"])
 @login_required
 def requirement_manage(id, rid):
     """Edit the details of a requirement.
@@ -252,7 +254,7 @@ def requirement_manage(id, rid):
 
     return render_template("requirement_manage.jinja2", form=form, requirement=req)
 
-@course.route("/courses/<int:id>/requirements/<int:rid>/delete", methods=["GET", "POST"])
+@crs_bp.route("/courses/<int:id>/requirements/<int:rid>/delete", methods=["GET", "POST"])
 def requirement_delete(id, rid):
     """
     Delete a requirement.

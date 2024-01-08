@@ -9,7 +9,8 @@ from wtforms import (
     HiddenField,
 )
 from wtforms.validators import InputRequired
-from ..utils.forms import AddressForm
+
+from ..address.forms import AddressForm
 from ..user.forms import UserForm
 
 class FacilityForm(FlaskForm):

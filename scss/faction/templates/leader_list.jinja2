@@ -1,0 +1,36 @@
+{% extends 'layout.jinja2' %}
+
+{% block title %}
+    {% if not title %}Leaders{% else %}{{ title }}{% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url_for('faction.leader_list') }}">Admin</a></li>
+        <li class="active">Leaders</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    {% if datatable %}
+    <div id="pjax-container">
+        {% include 'leaders.jinja2' %}
+    </div>
+    {% else %}
+    <h1>Leaders</h1>
+    <ul>
+        {% for leader in leaders %}
+            <li>
+                <a href="{{ url_for('faction.leader_show', id=faction.id) }}">
+                    {{ faction.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="{{ url_for('faction.leader_add') }}">Add New Leader</a>
+
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}

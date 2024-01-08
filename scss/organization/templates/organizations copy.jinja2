@@ -1,0 +1,41 @@
+{% from 'components/table.html' import table_header %}
+{% from 'components/pagination.html' import pagination %}
+{% from 'components/search.html' import search %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{ search('Search for an Organization') }}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            {{ table_header(datatable, actions=True) }}
+            <tbody>
+                {% for o in datatable.query.items %}
+                    <tr>
+                        <td><a href="{{ url_for('.'+request.blueprint+'_manage', id=o.id) }}">{{ o.name }}</a></td>
+                        <td>{{ o.short_name }}</td>
+                        <td>{{ o.description | truncate}}</td>
+                        {% if o.avatar_url %}
+                            <td><img src="{{ url_for('static', filename='uploads/'+o.avatar_url) }}" alt="{{ o.name }}" class="img-responsive" style="max-height: 50px;"></td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        <td>{{ timeago(o.created_at) }}</td>
+                        <td>{{ o.remote_addr }}</td>
+                        <td>
+                            {% set dialogue = 'Are you sure you want to delete {o.name}?' %}
+                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.'+request.blueprint+'_delete', id=o.id) }}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="{{ datatable.colspan }}">No results found for: {{ request.values.get('query') }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        {{ pagination(datatable.query, datatable.limits) }}
+    </div>
+</div>

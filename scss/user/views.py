@@ -1,13 +1,17 @@
 """ User views. """
 from flask import request, redirect, url_for, render_template, flash, g
-from flask_babel import gettext
+# from flask_babel import gettext
 from flask_login import login_required
+
+from ..utils.utils import gettext
+from ..database import DataTable
+from ..user import bp as user_bp
+
 from .models import User
 from .forms import EditUserForm
-from ..database import DataTable
-from ..user import user
 
-@user.route('/list', methods=['GET', 'POST'])
+
+@user_bp.route('/list', methods=['GET', 'POST'])
 @login_required
 def user_list():
     """
@@ -34,7 +38,7 @@ def user_list():
 
     return render_template('list.html', datatable=datatable)
 
-@user.route('/edit/<int:id>', methods=['GET', 'POST'])
+@user_bp.route('/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
     """
@@ -59,7 +63,7 @@ def edit(id):
     return render_template('edit.html', form=form, user=usr)
 
 
-@user.route('/delete/<int:id>', methods=['GET'])
+@user_bp.route('/delete/<int:id>', methods=['GET'])
 @login_required
 def delete(id):
     """

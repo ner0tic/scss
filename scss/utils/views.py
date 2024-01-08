@@ -1,12 +1,7 @@
 """ This module contains the views for the utils blueprint. """
 import datetime
 from flask import g, render_template, request
-#from flask_babel import gettext
 from flask_login import login_required, current_user
-from ..utils.models import Address
-from .utils import gettext
-# from scss.utils import generate_choices_from_list
-from .forms import AddressForm
 
 from ..utils import utils_bp
 
@@ -30,15 +25,5 @@ def before_request():
     g.request_time = lambda: '%.5fs' % (datetime.time() - g.request_start_time)
     g.pjax = 'X-PJAX' in request.headers
 
-@utils_bp.route('/list', methods=['GET'])
-@login_required
-def address_list():
-    """Renders a template to display a list of organizations.
-    Returns:
-        The rendered template for displaying the list of organizations.
-    """
 
-    return render_template("list.jinja2",
-                            addresses=Address.query().all(),
-                            title=gettext("All Addresses"))
     

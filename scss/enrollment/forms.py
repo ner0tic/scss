@@ -10,7 +10,7 @@ class EditTemporalHierarchyForm(FlaskForm):
 
     Attributes:
         name (StringField): The field for the hierarchy's name.
-        short_name (StringField): The field for the hierarchy's short name.
+        abbreviation (StringField): The field for the hierarchy's short name.
         description (TextAreaField): The field for the hierarchy's description.
         avatar_url (StringField): The field for the hierarchy's avatar URL.
         parent (SelectField): The field for selecting the hierarchy's parent.
@@ -19,7 +19,7 @@ class EditTemporalHierarchyForm(FlaskForm):
     """
 
     name = StringField("Name", validators=[InputRequired()])
-    short_name = StringField("Short Name")
+    abbreviation = StringField("Short Name")
     description = TextAreaField("Description", validators=[InputRequired()])
     avatar_url = StringField("Avatar URL")
     parent = SelectField(

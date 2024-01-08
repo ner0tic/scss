@@ -13,7 +13,7 @@ from flask_travis import Travis
 from flask_caching import Cache
 from flask_principal import Principal
 
-admin = Admin()
+admin = Admin(name='scss', template_mode='bootstrap3')
 assets = Environment()
 babel = Babel()
 bcrypt = Bcrypt()

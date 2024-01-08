@@ -1,28 +1,15 @@
 """ The main application package. """
-import datetime
 from flask import Flask, g, render_template, request
 from flask_login import login_required
 import arrow
-import requests
+
 from . import config
 from .assets import assets
 from .auth import auth
 from .commands import create_db, drop_db, populate_db, recreate_db
 from .database import db
-from .extensions import (
-    lm,
-    admin,
-    principals,
-    travis,
-    mail,
-    migrate,
-    bcrypt,
-    babel,
-    rq,
-    limiter,
-    cache,
-)  # , nav
-from .user import user
+from .extensions import *
+from .user import bp as usr_bp
 from .utils import utils_bp
 from .utils.utils import (
     url_for_other_page,
@@ -30,12 +17,13 @@ from .utils.utils import (
     NOT_FOUND,
     UNAUTHORIZED,
 )
-from .organization import organization
+from .admin_bp.models import BaseModelView
+from .organization import bp as org_bp
+from .organization.models.organization import Organization
 from .enrollment import enrollment
-from .facility import facility
-from .faction import faction
-from .course import course
-
+from .facility import bp as fac_bp
+from .faction import bp as fcn_bp
+from .course import bp as crs_bp
 
 def create_app(config=config.base_config):
     """Returns an initialized Flask application."""
@@ -43,13 +31,15 @@ def create_app(config=config.base_config):
     app = Flask(__name__)
     app.config.from_object(config)
 
-    register_extensions(app)
-    register_blueprints(app)
-    register_errorhandlers(app)
-    register_jinja_env(app)
-    register_commands(app)
-
     with app.app_context():
+        register_extensions(app)
+        register_blueprints(app)
+        register_errorhandlers(app)
+        register_jinja_env(app)
+        register_commands(app)
+
+        #add_admin_views()
+
         db.create_all()
 
     return app
@@ -107,15 +97,18 @@ def register_extensions(app):
 
 def register_blueprints(app):
     """Register blueprints with the Flask application."""
-    app.register_blueprint(auth)
-    app.register_blueprint(course)
+    app.register_blueprint(auth, url_prefix="/auth")
+    app.register_blueprint(crs_bp)
     app.register_blueprint(enrollment)
-    app.register_blueprint(facility)
-    app.register_blueprint(faction)
-    app.register_blueprint(organization)
-    app.register_blueprint(user, url_prefix="/user")
+    app.register_blueprint(fac_bp)
+    app.register_blueprint(fcn_bp)
+    app.register_blueprint(org_bp)
+    app.register_blueprint(usr_bp, url_prefix="/user")
     app.register_blueprint(utils_bp)
 
+def add_admin_views():
+    """ Add views to the flask-admin object. """
+    admin.add_view(BaseModelView(Organization, db, name='org'))
 
 def register_errorhandlers(app):
     """Register error handlers with the Flask application."""

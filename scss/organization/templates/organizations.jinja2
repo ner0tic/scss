@@ -13,7 +13,7 @@
                 {% for o in datatable.query.items %}
                     <tr>
                         <td><a href="{{ url_for('.'+request.blueprint+'_manage', id=o.id) }}">{{ o.name }}</a></td>
-                        <td>{{ o.short_name }}</td>
+                        <td>{{ o.abbreviation }}</td>
                         <td>{{ o.description | truncate}}</td>
                         {% if o.avatar_url %}
                             <td><img src="{{ url_for('static', filename='uploads/'+o.avatar_url) }}" alt="{{ o.name }}" class="img-responsive" style="max-height: 50px;"></td>

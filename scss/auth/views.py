@@ -1,18 +1,19 @@
 """ Auth views. """
 from flask import current_app, request, redirect, url_for, render_template, flash, abort
-#from flask_babel import gettext
 from flask_login import login_user, login_required, logout_user
 from itsdangerous import URLSafeSerializer, BadSignature
-from .forms import LoginForm
+
 from ..extensions import lm
 from ..jobs import send_registration_email
 from ..user.models import User
-from ..utils.models import Address
-from ..utils.forms import AddressForm
+from ..address.models import Address
+from ..address.forms import AddressForm
 from ..utils.utils import gettext
 from ..user.forms import RegisterUserForm
-
 from ..auth import auth
+
+from .forms import LoginForm
+
 
 
 @lm.user_loader

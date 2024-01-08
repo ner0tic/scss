@@ -1,6 +1,6 @@
 """ User Blueprint """
 from flask import Blueprint
 
-user = Blueprint('user', __name__, template_folder='templates')
+bp = Blueprint('user', __name__, template_folder='templates')
 
 from . import views

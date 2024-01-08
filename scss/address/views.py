@@ -3,8 +3,7 @@ from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_required
 
 from ..database import DataTable
-from ..utils.forms import DeleteConfirmationForm
-from ..utils.utils import set_form_choices, generate_choices_from_list
+from ..utils.forms import DeleteConfirmationForm, set_form_choices, generate_choices_from_list
 
 from ..address import bp as addy_bp
 from .models import Address

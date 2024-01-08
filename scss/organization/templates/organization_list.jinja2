@@ -1,34 +1,34 @@
 {% extends 'layout.jinja2' %}
 
 {% block title %}
-    {% if not title %}Organizations{% else %}{{ title }}{% endif %}
+    {% if not title %}Addresses{% else %}{{ title }}{% endif %}
 {% endblock %}
 
 {% block breadcrumb %}
     <ol class="breadcrumb">
-        <li><a href="{{ url_for('organization.organization_list') }}">Admin</a></li>
-        <li class="active">Organizations</li>
+        <li><a href="{{ url_for('address.address_list') }}">Admin</a></li>
+        <li class="active">Addresses</li>
     </ol>
 {% endblock %}
 
 {% block content %}
     {% if datatable %}
     <div id="pjax-container">
-        {% include 'organizations.jinja2' %}
+        {% include 'addresses.jinja2' %}
     </div>
     {% else %}
-    <h1>Organizations</h1>
+    <h1>Addresses</h1>
     <ul>
-        {% for organization in organizations %}
+        {% for address in addresses %}
             <li>
-                <a href="{{ url_for('organization.organization_show', id=organization.id) }}">
-                    {{ organization.name }}
+                <a href="{{ url_for('address.address_show', id=address.id) }}">
+                    {{ address.name }} {{address.line1 }} {{ address.state }}
                 </a>
             </li>
         {% endfor %}
     </ul>
     {% endif %}
-    <a href="{{ url_for('organization.organization_add') }}">Add New Organization</a>
+    <a href="{{ url_for('address.address_add') }}">Add New Address</a>
 
 {% endblock %}
 
