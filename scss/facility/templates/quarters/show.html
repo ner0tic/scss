@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block title %}[SCSS] - {{ department.name }}{% endblock title %}
+
+{% block content %}
+    <div class="container">
+    <h1>{{ department.name }}</h1>
+      <ul id="department.name">
+        <li>
+          <span class="field-name">Name:</span>
+          <span class="field-value">{{ department.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Abbreviation:</span>
+          <span class="field-value">{{ department.abbreviation }}</span>
+        </li>
+        <li>
+          <span class="field-name">Description:</span>
+          <span class="field-value">{{ department.description }}</span>
+        </li>
+        {% if department.parent is defined and department.parent %}
+        <li>
+          <span class="field-name">Parent:</span>
+          <span class="field-value">{{ department.parent.name }}</span>
+        </li>
+        {% endif %}
+        
+    </div>
+{% endblock content %}

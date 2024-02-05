@@ -1,0 +1,17 @@
+<!-- signin.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<div class="signin-container">
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <h2>Sign In</h2>
+        {{ form.as_p }}
+        <div>
+            <button type="submit">Sign In</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

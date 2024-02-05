@@ -1,0 +1,72 @@
+#header {
+    background: #bdd1ba;
+    height: 100px;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.bird {
+    background-image: url('../../static/images/splash/bird.png');
+    height: 59px;
+    width: 58px;
+    top: 55px;
+    background-size: cover;
+    background-position: center;
+    position: relative;     
+    z-index: 7;
+    right: 10%;
+}
+div.banner {
+    position: relative;
+    z-index: 7;
+    background-image: url('../../static/images/splash/banner.png');
+    width: 572px;
+    height: 133px;
+    background-size: cover;
+    background-position: center;
+    top: 45px;
+}
+#welcome-row {
+    background-image: url('../../static/images/splash/bg.png');
+    background-color: #bdd1ba;
+    background-repeat: no-repeat;
+    vertical-align: top;
+    background-position-x: center;
+    background-position-y: top;
+    min-height: 664px;
+    width: 100%;
+    margin-top: -45px;
+    z-index: 6;
+    position: relative;
+}
+
+.menu {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Proxima-nova-b;
+    color: #fff;
+    background: none;
+    text-decoration: none;
+    text-align: center;
+    padding: 4px;
+    top: 45px;
+}
+.menu li {
+    display: inline;
+}
+
+.menu li a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 6px;
+}
+.menu li a:hover {
+    color: #000;
+}
+
+#splash_features {
+    background-color: #ebd8b3;
+    min-height: 300px;
+}

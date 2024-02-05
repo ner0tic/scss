@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% if org %}
+<h1>Faculty of {{ facility.name }}</h1>
+{% else %}
+<h1>Faculty</h1>
+{% endif %}
+<table id="facultyTable" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fac in faculty %}
+        <tr>
+            <td><a href="{% url 'faculty_show' fac_id=fac.id %}">{{ fac.first_name }}</a></td>
+            <td>{{ fac.last_name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('#facultyTable').DataTable();
+    });
+    </script>
+{% endblock content %}

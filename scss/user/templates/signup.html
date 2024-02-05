@@ -1,0 +1,52 @@
+<!-- register.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<script>
+    function updateUserTypeFields() {
+        var userType = document.getElementById("id_user_type").value;
+        // Show/hide additional fields based on user type
+        document.getElementById("additional_fields_leader").style.display = userType === 'Leader' ? 'block' : 'none';
+        document.getElementById("additional_fields_attendee").style.display = userType === 'Attendee' ? 'block' : 'none';
+        document.getElementById("additional_fields_faculty").style.display = userType === 'Faculty' ? 'block' : 'none';
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("id_user_type").addEventListener('change', updateUserTypeFields);
+        updateUserTypeFields(); // Call on initial load
+    });
+</script>
+
+<form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    {{form.as_p }}
+    <fieldset>
+        <legend>Address</legend>
+        {{ address_form.as_p }}
+    </fieldset>
+    <div id="additional_fields_leader" style="display:none;">
+        <!-- Additional fields for Leader -->
+        <fieldset>
+            <legend>Details</legend>
+            {{ leader_form.as_p }}
+        </fieldset>
+    </div>
+    <div id="additional_fields_attendee" style="display:none;">
+        <!-- Additional fields for Attendee -->
+        <fieldset>
+            <legend>Details</legend>
+            {{ attendee_form.as_p }}
+        </fieldset>
+    </div>
+    <div id="additional_fields_faculty" style="display:none;">
+        <!-- Additional fields for Faculty -->
+        <fieldset>
+            <legend>Details</legend>
+            {{ faculty_form.as_p }}
+        </fieldset>
+    </div>
+    <div>
+
+        <input type="submit" value="Register" />
+    </div>
+</form>
+{% endblock %}

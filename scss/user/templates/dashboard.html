@@ -1,0 +1,17 @@
+<!-- dashboard.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    {% if user_type == 'ATTENDEE' %}
+        {% include 'attendee/attendee_dashboard.html' with display_inline=true %}
+    {% elif user_type == 'LEADER' %}
+        {% include 'leader/leader_dashboard.html' with display_inline=true %}
+    {% elif user_type == 'FACULTY' %}
+        {% include 'faculty/faculty_dashboard.html' with display_inline=true %}
+    {% else %}
+        <p>User type not recognized.</p>
+        <p>user type: {{ user_type }}</p>
+    {% endif %}
+{% endblock %}

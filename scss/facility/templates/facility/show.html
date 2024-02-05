@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}[SCSS] - {{ organization.name }}{% endblock title %}
+
+{% block content %}
+    <div class="container">
+    <h1>{{ organization.name }}</h1>
+      <ul id="organization.name">
+        <li>
+          <span class="field-name">Name:</span>
+          <span class="field-value">{{ organization.name }}</span>
+        </li>
+        <li>
+          <span class="field-name">Abbreviation:</span>
+          <span class="field-value">{{ organization.abbreviation }}</span>
+        </li>
+        <li>
+          <span class="field-name">Description:</span>
+          <span class="field-value">{{ organization.description }}</span>
+        </li>
+        {% if organization.parent is defined and organization.parent %}
+        <li>
+          <span class="field-name">Parent:</span>
+          <span class="field-value">{{ organization.parent.name }}</span>
+        </li>
+        {% endif %}
+        <li>
+          <span class="field-name">Factions:</span>
+          <span class="field-value">{{ organization.factions.count }}</span>
+        </li>
+        <li>
+          <span class="field-name">Facilities:</span>
+          <span class="field-value">{{ organization.facilities.count }}</span>
+        </li>
+        <li>
+          <span class="field-name">Attendees:</span>
+          <span class="field-value">{{ organization.attendees.count }}</span>
+      </ul>
+    <a href="{% url 'index_organizations_parentless' %}">Back to List</a>
+    </div>
+{% endblock content %}

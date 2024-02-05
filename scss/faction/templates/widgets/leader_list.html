@@ -1,0 +1,11 @@
+<!-- widgets/leader_list.html -->
+<div class="widget">
+    <h3>Leaders in Your Faction</h3>
+    <ul>
+        {% for leader in leaders %}
+            <li>{{ leader.first_name }} {{ leader.last_name }}</li>
+        {% empty %}
+            <li>No leaders found.</li>
+        {% endfor %}
+    </ul>
+</div>

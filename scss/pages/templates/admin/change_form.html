@@ -1,0 +1,14 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script src="{% static 'js/dynamic_dropdowns.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block jquery_init %}
+    <script type="text/javascript">
+        setupDynamicDropdowns("{% url 'dynamic-dropdown-options' 'app_label' 'model_name' 'field_name' '123' %}");
+    </script>
+    {{ block.super }}
+{% endblock %}

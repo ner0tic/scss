@@ -1,0 +1,11 @@
+<!-- widgets/attendee_list.html -->
+<div class="widget">
+    <h3>Attendees in Your Faction</h3>
+    <ul>
+        {% for attendee in attendees %}
+            <li>{{ attendee.first_name }} {{ attendee.last_name }}</li>
+        {% empty %}
+            <li>No attendees found.</li>
+        {% endfor %}
+    </ul>
+</div>

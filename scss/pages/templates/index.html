@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block stylesheets_local %}
+{{ block.super }}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/splash.css' %}">
+{% endblock stylesheets_local %}
+
+{% block header %}
+<div id="splash_header">
+    <ul class="menu" id="splash_menu">
+        <li class="active"> <a href="{% url 'index' %}">Home</a> </li>
+        <li> <a href="{% url 'login' %}">Sign In</a> </li>
+        <li> <a href="{% url 'index_organizations_parentless' %}">Organizations & Facilities</a> </li>
+        <li> <a href="{% url 'about' %}">About</a> </li>
+        <li> <a href="{% url 'index' %}">Contact Us</a> </li>
+        <li> <a href="{% url 'register' %}">Sign Up</a> </li>
+    </ul>
+    <div class="bird"></div>
+    <div class="banner"></div>
+</div>
+{% endblock header %}
+{% block content %}
+    {% block welcome %}
+    <div id="welcome-row">
+        <p>&nbsp;</p>
+    </div>
+    {% endblock welcome %}
+    {% block features %}
+    <div id="splash_features">
+        <ul>
+            <li>Stuff!</li>
+        </ul>
+    </div>
+    {% endblock features %}
+{% endblock content %}
+
+{% block footer %}{% endblock %}

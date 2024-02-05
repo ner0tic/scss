@@ -1,0 +1,11 @@
+<!-- widgets/faculty_list.html -->
+<div class="widget">
+    <h3>Faculty</h3>
+    <ul>
+        {% for member in faculty %}
+            <li>{{ member.first_name }} {{ member.last_name }}</li>
+        {% empty %}
+            <li>No faculty found.</li>
+        {% endfor %}
+    </ul>
+</div>

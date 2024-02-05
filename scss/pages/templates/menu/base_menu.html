@@ -1,0 +1,18 @@
+<ul>
+    {% load static %}
+{% for item in menu_items %}
+    <li class="{{ item.css_class }}">
+        {% if item.image %}
+            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+        {% elif item.image_path %}
+            <img src="{% static item.image_path %}" alt="{{ item.title }}" class="{{ item.css_class }}">
+        {% else %}
+            {% if item.url_name %}
+                <a href="{% url item.url_name %}">{{ item.title }}</a>
+            {% else %}
+                {{ item.title }}
+            {% endif %}
+        {% endif %}
+    </li>
+{% endfor %}
+<ul>

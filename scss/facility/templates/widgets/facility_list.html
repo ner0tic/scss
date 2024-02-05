@@ -1,0 +1,11 @@
+<!-- widgets/facility_list.html -->
+<div class="widget">
+    <h3>Facilities</h3>
+    <ul>
+        {% for facility in facilities %}
+            <li>{{ facility.name }}</li>
+        {% empty %}
+            <li>No facilities found.</li>
+        {% endfor %}
+    </ul>
+</div>

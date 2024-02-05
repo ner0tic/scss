@@ -1,0 +1,18 @@
+<!-- templates/register_attendee.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Attendee</title>
+</head>
+<body>
+    <h2>Register Attendee</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    <a
+href="{% url 'login' %}">Already have an account? Login</a>
+
+</body>
+</html>
