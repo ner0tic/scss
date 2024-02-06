@@ -1,9 +1,11 @@
 """ User Related Models. """
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from pages.mixins import NameSlugMixin
+
 
 class User(NameSlugMixin, AbstractUser):
     """User Model."""
@@ -20,6 +22,10 @@ class User(NameSlugMixin, AbstractUser):
     base_role = Role.OTHER
 
     role = models.CharField(max_length=50, choices=Role.choices)
+
+    dashboard_config = models.JSONField(
+        default=dict
+    )  # Stores user-specific dashboard configurations like widgets' order and visibility
 
     def save(self, *args, **kwargs):
         """Save Method."""
