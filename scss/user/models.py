@@ -1,9 +1,11 @@
 """ User Related Models. """
 
-from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 from pages.mixins import NameSlugMixin
 
 
@@ -32,3 +34,25 @@ class User(NameSlugMixin, AbstractUser):
         if not self.pk:
             self.role = self.base_role
             return super().save(*args, **kwargs)
+
+
+    def get_profile(self):
+        """Returns the user's profile based on their role."""
+        if self.role == self.Role.FACULTY:
+            try:
+                return self.facultyprofile
+            except ObjectDoesNotExist:
+                return None
+        elif self.role == self.Role.LEADER:
+            try:
+                return self.leaderprofile
+            except ObjectDoesNotExist:
+                return None
+        elif self.role == self.Role.ATTENDEE:
+            try:
+                return self.attendeeprofile
+            except ObjectDoesNotExist:
+                return None
+        # Add additional conditions for other roles as needed
+        else:
+            return None

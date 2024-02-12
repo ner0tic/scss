@@ -1,0 +1,20 @@
+{% extends 'base/show.html' %}
+
+{% block title_text %}{{ faculty.name }}{% endblock title_text %}
+
+{% block content_header_text %}{{ faculty.name }}{% endblock content_header_text %}
+
+{% block content_list %}
+<tr>
+    <th><span class="field-name">First Name:</span></th>
+    <td><span class="field-value">{{ faculty.first_name }}</span></td>
+</tr>
+<tr>
+    <th><span class="field-name">Last Name:</span></th>
+    <td><span class="field-value">{{ faculty.last_name }}</span></td>
+</tr>
+{% endblock content_list %}
+
+{% block content_footer %}
+<a href="{% url 'faculty_index' %}">Back to List</a>
+{% endblock content_footer %}

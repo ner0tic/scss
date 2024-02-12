@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'pages/base/layout.html' %}
 
 {% block stylesheets_local %}
 {{ block.super }}
@@ -13,7 +13,7 @@
     <ul class="menu" id="splash_menu">
         <li class="active"> <a href="{% url 'index' %}">Home</a> </li>
         <li> <a href="{% url 'login' %}">Sign In</a> </li>
-        <li> <a href="{% url 'index_organizations_parentless' %}">Organizations & Facilities</a> </li>
+        <li> <a href="{% url 'organization_index_parentless' %}">Organizations & Facilities</a> </li>
         <li> <a href="{% url 'about' %}">About</a> </li>
         <li> <a href="{% url 'index' %}">Contact Us</a> </li>
         <li> <a href="{% url 'register' %}">Sign Up</a> </li>

@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'pages/base/layout.html' %}
 
 {% block content %}
 {% if parent_org %}
@@ -19,11 +19,11 @@
     <tbody>
         {% for organization in organizations %}
         <tr>
-            <td><a href="{% url 'show_organization' org_slug=organization.slug %}">{{ organization.name }}</a></td>
+            <td><a href="{% url 'organization_show' organization_slug=organization.slug %}">{{ organization.name }}</a></td>
             <td>{{ organization.description | truncatechars:30 }}</td>
-            <td><a href="{% url 'index_organization_by_parent' org_slug=organization.slug %}">{{ organization.children.count }}</a></td>
-            <td>{{ organization.facilities.count }}</td>
-            <td>{{ organization.factions.count }}</td>
+            <td><a href="{% url 'organization_index_by_parent' organization_slug=organization.slug %}">{{ organization.children.count }}</a></td>
+            <td><a href="{% url 'facility_index_by_organization' organization_slug=organization.slug %}">{{ organization.facilities.count }}</a></td>
+            <td><a href="{% url 'faction_index_by_organization' organization_slug=organization.slug %}">{{ organization.get_total_factions_count }}</a></td>
         </tr>
         {% endfor %}
     </tbody>

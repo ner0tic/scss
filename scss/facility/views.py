@@ -1,9 +1,12 @@
 """ Facility Related Views. """
-from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate, login
+from django.shortcuts import get_object_or_404, redirect, render
+
 from organization.models import Organization
+from user.models import User
+
 from .forms import FacultyRegistrationForm
-from .models import Facility, Faculty, Department, Quarters
+from .models import Department, Facility, Faculty, Quarters
 
 
 def facility_index(request):
@@ -13,12 +16,18 @@ def facility_index(request):
     return render(request, "facility/list.html", {"facilities": facilities})
 
 
-def facility_index_by_organization(request, organization_id=None, organization_slug=None):
+def facility_index_by_organization(
+    request, organization_id=None, organization_slug=None
+):
     """List of facility by Organization."""
     if organization_id:
         organization = get_object_or_404(Organization, id=organization_id)
-    else:
+    elif organization_slug:
         organization = get_object_or_404(Organization, slug=organization_slug)
+    else:
+        profile = request.user.get_profile()
+        if profile:
+            organization = get_object_or_404(Organization, id=organization_id)
 
     facilities = Facility.objects.filter(organization_id=organization.id)
 
@@ -43,19 +52,19 @@ def facility_show(request, facility_id=None, facility_slug=None):
 ##############################
 def faculty_index(request):
     """List of faculty."""
-    faculty = Faculty.objects.all()
+    faculty = User.objects.filter(role='FACULTY')
 
     return render(request, "faculty/list.html", {"faculty": faculty})
 
 
-def faculty_index_by_facility(request, facility_id=None, facililty_slug=None):
+def faculty_index_by_facility(request, facility_id=None, facility_slug=None):
     """List of faculty by Facility."""
     if facility_id:
         facility = get_object_or_404(Facility, id=facility_id)
     else:
         facility = get_object_or_404(Facility, slug=facility_slug)
 
-    faculty = Faculty.objects.filter(facility_id=facility.id)
+    faculty = Faculty.objects.filter(facultyprofile__facility_id=facility.id)
 
     return render(
         request,
@@ -66,9 +75,9 @@ def faculty_index_by_facility(request, facility_id=None, facililty_slug=None):
 
 def faculty_show(request, faculty_id=None, faculty_slug=None):
     if faculty_id:
-        faculty = get_object_or_404(Faculty, pk=faculty_id)
+        faculty = get_object_or_404(User, pk=faculty_id)
     else:
-        faculty = get_object_or_404(Faculty, slug=faculty_slug)
+        faculty = get_object_or_404(User, slug=faculty_slug)
 
     return render(request, "faculty/show.html", {"faculty": faculty})
 

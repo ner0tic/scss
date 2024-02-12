@@ -1,7 +1,13 @@
 """ Enrollment Related Models. """
-from django.db import models
+
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.db import models
+from django.urls import reverse
+
 from pages.mixins import NameSlugMixin
+
+User = get_user_model()
 
 
 class AbstractTemporalHierarchy(NameSlugMixin, models.Model):
@@ -31,6 +37,9 @@ class OrganizationEnrollment(AbstractTemporalHierarchy):  # AKA Season
     def __str__(self):
         return f"[{self.organization.abbreviation}] {self.name}"
 
+    def get_absolute_url(self):
+        return reverse("facility_show", kwargs={"facility_slug": self.slug})
+
 
 class FacilityEnrollment(AbstractTemporalHierarchy):
     """Facility Enrollment Model."""
@@ -38,33 +47,12 @@ class FacilityEnrollment(AbstractTemporalHierarchy):
     organization_enrollment = models.ForeignKey(
         OrganizationEnrollment, on_delete=models.CASCADE
     )
-    facility = models.ForeignKey("facility.Facility", on_delete=models.CASCADE)
+    facility = models.ForeignKey(
+        "facility.Facility", on_delete=models.CASCADE, related_name="enrollments"
+    )
 
     def __str__(self):
         return f"{self.facility.name} - {self.name}"
-
-
-class FactionEnrollment(models.Model):
-    """Faction Enrollment Model."""
-
-    faction = models.ForeignKey("faction.Faction", on_delete=models.CASCADE)
-    facility_enrollment = models.ForeignKey(
-        FacilityEnrollment, on_delete=models.CASCADE
-    )
-    quarters = models.ForeignKey("facility.Quarters", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.faction.abbreviation} @ {self.facility_enrollment}"
-
-
-class LeaderEnrollment(models.Model):
-    """Leader Enrollment Model."""
-
-    faction_enrollment = models.ForeignKey(FactionEnrollment, on_delete=models.CASCADE)
-    leader = models.ForeignKey("faction.Leader", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.leader} - {self.faction_enrollment}"
 
 
 class Week(AbstractTemporalHierarchy):
@@ -82,6 +70,30 @@ class Period(AbstractTemporalHierarchy):
     """Period Model."""
 
     week = models.ForeignKey(Week, on_delete=models.CASCADE)
+
+
+class FactionEnrollment(AbstractTemporalHierarchy):
+    """Faction Enrollment Model."""
+
+    faction = models.ForeignKey("faction.Faction", on_delete=models.CASCADE)
+    week = models.ForeignKey(Week, on_delete=models.CASCADE)
+    quarters = models.ForeignKey("facility.Quarters", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.faction.abbreviation} @ {self.facility_enrollment}"
+
+
+class LeaderEnrollment(AbstractTemporalHierarchy):
+    """Leader Enrollment Model."""
+
+    faction_enrollment = models.ForeignKey(FactionEnrollment, on_delete=models.CASCADE)
+    leader = models.ForeignKey("faction.Leader", on_delete=models.CASCADE)
+    quarters = models.ForeignKey(
+        "facility.Quarters", on_delete=models.SET_NULL, null=True, blank=True
+    )
+
+    def __str__(self):
+        return f"{self.leader} - {self.faction_enrollment}"
 
 
 class OrganizationCourse(models.Model):
@@ -116,7 +128,7 @@ class FacilityClassEnrollment(models.Model):
     facility_class = models.ForeignKey(FacilityClass, on_delete=models.CASCADE)
     period = models.ForeignKey(Period, on_delete=models.CASCADE)
     department = models.ForeignKey("facility.Department", on_delete=models.CASCADE)
-    # faculty[]
+    # faculty = models.ForeignKey("facility.Faculty", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.period} - {self.facility_class} @ {self.department}"
@@ -147,12 +159,31 @@ class AttendeeClassEnrollment(models.Model):
         return f"{self.attendee_enrollment.attendee} - {self.facility_class_enrollment}"
 
 
+class FacultyEnrollment(models.Model):
+    """Faculty Enrollment Model."""
+
+    faculty = models.ForeignKey("facility.Faculty", on_delete=models.CASCADE)
+    facility_enrollment = models.ForeignKey(
+        "enrollment.FacilityEnrollment", on_delete=models.CASCADE
+    )
+    quarters = models.ForeignKey("facility.Quarters", on_delete=models.CASCADE)
+    faculty_class_enrollments = models.ForeignKey(
+        "enrollment.FacultyClassEnrollment",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
+
+
 class FacultyClassEnrollment(models.Model):
     """Faculty Class Enrollment Model."""
 
     faculty = models.ForeignKey("facility.Faculty", on_delete=models.CASCADE)
     facility_class_enrollment = models.ForeignKey(
-        FacilityClassEnrollment, on_delete=models.CASCADE
+        FacilityClassEnrollment, on_delete=models.CASCADE, null=True, blank=True
+    )
+    faculty_enrollment = models.ForeignKey(
+        FacultyEnrollment, on_delete=models.CASCADE, null=True, blank=True
     )
 
     def __str__(self):
@@ -160,24 +191,54 @@ class FacultyClassEnrollment(models.Model):
 
 
 class ActiveEnrollment(models.Model):
-    """Active Enrollment Model."""
-
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
+        User, on_delete=models.CASCADE, related_name="active_enrollments"
+    )
+    attendee_enrollment = models.ForeignKey(
+        "AttendeeEnrollment",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="+",
+    )
+    leader_enrollment = models.ForeignKey(
+        "LeaderEnrollment",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="+",
     )
     faction_enrollment = models.ForeignKey(
-        FactionEnrollment,
+        "FactionEnrollment",
         on_delete=models.SET_NULL,
         null=True,
-        blank=True
+        blank=True,
+        related_name="+",
+    )
+    faculty_enrollment = models.ForeignKey(
+        "FacultyEnrollment",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="+",
     )
     facility_enrollment = models.ForeignKey(
-        FacilityEnrollment,
+        "FacilityEnrollment",
         on_delete=models.SET_NULL,
         null=True,
-        blank=True
+        blank=True,
+        related_name="+",
     )
 
+    class Meta:
+        # Ensures that there's only one active enrollment of any type per user
+        unique_together = (
+            ("user", "attendee_enrollment"),
+            ("user", "leader_enrollment"),
+            ("user", "faction_enrollment"),
+            ("user", "faculty_enrollment"),
+            ("user", "facility_enrollment"),
+        )
+
     def __str__(self):
-        return f"{self.user.username}'s active enrollment"
+        return f"{self.user}'s Active Enrollment"

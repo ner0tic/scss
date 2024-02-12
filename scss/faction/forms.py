@@ -1,8 +1,10 @@
 """ Faction Related Forms. """
-from address.models import Address
-from .models import Attendee, Leader, AttendeeProfile, LeaderProfile
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+
+from address.models import Address
+
+from .models import Attendee, AttendeeProfile, Leader, LeaderProfile
 
 
 class AttendeeProfileForm(forms.ModelForm):

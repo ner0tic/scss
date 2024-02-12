@@ -1,0 +1,53 @@
+{% extends 'pages/base/list.html' %}
+
+{% set table_id = 'enrollmentTable' %}
+
+{% block title_text %}
+    {% if faction %}
+        {{faction}} Enrollments
+    {% else %}
+        Faction Enrollments
+    {% endif %}
+{% endblock title_Text %}
+
+{% block content_header_text %}
+    {% if faction %}
+    Enrollments for {{ faction }}
+    {% else %}
+    Enrollments
+    {% endif %}
+{% endblock content_header_text%}
+ 
+{% block content_list_header %}
+<tr>
+    {% if not faction %}
+    <th>Faction</th>
+    {% endif %}
+    <th>Name</th>
+    <th>Description</th>
+    <th>Facility</th>
+    <th>Week</th>
+    <th>Start</th>
+    <th>End</th>
+</tr>
+{% endblock content_list_header}
+
+{% block content_list %}
+        {% for enrollment in enrollments %}
+        <tr>
+            {% if faction %}
+            <td><a href="{% url enrollment.faction.get_absolute_url %}">{{ enrollment.faction }}</a></td>
+            {% endif %}
+            <td><a href="{% url enrollment.get_absolute_url %}">{{ enrollment.name }}</a></td>
+            <td>{{ enrollment.description | truncatechars:30 }}</td>
+            <td><a href="{% url enrollment.week.facility_enrollment.facility.get_absolute_url %}">{{ enrollment.week.facility_enrollment.facility }}</a></td>
+            <td><a href="{% url enrollment.week.get_absolute_url %}">{{ enrollment.week }}</a></td>
+            <td>{{ enrollment.start }}</td>
+            <td>{{ enrollment.end }}</td>
+        </tr>
+        {% endfor %}
+{% endblock content_list %}
+
+{% block content_footer_text %}
+<a href="{% url 'faction_enrollment_index' %}">Back To List</a>
+{% endblock content_footer_text %}

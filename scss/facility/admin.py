@@ -1,8 +1,11 @@
 """ Facility Related Admin Views. """
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericStackedInline
-from .models import Facility, Faculty, FacultyProfile, Department, Quarters
+
 from address.models import Address
+
+from .models import Department, Facility, Faculty, FacultyProfile, Quarters
+
 
 # If the Address model is editable in the admin, create an inline for it
 class AddressInline(GenericStackedInline):
@@ -57,7 +60,9 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 
 from django.contrib import admin
+
 from .models import Quarters
+
 
 @admin.register(Quarters)
 class QuartersAdmin(admin.ModelAdmin):

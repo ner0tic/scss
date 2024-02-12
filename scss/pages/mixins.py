@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils.text import slugify
 
+
 class NameSlugMixin(models.Model):
     """ Generate and populate a slug field based on the name field. """
     slug = models.SlugField(max_length=255, unique=True, blank=True)

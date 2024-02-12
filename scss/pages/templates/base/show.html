@@ -1,0 +1,22 @@
+{% extends 'pages/base/layout.html' %}
+
+{% block title %}
+[CampfireConnections] - {% block title_text %}{% endblock title_text %}
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        {% block content_header %}
+        <h1>{% block content_header_text %}{% endblock content_header_text %}</h1>
+        {% endblock content_header %}
+
+        {% block content_content %}
+        <table id="showTable" class="table table-striped table-bordered">
+            <tbody>
+            {% block content_list %}{% endblock content_list %}
+            </tbody>
+        </table>
+        {% block content_footer %}<a href="{% url 'home' %}">Back Home</a>{% endblock content_footer %}
+        {% endblock content_content%}
+    </div>
+{% endblock content %}

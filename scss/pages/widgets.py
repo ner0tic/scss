@@ -1,6 +1,7 @@
 """ Dashboard Widget Related Views. """
-from django.views import View
 from django.shortcuts import render
+from django.views import View
+
 
 class BaseWidget(View):
     """

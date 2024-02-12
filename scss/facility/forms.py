@@ -1,7 +1,9 @@
 """ Facility Related Forms. """
-from address.models import Address
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+
+from address.models import Address
+
 from .models import Faculty, FacultyProfile
 
 

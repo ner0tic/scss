@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
 from django.apps import apps
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect, render
 
 
 def dynamic_dropdown_options(request, app_label, model_name, field_name, filter_value):
@@ -32,3 +32,7 @@ def dynamic_css(request):
     /* More dynamic CSS content */
     """
     return HttpResponse(css_content, content_type='text/css')
+
+
+def error_404(request, exception):
+    return render(request, 'errors/404.html', status=404)

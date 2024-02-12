@@ -1,0 +1,49 @@
+{% extends 'base/list.html' %}
+
+{% block title_text %}
+    {% if organization %}
+        {{ organization }}'s Factions
+    {% else %}
+        Factions
+    {% endif %}
+{% endblock title_text %}
+
+{% block content_header_text %}
+    {% if organization %}
+    Factions in {{ organization }}
+    {% else %}
+    factions
+    {% endif %}
+{% endblock content_header_text %}
+ 
+{% block content_list_header %}
+<tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Abbreviation</th>
+    {% if not organization %}
+    <th>Organization</th>
+    {% endif %}
+    <th>Leaders</th>
+    <th>Attendees</th>
+</tr>
+{% endblock content_list_header %}
+
+{% block content_list %}
+        {% for faction in factions %}
+        <tr>
+            <td><a href="{% url enrollment.faction.get_absolute_url %}">faction</a></td>
+            <td>{{ faction.description | truncatechars:30 }}</td>
+            <td>{{ faction.abbreviation }}</td>
+            {% if organization %}
+            <td><a href="{% url faction.organization.get_absolute_url %}">{{ faction.organization }}</a></td>
+            {% endif %}
+            <td><a href="{% url 'leader_index_by_faction' faction_slug=faction.slug %}">{{ faction.leaders.count }}</a></td>
+            <td><a href="{% url 'attendee_index_by_faction' faction_slug=faction.slug %}">{{ faction.attendees.count }}</a></td>
+        </tr>
+        {% endfor %}
+{% endblock content_list %}
+
+{% block content_footer_text %}
+<a href="{% url 'faction_index' %}">Back To List</a>
+{% endblock content_footer_text %}

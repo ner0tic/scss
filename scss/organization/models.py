@@ -1,7 +1,14 @@
 """ Organization Related Models. """
-from django.db import models
+
 from django.core.exceptions import ValidationError
+from django.db import models
+from django.db.models import Prefetch
+from django.urls import reverse
+
 from pages.mixins import NameSlugMixin
+
+from .managers import OrganizationManager
+
 
 class Organization(NameSlugMixin, models.Model):
     """Organization Model."""
@@ -14,8 +21,10 @@ class Organization(NameSlugMixin, models.Model):
         "self", on_delete=models.CASCADE, null=True, blank=True, related_name="children"
     )
 
+    objects = OrganizationManager()
+
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
     def clean(self):
         # Check for depth
@@ -30,3 +39,15 @@ class Organization(NameSlugMixin, models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)
+
+    def get_total_factions_count(self):
+        total_count = self.factions.count()
+        for child_org in self.children.all():
+            total_count += child_org.get_total_factions_count()
+        return total_count
+
+    def get_descendant_ids(self):
+        descendant_ids = [self.id]
+        for child in self.children.all():
+            descendant_ids.extend(child.get_descendant_ids())
+        return descendant_ids

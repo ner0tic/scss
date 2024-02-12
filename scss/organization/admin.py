@@ -1,6 +1,8 @@
 """ Organization Related Admin Views. """
 from django.contrib import admin
+
 from .models import Organization
+
 
 class ChildOrganizationInline(admin.StackedInline):
     model = Organization

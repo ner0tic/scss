@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     "faction",
     "organization",
     "user",
-    'pages'
+    'pages',
+    'taggit'
 ]
 
 MIDDLEWARE = [
@@ -153,3 +154,5 @@ AUTH_USER_MODEL = "user.User"
 TAILWIND_APP_NAME = 'theme'
 
 NPM_BIN_PATH = 'npm.cmd'
+
+handler404 = 'pages.views.error_404'

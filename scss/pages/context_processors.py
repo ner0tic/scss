@@ -1,5 +1,6 @@
 from .models import MenuItem
 
+
 def menu_items_processor(request):
     if request.user.is_authenticated:
         # Get menu items based on user permissions

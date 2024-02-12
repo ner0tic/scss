@@ -1,8 +1,10 @@
 """ Faction Related Dashboard Widgets. """
-from django.views import View
 from django.shortcuts import render
+from django.views import View
+
 from pages.widgets import BaseWidget
-from .models import Attendee, LeaderProfile, AttendeeProfile, Faction
+
+from .models import Attendee, AttendeeProfile, Faction, LeaderProfile
 
 
 class AttendeeListWidget(BaseWidget):

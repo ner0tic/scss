@@ -1,11 +1,16 @@
 """ Faction Related Models. """
-from user.models import User
-from django.db import models
+
 from django.contrib.auth.models import BaseUserManager
+from django.contrib.contenttypes.fields import GenericRelation
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.contenttypes.fields import GenericRelation
+from django.urls import reverse
+
 from pages.mixins import NameSlugMixin
+from user.models import User
+
+from .managers import FactionManager
 
 class Faction(NameSlugMixin, models.Model):
     """Faction Model."""
@@ -15,13 +20,18 @@ class Faction(NameSlugMixin, models.Model):
     description = models.TextField()
 
     organization = models.ForeignKey(
-        "organization.Organization", on_delete=models.CASCADE
+        "organization.Organization", on_delete=models.CASCADE, related_name="factions"
     )
+
+    objects = FactionManager()
 
     # enrollments
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("faction_show", kwargs={"faction_slug": self.slug})
 
 
 class AttendeeManager(BaseUserManager):
@@ -46,6 +56,9 @@ class Attendee(User):
     def welcome(self):
         return "Only for attendees"
 
+    def get_absolute_url(self):
+        return reverse("attendee_show", kwargs={"attendee_slug": self.slug})
+
 
 @receiver(post_save, sender=Attendee)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -58,12 +71,11 @@ class AttendeeProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    faction = models.ForeignKey("Faction", on_delete=models.CASCADE, null=True, blank=True)
+    faction = models.ForeignKey(
+        "Faction", on_delete=models.CASCADE, null=True, blank=True
+    )
     organization = models.ForeignKey(
-        "organization.Organization",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True
+        "organization.Organization", on_delete=models.CASCADE, null=True, blank=True
     )
     # enrollments
     address = GenericRelation("address.Address", null=True, blank=True)
@@ -88,6 +100,9 @@ class Leader(User):
     def welcome(self):
         return "Only for leaders"
 
+    def get_absolute_url(self):
+        return reverse("leader_show", kwargs={"leader_slug": self.slug})
+
 
 @receiver(post_save, sender=Leader)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -100,12 +115,11 @@ class LeaderProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    faction = models.ForeignKey("Faction", on_delete=models.CASCADE, null=True, blank=True)
+    faction = models.ForeignKey(
+        "Faction", on_delete=models.CASCADE, null=True, blank=True
+    )
     organization = models.ForeignKey(
-        "organization.Organization",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True
+        "organization.Organization", on_delete=models.CASCADE, null=True, blank=True
     )
     # enrollments
     address = GenericRelation("address.Address", null=True, blank=True)

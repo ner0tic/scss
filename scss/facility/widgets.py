@@ -1,8 +1,10 @@
 """ Facility Related Dashboard Widgets. """
-from django.views import View
 from django.shortcuts import render
+from django.views import View
+
 from pages.widgets import BaseWidget
-from .models import Faculty, Facility
+
+from .models import Facility, Faculty
 
 
 class FacultyListWidget(BaseWidget):

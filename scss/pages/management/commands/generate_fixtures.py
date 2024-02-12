@@ -1,8 +1,9 @@
-from django.core.management.base import BaseCommand
+import os
+
 from django.apps import apps
 from django.core import serializers
+from django.core.management.base import BaseCommand
 from django_dynamic_fixture import G
-import os
 
 
 class Command(BaseCommand):
@@ -37,11 +38,12 @@ class Command(BaseCommand):
         )
 
         for app in apps_list:
-            model_list = (
-                apps.get_app_config(app).get_models()
-                if not model_name
-                else [apps.get_model(app, model_name)]
-            )
+            if not model_name:
+                m = apps.get_app_config(app).get_models()
+            else:
+                m = [apps.get_model(app, model_name)]
+            model_list = m
+
             for model in model_list:
                 self.generate_ddf_fixtures(model, app, count)
 

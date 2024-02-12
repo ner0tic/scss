@@ -1,14 +1,10 @@
 from django.contrib import admin
+
 from .models import Menu, MenuItem
 
 
-class MenuItemInline(admin.TabularInline):
-    model = MenuItem
-    extra = 1  # How many rows to show
-
-
 class MenuAdmin(admin.ModelAdmin):
-    inlines = [MenuItemInline]
+    pass
 
 
 admin.site.register(Menu, MenuAdmin)
@@ -18,13 +14,12 @@ admin.site.register(Menu, MenuAdmin)
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = (
         "title",
-        "menu",
         "parent",
         "visible_to",
         "image_tag",
         "css_class",
     )  # Add a method to display image thumbnails
-    list_filter = ("menu", "visible_to")
+    list_filter = ("menus", "visible_to")
 
     def image_tag(self, obj):
         from django.utils.html import format_html

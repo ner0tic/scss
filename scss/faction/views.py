@@ -1,7 +1,11 @@
 """ Faction Related Views. """
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate, login
+from django.shortcuts import get_object_or_404, redirect, render
+
+from organization.models import Organization
+
 from .forms import AttendeeRegistrationForm, LeaderRegistrationForm
+from .models import Attendee, Faction, Leader
 
 
 def register_attendee(request):
@@ -34,3 +38,122 @@ def register_leader(request):
     else:
         form = LeaderRegistrationForm()
     return render(request, "register_leader.html", {"form": form})
+
+
+#########################
+# Faction Related Views #
+#########################
+def faction_index(request):
+    """ Faction list view. """
+    factions = Faction.objects.all()
+    
+    return render(request, "faction/list.html", {"factions": factions})
+
+
+def faction_index_by_organization(request, organization_id=None, organization_slug=None):
+    """ Faction list by Organization view. """
+    if organization_id:
+        organization = get_object_or_404(Organization, pk=organization_id)
+    else:
+        organization = get_object_or_404(Organization, slug=organization_slug)
+
+    factions = Faction.objects.filter(organization=organization)
+    for faction in factions:
+        print(faction)
+    return render(request, "faction/list.html", {"organization": organization, "factions": factions})
+
+
+def faction_show(request, faction_id=None, faction_slug=None):
+    """ Faction details view. """
+    if faction_id:
+        faction = get_object_or_404(Faction, pk=faction_id)
+    else:
+        faction = get_object_or_404(Faction, slug=faction_slug)
+
+    return render(request, "faction/show.html", {"faction": faction})
+
+
+########################
+# Leader Related Views #
+########################
+def leader_index(request):
+    """ Leader list view. """
+    leaders = Leader.objects.all()
+    
+    return render(request, "leader/list.html", {"leaders": leaders})
+
+
+def leader_index_by_faction(request, faction_id=None, faction_slug=None):
+    """ Leader list by Faction view. """
+    if faction_id:
+        faction = get_object_or_404(Faction, pk=faction_id)
+    else:
+        faction = get_object_or_404(Faction, slug=faction_slug)
+
+    leaders = Leader.objects.filter(leaderprofile__faction=faction)
+
+    return render(request, "leader/list.html", {"leaders": leaders, "faction": faction})
+
+
+def leader_index_by_organization(request, organization_id=None, organization_slug=None):
+    """ Leader list by Organizaton view. """
+    if organization_id:
+        organization = get_object_or_404(Organization, pk=organization_id)
+    else:
+        organization = get_object_or_404(Organization, slug=organization_slug)
+
+    leaders = Leader.objects.filter(leaderprofile__organization=organization)
+
+
+def leader_show(request, leader_id=None, leader_slug=None):
+    """ Leader details view. """
+    
+    if leader_id:
+        leader = get_object_or_404(Leader, pk=leader_id)
+    else:
+        leader = get_object_or_404(Leader, slug=leader_slug)
+
+    return render(request, "leader/show.html", {"leader": leader })
+
+
+########################
+# Attendee Related Views #
+########################
+def attendee_index(request):
+    """ Attendee list view. """
+    attendees = Attendee.objects.all()
+    
+    return render(request, "attendee/list.html", {"attendees": attendees})
+
+
+def attendee_index_by_faction(request, faction_id=None, faction_slug=None):
+    """ Attendee list by Faction view. """
+    if faction_id:
+        faction = get_object_or_404(Faction, pk=faction_id)
+    else:
+        faction = get_object_or_404(Faction, slug=faction_slug)
+
+    attendees = Attendee.objects.filter(attendeeprofile__faction=faction)
+
+    return render(request, "attendee/list.html", {"attendees": attendees, "faction": faction})
+
+
+def attendee_index_by_organization(request, organization_id=None, organization_slug=None):
+    """ Attendee list by Organizaton view. """
+    if organization_id:
+        organization = get_object_or_404(Organization, pk=organization_id)
+    else:
+        organization = get_object_or_404(Organization, slug=organization_slug)
+
+    attendees = Attendee.objects.filter(attendeeprofile__organization=organization)
+
+
+def attendee_show(request, attendee_id=None, attendee_slug=None):
+    """ Attendee details view. """
+    
+    if attendee_id:
+        attendee = get_object_or_404(Attendee, pk=attendee_id)
+    else:
+        attendee = get_object_or_404(Attendee, slug=attendee_slug)
+
+    return render(request, "attendee/show.html", {"attendee": attendee })

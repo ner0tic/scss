@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'pages/base/layout.html' %}
 
 {% block title %}[SCSS] - {{ organization.name }}{% endblock title %}
 
@@ -36,6 +36,6 @@
           <span class="field-name">Attendees:</span>
           <span class="field-value">{{ organization.attendees.count }}</span>
       </ul>
-    <a href="{% url 'index_organizations_parentless' %}">Back to List</a>
+    <a href="{% url 'organization_index' %}">Back to List</a>
     </div>
 {% endblock content %}

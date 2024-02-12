@@ -1,11 +1,15 @@
 """ Facility Related Models. """
-from user.models import User
-from django.db import models
+
 from django.contrib.auth.models import BaseUserManager
+from django.contrib.contenttypes.fields import GenericRelation
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.contenttypes.fields import GenericRelation
+from django.urls import reverse
+
 from pages.mixins import NameSlugMixin
+from user.models import User
+
 
 class Facility(NameSlugMixin, models.Model):
     """Facility Model."""
@@ -15,35 +19,44 @@ class Facility(NameSlugMixin, models.Model):
 
     address = GenericRelation("address.Address")
     organization = models.ForeignKey(
-        "organization.Organization", on_delete=models.CASCADE
+        "organization.Organization", on_delete=models.CASCADE, related_name="facilities"
     )
 
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("facility_show", kwargs={"facility_slug": self.slug})
+
 
 class Quarters(NameSlugMixin, models.Model):
+    """Quarters Model."""
+
     # Define the different types of quarters
-    FACTION_QUARTERS = 'faction'
-    LEADER_QUARTERS = 'leader'
-    ATTENDEE_QUARTERS = 'attendee'
-    FACULTY_QUARTERS = 'faculty'
-    OTHER_QUARTERS = 'other'
+    FACTION_QUARTERS = "faction"
+    LEADER_QUARTERS = "leader"
+    ATTENDEE_QUARTERS = "attendee"
+    FACULTY_QUARTERS = "faculty"
+    OTHER_QUARTERS = "other"
 
     QUARTERS_TYPES = (
-        (FACTION_QUARTERS, 'Faction Quarters'),
-        (LEADER_QUARTERS, 'Leader Quarters'),
-        (ATTENDEE_QUARTERS, 'Attendee Quarters'),
-        (FACULTY_QUARTERS, 'Faculty Quarters'),
-        (OTHER_QUARTERS, 'Other Quarters'),
+        (FACTION_QUARTERS, "Faction Quarters"),
+        (LEADER_QUARTERS, "Leader Quarters"),
+        (ATTENDEE_QUARTERS, "Attendee Quarters"),
+        (FACULTY_QUARTERS, "Faculty Quarters"),
+        (OTHER_QUARTERS, "Other Quarters"),
     )
 
     name = models.CharField(max_length=100)
     description = models.TextField()
     capacity = models.IntegerField()
-    type = models.CharField(max_length=50, choices=QUARTERS_TYPES, default=OTHER_QUARTERS)
+    type = models.CharField(
+        max_length=50, choices=QUARTERS_TYPES, default=OTHER_QUARTERS
+    )
 
-    facility = models.ForeignKey("Facility", on_delete=models.CASCADE, related_name='quarters')
+    facility = models.ForeignKey(
+        "Facility", on_delete=models.CASCADE, related_name="quarters"
+    )
 
     def __str__(self):
         return self.name
@@ -68,6 +81,10 @@ class Quarters(NameSlugMixin, models.Model):
     def is_other(self):
         return self.type == self.OTHER_QUARTERS
 
+    def get_absolute_url(self):
+        return reverse("quarters_show", kwargs={"quarters_slug": self.slug})
+
+
 class Department(NameSlugMixin, models.Model):
     """Department Model."""
 
@@ -78,10 +95,15 @@ class Department(NameSlugMixin, models.Model):
     parent = models.ForeignKey(
         "self", on_delete=models.CASCADE, null=True, blank=True, related_name="children"
     )
-    facility = models.ForeignKey("Facility", on_delete=models.CASCADE, related_name='departments')
+    facility = models.ForeignKey(
+        "Facility", on_delete=models.CASCADE, related_name="departments"
+    )
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("department_show", kwargs={"department_slug": self.slug})
 
 
 class FacultyManager(BaseUserManager):
@@ -103,6 +125,9 @@ class Faculty(User):
     def welcome(self):
         return "Only for faculty"
 
+    def get_absolute_url(self):
+        return reverse("faculty_show", kwargs={"faculty_slug": self.slug})
+
 
 @receiver(post_save, sender=Faculty)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -115,12 +140,24 @@ class FacultyProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    facility = models.ForeignKey("Facility", on_delete=models.CASCADE, null=True, blank=True)
+    facility = models.ForeignKey(
+        "Facility",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="faculty",
+    )
     organization = models.ForeignKey(
         "organization.Organization",
         on_delete=models.CASCADE,
         null=True,
-        blank=True
+        blank=True,
+        related_name="facWulty",
     )
-    # enrollments
+    enrollments = models.ForeignKey(
+        "enrollment.FacultyEnrollment",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
     address = GenericRelation("address.Address", null=True, blank=True)

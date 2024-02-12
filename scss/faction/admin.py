@@ -1,6 +1,8 @@
 """ Faction Related Admin Views. """
 from django.contrib import admin
-from .models import Faction, Attendee, AttendeeProfile, Leader, LeaderProfile
+
+from .models import Attendee, AttendeeProfile, Faction, Leader, LeaderProfile
+
 
 # Admin for Faction
 @admin.register(Faction)

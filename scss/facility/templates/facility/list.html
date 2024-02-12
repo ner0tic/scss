@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'pages/base/layout.html' %}
 
 {% block content %}
 {% if org %}
@@ -24,7 +24,7 @@
             </td>
             <td>{{ facility.description | truncatechars:30 }}</td>
             <td>
-                <a href="{% url 'faculty_index_by_facility' facility_slug=facility.slug %}">{{ facility.faculty_profiles.count }}</a>
+                <a href="{% url 'faculty_index_by_facility' facility_slug=facility.slug %}">{{ facility.faculty.count }}</a>
             </td>
             <td><a href="{% url 'quarters_index_by_facility' facility_slug=facility.slug %}">{{ facility.quarters.count }}</a></td>
             <td>

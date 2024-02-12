@@ -1,0 +1,35 @@
+{% extends 'base/layout.html' %}
+
+{% block title_text %}{% endblock title_text %}
+
+{% block content %}
+    <div class="container">
+        {% block content_header %}
+        <h1>{% block content_header_text %}{% endblock content_header_text %}</h1>
+        {% endblock content_header %}
+
+        {% block content_content %}
+        <table id="listTable" class="table table-striped table-bordered">
+            <thead>
+            {% block content_list_header %}{% endblock content_list_header%}
+            </thead>
+            <tbody>
+            {% block content_list %}{% endblock content_list %}
+            </tbody>
+        </table>
+        {% block content_footer %}
+        {% block content_footer_text %}
+        <a href="{% url 'home' %}">Back Home</a>
+        {% endblock content_footer_text %}
+        {% block content_footer_datatable_js %}
+        <script>
+            $(document).ready(function() {
+                $('#listTable').DataTable();
+            });
+        </script>
+        {% endblock content_footer_datatable_js %}
+        {% endblock content_footer %}
+        
+        {% endblock content_content%}
+    </div>
+{% endblock content %}

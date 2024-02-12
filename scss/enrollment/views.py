@@ -1,13 +1,16 @@
 """ Enrollment Related Views. """
-from datetime import datetime
-from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth import login, authenticate
-from django.utils.timezone import make_aware
-from django.db.models import Q
 
-from organization.models import Organization
+from datetime import datetime
+
+from django.contrib.auth import authenticate, login
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.timezone import make_aware
+
 from facility.models import Facility, Faculty
-from faction.models import Faction, Attendee, Leader
+from faction.models import Attendee, Faction, Leader
+from organization.models import Organization
+
 from .models import *
 
 
@@ -125,10 +128,70 @@ def faction_enrollment_index(request):
     enrollments = FactionEnrollment.objects.all()
 
     return render(
+        request, "faction_enrollment/list.html", {"faction_enrollments": enrollments}
+    )
+
+
+def faction_enrollment_index_by_year(request, year=None):
+    year = year or datetime.now().year
+    enrollments = FactionEnrollment.objects.filter(
+        Q(start_timestamp__year=year) | Q(end_timestamp__year=year)
+    )
+
+    return render(
         request,
         "faction_enrollment/list.html",
-        {"faction_enrollments": enrollments}
+        {"faction_enrollments": enrollments, "year": year},
     )
+
+
+def faction_enrollment_index_by_faction(request, faction_id=None, faction_slug=None):
+    if faction_id:
+        faction = get_object_or_404(Faction, id=faction_id)
+    else:
+        faction = get_object_or_404(Faction, slug=faction_slug)
+
+    enrollments = FactionEnrollment.objects.filter(faction=faction)
+
+    return render(
+        request,
+        "faction_enrollment/list.html",
+        {"faction_enrollments": enrollments, "faction": faction},
+    )
+
+
+def faction_enrollment_index_by_year_and_faction(
+    request, year=None, faction_id=None, faction_slug=None
+):
+    year = year or datetime.now().year
+    if faction_id:
+        faction = get_object_or_404(Faction, id=faction_id)
+    else:
+        faction = get_object_or_404(Faction, slug=faction_slug)
+
+    enrollments = FactionEnrollment.objects.filter(faction=faction).filter(
+        Q(start_timestamp__year=year) | Q(end_timestamp__year=year)
+    )
+
+    return render(
+        request,
+        "faction_enrollment/list.html",
+        {"faction_enrollments": enrollments, "faction": faction, "year": year},
+    )
+
+
+def faction_enrollment_index_by_current_user(request):
+    user = request.user
+    faction = 0
+
+    if user.role  == 'ATTENDEE':
+        faction = user.attendeeprofile.faction
+    if user.role == 'LEADER':
+        faction - user.leaderprofile.faction
+
+    enrollments = FactionEnrollment.objects.filter(faction=faction)
+
+    return render(request, "faction-enrollment/list.html", {"enrollments": enrollments, "faction": faction})
 
 
 ####################################
@@ -197,5 +260,30 @@ def faculty_class_enrollment_index(request):
 ####################################
 # Active Enrollment Related Views. #
 ####################################
+def my_enrollments(request):
+    user = request.user
+    enrollments = []
+
+    if user.role == "ATTENDEE":
+        enrollments = AttendeeEnrollment.objects.filter(attendee=user)
+        user_type = "attendee"
+    if user.role == "LEADER":
+        enrollments = LeaderEnrollment.objects.filter(leader=user)
+        user_type = "leader"
+    if user.role == "FACULTY":
+        enrollments = FacultyEnrollment.objects, filter(faculty=user)
+        user_type = "faculty"
+
+    return render(
+        request, f"{user_type}-enrollment/index.html", {"enrollments": enrollments}
+    )
+
+
 def active_enrollment_index(request):
-    pass
+    user = request.user
+
+    active_enrollment = get_object_or_404(ActiveEnrollment, user=user)
+
+    return render(
+        request, "active-enrollment/list.html", {"active_enrollment": active_enrollment}
+    )

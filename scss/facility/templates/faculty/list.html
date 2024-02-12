@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'pages/base/layout.html' %}
 
 {% block content %}
 {% if org %}
@@ -16,7 +16,7 @@
     <tbody>
         {% for fac in faculty %}
         <tr>
-            <td><a href="{% url 'faculty_show' fac_id=fac.id %}">{{ fac.first_name }}</a></td>
+            <td><a href="{% url 'faculty_show' faculty_slug=fac.slug %}">{{ fac.first_name }}</a></td>
             <td>{{ fac.last_name }}</td>
         </tr>
         {% endfor %}

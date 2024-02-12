@@ -1,8 +1,9 @@
-from django.core.management.base import BaseCommand
-from django.core import serializers
+import os
+
 from django.apps import apps
 from django.conf import settings
-import os
+from django.core import serializers
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):

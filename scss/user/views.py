@@ -1,22 +1,23 @@
 """ Users Related Views. """
-from faction.forms import AttendeeProfileForm, LeaderProfileForm
-from faction.models import AttendeeProfile, LeaderProfile
-from faction.widgets import AttendeeListWidget, LeaderListWidget
+from django.contrib import messages
+from django.contrib.auth import login as _login
+from django.contrib.auth import logout as _logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.contenttypes.models import ContentType
+from django.shortcuts import redirect, render
+
+from address.forms import AddressForm
 from facility.forms import FacultyProfileForm
 from facility.models import FacultyProfile
 from facility.widgets import FacultyListWidget
-from address.forms import AddressForm
-
-
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login as _login, logout as _logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.contenttypes.models import ContentType
+from faction.forms import AttendeeProfileForm, LeaderProfileForm
+from faction.models import AttendeeProfile, LeaderProfile
+from faction.widgets import AttendeeListWidget, LeaderListWidget
 
 from .forms import RegistrationForm
 from .models import User
+
 
 def register(request):
     """ Register a user.

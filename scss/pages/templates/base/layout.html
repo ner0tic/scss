@@ -1,0 +1,204 @@
+{% load menu_tags %}
+<!doctype html>
+<head>
+  {% block html_head %}
+  <title>{% block title %}[CampfireConnections] - {% block title_text %}{% endblock title_text %}{% endblock title %}</title>
+    
+  {% block meta_info %}
+  <meta name="description" content="summer camp scheduling system">
+  <meta name="author" content="vendetta solutions">
+    
+  {% block mobile_viewport %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% endblock mobile_viewport%}
+  {% endblock meta_info%}
+
+  {% block link_icons %}
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  {% endblock link_icons %}
+
+  {% block statics %}
+  {% load static %}
+  {% block javascripts %}
+  {% block javascripts_local %}{% endblock javascripts_local %}
+  {% block javascripts_external %}
+  <!-- jQuery -->
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- DataTables JS -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+  {% endblock javascripts_external %}
+  {% endblock javascripts %}
+
+  {% block stylesheets %}
+  {% block stylesheets_local %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
+  {% endblock stylesheets_local %}
+
+  {% block stylesheets_external %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+  {% endblock stylesheets_external %}
+
+  {% endblock stylesheets %}
+  {% endblock statics %}
+
+  {% endblock html_head %}
+</head>
+<body>
+  {% block body %}
+  {% block breadcrumbs %}{% endblock %}
+  {% block header_wrapper %}
+  <div id="header">
+    {% block header %}
+    <div class="container">
+      {% block toplinks %}
+      {% render_top_links 'top links' %}
+      {% endblock toplinks %}
+      {% block menu %}
+      <div class="menu">
+        {% if not user.is_authenticated %}
+        {% render_menu 'base menu' %}
+        {% else %}
+        {% render_menu 'faction dashboard' %}
+        {% endif %}
+      </div>
+      {% endblock menu %}
+    </div>
+    {% endblock header %}
+  </div>
+  {% endblock header_wrapper %}
+  {% block content_wrapper %}
+  <div id="main-content" class="container">
+    {% block message_block %}
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endblock message_block %}
+
+    {% block content %}{% endblock content %}
+
+    <br /> <br /> <br /><br /><br /><br />
+  </div>
+  {% endblock content_wrapper %}
+
+  {% block footer_wrapper %}
+  <div id="footer">
+    {% block footer %}
+    {% block copyright %}
+    <div class="copyright">&copy; 2024 Campfire Connections; all rights reserved</div>
+    {% endblock %}
+    {% block footer_links %}
+    <div class="footer-links">
+      <span class="about-tab">About Campfire Connections</span>&nbsp;|&nbsp;
+      <span class="privacy-tab">Privacy Policy</span>&nbsp;|&nbsp;
+      <span class="donate-tab">Donate</span>
+    </div>
+    {% endblock footer_links %}
+    {% endblock footer %}
+  </div>
+
+  {% block donate_window %}
+  <div id="donate-window" class="window">
+    <span class="window-close"></span>
+    <div>
+      <form>
+        <table>
+          <thead>
+            <tr>
+              <th>Donate To Campfire Connections</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <label for="name">Name</label>
+                <input type="text" name="name" class="donate-form-input text-input" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="name">Email</label>
+                <input type="text" name="email" class="donate-form-input text-input" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="name">Amount</label>
+                <input type="text" name="amount" class="donate-form-input text-input" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button type="submit" class="btn-main btn">Donate</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+  {% endblock donate_window %}
+  {% block privacy_window %}
+  <div id="privacy-window" class="window">
+    <span class="window-close"></span>
+    <div>
+      <table >
+        <thead>
+          <tr>
+            <th>Privacy Policy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div style="font-family:verdana"></div>               
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endblock privacy_window %}
+  {% block about_window %}
+  <div id="about-window" class="window">
+    <span class="window-close"></span>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>About Campfire Connections</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah <br />
+              blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah <br />
+              blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah <br />
+              blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah <br/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endblock about_window %}
+  <br /><br />
+  {% endblock footer_wrapper %}
+  {% endblock body %}
+</body>
+</html>
