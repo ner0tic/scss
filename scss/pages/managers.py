@@ -1,9 +1,9 @@
 """ Base Managers. """
 from django.db import models
-from .querysets import BaseQuerySet
+from .querysets import AbstractBaseQuerySet
 
 
-class BaseManager(models.Manager):
+class AbstractBaseManager(models.Manager):
     """
     A base manager for models.
 
@@ -41,7 +41,7 @@ class BaseManager(models.Manager):
             BaseQuerySet: The base queryset for the manager.
         """
 
-        return BaseQuerySet(self.model, using=self._db)
+        return AbstractBaseQuerySet(self.model, using=self._db)
 
     def get_or_none(self, **kwargs):
         """

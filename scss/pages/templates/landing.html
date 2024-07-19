@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campfire Connections</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        header {
+            background-color: #87CEEB;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header .logo {
+            font-size: 1.5em;
+            color: #FFFFFF;
+        }
+        
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+        
+        header nav ul li {
+            display: inline;
+        }
+        
+        header nav ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+        
+        header .user-avatar img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        aside {
+            background-color: #32CD32;
+            width: 200px;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+        }
+        
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        aside ul li {
+            margin-bottom: 15px;
+        }
+        
+        aside ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #228B22;
+        }
+        
+        main {
+            margin-left: 220px;
+            padding: 20px;
+            background-color: #FFFFFF;
+        }
+        
+        .dashboard {
+            margin-bottom: 20px;
+        }
+        
+        .quick-links button {
+            background-color: #FFD700;
+            border: none;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .upcoming-events ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        footer {
+            background-color: #A9A9A9;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        footer ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        
+        footer ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+        
+        /* Badge Styles */
+        .badge {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border: 5px solid #FFD700;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>        
+</head>
+<body>
+    <header>
+        <div class="logo">Campfire Connections</div>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Facilities</a></li>
+                <li><a href="#">Organizations</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="user-avatar">
+            <img src="user-avatar.png" alt="User Avatar">
+        </div>
+    </header>
+    <aside>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Schedule</a></li>
+            <li><a href="#">Facilities</a></li>
+            <li><a href="#">Organizations</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </aside>
+    <main>
+        <section class="dashboard">
+            <h1>Welcome, User!</h1>
+            <div class="quick-links">
+                <button>Create New Schedule</button>
+                <button>Add Facility</button>
+                <button>Invite Member</button>
+            </div>
+            <div class="upcoming-events">
+                <h2>Upcoming Events</h2>
+                <ul>
+                    <li>Event 1 - Date</li>
+                    <li>Event 2 - Date</li>
+                    <li>Event 3 - Date</li>
+                </ul>
+            </div>
+        </section>
+        <section class="schedule">
+            <h2>Schedule</h2>
+            <div class="calendar badge">
+                <img src="calendar-placeholder.png" alt="Calendar Placeholder">
+            </div>
+        </section>
+        <section class="facilities">
+            <h2>Facilities</h2>
+            <div class="facility-list">
+                <div class="badge">
+                    <img src="facility-placeholder.png" alt="Facility Image">
+                </div>
+            </div>
+        </section>
+        <section class="organizations">
+            <h2>Organizations</h2>
+            <div class="organization-list">
+                <div class="badge">
+                    <img src="organization-placeholder.png" alt="Organization Image">
+                </div>
+            </div>
+        </section>
+        <section class="profile">
+            <h2>Profile</h2>
+            <div class="profile-info">
+                <div class="badge">
+                    <img src="user-avatar.png" alt="User Avatar">
+                </div>
+                <!-- Additional profile information would go here -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Social Media</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

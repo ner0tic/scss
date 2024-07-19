@@ -4,14 +4,11 @@ from django.db import models
 from django.urls import reverse
 from taggit.managers import TaggableManager
 
-from pages.mixins import NameSlugMixin
+from pages.mixins import models as mixins
 
 
-class Requirement(NameSlugMixin, models.Model):
+class Requirement(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, mixins.AuditMixin, mixins.SlugMixin, mixins.ActiveMixin, mixins.ImageMixin, models.Model):
     """. Requirement Model."""
-
-    name = models.CharField(max_length=100)
-    description = models.TextField()
 
     def __str__(self):
         return self.name
@@ -23,11 +20,9 @@ class Requirement(NameSlugMixin, models.Model):
         )
 
 
-class Course(NameSlugMixin, models.Model):
+class Course(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, mixins.AuditMixin, mixins.SlugMixin, mixins.ActiveMixin, mixins.ImageMixin, mixins.ParentChildMixin, models.Model):
     """Course Model."""
 
-    name = models.CharField(max_length=100)
-    description = models.TextField()
     requirements = models.ManyToManyField(
         Requirement, related_name="course", blank=True
     )

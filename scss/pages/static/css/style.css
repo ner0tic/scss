@@ -6,11 +6,11 @@
 @font-face { font-family: "Proxima-nova"; src:url('ProximaNova-Regular.otf'); font-style:normal; font-weight:400; }
 @font-face { font-family: "Proxima-nova"; src:url('ProximaNova-Regular.otf'); font-style:normal; font-weight:600; }
 
-a:link, a:visited, a:active { color : #556643; text-decoration: none; font-weight : bold;}
-a:hover { color : #76ad3b; text-decoration: none; font-weight : bold;}
-h1 { font-size : 24px; color : #556643; font-weight : bold; margin: 0; padding-top: 1px;}
-h2 { font-size : 24px; color : #556643; font-weight : normal; margin: 0;}
-h3 { font-size : 18px; color : #888888; font-weight : normal; line-height: 20pt; margin: 0;}
+a:link, a:visited, a:active { color : #003366; text-decoration: none; font-weight : bold;}
+a:hover { color : #ff4500; text-decoration: none; font-weight : bold;}
+h1 { font-size : 24px; color : #228b22; font-weight : bold; margin: 0; padding-top: 1px; float: left; display: block;}
+h2 { font-size : 24px; color : #228b22; font-weight : normal; margin: 0;}
+h3 { font-size : 18px; color : #228b22; font-weight : normal; line-height: 20pt; margin: 0;}
 
 .container {
     width: 100%;
@@ -75,7 +75,6 @@ h3 { font-size : 18px; color : #888888; font-weight : normal; line-height: 20pt;
 
 div.pagination a.page { height: 37px; width: 37px; background: url('/static/images/pagination/page.png') no-repeat 0 0; text-align: center; font-size: 13px; color: #000000; }
 div.pagination a.active { background: url('/static/images/pagination/page.png') no-repeat 0 0 !important; color: #ffffff !important; }
-
 
 /************************************************
 **              Buttons                        **

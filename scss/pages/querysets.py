@@ -1,9 +1,8 @@
 """ Base QuerySets. """
-
 from django.db import models
 
 
-class BaseQuerySet(models.QuerySet):
+class AbstractBaseQuerySet(models.QuerySet):
     def search(self, query):
         """
         Performs a search across faction-related fields.

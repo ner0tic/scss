@@ -1,40 +1,150 @@
-{% extends 'pages/base/layout.html' %}
+{% extends 'base/layout.html' %}
 
 {% block stylesheets_local %}
 {{ block.super }}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/splash.css' %}">
+<style>
+    .hero {
+        background: url('{% static "images/landing/hero.png" %}') no-repeat center center;
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        color: black;
+        text-align: center;
+    }
+    .hero h1 {
+        font-size: 4em;
+        font-weight: bold;
+    }
+    .hero p {
+        font-size: 1.5em;
+        margin-top: 20px;
+    }
+    .features, .about, .contact {
+        padding: 60px 0;
+    }
+    .features h2, .about h2, .contact h2 {
+        margin-bottom: 30px;
+    }
+    .features img {
+        max-width: 50%;
+    }
+    .about img {
+        max-width: 100%;
+        height: auto;
+    }
+    .drop-shadow {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+</style>
 {% endblock stylesheets_local %}
 
+{% block header_wrapper %}
+<header>
 {% block header %}
-<div id="splash_header">
-    <ul class="menu" id="splash_menu">
-        <li class="active"> <a href="{% url 'index' %}">Home</a> </li>
-        <li> <a href="{% url 'login' %}">Sign In</a> </li>
-        <li> <a href="{% url 'organization_index_parentless' %}">Organizations & Facilities</a> </li>
-        <li> <a href="{% url 'about' %}">About</a> </li>
-        <li> <a href="{% url 'index' %}">Contact Us</a> </li>
-        <li> <a href="{% url 'register' %}">Sign Up</a> </li>
-    </ul>
-    <div class="bird"></div>
-    <div class="banner"></div>
+<div class="container">
+    <div class="logo">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/logo_text_white.png' %}" alt="Campfire Connections Logo" class="logo">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="auth-buttons">
+        <a href="{% url 'login'  %}" class="btn login">Log In</a>
+        <a href="{% url 'signup'  %}" class="btn signup">Sign Up</a>
+    </div>
 </div>
 {% endblock header %}
+</header>
+{% endblock header_wrapper %}
+
 {% block content %}
-    {% block welcome %}
-    <div id="welcome-row">
-        <p>&nbsp;</p>
+<!-- Hero Section -->
+<section class="hero">
+    <div>
+        <h1 class="drop-shadow">Campfire Connections</h1>
+        <p class="drop-shadow">Connecting Camps, Creating Memories</p>
+        <a href="#features" class="btn btn-primary btn-lg mt-4">Learn More</a>
     </div>
-    {% endblock welcome %}
-    {% block features %}
-    <div id="splash_features">
-        <ul>
-            <li>Stuff!</li>
-        </ul>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="{% static 'images/landing/feature_1.png' %}" alt="Feature 1 Icon" class="mb-3">
+                <h2>Multi-Portal Access</h2>
+                <p>Our system allows different organizations to manage their own camps through separate portals.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="{% static 'images/landing/feature_3.png' %}" alt="Feature 2 Icon" class="mb-3">
+                <h2>Comprehensive Scheduling</h2>
+                <p>Schedule activities, facilities, and staff across multiple camps seamlessly.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="{% static 'images/landing/feature_2.png' %}" alt="Feature 3 Icon" class="mb-3">
+                <h2>User-Friendly Interface</h2>
+                <p>Easy-to-use interface for campers, camp leaders, and administrators.</p>
+            </div>
+        </div>
     </div>
-    {% endblock features %}
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>About Campfire Connections</h2>
+                <p>Campfire Connections is dedicated to making the summer camp experience smooth and enjoyable for everyone involved. Our platform is designed to handle the complexities of managing multiple camps, facilities, and activities.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/landing/about.png' %}" alt="About Image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact bg-light">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form action="submit_form_url" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+</section>
 {% endblock content %}
 
-{% block footer %}{% endblock %}
+{% block footer %}
+<footer>
+    <p>Contact Us: email@example.com</p>
+    <div class="social">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+    </div>
+</footer>
+{% endblock %}

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+from django.contrib.messages import constants as messages
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,7 +54,9 @@ INSTALLED_APPS = [
     "organization",
     "user",
     'pages',
-    'taggit'
+    'taggit',
+    "rest_framework",
+
 ]
 
 MIDDLEWARE = [
@@ -71,8 +73,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "scss.urls"
 
-STATIC_URL = "static/"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -84,7 +84,11 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "pages.context_processors.menu_items_processor"
+                "pages.context_processors.menu_items_processor",
+                'pages.context_processors.user_role',
+                'pages.context_processors.user_profile',
+                'pages.context_processors.active_enrollment',
+                'organization.context_processors.organization_labels'
             ],
         },
     },
@@ -97,13 +101,17 @@ WSGI_APPLICATION = "scss.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+    # "default": {
+    #     "ENGINE": "django.db.backends.mysql",
+    #     "NAME": "scss_django",
+    #     "USER": "root",
+    #     "PASSWORD": "g4t0rade",
+    #     "HOST": "localhost",  # Or an IP Address that your DB is hosted on
+    #     "PORT": "3306",  # Default MySQL port
+    # }
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "scss_django",
-        "USER": "root",
-        "PASSWORD": "g4t0rade",
-        "HOST": "localhost",  # Or an IP Address that your DB is hosted on
-        "PORT": "3306",  # Default MySQL port
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -156,3 +164,42 @@ TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = 'npm.cmd'
 
 handler404 = 'pages.views.error_404'
+
+# URL to redirect to after a successful login
+LOGIN_REDIRECT_URL = 'home'  # Use the name of the URL pattern you want to redirect to
+
+# URL to redirect to after a successful logout
+LOGOUT_REDIRECT_URL = 'home'  # Use the name of the URL pattern you want to redirect to
+
+# URL for the login view
+LOGIN_URL = 'login'  # Use the name of the URL pattern for your login view
+
+# URL for the logout view
+LOGOUT_URL = 'logout'  # Use the name of the URL pattern for your logout view
+
+# Messages settings
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
+
+# DRF settings
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+    ],
+}
+
+# Crispy Forms
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

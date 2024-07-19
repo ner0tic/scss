@@ -1,11 +1,21 @@
 """ Faction Related URLs. """
 
-from django.urls import path
+from rest_framework.routers import DefaultRouter
+
+from django.urls import path, include
 
 from . import views
 from .widgets import AttendeeListWidget, LeaderListWidget
 
+router = DefaultRouter()
+router.register(r'factions', views.FactionViewSet)
+router.register(r'leaders', views.LeaderViewSet)
+router.register(r'attendee', views.AttendeeViewSet)
+
 urlpatterns = [
+    # REST API
+    path(r'', include(router.urls)),
+
     ########################
     # Faction Related URLs #
     ########################
@@ -22,6 +32,8 @@ urlpatterns = [
     ),
     path("factions/<int:faction_id>", views.faction_show, name="faction_show"),
     path("factions/<slug:faction_slug>", views.faction_show, name="faction_show"),
+    path("factions/<int:faction_id>/children", views.faction_index_by_faction, name="faction_index_by_faction"),
+    path("factions/<slug:faction_slug>/children", views.faction_index_by_faction, name="faction_index_by_faction"),
     #######################
     # Leader Related URLs #
     #######################
@@ -70,6 +82,13 @@ urlpatterns = [
         views.attendee_index_by_organization,
         name="attendee_index_by_organization",
     ),
+    path(
+        "attendees/<slug:attendee_slug>",
+        views.attendee_show,
+        name="attendee_show",
+    ),
+    
+    
     ###################################
     # Dashboard Widget Related Routes #
     ###################################

@@ -9,11 +9,15 @@ from django.shortcuts import redirect, render
 
 from address.forms import AddressForm
 from facility.forms import FacultyProfileForm
-from facility.models import FacultyProfile
+from facility.models.faculty import Faculty, FacultyProfile
 from facility.widgets import FacultyListWidget
 from faction.forms import AttendeeProfileForm, LeaderProfileForm
-from faction.models import AttendeeProfile, LeaderProfile
+from faction.models.faction import Faction
+from faction.models.leader import LeaderProfile
+from faction.models.attendee import AttendeeProfile
 from faction.widgets import AttendeeListWidget, LeaderListWidget
+from enrollment.models.enrollment import ActiveEnrollment
+from pages.models import DashboardLayout
 
 from .forms import RegistrationForm
 from .models import User
@@ -175,7 +179,7 @@ def login_view(request):
     else:
         form = AuthenticationForm()
 
-    return render(request, "signin.html", {"form": form})
+    return render(request, "auth/signin.html", {"form": form})
 
 
 @login_required
@@ -197,25 +201,30 @@ def dashboard(request):
     user = request.user
     context = {}
 
+    # Load user's dashboard layout
+    try:
+        layout = DashboardLayout.objects.get(user=request.user).layout
+    except DashboardLayout.DoesNotExist:
+        layout = None
+
     # if hasattr(user, "attendee_profile"):
     if user.role == 'ATTENDEE':
-        context["user_type"] = "ATTENDEE"
+        return render(request, "attendee/dashboard.html")
 
     # elif hasattr(user, "leader_profile"):
-    elif user.role == 'LEADER':
-        context["user_type"] = "LEADER"
-        context["widgets"] = [
-            AttendeeListWidget()
-        ]
+    elif user.role == 'LEADER':       
+        return render(request, "leader/dashboard.html", )
 
     # elif hasattr(user, "faculty_profile"):
     elif user.role == 'FACULTY':
         context["user_type"] = "FACULTY"
 
+        return render(request, "faculty/dashboard.html")
+
     if user.is_superuser:
         return redirect("/admin/")
 
-    return render(request, "dashboard.html", context)
+    return render(request, "auth/dashboard.html")
 
 
 def logout(request):

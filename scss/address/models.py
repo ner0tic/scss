@@ -1,9 +1,11 @@
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
+""" Address Related Models. """
+
 from django.db import models
 
+from pages.mixins import models as mixins
 
-class Address(models.Model):
+
+class Address(mixins.GenericRelationMixin, models.Model):
     street = models.CharField(max_length=128)
     street2 = models.CharField(max_length=128, null=True, blank=True)
     city = models.CharField(max_length=64)
@@ -11,10 +13,9 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=20)
     country = models.CharField(max_length=50)
 
-    # Generic foreign key fields
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey("content_type", "object_id")
+    class Meta:
+        verbose_name = "Address"
+        verbose_name_plural = "Addresses"
 
     def __str__(self):
         return (

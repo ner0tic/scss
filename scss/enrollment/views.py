@@ -3,15 +3,30 @@
 from datetime import datetime
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.timezone import make_aware
 
-from facility.models import Facility, Faculty
-from faction.models import Attendee, Faction, Leader
+from facility.models.facility import Facility
+from facility.models.faculty import Faculty
+from faction.models.attendee import Attendee
+from faction.models.faction import Faction
+from faction.models.leader import Leader
 from organization.models import Organization
 
-from .models import *
+from .models.enrollment import *
+from .models.facility import *
+from .models.faction import *
+from .models.organization import *
+
+
+@login_required
+def my_enrollments(request):
+    if request.user.role in ["ATTENDEE", "LEADER"]:
+        return redirect("faction_enrollment_index_by_current_user")
+    else:
+        return redirect("faculty_enrollment_index_by_current_user")
 
 
 ##########################################
@@ -155,7 +170,7 @@ def faction_enrollment_index_by_faction(request, faction_id=None, faction_slug=N
 
     return render(
         request,
-        "faction_enrollment/list.html",
+        "faction-enrollment/list.html",
         {"faction_enrollments": enrollments, "faction": faction},
     )
 
@@ -175,23 +190,29 @@ def faction_enrollment_index_by_year_and_faction(
 
     return render(
         request,
-        "faction_enrollment/list.html",
+        "faction-enrollment/list.html",
         {"faction_enrollments": enrollments, "faction": faction, "year": year},
     )
 
 
 def faction_enrollment_index_by_current_user(request):
     user = request.user
+    print(user)
     faction = 0
+    profile = user.get_profile()
+    
+    if hasattr(profile, "faction"):
+        print("has attribute.")
+        faction = user.get_profile().faction
 
-    if user.role  == 'ATTENDEE':
-        faction = user.attendeeprofile.faction
-    if user.role == 'LEADER':
-        faction - user.leaderprofile.faction
-
-    enrollments = FactionEnrollment.objects.filter(faction=faction)
-
-    return render(request, "faction-enrollment/list.html", {"enrollments": enrollments, "faction": faction})
+    print(faction)
+    enrollments = FactionEnrollment.objects.by_faction(faction_id=faction.id)
+    
+    return render(
+        request,
+        "faction-enrollment/list.html",
+        {"enrollments": enrollments, "faction": faction},
+    )
 
 
 ####################################
@@ -199,6 +220,28 @@ def faction_enrollment_index_by_current_user(request):
 ####################################
 def leader_enrollment_index(request):
     pass
+
+
+def leader_enrollment_index_by_faction_enrollment(
+    request,
+    faction_id=None,
+    faction_slug=None,
+    faction_enrollment_id=None,
+    faction_enrollment_slug=None,
+):
+    # get list of leader enrollments using the faction enrollment id/ slug
+    if faction_enrollment_id:
+        faction_enrollment = FactionEnrollment.objects.get(id=faction_enrollment_id)
+    else:
+        faction_enrollment = FactionEnrollment.objects.get(slug=faction_enrollment_slug)
+
+    enrollments = LeaderEnrollment.objects.by_faction_enrollment(faction_enrollment)
+
+    return render(
+        request,
+        "leader-enrollment/list.html",
+        {"enrollments": enrollments, "faction_enrollment": faction_enrollment},
+    )
 
 
 #######################
@@ -243,13 +286,71 @@ def attendee_enrollment_index(request):
     pass
 
 
+def attendee_enrollment_index_by_faction_enrollment(
+    request,
+    faction_id=None,
+    faction_slug=None,
+    faction_enrollment_id=None,
+    faction_enrollment_slug=None,
+):
+    # get list of attendee enrollments using the faction enrollment id/ slug
+    if faction_enrollment_id:
+        faction_enrollment = FactionEnrollment.objects.get(id=faction_enrollment_id)
+    else:
+        faction_enrollment = FactionEnrollment.objects.get(slug=faction_enrollment_slug)
+
+    enrollments = AttendeeEnrollment.objects.by_faction_enrollment(faction_enrollment)
+
+    return render(
+        request,
+        "attendee-enrollment/list.html",
+        {"enrollments": enrollments, "faction_enrollment": faction_enrollment},
+    )
+
+
 ############################################
 # Attendee Class Enrollment Related Views. #
 ############################################
 def attendee_class_enrollment_index(request):
     pass
 
+def attendee_class_enrollment_index_by_attendee_enrollment(
+    request,
+    attendee_id = None,
+    attendee_slug = None,
+    enrollment_id = None,
+    enrollment_slug = None):
 
+    # Get list of attendee class enrollments using the 
+    # attendee enrollment id/ slug
+    if enrollment_id:
+        enrollment = AttendeeEnrollment.objects.get(id=enrollment_id)
+    else:
+        enrollment = AttendeeEnrollment.objects.get(slug=enrollment_slug)
+
+    enrollments = AttendeeClassEnrollment.objects.by_attendee_enrollment(enrollment)
+
+    return render(
+        request,
+        "attendee-enrollment/list.html",
+        {"enrollments": enrollments, "attendee_class_enrollment": enrollment},
+    )
+
+def my_schedule(request):
+    user = request.user
+    enrollment = ActiveEnrollment.objects.get(user_id=user.id)
+
+    if user.role == 'ATTENDEE':
+        page = 'attendee-class-enrollment/list.html'
+        enrollments = AttendeeClassEnrollment.objects.get(attendee_enrollment_id=enrollment.id)
+    elif user.role == 'LEADER':
+        page = 'leader-enrollment/list.html'
+        enrollments = LeaderEnrollment.objects.get(id=enrollment.leader_enrollment_id)
+    elif user.role == 'FACULTY':
+        page = 'faculty-class-enrollment/list.html'
+        enrollments = FacultyClassEnrollment.objects.filter(faculty_id=enrollment.facility_id, facility_enrollment_id=enrollment.facility_enrollment.id)
+    
+    return render(request, page, {'enrollment': enrollment, 'enrollments': enrollments})
 ###########################################
 # Faculty Class Enrollment Related Views. #
 ###########################################
@@ -271,11 +372,11 @@ def my_enrollments(request):
         enrollments = LeaderEnrollment.objects.filter(leader=user)
         user_type = "leader"
     if user.role == "FACULTY":
-        enrollments = FacultyEnrollment.objects, filter(faculty=user)
+        enrollments = FacultyEnrollment.objects.filter(faculty=user)
         user_type = "faculty"
 
     return render(
-        request, f"{user_type}-enrollment/index.html", {"enrollments": enrollments}
+        request, f"{user_type}-enrollment/list.html", {"enrollments": enrollments}
     )
 
 

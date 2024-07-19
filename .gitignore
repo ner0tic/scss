@@ -151,3 +151,6 @@ celerybeat-schedule
 # Others
 .DS_Store
 Thumbs.db
+
+# Fixtures
+fixtures/

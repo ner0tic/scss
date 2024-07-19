@@ -1,0 +1,39 @@
+{% extends 'base/list.html' %}
+
+{% block title_text %}
+    {% if faction %}
+        {{ faction }}'s Attendees
+    {% else %}
+        Attendees
+    {% endif %}
+{% endblock title_text %}
+
+{% block content_header_text %}
+    {% if faction %}
+    Attendees in {{ faction }}
+    {% else %}
+    attendees
+    {% endif %}
+{% endblock content_header_text %}
+ 
+{% block content_list_header %}
+<tr>
+    <th>Last Name</th>
+    <th>First Name</th>
+    <th>Sub Faction</th>
+</tr>
+{% endblock content_list_header %}
+
+{% block content_list %}
+        {% for attendee in attendees %}
+        <tr>
+            <td><a href="{{ attendee.get_absolute_url }}">{{ attendee.last_name }}</a></td>
+            <td><a href="{{ attendee.get_absolute_url }}">{{ attendee.first_name }}</a></td>
+            <td><a href="{{ attendee.getProfile.faction.get_absolute_url }}">{{ attendee.getProfile.faction }}</a></td>
+        </tr>
+        {% endfor %}
+{% endblock content_list %}
+
+{% block content_footer_text %}
+<a href="#">Back To List</a>
+{% endblock content_footer_text %}

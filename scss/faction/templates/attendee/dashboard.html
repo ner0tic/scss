@@ -1,0 +1,168 @@
+{% extends 'auth/dashboard.html' %}
+
+{% block title_text %}Attendee Dashboard{% endblock %}
+
+{% block menu %}
+<nav>
+    <ul>
+        {% block menu_items %}
+        <li><a href="{% url 'dashboard' %}">Home</a></li>
+        <li><a href="{% url 'my_schedule' %}">My Schedule</a></li>
+        <li><a href="#">Activities</a></li>
+        <li><a href="{% url 'notifications' %}">Notifications</a></li>
+        {% endblock menu_items %}
+    </ul>
+</nav>
+{% endblock menu %}
+
+{% block active_enrollment %}
+    {{ block.super }}
+    {% if active_enrollment %}
+    <h3>Active Enrollments:</h3>
+        <ul>
+            {% for enrollment in active_enrollments %}
+                <li>
+                    {% if enrollment.attendee_enrollment %}
+                        {% with name=enrollment.attendee_enrollment.attendee start=enrollment.attendee_enrollment.faction_enrollment.week.start_timestamp end=enrollment.attendee_enrollment.faction_enrollment.week.end_timestamp where=enrollment.attendee_enrollment.faction_enrollment.week.name %}
+                        <strong>{{ name }}</strong>
+                        - Enrolled in {{ where }}
+                        ({{ start }} - {{ end }})
+                        {% endwith %}
+                    {% elif enrollment.leader_enrollment %}
+                        {% with name=enrollment.leader_enrollment.leader start=enrollment.leader_enrollment.faction_enrollment.week.start_timestamp end=enrollment.leader_enrollment.faction_enrollment.week.end_timestamp where=enrollment.attendee_enrollment.faction_enrollment.week.name %}
+                        <strong>{{ name }}</strong>
+                        - Enrolled in {{ where }}
+                        ({{ start }} - {{ end }})
+                        {% endwith %}
+                        {% elif enrollment.faculty_enrollment %}
+                        {% with name=enrollment.faculty_enrollment.faculty start=enrollment.faculty_enrollment.facility_enrollment.start_timestamp end=enrollment.faculty_enrollment.facility_enrollment.end_timestamp where=enrollment.faculty_enrollment.facility_enrollment.season.name %}
+                        <strong>{{ name }}</strong>
+                        - Enrolled in {{ where }}
+                        ({{ start }} - {{ end }})
+                        {% endwith %}    
+                    {% elif enrollment.faction_enrollment %}
+                        {% with name=enrollment.faction_enrollment.faction start=enrollment.faction_enrollment.week.start_timestamp end=enrollment.faction_enrollment.week.end_timestamp where=enrollment.faction_enrollment.week.name %}
+                        <strong>{{ name }}</strong>
+                        - Enrolled in {{ where }}
+                        ({{ start }} - {{ end }})
+                        {% endwith %}
+                    {% elif enrollment.facility_enrollment %}
+                        {% with name=enrollment.facility_enrollment.facility start=enrollment.facility_enrollment.start_timestamp end=enrollment.facility_enrollment.end_timestamp where=enrollment.facility_enrollment.season.name %}
+                        <strong>{{ name }}</strong>
+                        - Enrolled in {{ where }}
+                        ({{ start }} - {{ end }})
+                        {% endwith %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{%block cards %}
+    {{ block.super }}
+    {% block upcoming_card %}
+    <section class="card">
+        <h2>Upcoming Activities</h2>
+        {% if upcoming_activities %}
+            <ul>
+                {% for activity in upcoming_activities %}
+                    <li>
+                        <strong>{{ activity.name }}</strong><br>
+                        {{ activity.description }}<br>
+                        Time: {{ activity.start_time }} - {{ activity.end_time }}<br>
+                        Location: {{ activity.facility.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No upcoming activities.</p>
+        {% endif %}
+    </section>
+    {% endblock upcoming_card %}
+
+    {% block today_schedule_card %}
+    <section class="card">
+        <h2>Today's Schedule</h2>
+        {% if todays_schedule %}
+            <ul>
+                {% for activity in todays_schedule %}
+                    <li>
+                        <strong>{{ activity.name }}</strong><br>
+                        Time: {{ activity.start_time }} - {{ activity.end_time }}<br>
+                        Location: {{ activity.facility.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No activities scheduled for today.</p>
+        {% endif %}
+    </section>
+    {% endblock today_schedule_card %}
+
+    {% block notification_card %}
+    <section class="card">
+        <h2>Announcements and Notifications</h2>
+        {% if notifications %}
+            <ul>
+                {% for notification in notifications %}
+                    <li>{{ notification.message }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No new notifications.</p>
+        {% endif %}
+    </section>
+    {% endblock notification_card %}
+
+    {% block messages_card %}
+    <section class="card">
+        <h2>Recent Messages</h2>
+        {% if recent_messages %}
+            <ul>
+                {% for message in recent_messages %}
+                    <li>{{ message.content }}<br>
+                    <small>From: {{ message.sender.first_name }} {{ message.sender.last_name }}</small></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No new messages.</p>
+        {% endif %}
+    </section>
+    {% endblock messages_card %}
+
+    {% block suggestion_card %}
+    <section class="card">
+        <h2>Activity Suggestions</h2>
+        {% if suggested_activities %}
+            <ul>
+                {% for activity in suggested_activities %}
+                    <li>
+                        <strong>{{ activity.name }}</strong><br>
+                        {{ activity.description }}<br>
+                        <a href="#">Register</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No suggestions at the moment.</p>
+        {% endif %}
+    </section>
+    {% endblock suggestion_card %}
+
+    {% block profile_card %}
+    <section class="card">
+        <h2>Profile Summary</h2>
+        <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <a href="#">Edit Profile</a>
+    </section>
+    {% endblock profile_card %}
+
+    {% block feedback_card %}
+    <section class="card">
+        <h2>Feedback</h2>
+        <p>We value your feedback. Please let us know how we can improve your camp experience.</p>
+        <a href="#">Provide Feedback</a>
+    </section>
+    {% endblock feedback_card %}
+{% endblock cards %}

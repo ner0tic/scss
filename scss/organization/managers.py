@@ -1,8 +1,7 @@
 """ Organization Related Managers. """
 from django.db import models
 
-from .querysets import OrganizationQuerySet
-
+from .querysets import OrganizationQuerySet, OrganizationLabelsQuerySet
 
 class OrganizationManager(models.Manager):
     """
@@ -110,3 +109,10 @@ class OrganizationManager(models.Manager):
             QuerySet: A QuerySet containing the children organizations of the specified parent organization.
         """
         return self.get_queryset().children_of(parent_id)
+
+    def with_total_factions_count(self):
+        return self.get_queryset().with_total_factions_count()
+
+class OrganizationLabelsManager(models.Manager):
+    def get_queryset(self):
+        return OrganizationLabelsQuerySet(self.model, using=self._db)

@@ -9,8 +9,8 @@ from .models import Course, Requirement
 
 def course_index(request):
     """Course list view."""
-    query = request.GET.get('q')
-    if query:
+
+    if query := request.GET.get('q'):
         courses = Course.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
     else:
         courses = Course.objects.all()

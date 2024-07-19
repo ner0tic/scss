@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from address.models import Address
 
-from .models import Faculty, FacultyProfile
+from .models.faculty import Faculty, FacultyProfile
 
 
 class FacultyProfileForm(forms.ModelForm):

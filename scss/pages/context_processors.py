@@ -1,5 +1,32 @@
 from .models import MenuItem
+from enrollment.models import ActiveEnrollment
+from faction.models import Faction
 
+def user_role(request):
+    return {'user_role': request.user.role if request.user.is_authenticated else None}
+
+def user_profile(request):
+    if request.user.is_authenticated:
+        return {'user_profile': request.user.get_profile()}
+    else:
+        return { 'user_profile': None }
+
+def active_enrollment(request):
+    if request.user.is_superuser:
+        return {}
+    if active_enrollment_id := request.session.get('active_enrollment_id'):
+        active_enrollment = ActiveEnrollment.objects.get(id=active_enrollment_id)
+    elif request.user.is_authenticated:
+        active_enrollment = ActiveEnrollment.objects.get(user_id=request.user.id) or ActiveEnrollment(user_id=request.user.id)
+    else:
+        active_enrollment = ActiveEnrollment()
+    faction_enrollment = active_enrollment.faction_enrollment or {}
+    if faction_enrollment:
+        faction_id = active_enrollment.faction_enrollment.faction.id or 0
+        faction = Faction.objects.with_member_count().with_sub_faction_count().get(id=faction_id)
+        active_enrollment.faction_enrollment.faction = faction
+
+    return {'active_enrollment': active_enrollment}
 
 def menu_items_processor(request):
     if request.user.is_authenticated:

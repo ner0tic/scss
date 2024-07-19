@@ -1,0 +1,126 @@
+{% extends 'auth/dashboard.html' %}
+
+{% block title_text %}Leader Dashboard{% endblock %}
+
+{% block user_stat_1_href %}#{% endblock user_stat_1_href %}
+{% block user_stat_1_href_class %}{{ block.super }} attendee{% endblock user_stat_1_href_class %}
+{% block user_stat_1_title %}{{organization_labels.attendee_label}}{{2|pluralize}}{% endblock user_stat_1_title %}
+{% block user_stat_1_value_class %}{{ block.super }} attendees{% endblock user_stat_1_value_class %}
+{% block user_stat_1_value %}{{ active_enrollment.faction_enrollment.faction.member_count }}{% endblock user_stat_1_value %}
+
+{% block user_stat_3_href %}{% url 'faction_index_by_faction' user_profile.faction %}{% endblock user_stat_3_href %}
+{% block user_stat_3_href_class %}{{ block.super }} subfaction{% endblock user_stat_3_href_class %}
+{% block user_stat_3_title %}{{organization_labels.sub_faction_label}}{{2|pluralize}}{% endblock user_stat_3_title %}
+{% block user_stat_3_count_class %}{{ block.super }} subfactions{% endblock user_stat_3_count_class %}
+{% block user_stat_3_count %}{{ active_enrollment.faction_enrollment.faction.sub_faction_count }}{% endblock user_stat_3_count %}
+
+{%block cards %}
+<div id="dashboard">
+    {{ block.super }}
+
+    {% block today_schedule_card %}
+    <section class="card" data-id="section2">
+        <h2>Today's Schedule</h2>
+        {% if todays_schedule %}
+            <ul>
+                {% for activity in todays_schedule %}
+                    <li>
+                        <strong>{{ activity.name }}</strong><br>
+                        Time: {{ activity.start_time }} - {{ activity.end_time }}<br>
+                        Location: {{ activity.facility.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No activities scheduled for today.</p>
+        {% endif %}
+    </section>
+    {% endblock today_schedule_card %}
+
+    {% block notification_card %}
+    {% if notifications %}
+    <section class="card" data-id="section3">
+        <h2>Announcements and Notifications</h2>
+        <ul>
+            {% for notification in notifications %}
+                <li>{{ notification.message }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% endblock notification_card %}
+
+    {% block manage_attendees_card %}
+    <section class="card" data-id="section5">
+        <h2>Manage Attendees</h2>
+        {% if attendees %}
+            <ul>
+                {% for attendee in attendees %}
+                    <li>
+                        <strong>{{ attendee.name }}</strong><br>
+                        [Status Here]<br>
+                        <a href="#">Register</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No attendees found.</p>
+        {% endif %}
+    </section>
+    {% endblock manage_attendees_card %}
+    {% block messages_card %}
+    <section class="card" data-id="section4">
+        <h2>Recent Messages</h2>
+        {% if recent_messages %}
+            <ul>
+                {% for message in recent_messages %}
+                    <li>{{ message.content }}<br>
+                    <small>From: {{ message.sender.first_name }} {{ message.sender.last_name }}</small></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No new messages.</p>
+        {% endif %}
+    </section>
+    {% endblock messages_card %}
+
+
+
+    {% block reports_card %}
+    <section class="card" data-id="section6">
+        <h2>Profile Summary</h2>
+        <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <a href="#">Edit Profile</a>
+    </section>
+    {% endblock reports_card %}
+
+    {% block upcoming_card %}
+    <section class="card" data-id="section1">
+        <h2>Upcoming Enrollments</h2>
+        {% if upcoming_activities %}
+            <ul>
+                {% for activity in upcoming_activities %}
+                    <li>
+                        <strong>{{ activity.name }}</strong><br>
+                        {{ activity.description }}<br>
+                        Time: {{ activity.start_time }} - {{ activity.end_time }}<br>
+                        Location: {{ activity.facility.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No upcoming activities.</p>
+        {% endif %}
+    </section>
+    {% endblock upcoming_card %}
+
+    {% block feedback_card %}
+    <section class="card" data-id="section7">
+        <h2>Feedback</h2>
+        <p>We value your feedback. Please let us know how we can improve your camp experience.</p>
+        <a href="#">Provide Feedback</a>
+    </section>
+    {% endblock feedback_card %}
+</div>
+{% endblock cards %}

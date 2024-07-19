@@ -1,0 +1,91 @@
+<!-- dashboard.html -->
+{% extends 'base/layout.html' %}
+
+{% block title_text %}Dashboard{% endblock title_text %}
+{% block stylesheets_local %}
+    {% load static %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+{% endblock stylesheets_local %}
+
+{% block content %}
+    <br />
+    {% block info_row_wrapper %}
+    <section class="top_row">
+        {% block info_row %}
+            {% block user_stats_wrapper %}
+        <div class="page-margin-offset multiple">
+            <div class="sidebar">
+                <div class="custom-ui-stats user-stats module clearfix">
+                    {% block user_stats %}
+                        {% block user_stat_1 %}
+                    <a href="{% block user_stat_1_href %}#{% endblock user_stat_1_href %}" class="{% block user_stat_1_href_class %}count first{% endblock user_stat_1_href_class %}">
+                        <span>{% block user_stat_1_title %}Members{% endblock user_stat_1_title %}</span>
+                        <span class="attendees {% block user_stat_1_value_class %}count{% endblock user_stat_1_value_class %}">{% block user_stat_1_value %}X{% endblock user_stat_1_value %}</span></a>
+                    </a>
+                        {% endblock user_stat_1 %}
+
+                        {% block user_stat_2 %}
+                    <a href="{% block user_stat_2_href %}#{% endblock user_stat_2_href %}" class="{% block user_stat_2_href_class %}messages{% endblock user_stat_2_href_class %}">
+                        <span>{% block user_stat_2_title %}Messages{% endblock user_stat_2_title %}</span>
+                        <span class="{% block user_stat_2_value_class %}messages count{% endblock user_stat_2_value_class %}">{% block user_stat_2_value %}Y{% endblock user_stat_2_value %}</span>
+                    </a>
+                        {% endblock user_stat_2 %}
+
+                        {% block user_stat_3 %}
+                    <a href="{% block user_stat_3_href %}#{% endblock user_stat_3_href %}" class="{% block user_stat_3_href_class %}count last{% endblock user_stat_3_href_class %}">
+                        <span>{% block user_stat_3_title %}Groups{% endblock user_stat_3_title %}</span>
+                        <span class="{% block user_stat_3_count_class %}count{% endblock user_stat_3_count_class %}">{% block user_stat_3_count %}Z{% endblock user_stat_3_count %}</span>
+                    </a>
+                        {% endblock user_stat_3 %}
+                    {% endblock user_stats %}
+                </div>
+            </div>
+        </div>
+            {% endblock user_stats_wrapper %}
+
+            {% block active_enrollment_wrapper %}
+        <div class="info-box-wrapper">
+            <div id="info-box" class="box box-flat-left">
+                {% block active_enrollment %}
+                    {% block active_enrollment_avatar_wrapper %}
+                <div class="avatar">
+                        {% block active_enrollment_avatar %}
+                    <a href="{% url 'account_settings' %}"><img src="{% static 'images/avatar/default.png' %}" width="50px" height="50px" alt="{{ user }}" /></a>
+                        {% endblock active_enrollment_avatar %}
+                </div>
+                    {% endblock active_enrollment_avatar_wrapper %}
+                <div>
+                    {% block active_enrollment_welcome_msg %}
+                    <h2>
+                        Welcome <a href="#">{{ user }}</a>.
+                    </h2>  
+                    {% endblock active_enrollment_welcome_msg %}
+                    <hr />
+                    {% block active_enrollment_breadcrumbs_wrapper %}
+                    <p>
+                        {% block active_enrollment_breadcrumbs %}
+                        <a href="{{ active_enrollment.facility_enrollment.facility.get_absolute_url }}">{{ active_enrollment.facility_enrollment.facility }}</a> 
+                        {% with season=active_enrollment.facility_enrollment %}
+                        &nbsp;{{organization_labels.facility_enrollment_label}}: <a href="{{ season.get_absolute_url }}">{{ season.name }}</a>
+                        {% endwith %}
+                        {% if user.role == 'ATTENDEE' or user.role == 'LEADER' %}
+                            {% with week=active_enrollment.faction_enrollment.week %}
+                        &nbsp;{{organization_labels.week_label}}: <a href="{{ week.get_absolute_url }}">{{ week.name }}</a>
+                            {% endwith %}
+                        {% endif %}
+                        {% endblock active_enrollment_breadcrumbs %}
+                    </p>
+                    {% endblock active_enrollment_breadcrumbs_wrapper %}
+                </div>
+                {% endblock active_enrollment %}
+            </div>
+        </div>
+            {% endblock active_enrollment_wrapper %}
+        {% endblock info_row %}
+    </section>
+    {% endblock info_row_wrapper%}
+
+    {% block cards %}
+    {% endblock cards %}
+{% endblock content %}

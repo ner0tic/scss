@@ -1,21 +1,29 @@
 """ Organization Related Views. """
 
-from django.contrib.auth import authenticate, login
-from django.shortcuts import get_object_or_404, redirect, render
+from rest_framework import viewsets
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 
-from .forms import OrganizationForm
+#from .forms import OrganizationForm
 from .models import Organization
+from .serializers import OrganizationSerializer
+
+
+class OrganizationViewSet(viewsets.ModelViewSet):
+    queryset = Organization.objects.all()
+    serializer_class = OrganizationSerializer
 
 
 def organization_index(request):
-    """ Organization list view. """
+    """Organization list view."""
     organizations = Organization.objects.all()
 
     return render(request, "organization/list.html", {"organizations": organizations})
 
 
 def organization_index_root(request):
-    """ Root Organization list view."""
+    """Root Organization list view."""
     organizations = Organization.objects.filter(parent__isnull=True)
 
     return render(request, "organization/list.html", {"organizations": organizations})
@@ -32,7 +40,7 @@ def organization_show(request, organization_id=None, organization_slug=None):
 
 
 def organization_index_by_parent(request, organization_id=None, organization_slug=None):
-    """ Organization list by parent view. """
+    """Organization list by parent view."""
     if organization_id:
         parent_org = get_object_or_404(Organization, pk=organization_id)
     else:

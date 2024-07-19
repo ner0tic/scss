@@ -2,9 +2,6 @@
 from django.http import HttpResponse
 
 
-
-
-
 def style_css(request):
     def render_font_face(self):
         content = """

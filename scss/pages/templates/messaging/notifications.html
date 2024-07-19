@@ -1,0 +1,13 @@
+{% extends 'base/layout.html' %}
+
+{% block content %}
+  <h2>Notifications</h2>
+  <ul>
+    {% for notification in notifications %}
+      <li>
+        {{ notification.content }}<br>
+        <small>{{ notification.timestamp }}</small>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

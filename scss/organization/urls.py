@@ -1,8 +1,12 @@
 """ Organization URLs. """
 
-from django.urls import path
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
 
 from . import views
+
+router = DefaultRouter()
+router.register(r'organizations', views.OrganizationViewSet)
 
 urlpatterns = [
     #############################
@@ -32,4 +36,6 @@ urlpatterns = [
         views.organization_index_by_parent,
         name="organization_index_by_parent",
     ),
+    
+    path(r'', include(router.urls)),
 ]

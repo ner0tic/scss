@@ -1,9 +1,11 @@
-# enrollments/{faction_enrollment.slug}/ #show
-# enrollments/{faction_enrollment.slug/attendees}
-""" Enrollment Related URLs. """
-from django.urls import path
+# enrollment/urls.py
+
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from . import views
+
+router = DefaultRouter()
 
 urlpatterns = [
     # Organization Enrollment Related URLs
@@ -62,11 +64,42 @@ urlpatterns = [
         name="faction_enrollment_index_by_year_and_faction",
     ),
     # Leader Enrollment Related URLs
+    path(
+        "factions/<int:faction_id>/enrollments/<int:faction_enrollment_id>/leaders",
+        views.leader_enrollment_index_by_faction_enrollment,
+        name="leader_enrollment_index_by_faction_enrollment",
+    ),
+    path(
+        "factions/<slug:faction_slug>/enrollments/<slug:faction_enrollment_slug>/leaders",
+        views.leader_enrollment_index_by_faction_enrollment,
+        name="leader_enrollment_index_by_faction_enrollment",
+    ),
     # Attendee Enrollment Related URLs
+    path(
+        "factions/<int:faction_id>/enrollments/<int:faction_enrollment_id>/attendees",
+        views.attendee_enrollment_index_by_faction_enrollment,
+        name="attendee_enrollment_index_by_faction_enrollment",
+    ),
+    path(
+        "factions/<slug:faction_slug>/enrollments/<slug:faction_enrollment_slug>/attendees",
+        views.attendee_enrollment_index_by_faction_enrollment,
+        name="attendee_enrollment_index_by_faction_enrollment",
+    ),
     # Attendee Class Enrollment Related URLs
+    path(
+        "my-schedule",
+        views.my_schedule,
+        name="my_schedule"
+    ),
+    path(
+        "attendees/<slug:attendee_slug>/enrollments/<slug:attendee_enrollment>/enrollments",
+        views.attendee_class_enrollment_index_by_attendee_enrollment,
+        name="attendee_class_enrollment_index_by_attendee_enrollment"
+    ),
     # Organization Course Related URLs
     # Facility Class Related URLs
     # Facility Class Enrollment Related URLs
     # Faculty Class Enrollment Related URLs
     # Active Enrollment Related URLs
+    path("my-enrollments/", views.my_enrollments, name="my_enrollments"),
 ]

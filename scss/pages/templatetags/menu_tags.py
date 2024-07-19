@@ -22,10 +22,11 @@ def get_route_params(url_name):
 @register.simple_tag(takes_context=True)
 def dynamic_url(context, url_name, *args, **kwargs):
     request = context['request']
-    user_profile = request.user.get_profile()
+
     url_kwargs = {}
 
     def set_kwarg(name):
+        user_profile = request.user.get_profile()
         # Logic to determine URL kwargs based on user profile
         if hasattr(user_profile, f'{name}_id'):
             url_kwargs[f'{name}_id'] = getattr(user_profile, f'{name}_id')
@@ -39,7 +40,7 @@ def dynamic_url(context, url_name, *args, **kwargs):
 def render_menu(context, menu_name, template_name="menu/base_menu.html"):
     request = context["request"]
     user = request.user
-    profile = user.get_profile()
+    # profile = user.get_profile()
     menu = get_object_or_404(Menu, name=menu_name)
     menu_items = menu.items.all()
 

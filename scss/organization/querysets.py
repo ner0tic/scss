@@ -1,5 +1,12 @@
 """ Organization Related QuerySets. """
+
 from django.db import models
+
+from faction.models import Faction
+
+
+class OrganizationLabelsQuerySet(models.QuerySet):
+    pass
 
 
 class OrganizationQuerySet(models.QuerySet):
@@ -47,16 +54,17 @@ class OrganizationQuerySet(models.QuerySet):
         This method returns a queryset of organizations with all their factions,
         including those from child organizations.
         """
+
         def get_descendants_ids(org):
             descendants = [org.id]
             for child in org.children.all():
                 descendants.extend(get_descendants_ids(child))
             return descendants
-        
+
         # Generate Q objects for filtering factions based on organization hierarchy
         q_objects = models.ManyToManyFieldQ()
         for org in self:
             descendant_ids = get_descendants_ids(org)
             q_objects |= models.Q(organization_id__in=descendant_ids)
-        
+
         return Faction.objects.filter(q_objects).distinct()

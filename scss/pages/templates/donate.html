@@ -1,0 +1,43 @@
+{% extends 'base/layout.html' %}
+
+{% block title_text %}Donate!{% endblock title_text %}
+
+{% block content %}
+<div>
+    <h1>Donate to Campfire Connections</h1>
+    <form>
+      <table>
+        <thead>
+          <tr>
+            <th>Donate To Campfire Connections</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <label for="name">Name</label>
+              <input type="text" name="name" class="donate-form-input text-input" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="name">Email</label>
+              <input type="text" name="email" class="donate-form-input text-input" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="name">Amount</label>
+              <input type="text" name="amount" class="donate-form-input text-input" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="submit" class="btn-main btn">Donate</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  {% endblock content %}
