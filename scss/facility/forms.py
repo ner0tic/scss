@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from address.models import Address
+#from address.models import Address
 
 from .models.faculty import Faculty, FacultyProfile
 

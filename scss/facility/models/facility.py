@@ -12,7 +12,8 @@ from pages.mixins import models as mixins
 class Facility(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, mixins.AuditMixin, mixins.SlugMixin, mixins.ActiveMixin, mixins.ImageMixin, mixins.ParentChildMixin, models.Model):
     """Facility Model."""
 
-    address = GenericRelation("address.Address", null=True, blank=True)
+    #address = GenericRelation("address.Address", null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
     organization = models.ForeignKey(
         "organization.Organization", on_delete=models.CASCADE, related_name="facilities"
     )

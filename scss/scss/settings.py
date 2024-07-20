@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
-    "address",
     "course",
     "enrollment",
     "facility",
@@ -203,3 +202,5 @@ REST_FRAMEWORK = {
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+GOOGLE_API_KEY = 'AIzaSyB-6CZ_ARmZ39phK6qzbG2Bl26HYUGMuRA'

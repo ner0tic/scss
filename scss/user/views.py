@@ -7,8 +7,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import redirect, render
 
-from address.forms import AddressForm
-from facility.forms import FacultyProfileForm
+#from address.forms import AddressForm
+#from facility.forms import FacultyProfileForm
 from facility.models.faculty import Faculty, FacultyProfile
 from facility.widgets import FacultyListWidget
 from faction.forms import AttendeeProfileForm, LeaderProfileForm
@@ -101,7 +101,7 @@ Returns:
 
             elif registration_form.cleaned_data["user_type"] == "Leader":
                 leader_form = LeaderProfileForm(request.POST)
-                address_form = AddressForm(request.POST)
+                #address_form = AddressForm(request.POST)
 
                 if leader_form.is_valid() and address_form.is_valid():
                     leader_profile = save_profile(new_user, leader_form)
@@ -115,7 +115,7 @@ Returns:
 
             elif registration_form.cleaned_data["user_type"] == "Faculty":
                 faculty_form = FacultyProfileForm(request.POST)
-                address_form = AddressForm(request.POST)
+                #address_form = AddressForm(request.POST)
 
                 if faculty_form.is_valid() and address_form.is_valid():
                     faculty_profile = save_profile(new_user, faculty_form)
@@ -134,7 +134,7 @@ Returns:
 
     else:
         registration_form = RegistrationForm()
-        address_form = AddressForm()
+        #address_form = AddressForm()
         attendee_form = AttendeeProfileForm()
         leader_form = LeaderProfileForm()
         faculty_form = FacultyProfileForm()
@@ -147,7 +147,7 @@ Returns:
             "attendee_form": attendee_form,
             "leader_form": leader_form,
             "faculty_form": faculty_form,
-            "address_form": address_form,
+            #"address_form": address_form,
         },
     )
 

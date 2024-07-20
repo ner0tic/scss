@@ -9,33 +9,39 @@ from django.urls import reverse
 
 from pages.mixins import models as mixins
 from user.models import User, UserProfile
-from organization.models import Organization
+#rom organization.models import Organization
 
-from .faction import Faction
+#from .faction import Faction
 from ..managers import AttendeeManager
 
 
-class Attendee(User, mixins.SlugMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, mixins.AuditMixin, mixins.ActiveMixin, mixins.ImageMixin):
+class Attendee(
+    User,
+    mixins.SlugMixin,
+    mixins.TimestampMixin,
+    mixins.SoftDeleteMixin,
+    mixins.AuditMixin,
+    mixins.ActiveMixin,
+    mixins.ImageMixin,
+):
     """Attendee Model."""
 
-    role = User.Role.ATTENDEE
+    user_type = User.UserType.ATTENDEE
     faction = models.ForeignKey(
-        Faction, on_delete=models.SET_NULL, null=True, blank=True
+        "faction.Faction", on_delete=models.SET_NULL, null=True, blank=True
     )
     organization = models.ForeignKey(
-        Organization, on_delete=models.SET_NULL, null=True, blank=True
+        "organization.Organization", on_delete=models.SET_NULL, null=True, blank=True
     )
-    address = GenericRelation("address.Address", null=True, blank=True)
-    
+    # address = GenericRelation("address.Address", null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
+
     def get_root_faction(self):
         if self.faction.parent:
             return self.faction.parent.get_root_faction()
         return self.faction
-    attendee = AttendeeManager()
 
-    class Meta:
-        # proxy = True
-        pass
+    attendee = AttendeeManager()
 
     def welcome(self):
         return "Only for attendees"
@@ -45,10 +51,15 @@ class Attendee(User, mixins.SlugMixin, mixins.TimestampMixin, mixins.SoftDeleteM
 
 
 class AttendeeProfile(UserProfile):
-    organization = models.ForeignKey(Organization, on_delete=models.SET_NULL, null=True, blank=True)
-    faction = models.ForeignKey(Faction, on_delete=models.SET_NULL, null=True, blank=True)
+    organization = models.ForeignKey(
+        "organization.Organization", on_delete=models.SET_NULL, null=True, blank=True
+    )
+    faction = models.ForeignKey(
+        "faction.Faction", on_delete=models.SET_NULL, null=True, blank=True
+    )
+
 
 @receiver(post_save, sender=Attendee)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created and instance.role == "ATTENDEE":
+    if created and instance.user_type == "ATTENDEE":
         AttendeeProfile.objects.create(user=instance)

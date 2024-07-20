@@ -9,36 +9,45 @@ from django.urls import reverse
 
 from pages.mixins import models as mixins
 from user.models import User, UserProfile
-from address.models import Address
-from organization.models import Organization
+
+# from address.models import Address
+#from organization.models import Organization
 
 from .facility import Facility
 from ..managers import FacultyManager
 
-class Faculty(mixins.SlugMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, mixins.AuditMixin, mixins.ImageMixin, User):
-    role = User.Role.FACULTY
+
+class Faculty(
+    mixins.SlugMixin,
+    mixins.TimestampMixin,
+    mixins.SoftDeleteMixin,
+    mixins.AuditMixin,
+    mixins.ImageMixin,
+    User,
+):
+    user_type = User.UserType.FACULTY
     facility = models.ForeignKey(
-        Facility,
+        "facility.Facility",
         on_delete=models.CASCADE,
         null=True,
         blank=True,
         related_name="faculty",
     )
     organization = models.ForeignKey(
-        Organization,
+        "organization.Organization",
         on_delete=models.CASCADE,
         null=True,
         blank=True,
         related_name="faculty",
     )
-    address = GenericRelation(Address, null=True, blank=True)
-
+    # address = GenericRelation(Address, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
     faculty = FacultyManager()
 
     class Meta:
         # proxy = True
-        verbose_name = 'Faculty'
-        verbose_name_plural = 'Faculty'
+        verbose_name = "Faculty"
+        verbose_name_plural = "Faculty"
 
     def welcome(self):
         return "Only for faculty"
@@ -48,11 +57,15 @@ class Faculty(mixins.SlugMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, m
 
 
 class FacultyProfile(UserProfile):
-    organization = models.ForeignKey(Organization, on_delete=models.SET_NULL, null=True, blank=True)
-    facility = models.ForeignKey(Facility, on_delete=models.SET_NULL, null=True, blank=True)
+    organization = models.ForeignKey(
+        "organization.Organization", on_delete=models.SET_NULL, null=True, blank=True
+    )
+    facility = models.ForeignKey(
+        "facility.Facility", on_delete=models.SET_NULL, null=True, blank=True
+    )
 
 
 @receiver(post_save, sender=Faculty)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created and instance.role == "FACULTY":
+    if created and instance.user_type == "FACULTY":
         FacultyProfile.objects.create(user=instance)
