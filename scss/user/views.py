@@ -208,15 +208,15 @@ def dashboard(request):
         layout = None
 
     # if hasattr(user, "attendee_profile"):
-    if user.role == 'ATTENDEE':
+    if user.user_type == 'ATTENDEE':
         return render(request, "attendee/dashboard.html")
 
     # elif hasattr(user, "leader_profile"):
-    elif user.role == 'LEADER':       
+    elif user.user_type == 'LEADER':       
         return render(request, "leader/dashboard.html", )
 
     # elif hasattr(user, "faculty_profile"):
-    elif user.role == 'FACULTY':
+    elif user.user_type == 'FACULTY':
         context["user_type"] = "FACULTY"
 
         return render(request, "faculty/dashboard.html")
