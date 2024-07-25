@@ -83,8 +83,6 @@
 
 {% block body %}
 
-  {% block breadcrumbs %}{% endblock %}
-
   {% block header_wrapper %}
 
   <header>
@@ -98,55 +96,20 @@
     </div>
 
     {% block menu_wrapper %}
-
     <nav>
-
         {% block menu %}
-
-        <ul>
-
-            {% block menu_items %}
-
-            {% if user.is_authenticated %}
-
-            <li><a href="{% url 'my_schedule' %}">My Schedule</a></li>
-
-                {% if user_role == 'LEADER' %}
-
-            <li><a href="{% url 'attendee_index_by_faction' faction_slug=active_enrollment.faction_enrollment.faction.slug %}">Manage Attendees</a></li>
-            <li><a href="{% url 'faction_enrollment_index_by_faction' faction_slug=active_enrollment.faction_enrollment.faction.slug %}">Faction Enrollments</a></li>
-
-                {% elif user_role == 'ATTENDEE' %}
-            
-                {% elif user_role == 'FACULTY' %}
-
-                {% else %}
-
-                {% endif %}
-
-            {% else %}
-
-            <li><a href="#features">Features</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact">Contact</a></li>
-
-            {% endif %}
-
-            {% endblock menu_items %}
-
-        </ul>
-
+        {% include 'partials/menu.html' %}
         {% endblock menu %}
-
     </nav>
-
     {% endblock menu_wrapper %}
 
     {% if user.is_authenticated %}
 
       {% block toplinks %}
 
-      {% render_top_links 'top links' %}
+      <nav>
+        {% include 'partials/top_links.html' %}
+      </nav>
 
       {% endblock toplinks %}
 
@@ -191,6 +154,11 @@
 
     {% endblock message_block %}
 
+    {%block content_header %}
+      {% if user.is_authenticated %}
+        {% include 'partials/inforow.html' %}
+      {% endif %}
+    {% endblock content_header %}
     {% block content %}{% endblock content %}
 
     <br /> <br /> <br /><br /><br /><br />

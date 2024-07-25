@@ -1,9 +1,9 @@
 """ Menu Tag. """
 from django import template
-from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import ResolverMatch, resolve, reverse
 from django.utils.safestring import mark_safe
+from annoying.functions import get_object_or_None
 
 from ..models import Menu
 
@@ -41,9 +41,12 @@ def render_menu(context, menu_name, template_name="menu/base_menu.html"):
     request = context["request"]
     user = request.user
     # profile = user.get_profile()
-    menu = get_object_or_404(Menu, name=menu_name)
-    menu_items = menu.items.all()
-
+    menu = get_object_or_None(Menu, name=menu_name)
+    if menu:
+        menu_items = menu.items.all()
+    else:
+        menu_items = []
+        
     filtered_items = []
     for item in menu_items:
         if (

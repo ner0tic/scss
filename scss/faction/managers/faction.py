@@ -1,11 +1,13 @@
-""" Faction Related Managers. """
+# faction/managers/faction.py
 
-from django.contrib.auth.models import BaseUserManager
 from pages.managers import AbstractBaseManager
-from .querysets import FactionQuerySet
+
+from ..querysets.faction import FactionQuerySet
 
 
 class FactionManager(AbstractBaseManager):
+    """ Faction Manager. """
+
     def get_queryset(self):
         """
         Returns the custom queryset for factions.
@@ -41,18 +43,3 @@ class FactionManager(AbstractBaseManager):
 
     def with_sub_faction_count(self):
         return self.get_queryset().with_sub_faction_count()
-    
-class AttendeeManager(BaseUserManager):
-    """Attendee Manager."""
-
-    def get_queryset(self, *args, **kwargs):
-        """Get Queryset."""
-        results = super().get_queryset(*args, **kwargs)
-        return results.filter(role=User.Role.ATTENDEE)
-    
-class LeaderManager(BaseUserManager):
-    """Leader Manager."""
-
-    def get_queryset(self, *args, **kwargs):
-        results = super().get_queryset(*args, **kwargs)
-        return results.filter(role=User.Role.LEADER)

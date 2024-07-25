@@ -1,4 +1,5 @@
 """ Users Related Views. """
+
 from django.contrib import messages
 from django.contrib.auth import login as _login
 from django.contrib.auth import logout as _logout
@@ -7,8 +8,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import redirect, render
 
-#from address.forms import AddressForm
-#from facility.forms import FacultyProfileForm
+# from address.forms import AddressForm
+# from facility.forms import FacultyProfileForm
 from facility.models.faculty import Faculty, FacultyProfile
 from facility.widgets import FacultyListWidget
 from faction.forms import AttendeeProfileForm, LeaderProfileForm
@@ -24,7 +25,7 @@ from .models import User
 
 
 def register(request):
-    """ Register a user.
+    """Register a user.
 
     Args:
         request: The HTTP request object.
@@ -38,26 +39,26 @@ def register(request):
     Raises:
         None.
     """
+
     def save_profile(user, form):
         """
-Save a profile.
+        Save a profile.
 
-Args:
-    user: The user object associated with the profile.
-    form: The profile form.
+        Args:
+            user: The user object associated with the profile.
+            form: The profile form.
 
-Returns:
-    The saved profile object.
-"""
+        Returns:
+            The saved profile object.
+        """
         profile = form.save(commit=False)
         profile.user = user
         profile.save()
 
         return profile
 
-
     def save_address(form, profile, ProfileModel):
-        """ Save an address.
+        """Save an address.
         Args:
             form: The address form.
             profile: The profile object associated with the address.
@@ -73,7 +74,6 @@ Returns:
         address.save()
 
         return address
-
 
     if request.method == "POST":
         registration_form = RegistrationForm(request.POST)
@@ -91,7 +91,9 @@ Returns:
 
                 if attendee_form.is_valid() and address_form.is_valid():
                     attendee_profile = save_profile(new_user, attendee_form)
-                    address = save_address(address_form, attendee_profile, AttendeeProfile)                    
+                    address = save_address(
+                        address_form, attendee_profile, AttendeeProfile
+                    )
 
                     return redirect("success_url")
                 else:
@@ -101,7 +103,7 @@ Returns:
 
             elif registration_form.cleaned_data["user_type"] == "Leader":
                 leader_form = LeaderProfileForm(request.POST)
-                #address_form = AddressForm(request.POST)
+                # address_form = AddressForm(request.POST)
 
                 if leader_form.is_valid() and address_form.is_valid():
                     leader_profile = save_profile(new_user, leader_form)
@@ -115,11 +117,13 @@ Returns:
 
             elif registration_form.cleaned_data["user_type"] == "Faculty":
                 faculty_form = FacultyProfileForm(request.POST)
-                #address_form = AddressForm(request.POST)
+                # address_form = AddressForm(request.POST)
 
                 if faculty_form.is_valid() and address_form.is_valid():
                     faculty_profile = save_profile(new_user, faculty_form)
-                    address = save_address(address_form, faculty_profile, FacultyProfile)
+                    address = save_address(
+                        address_form, faculty_profile, FacultyProfile
+                    )
 
                     return redirect("success_url")
                 else:
@@ -134,7 +138,7 @@ Returns:
 
     else:
         registration_form = RegistrationForm()
-        #address_form = AddressForm()
+        # address_form = AddressForm()
         attendee_form = AttendeeProfileForm()
         leader_form = LeaderProfileForm()
         faculty_form = FacultyProfileForm()
@@ -147,13 +151,13 @@ Returns:
             "attendee_form": attendee_form,
             "leader_form": leader_form,
             "faculty_form": faculty_form,
-            #"address_form": address_form,
+            # "address_form": address_form,
         },
     )
 
 
 def login_view(request):
-    """ View for user login.
+    """View for user login.
     Args:
         request: The HTTP request object.
 
@@ -184,51 +188,28 @@ def login_view(request):
 
 @login_required
 def dashboard(request):
-    """ Dashboard view for authenticated users.
-    Args:
-        request: The HTTP request object.
+    """ Dashboard view for authenticated users. """
 
-    Returns:
-        If the user is authenticated and has an attendee profile, sets the 'user_type' context
-        variable to 'ATTENDEE'.
-        If the user is authenticated and has a leader profile, sets the 'user_type' context
-        variable to 'LEADER'.
-        If the user is authenticated and has a faculty profile, sets the 'user_type' context
-        variable to 'FACULTY'.
-        If the user is a superuser, redirects to the admin page.
-        Otherwise, renders the 'dashboard.html' template with the appropriate context.
-    """
     user = request.user
-    context = {}
 
     # Load user's dashboard layout
-    try:
-        layout = DashboardLayout.objects.get(user=request.user).layout
-    except DashboardLayout.DoesNotExist:
-        layout = None
-
-    # if hasattr(user, "attendee_profile"):
-    if user.user_type == 'ATTENDEE':
-        return render(request, "attendee/dashboard.html")
-
-    # elif hasattr(user, "leader_profile"):
-    elif user.user_type == 'LEADER':       
-        return render(request, "leader/dashboard.html", )
-
-    # elif hasattr(user, "faculty_profile"):
-    elif user.user_type == 'FACULTY':
-        context["user_type"] = "FACULTY"
-
-        return render(request, "faculty/dashboard.html")
+    # try:
+    #     layout = DashboardLayout.objects.get(user=request.user).layout
+    # except DashboardLayout.DoesNotExist:
+    #     layout = None
 
     if user.is_superuser:
         return redirect("/admin/")
 
-    return render(request, "auth/dashboard.html")
+    breadcrumbs = [
+        {'name': 'Dashboard', 'url': '/dashboard'}
+    ]
+
+    return render(request, f"{user.user_type.lower()}/dashboard.html", {'breadcrumbs': breadcrumbs})
 
 
 def logout(request):
-    """ Logout the user.
+    """Logout the user.
     Args:
         request: The HTTP request object.
 
@@ -241,7 +222,7 @@ def logout(request):
 
 
 def settings(request):
-    """ Render the account settings page.
+    """Render the account settings page.
     Args:
         request: The HTTP request object.
 

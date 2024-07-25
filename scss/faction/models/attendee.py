@@ -12,7 +12,7 @@ from user.models import User, UserProfile
 #rom organization.models import Organization
 
 #from .faction import Faction
-from ..managers import AttendeeManager
+from ..managers.attendee import AttendeeManager
 
 
 class Attendee(

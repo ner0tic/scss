@@ -12,7 +12,7 @@ from user.models import User, UserProfile
 #from organization.models import Organization
 
 #from .leader import Leader
-from ..managers import LeaderManager
+from ..managers.leader import LeaderManager
 
 
 class Leader(

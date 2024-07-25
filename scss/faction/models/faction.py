@@ -10,7 +10,7 @@ from django.urls import reverse
 from user.models import User
 from pages.mixins import models as mixins
 
-from ..managers import FactionManager
+from ..managers.faction import FactionManager
 
 
 class Faction(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, mixins.AuditMixin, mixins.SlugMixin, mixins.ActiveMixin, mixins.ImageMixin, mixins.ParentChildMixin, models.Model):
@@ -46,7 +46,7 @@ class Faction(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.SoftDel
     def clean(self):
         if self.get_depth() >= self.organization.settings.max_faction_depth:
             raise ValidationError(
-                f"Faction cannot be more than {mself.organization.settings.max_faction_depth_depth} levels deep within the organization."
+                f"Faction cannot be more than {self.organization.settings.max_faction_depth_depth} levels deep within the organization."
             )
 
     def save(self, *args, **kwargs):

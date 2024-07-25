@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django_dynamic_fixture',
     'address',
     'tailwind',
-    'theme',
     'django_browser_reload',
     "course",
     "enrollment",
@@ -69,6 +68,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    'pages.middleware.BreadcrumbMiddleware',
 ]
 
 ROOT_URLCONF = "scss.urls"
@@ -84,8 +84,9 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                #"pages.context_processors.menu_items_processor",
-                #'pages.context_processors.user_role',
+                "pages.context_processors.dynamic_menu",
+                "pages.context_processors.top_links_menu",
+                #'pages.context_processors.user_type',
                 #'pages.context_processors.user_profile',
                 #'pages.context_processors.active_enrollment',
                 'organization.context_processors.organization_labels'

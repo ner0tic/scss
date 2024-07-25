@@ -1,4 +1,5 @@
 """ Base Managers. """
+
 from django.db import models
 from .querysets import AbstractBaseQuerySet
 

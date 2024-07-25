@@ -86,15 +86,11 @@ urlpatterns = [
         name="attendee_enrollment_index_by_faction_enrollment",
     ),
     # Attendee Class Enrollment Related URLs
-    path(
-        "my-schedule",
-        views.my_schedule,
-        name="my_schedule"
-    ),
+    path("my-schedule", views.my_schedule, name="my_schedule"),
     path(
         "attendees/<slug:attendee_slug>/enrollments/<slug:attendee_enrollment>/enrollments",
         views.attendee_class_enrollment_index_by_attendee_enrollment,
-        name="attendee_class_enrollment_index_by_attendee_enrollment"
+        name="attendee_class_enrollment_index_by_attendee_enrollment",
     ),
     # Organization Course Related URLs
     # Facility Class Related URLs
@@ -102,4 +98,6 @@ urlpatterns = [
     # Faculty Class Enrollment Related URLs
     # Active Enrollment Related URLs
     path("my-enrollments/", views.my_enrollments, name="my_enrollments"),
+    path("my-schedule/", views.my_enrollments, name="my_schedule"),
+    path("activities/", views.facility_class_index, name="activities"),
 ]

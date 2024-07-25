@@ -1,6 +1,6 @@
 <ul>
-    {% load static %}
-{% for item in menu_items %}
+{% load static %}
+{% for item in menu %}
     <li class="{{ item.css_class }}">
         {% if item.image %}
             <img src="{{ item.image.url }}" alt="{{ item.title }}">

@@ -26,4 +26,4 @@ class FactionQuerySet(models.QuerySet):
         return self.filter(organization__id__in=org_ids)
 
     def with_sub_faction_count(self):
-        return self.annotate(sub_faction_count=models.Count('sub_factions', distinct=True))
+        return self.annotate(sub_faction_count=models.Count('children', distinct=True))

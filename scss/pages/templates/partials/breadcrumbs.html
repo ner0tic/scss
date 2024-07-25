@@ -1,0 +1,13 @@
+{% if breadcrumbs %}
+{% block breadcrumbs-wrapper %}
+{#<nav aria-label="breadcrumb">#}
+    <ol class="breadcrumb">
+        {% block breadcrumbs %}
+        {% for breadcrumb in breadcrumbs %}
+            {% include 'partials/breadcrumb.html' with breadcrumb=breadcrumb %}
+        {% endfor %}
+        {% endblock breadcrumbs %}
+    </ol>
+{#</nav>#}
+{% endblock breadcrumbs-wrapper %}
+{% endif %}

@@ -1,9 +1,27 @@
-from .models import MenuItem
-from enrollment.models import ActiveEnrollment
-from faction.models import Faction
+# pages/context_processors.py
 
-def user_role(request):
-    return {'user_role': request.user.role if request.user.is_authenticated else None}
+from django.contrib.auth.models import User
+
+from enrollment.models.enrollment import ActiveEnrollment
+from faction.models.faction import Faction
+from .menus import menu_items
+
+def dynamic_menu(request):
+    if not request.user.is_authenticated:
+        return {}
+
+    menu = menu_items.get(f"{request.user.user_type.lower()}", [])
+
+    if request.user.is_admin:
+        menu += menu_items.get(f"{request.user.user_type.lower()}_admin")
+
+    return {'menu': menu}
+
+def top_links_menu(request):
+    return {"toplinks" : menu_items.get("toplinks", [])}
+
+def user_type(request):
+    return {'user_type': request.user.user_type if request.user.is_authenticated else None}
 
 def user_profile(request):
     if request.user.is_authenticated:
@@ -27,14 +45,6 @@ def active_enrollment(request):
         active_enrollment.faction_enrollment.faction = faction
 
     return {'active_enrollment': active_enrollment}
-
-def menu_items_processor(request):
-    if request.user.is_authenticated:
-        # Get menu items based on user permissions
-        menu_items = MenuItem.objects.filter(permissions__in=request.user.user_permissions.all()).distinct()
-    else:
-        # If the user is not authenticated, return an empty list or public menu items
-        menu_items = MenuItem.objects.filter(permissions__isnull=True)
 
     return {'menu_items': menu_items}
 

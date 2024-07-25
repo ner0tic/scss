@@ -2,19 +2,6 @@
 
 {% block title_text %}Attendee Dashboard{% endblock %}
 
-{% block menu %}
-<nav>
-    <ul>
-        {% block menu_items %}
-        <li><a href="{% url 'dashboard' %}">Home</a></li>
-        <li><a href="{% url 'my_schedule' %}">My Schedule</a></li>
-        <li><a href="#">Activities</a></li>
-        <li><a href="{% url 'notifications' %}">Notifications</a></li>
-        {% endblock menu_items %}
-    </ul>
-</nav>
-{% endblock menu %}
-
 {% block active_enrollment %}
     {{ block.super }}
     {% if active_enrollment %}

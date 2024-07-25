@@ -162,6 +162,12 @@ class ParentChildMixin(models.Model):
     class Meta:
         abstract = True
 
+    def get_all_children(self):
+        children = list(self.children.all())
+        for child in self.children.all():
+            children.extend(child.get_all_children())
+        return children
+
 
 class DateRangeMixin(models.Model):
     start = models.DateTimeField(_("start"), default=datetime.now)

@@ -1,0 +1,36 @@
+{% load static %}
+
+{% block active_enrollment_wrapper %}
+<div class="info-box-wrapper">
+    <div id="info-box" class="box box-flat-left">
+
+    {% block active_enrollment %}
+        {% block active_enrollment_avatar_wrapper %}
+        <div class="avatar">
+
+        {% block active_enrollment_avatar %}
+            <a href="{% url 'account_settings' %}"><img src="{% static 'images/avatar/default.png' %}" width="50px" height="50px" alt="{{ user }}" /></a>
+        {% endblock active_enrollment_avatar %}
+
+        </div>
+        {% endblock active_enrollment_avatar_wrapper %}
+
+        <div>
+            {% block active_enrollment_welcome_msg %}
+            <h2>Welcome <a href="#">{{ user }}</a>.</h2>  
+            {% endblock active_enrollment_welcome_msg %}
+
+            <hr />
+
+            {% block active_enrollment_breadcrumbs_wrapper %}
+            <p>
+                {% include 'partials/breadcrumbs.html' %}
+            </p>
+            {% endblock active_enrollment_breadcrumbs_wrapper %}
+
+        </div>
+
+    {% endblock active_enrollment %}
+    </div>
+</div>
+{% endblock active_enrollment_wrapper %}

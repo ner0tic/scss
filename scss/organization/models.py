@@ -74,6 +74,7 @@ class Organization(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.So
             return self.parent.get_root_organization()
         return self
 
+
 class OrganizationLabels(models.Model):
     organization = models.OneToOneField(
         Organization,

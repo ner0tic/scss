@@ -14,7 +14,7 @@ from ..serializers import LeaderSerializer
 
 
 class LeaderViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.filter(user_type=User.UserType.LEADER)
+    queryset = User.objects.filter(user_type='leader')
     serializer_class = LeaderSerializer
 
 

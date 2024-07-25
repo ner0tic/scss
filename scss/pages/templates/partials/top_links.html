@@ -1,0 +1,8 @@
+{% load menu_filters %}
+<ul id="top-links">
+{% for item in toplinks %}
+    {% if item|is_visible:user %}
+    <li><a href="{% url item.url_name %}">{{ item.title }}</a></li>
+    {% endif %}
+{% endfor %}
+</ul>

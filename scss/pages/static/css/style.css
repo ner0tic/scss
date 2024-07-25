@@ -58,7 +58,7 @@ h3 { font-size : 18px; color : #228b22; font-weight : normal; line-height: 20pt;
 #info-box strong.week { position: relative; top: -20px;}
 #dashboard #info-box { position: relative; }
 .page-margin-offset {
-
+ol.breadcrumbs { margin: 0px; background-color: none}
 .datagrid table { width: 100%; }
 .datagrid table th { font-weight: bold; }
 .datagrid table td { width: 10%; margin: 0 auto; }

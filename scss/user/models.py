@@ -1,10 +1,12 @@
 """ User Related Models. """
 
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.conf import settings
 
 from pages.mixins import models as mixins
+from faction.managers.attendee import AttendeeManager
+from faction.managers.leader import LeaderManager
 
 
 class User(AbstractUser):
@@ -26,6 +28,10 @@ class User(AbstractUser):
 
     user_type = models.CharField(max_length=50, choices=UserType.choices)
     is_admin = models.BooleanField(default=False)
+
+    objects = UserManager()
+    attendees = AttendeeManager()
+    leaders = LeaderManager()
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"

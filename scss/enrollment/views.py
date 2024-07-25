@@ -23,7 +23,7 @@ from .models.organization import *
 
 @login_required
 def my_enrollments(request):
-    if request.user.role in ["ATTENDEE", "LEADER"]:
+    if request.user.user_type in ["ATTENDEE", "LEADER"]:
         return redirect("faction_enrollment_index_by_current_user")
     else:
         return redirect("faculty_enrollment_index_by_current_user")
