@@ -6,28 +6,37 @@ from enrollment.models.enrollment import ActiveEnrollment
 from faction.models.faction import Faction
 from .menus import menu_items
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 def dynamic_menu(request):
     if not request.user.is_authenticated:
         return {}
 
-    menu = menu_items.get(f"{request.user.user_type.lower()}", [])
+    menu = menu_items.get(f"{request.user.user_type.lower()}", []).copy()
 
     if request.user.is_admin:
-        menu += menu_items.get(f"{request.user.user_type.lower()}_admin")
+        menu += menu_items.get(f"{request.user.user_type.lower()}_admin", [])
 
+    logger.debug("Dynamic menu context: %s", {'menu': menu})
     return {'menu': menu}
 
 def top_links_menu(request):
-    return {"toplinks" : menu_items.get("toplinks", [])}
+    context = {"toplinks" : menu_items.get("toplinks", []).copy()}
+    logger.debug("Top links menu context: %s", context)
+    return context
+
 
 def user_type(request):
-    return {'user_type': request.user.user_type if request.user.is_authenticated else None}
+    return {'user_type': request.user.user_type if request.user.is_authenticated else 'other'}
 
 def user_profile(request):
     if request.user.is_authenticated:
         return {'user_profile': request.user.get_profile()}
     else:
-        return { 'user_profile': None }
+        return { 'user_profile': [] }
 
 def active_enrollment(request):
     if request.user.is_superuser:
@@ -46,7 +55,6 @@ def active_enrollment(request):
 
     return {'active_enrollment': active_enrollment}
 
-    return {'menu_items': menu_items}
 
 def color_scheme_processor(request):
     """ Returns a dictionary containing the color scheme for the website. """

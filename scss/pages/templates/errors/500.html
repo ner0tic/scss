@@ -1,4 +1,4 @@
-{% extends "layout.jinja2" %}
+{% extends "base/layout.html" %}
 
 {% block title %}Internal Server Error{% endblock %}
 
@@ -6,10 +6,12 @@
 {% endblock %}
 
 {% block content %}
+<section>
     <h1>Internal Server Error</h1>
     <p>Something blew up.</p>
-    <p><a href="{{ url_for('utils_bp.index') }}">Go somewhere nice</a></p>
-{% endblock %}
+    <p><a href="{% url 'dashboard' %}">Go somewhere nice</a></p>
+</section>
+    {% endblock %}
 
 {% block footer %}
 {% endblock %}

@@ -28,6 +28,6 @@ menu_items = {
         {"title": "Sign Up", "url_name": "register", "visible_to": "guest"},
         {"title": "Sign In", "url_name": "login", "visible_to": "guest"},
         {"title": "Settings", "url_name": "account_settings", "visible_to": "authenticated"},
-        {"title": "Sign Out", "url_name": "signout", "visible_to": "authenticated"},
+        #{"title": "Sign Out", "url_name": "signout", "visible_to": "authenticated"},
     ],
 }

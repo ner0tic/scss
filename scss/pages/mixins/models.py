@@ -14,7 +14,7 @@ from django.contrib.contenttypes.models import ContentType
 
 class NameDescriptionMixin(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -141,7 +141,7 @@ class GenericRelationMixin(models.Model):
 
 
 class ImageMixin(models.Model):
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     class Meta:
         abstract = True

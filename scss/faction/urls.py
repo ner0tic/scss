@@ -10,7 +10,7 @@ from .widgets import AttendeeListWidget, LeaderListWidget
 router = DefaultRouter()
 router.register(r"factions", faction.FactionViewSet)
 router.register(r"attendee", attendee.AttendeeViewSet)
-#router.register(r"leaders", leader.LeaderViewSet)
+# router.register(r"leaders", leader.LeaderViewSet)
 
 urlpatterns = [
     # REST API
@@ -41,6 +41,7 @@ urlpatterns = [
         faction.faction_index_by_faction,
         name="faction_index_by_faction",
     ),
+    path("my-faction/", faction.MyFactionView.as_view(), name="my_faction"),
     #######################
     # Leader Related URLs #
     #######################

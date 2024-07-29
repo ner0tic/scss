@@ -91,6 +91,9 @@ header ul#top-links {
     margin: 15px 0 0;
     padding: 0;
 }
+header #top-links form {
+    display: inline;
+}
 header ul#top-links li {
     color: #474747;
     float: left;
@@ -177,27 +180,27 @@ nav li a:hover, .menu li a:hover {
 }
 
 nav ul, .menu ul {
-    border-radius: 0 0 5px 5px;
-    list-style: none;
-    margin: 0;
-  
-  }
-  nav li a:hover ul,
-  nav li a:sfHover ul,  
-  .menu li:hover ul,
-  .menu li.sfHover ul {
-    top: 25px;
-  }
-  nav ul li, 
-  .menu ul li {
-    border: 0;
-    padding: 10px 5px;
-  }
-  nav ul a, 
-  .menu ul a {
-    border-bottom: 0;
-    padding-right: 20px;
-    white-space: no-wrap;
-    width: auto;
-    display: block;
-  }
+border-radius: 0 0 5px 5px;
+list-style: none;
+margin: 0;
+
+}
+nav li a:hover ul,
+nav li a:sfHover ul,  
+.menu li:hover ul,
+.menu li.sfHover ul {
+top: 25px;
+}
+nav ul li, 
+.menu ul li {
+border: 0;
+padding: 10px 5px;
+}
+nav ul a, 
+.menu ul a {
+border-bottom: 0;
+padding-right: 20px;
+white-space: no-wrap;
+width: auto;
+display: block;
+}

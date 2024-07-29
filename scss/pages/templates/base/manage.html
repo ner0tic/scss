@@ -1,0 +1,9 @@
+{% extends "base/layout.html" %}
+
+{% block title_text %}Manage {% block title_text_focus %}{% endblock title_text_focus %}{% endblock %}
+
+{% block content %}
+    <h1>{{ title_text }}</h1>
+    {% block cards %}
+    {% endblock cards %}
+{% endblock content %}

@@ -1,232 +1,148 @@
 """ Users Related Views. """
 
+import logging
 from django.contrib import messages
-from django.contrib.auth import login as _login
-from django.contrib.auth import logout as _logout
+from django.contrib.auth import login as _login, logout as _logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+from django.contrib.auth.views import LogoutView as _LogoutView, LoginView as _LoginView
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic.edit import FormView
 
 # from address.forms import AddressForm
 # from facility.forms import FacultyProfileForm
 from facility.models.faculty import Faculty, FacultyProfile
-from facility.widgets import FacultyListWidget
 from faction.forms import AttendeeProfileForm, LeaderProfileForm
+from facility.forms import FacultyProfileForm
 from faction.models.faction import Faction
 from faction.models.leader import LeaderProfile
 from faction.models.attendee import AttendeeProfile
-from faction.widgets import AttendeeListWidget, LeaderListWidget
-from enrollment.models.enrollment import ActiveEnrollment
-from pages.models import DashboardLayout
 
 from .forms import RegistrationForm
 from .models import User
 
 
-def register(request):
-    """Register a user.
+logger = logging.getLogger(__name__)
 
-    Args:
-        request: The HTTP request object.
+class LoginView(_LoginView):
+    template_name = "auth/signin.html"
+    form_class = AuthenticationForm
+    success_url = reverse_lazy("dashboard")
 
-    Returns:
-        If the request method is 'POST' and the registration form is valid, redirects to the
-        'success_url' page.
-        Otherwise, renders the 'signup.html' template with the registration form and other related
-        forms.
+    def form_valid(self, form):
+        user = form.get_user()
+        _login(self.request, user)
+        return super().form_valid(form)
 
-    Raises:
-        None.
-    """
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, f"{field}: {error}")
+        return super().form_invalid(form)
 
-    def save_profile(user, form):
-        """
-        Save a profile.
 
-        Args:
-            user: The user object associated with the profile.
-            form: The profile form.
+class RegisterView(FormView):
+    template_name = "signup.html"
+    form_class = RegistrationForm
+    success_url = reverse_lazy("success_url")
 
-        Returns:
-            The saved profile object.
-        """
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["attendee_form"] = AttendeeProfileForm(self.request.POST or None)
+        context["leader_form"] = LeaderProfileForm(self.request.POST or None)
+        context["faculty_form"] = FacultyProfileForm(self.request.POST or None)
+        context["address_form"] = AddressForm(self.request.POST or None)
+        return context
+
+    def form_valid(self, form):
+        user = User.objects.create_user(
+            username=form.cleaned_data["username"],
+            email=form.cleaned_data["email"],
+            password=form.cleaned_data["password"],
+        )
+        user_type = form.cleaned_data["user_type"]
+
+        if user_type == "Attendee":
+            profile_form = AttendeeProfileForm(self.request.POST)
+            ProfileModel = AttendeeProfile
+        elif user_type == "Leader":
+            profile_form = LeaderProfileForm(self.request.POST)
+            ProfileModel = LeaderProfile
+        elif user_type == "Faculty":
+            profile_form = FacultyProfileForm(self.request.POST)
+            ProfileModel = FacultyProfile
+
+        address_form = AddressForm(self.request.POST)
+        if profile_form.is_valid() and address_form.is_valid():
+            profile = self.save_profile(user, profile_form)
+            self.save_address(address_form, profile, ProfileModel)
+            return super().form_valid(form)
+        else:
+            for field, errors in profile_form.errors.items():
+                for error in errors:
+                    messages.error(self.request, f"{field}: {error}")
+            for field, errors in address_form.errors.items():
+                for error in errors:
+                    messages.error(self.request, f"{field}: {error}")
+            return self.form_invalid(form)
+
+    def save_profile(self, user, form):
         profile = form.save(commit=False)
         profile.user = user
         profile.save()
-
         return profile
 
-    def save_address(form, profile, ProfileModel):
-        """Save an address.
-        Args:
-            form: The address form.
-            profile: The profile object associated with the address.
-            ProfileModel: The model class of the profile.
-
-        Returns:
-            The saved address object.
-        """
+    def save_address(self, form, profile, ProfileModel):
         address = form.save(commit=False)
         content_type = ContentType.objects.get_for_model(ProfileModel)
         address.content_type = content_type
         address.object_id = profile.pk
         address.save()
-
         return address
 
-    if request.method == "POST":
-        registration_form = RegistrationForm(request.POST)
 
-        if registration_form.is_valid():
-            new_user = User.objects.create_user(
-                username=registration_form.cleaned_data["username"],
-                email=registration_form.cleaned_data["email"],
-                password=registration_form.cleaned_data["password"],
-            )
+class LogoutView(_LogoutView):
+    """Logout the user and redirect to the home page."""
 
-            if registration_form.cleaned_data["user_type"] == "Attendee":
-                attendee_form = AttendeeProfileForm(request.POST)
-                address_form = AddressForm(request.POST)
-
-                if attendee_form.is_valid() and address_form.is_valid():
-                    attendee_profile = save_profile(new_user, attendee_form)
-                    address = save_address(
-                        address_form, attendee_profile, AttendeeProfile
-                    )
-
-                    return redirect("success_url")
-                else:
-                    for field, errors in [attendee_form.errors.items() + address_form]:
-                        for error in errors:
-                            messages.error(request, f"{field}: {error}")
-
-            elif registration_form.cleaned_data["user_type"] == "Leader":
-                leader_form = LeaderProfileForm(request.POST)
-                # address_form = AddressForm(request.POST)
-
-                if leader_form.is_valid() and address_form.is_valid():
-                    leader_profile = save_profile(new_user, leader_form)
-                    address = save_address(address_form, leader_profile, LeaderProfile)
-
-                    return redirect("success_url")
-                else:
-                    for field, errors in [leader_form.errors.items() + address_form]:
-                        for error in errors:
-                            messages.error(request, f"{field}: {error}")
-
-            elif registration_form.cleaned_data["user_type"] == "Faculty":
-                faculty_form = FacultyProfileForm(request.POST)
-                # address_form = AddressForm(request.POST)
-
-                if faculty_form.is_valid() and address_form.is_valid():
-                    faculty_profile = save_profile(new_user, faculty_form)
-                    address = save_address(
-                        address_form, faculty_profile, FacultyProfile
-                    )
-
-                    return redirect("success_url")
-                else:
-                    for field, errors in [faculty_form.errors.items() + address_form]:
-                        for error in errors:
-                            messages.error(request, f"{field}: {error}")
-
-        else:
-            for field, errors in registration_form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{field}: {error}")
-
-    else:
-        registration_form = RegistrationForm()
-        # address_form = AddressForm()
-        attendee_form = AttendeeProfileForm()
-        leader_form = LeaderProfileForm()
-        faculty_form = FacultyProfileForm()
-
-    return render(
-        request,
-        "signup.html",
-        {
-            "form": registration_form,
-            "attendee_form": attendee_form,
-            "leader_form": leader_form,
-            "faculty_form": faculty_form,
-            # "address_form": address_form,
-        },
-    )
+    next_page = reverse_lazy("home")
 
 
-def login_view(request):
-    """View for user login.
-    Args:
-        request: The HTTP request object.
 
-    Returns:
-        If the request method is 'POST' and the form is valid, logs in the user and redirects to
-        the 'dashboard' page.
-        Otherwise, renders the 'signin.html' template with the login form.
-    """
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = None
 
-        if form.is_valid():
-            user = form.get_user()
-            _login(request, user)
+    def get_template_names(self):
+        user = self.request.user
+        self.template_name = f"{user.user_type.lower()}/dashboard.html"
+        logger.debug(f"Using template: {self.template_name}")
+        return [self.template_name]
 
-            return redirect("dashboard")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
 
-        else:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{field}: {error}")
+        if user.is_superuser:
+            return redirect(reverse_lazy('admin:index'))
 
-    else:
-        form = AuthenticationForm()
+        context['breadcrumbs'] = [
+            {'name': 'Dashboard', 'url': '/dashboard'}
+        ]
 
-    return render(request, "auth/signin.html", {"form": form})
+        try:
+            # Log the context for debugging
+            logger.debug("Context before rendering: %s", context)
+        except Exception as e:
+            logger.error("Error in context data: %s", e)
+            raise
 
-
-@login_required
-def dashboard(request):
-    """ Dashboard view for authenticated users. """
-
-    user = request.user
-
-    # Load user's dashboard layout
-    # try:
-    #     layout = DashboardLayout.objects.get(user=request.user).layout
-    # except DashboardLayout.DoesNotExist:
-    #     layout = None
-
-    if user.is_superuser:
-        return redirect("/admin/")
-
-    breadcrumbs = [
-        {'name': 'Dashboard', 'url': '/dashboard'}
-    ]
-
-    return render(request, f"{user.user_type.lower()}/dashboard.html", {'breadcrumbs': breadcrumbs})
+        return context
 
 
-def logout(request):
-    """Logout the user.
-    Args:
-        request: The HTTP request object.
 
-    Returns:
-        Redirects to the 'home' page.
-    """
-    _logout(request)
-
-    return redirect("home")
-
-
-def settings(request):
-    """Render the account settings page.
-    Args:
-        request: The HTTP request object.
-
-    Returns:
-        Renders the 'settings.html' template.
-    """
-    return render(request, "settings.html")
+class SettingsView(LoginRequiredMixin, TemplateView):
+    template_name = "user/settings.html"

@@ -5,4 +5,21 @@
     <li><a href="{% url item.url_name %}">{{ item.title }}</a></li>
     {% endif %}
 {% endfor %}
+{% if user.is_authenticated %}
+    <form method="post" action="{% url 'logout' %}" id="logout-form">
+        {% csrf_token %}
+        <!--<button type="submit" class="btn btn-primary">Logout</button>-->
+        <li><a href="#" id="logout-btn">Signout</a></li>
+    </form>
+{% endif %}
 </ul>
+<script>
+    $(document).ready(function(){
+        $(function() {
+            $('#logout-btn').click(function(e) {
+                e.preventDefault();
+                $("#logout-form").submit();
+            });
+        });
+    });
+</script>

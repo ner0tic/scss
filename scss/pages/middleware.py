@@ -1,8 +1,18 @@
 # middleware.py
 from django.utils.deprecation import MiddlewareMixin
-from django.shortcuts import redirect
+import logging
 
 from enrollment.models.enrollment import ActiveEnrollment
+
+logger = logging.getLogger(__name__)
+
+class RequestResponseLoggingMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        logger.debug("Request: %s %s", request.method, request.get_full_path())
+
+    def process_response(self, request, response):
+        logger.debug("Response: %s", response.status_code)
+        return response
 
 class ActiveEnrollmentMiddleware:
     def __init__(self, get_response):

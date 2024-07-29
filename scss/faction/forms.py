@@ -4,27 +4,26 @@ from django.contrib.auth.forms import UserCreationForm
 
 #from address.models import Address
 
-from .models import Attendee, AttendeeProfile, Leader, LeaderProfile
-
+from .models.attendee import Attendee, AttendeeProfile
+from .models.leader import Leader, LeaderProfile
+from .models.faction import Faction
 
 class AttendeeProfileForm(forms.ModelForm):
     class Meta:
         model = AttendeeProfile
-        fields = ['faction', 'organization']  # 'address' is managed separately
-        widgets = {
-            'faction': forms.Select(),
-            'organization': forms.Select(),
-        }
+        fields = ['user', 'organization', 'faction']
 
 
 class LeaderProfileForm(forms.ModelForm):
     class Meta:
         model = LeaderProfile
-        fields = ['faction', 'organization']  # 'address' is managed separately
-        widgets = {
-            'faction': forms.Select(),
-            'organization': forms.Select(),
-        }
+        fields = ['user', 'organization', 'faction']
+
+
+class FactionForm(forms.ModelForm):
+    class Meta:
+        model = Faction
+        fields = ['name', 'abbreviation', 'organization']
 
 
 

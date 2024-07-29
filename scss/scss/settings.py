@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'pages',
     'taggit',
     "rest_framework",
+    'error_pages',
+
 
 ]
 
@@ -69,6 +71,9 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     'pages.middleware.BreadcrumbMiddleware',
+    #'error_pages.middleware.ErrorPageMiddleware',
+    #'pages.middleware.CustomErrorMiddleware',
+
 ]
 
 ROOT_URLCONF = "scss.urls"
@@ -206,3 +211,9 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 GOOGLE_API_KEY = 'AIzaSyB-6CZ_ARmZ39phK6qzbG2Bl26HYUGMuRA'
+
+ERROR_PAGES = {
+    '401': 'errors/401.html',
+    '404': 'errors/404.html',
+    '500': 'errors/500.html',
+}

@@ -35,13 +35,16 @@ class User(AbstractUser):
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
-    
+
     def get_profile(self):
         profile_mapping = {
-            'faculty': getattr(self, 'facultyprofile', None),
-            'attendee': getattr(self, 'attendeeprofile', None),
-            'leader': getattr(self, 'leaderprofile', None),
-            'admin': getattr(self, 'adminprofile', None),
+            'ADMIN': getattr(self, 'adminprofile', None),
+            'ORGANIZATION_FACULTY': getattr(self, 'organizationfacultyprofile', None),
+            'FACILITY_FACULTY': getattr(self, 'facilityfacultyprofile', None),
+            'FACULTY': getattr(self, 'facultyprofile', None),
+            'LEADER': getattr(self, 'leaderprofile', None),
+            'ATTENDEE': getattr(self, 'attendeeprofile', None),
+            'OTHER': None,
         }
         return profile_mapping.get(self.user_type)
             
@@ -54,4 +57,4 @@ class UserProfile(models.Model):
         abstract = True
 
 class AdminProfile(UserProfile):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    organization = models.ForeignKey("organization.Organization", on_delete=models.CASCADE)

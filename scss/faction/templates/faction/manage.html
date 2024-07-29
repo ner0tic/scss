@@ -1,0 +1,70 @@
+
+{% extends "base/manage.html" %}
+
+{% block title_text_focus %}{{ faction.name }}{% endblock title_text_focus %}
+
+{% block cards %}
+<div id="manage">
+    {{ block.super }}
+
+    {% block attendees %}
+    <section class="card" data-id="section1">
+        <h2>Attendees</h2>
+        {% if attendees %}
+        <ul>
+            {% for attendee in attendees %}
+                <li>{{ attendee.user.username }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No attendees found.</p>
+        {% endif %}
+    </section>
+    {% endblock attendees %}
+
+    {% block leaders %}
+    <section class="card" data-id="section2">
+        <h2>Leaders</h2>
+        <ul>
+            {% for leader in leaders %}
+                <li>{{ leader.user.username }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endblock leaders %}
+
+    {% block sub_factions %}
+    <section class="card" data-id="section3">
+        <h2>Sub-Factions</h2>
+        <ul>
+            {% for sub_faction in sub_factions %}
+                <li>{{ sub_faction.name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endblock sub_factions %}
+
+    {% block forms %}
+    <section class="card" data-id="section4">
+        <h2>Add/Edit Attendee</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ attendee_form.as_p }}
+            <button type="submit" name="attendee">Save Attendee</button>
+        </form>
+        <h2>Add/Edit Leader</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ leader_form.as_p }}
+            <button type="submit" name="leader">Save Leader</button>
+        </form>
+        <h2>Edit Faction</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ faction_form.as_p }}
+            <button type="submit" name="faction">Save Faction</button>
+        </form>
+    </section>
+    {% endblock forms %}
+</div>
+{% endblock cards %}
