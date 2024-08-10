@@ -2,15 +2,81 @@
 
 from rest_framework import viewsets
 
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import (
+    CreateView as _CreateView,
+    UpdateView as _UpdateView,
+    DeleteView as _DeleteView,
+    DetailView as _DetailView,
+)
+from django.urls import reverse_lazy
 
 from user.models import User
+from user.mixins import AdminRequiredMixin
 from organization.models import Organization, OrganizationSettings, OrganizationLabels
 
-from ..models import Faction
+from ..models.faction import Faction
+from ..models.attendee import AttendeeProfile
 from ..serializers import AttendeeSerializer
+from ..forms.attendee import AttendeeForm
+
+
+
+class CreateView(AdminRequiredMixin, _CreateView):
+    model = AttendeeProfile
+    form_class = AttendeeForm
+    template_name = "attendee/form.html"
+    success_url = reverse_lazy("attendee_index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Create"
+        return context
+
+
+class EditView(AdminRequiredMixin, _UpdateView):
+    model = AttendeeProfile
+    form_class = AttendeeForm
+    template_name = "attendee/form.html"
+    success_url = reverse_lazy("attendee_index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Edit"
+        return context
+
+
+class PromoteView(AdminRequiredMixin, _UpdateView):
+    model = AttendeeProfile
+    form_class = AttendeeForm
+    template_name = "attendee/promote.html"
+    success_url = reverse_lazy("attendee_index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Promote"
+        return context
+
+
+class DeleteView(AdminRequiredMixin, _DeleteView):
+    model = AttendeeProfile
+    template_name = "attendee/confirm_delete.html"
+    success_url = reverse_lazy("attendee_index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Delete"
+        return context
+
+
+class ShowView(_DetailView):
+    model = AttendeeProfile
+    template_name = "attendee/show.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Details"
+        return context
 
 
 class AttendeeViewSet(viewsets.ModelViewSet):

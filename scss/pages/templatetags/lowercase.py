@@ -8,3 +8,4 @@ def lowercase(value):
     Converts a string into all lowercase.
     """
     return value.lower()
+

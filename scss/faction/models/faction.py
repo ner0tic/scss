@@ -1,3 +1,4 @@
+# faction/models/faction.py
 """ Faction Related Models. """
 
 from django.contrib.contenttypes.fields import GenericRelation
@@ -57,3 +58,19 @@ class Faction(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.SoftDel
         if self.parent:
             return self.parent.get_root_faction()
         return self
+
+    def member_count(self, user_type='attendee', include_descendants=True):
+        count = 0
+        if user_type == 'attendee':
+            count += self.attendeeprofile_set.count()
+        elif user_type == 'leader':
+            count += self.leaderprofile_set.count()
+        # Add more user types as needed
+
+        if include_descendants:
+            for child in self.children.all():
+                count += child.member_count(user_type, include_descendants)
+        return count
+
+    def with_sub_faction_count(self):
+        return Faction.objects.with_sub_faction_count()

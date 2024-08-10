@@ -1,206 +1,223 @@
 @font-face {
-    font-family: 'Alexa';
-    src: url(/static/css/AlexaStd.otf);
+  font-family: "Alexa";
+  src: url(/static/css/AlexaStd.otf);
 }
 @font-face {
-    font-family: 'Proxima-nova';
-    src: url(/static/css/ProximaNova-Regular.otf);
+  font-family: "Proxima-nova";
+  src: url(/static/css/ProximaNova-Regular.otf);
 }
 header {
-    background-color: #003366;
-    color: #FFFFFF;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 75px;
-    width: 100%;
-    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+  background-color: #003366;
+  color: #ffffff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 75px;
+  width: 100%;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
 }
 
 header div.logo {
-    display: flex;
-    align-items: center;
-    float: left;
+  display: flex;
+  align-items: center;
+  float: left;
 }
 
 header nav {
-    display: flex;
-    align-items: center;
-    float: left;
+  display: flex;
+  align-items: center;
+  float: left;
 }
 
 header nav a {
-    color: #FFFFFF;
-    margin: 0 15px;
-    text-decoration: none;
-    position: relative;
-
+  color: #ffffff;
+  margin: 0 15px;
+  text-decoration: none;
+  position: relative;
 }
 
 header .auth-buttons {
-    display: flex;
-    padding-left: 25px;
-    position: relative;
-    float: right;
+  display: flex;
+  padding-left: 25px;
+  position: relative;
+  float: right;
 }
 
 header .auth-buttons a {
-    color: #FFFFFF;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-left: 10px;
-    transition: background-color 0.3s, box-shadow 0.3s;
+  color: #ffffff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 header .auth-buttons a.signup,
 header .auth-buttons a.signup:active {
-    background-color: #FF4500;
+  background-color: #ff4500;
 }
 
 header .auth-buttons a.signup:hover {
-    background-color: #FF6347;
+  background-color: #ff6347;
 }
 
-header .auth-buttons a.login ,
+header .auth-buttons a.login,
 header .auth-buttons a.login:active {
-    background-color: #228b22;
+  background-color: #228b22;
 }
 
 header .auth-buttons a.login:hover {
-    background-color: #508f4f;
-    ;
+  background-color: #508f4f;
 }
 
 header .auth-buttons a:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header .auth-buttons a:active {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 img.logo {
-    width: 166px !important;
-    min-height: 0px !important;
+  width: 166px !important;
+  min-height: 0px !important;
 }
 
-header ul#top-links { 
-    float: right;
-    margin: 15px 0 0;
-    padding: 0;
+header ul#top-links {
+  float: right;
+  
+  padding: 0;
+  flex:auto;
+  position: relative;
+  right: 0px;
 }
 header #top-links form {
-    display: inline;
+  display: inline;
 }
 header ul#top-links li {
-    color: #474747;
-    float: left;
-    font-size: 12px;
-    font-weight: bold;
-    list-style: none;
-    margin: 0;
-    padding-right: 7px;
+  color: #474747;
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+  list-style: none;
+  margin: 0;
+  padding-right: 7px;
 }
 header #top-links li a {
-    color: #ffffff;
-    font-variant-caps: all-small-caps;
-    font-family: 'Proxima-nova-b';
+  color: #ffffff;
+  font-variant-caps: all-small-caps;
+  font-family: "Proxima-nova-b";
 }
 header #top-links li a:hover {
-    color: #ff4500;
+  color: #ff4500;
 }
 header #top-links li a,
 header #top-links li input {
-    border-left: 1px solid #ccc;
-    padding-left: 7px;
-    text-decoration: none;
+  border-left: 1px solid #ccc;
+  padding-left: 7px;
+  text-decoration: none;
 }
-header #top-links li:first-child a {border: none;}
+header #top-links li.icon a {
+  border: none !important;
+  padding: 0px;
+}
+header #top-links li:first-child a {
+  border: none;
+}
 
-nav ul, .menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+nav ul,
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+  display: inline;
+  margin-right: 20px;
 }
-nav, .menu {
-    font-family: Proxima-nova-lt, sans-serif;
-    z-index: 100;
-    position: relative;
-    /*top: -4px;*/
-    list-style: none;
-    padding: 0 20px;
-    margin: 0;
-    float: left;
-    /*background: #EA6900;*/
+nav,
+.menu {
+  font-family: Proxima-nova-lt, sans-serif;
+  z-index: 100;
+  position: relative;
+  /*top: -4px;*/
+  list-style: none;
+  padding: 0 20px;
+  margin: 0;
+  float: left;
+  /*background: #EA6900;*/
 }
-nav li, .menu li {
-    float: left;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    padding-top: 20px;
+nav li,
+.menu li {
+  float: left;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 20px;
 }
-nav li.logo, .menu li.logo {
-    padding-top: 0px;
+nav li.logo,
+.menu li.logo {
+  padding-top: 0px;
 }
-nav li a, nav li a:link, nav li a:active, nav li a:visited, 
-.menu li a, .menu li a:link, .menu li a:active, .menu li a:visited {
-    font: bold 1.22em/25px Proxima-nova, sans-serif;
-    color: #f8f8f5;
-    display: block;
-    padding: 0 9px;
-    text-transform: lowercase;
-    text-decoration: none;
-    font-size: 12pt;
-    font-weight: bold;
-    list-style: none;
-    margin: 0;
-    padding-right: 7px;
-    font-variant: small-caps;
-    text-align: center;
-    margin-right: 5px;
-    padding-left: 5px;
-}
-
-nav li a:hover, .menu li a:hover {
-    color: #EA6900;
-    -webkit-transition-duration: .40s;
-    -webkit-transition-property: color, background, box-shadow;
-    -moz-transition-duration: .40s;
-    -moz-transition-duration: color, background, box-shadow;
-    transition-duration: .40s;
-    transition-property: color, background, box-shadow;
-
+nav li a,
+nav li a:link,
+nav li a:active,
+nav li a:visited,
+.menu li a,
+.menu li a:link,
+.menu li a:active,
+.menu li a:visited {
+  font: bold 1.22em/25px Proxima-nova, sans-serif;
+  color: #f8f8f5;
+  display: block;
+  padding: 0 9px;
+  text-transform: lowercase;
+  text-decoration: none;
+  font-size: 12pt;
+  font-weight: bold;
+  list-style: none;
+  margin: 0;
+  padding-right: 7px;
+  font-variant: small-caps;
+  text-align: center;
+  margin-right: 5px;
+  padding-left: 5px;
 }
 
-nav ul, .menu ul {
-border-radius: 0 0 5px 5px;
-list-style: none;
-margin: 0;
+nav li a:hover,
+.menu li a:hover {
+  color: #ea6900;
+  -webkit-transition-duration: 0.4s;
+  -webkit-transition-property: color, background, box-shadow;
+  -moz-transition-duration: 0.4s;
+  -moz-transition-duration: color, background, box-shadow;
+  transition-duration: 0.4s;
+  transition-property: color, background, box-shadow;
+}
 
+nav ul,
+.menu ul {
+  border-radius: 0 0 5px 5px;
+  list-style: none;
+  margin: 0;
 }
 nav li a:hover ul,
-nav li a:sfHover ul,  
+nav li a:sfhover ul,
 .menu li:hover ul,
 .menu li.sfHover ul {
-top: 25px;
+  top: 25px;
 }
-nav ul li, 
+nav ul li,
 .menu ul li {
-border: 0;
-padding: 10px 5px;
+  border: 0;
+  padding: 10px 5px;
 }
-nav ul a, 
+nav ul a,
 .menu ul a {
-border-bottom: 0;
-padding-right: 20px;
-white-space: no-wrap;
-width: auto;
-display: block;
+  border-bottom: 0;
+  padding-right: 20px;
+  white-space: no-wrap;
+  width: auto;
+  display: block;
 }

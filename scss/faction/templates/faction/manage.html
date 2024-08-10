@@ -1,5 +1,8 @@
-
+<!-- faction/manage.html -->
 {% extends "base/manage.html" %}
+
+{% load static %}
+{% load my_filters %}
 
 {% block title_text_focus %}{{ faction.name }}{% endblock title_text_focus %}
 
@@ -7,64 +10,50 @@
 <div id="manage">
     {{ block.super }}
 
-    {% block attendees %}
-    <section class="card" data-id="section1">
-        <h2>Attendees</h2>
-        {% if attendees %}
-        <ul>
-            {% for attendee in attendees %}
-                <li>{{ attendee.user.username }}</li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>No attendees found.</p>
-        {% endif %}
-    </section>
-    {% endblock attendees %}
+    <style>
+        section.card {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        #manage h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
 
-    {% block leaders %}
-    <section class="card" data-id="section2">
-        <h2>Leaders</h2>
-        <ul>
-            {% for leader in leaders %}
-                <li>{{ leader.user.username }}</li>
-            {% endfor %}
-        </ul>
-    </section>
-    {% endblock leaders %}
+        #manage h2 a {
+            float: right;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        
+        table th {
+            background-color: #f4f4f4;
+        }
 
-    {% block sub_factions %}
-    <section class="card" data-id="section3">
-        <h2>Sub-Factions</h2>
-        <ul>
-            {% for sub_faction in sub_factions %}
-                <li>{{ sub_faction.name }}</li>
-            {% endfor %}
-        </ul>
-    </section>
-    {% endblock sub_factions %}
+        .actions {
+            max-width: 20px;
+        }
+    </style>
 
-    {% block forms %}
-    <section class="card" data-id="section4">
-        <h2>Add/Edit Attendee</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ attendee_form.as_p }}
-            <button type="submit" name="attendee">Save Attendee</button>
-        </form>
-        <h2>Add/Edit Leader</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ leader_form.as_p }}
-            <button type="submit" name="leader">Save Leader</button>
-        </form>
-        <h2>Edit Faction</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ faction_form.as_p }}
-            <button type="submit" name="faction">Save Faction</button>
-        </form>
+    {% for table_name, table in tables.items %}
+    <section class="card" data-id="{{ table_name }}">
+        <h2>{% pluralize_word table_name True %}<a href="#"><i class="fas {{ table.icon }}"></i></a></h2>
+        {% include 'partials/table.html' with table_id=table_name table=table %}
     </section>
-    {% endblock forms %}
+    {% endfor %}
+
 </div>
 {% endblock cards %}

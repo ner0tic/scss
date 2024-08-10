@@ -1,13 +1,12 @@
+<!-- partials/user_stats.html -->
 {% block user_stats_wrapper %}
-<div class="page-margin-offset multiple">
-    <div class="sidebar">
-        <div class="custom-ui-stats user-stats module clearfix">
-            {% block user_stats %}
-            {% include 'partials/user_stat.html' with url='#' url_class='count first' title='Members' value_class='attendees count' value='X' %}
-            {% include 'partials/user_stat.html' with url='#' url_class='messages' title='Messages' value_class='messages count' value='X' %}
-            {% include 'partials/user_stat.html' with url='#' url_class='count last' title='Groups' value_class='count' value='X' %}
-            {% endblock user_stats %}
-        </div>
+<div class="sidebar">
+    <div class="custom-ui-stats user-stats module clearfix">
+        {% block user_stats %}
+        {% include 'partials/user_stat.html' with url='#' url_class='count first' title='Members' value_class='attendees count' value=user_faction_attendee_count %}
+        {% include 'partials/user_stat.html' with url='#' url_class='messages' title='Messages' value_class='messages count' value='0' %}
+        {% include 'partials/user_stat.html' with url='#' url_class='count last' title='Groups' value_class='count' value=user_faction_sub_faction_count.count  %}
+        {% endblock user_stats %}
     </div>
 </div>
 {% endblock user_stats_wrapper %}

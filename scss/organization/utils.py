@@ -1,18 +1,15 @@
-# organization/context_processors.py
+# organization/utils.py
 
-from django.contrib.auth.decorators import login_required
 from .models import OrganizationLabels
 
-@login_required
-def organization_labels(request):
-    if not request.user.is_authenticated:
-        return {}
-
+def get_user_organization_labels(user):
     organization_labels = None
-    if hasattr(request.user, 'attendeeprofile'):
-        organization_labels = request.user.attendeeprofile.organization.labels
-    elif hasattr(request.user, 'leaderprofile'):
-        organization_labels = request.user.leaderprofile.organization.labels
+    if hasattr(user, 'attendeeprofile'):
+        organization_labels = user.attendeeprofile.organization.labels
+    elif hasattr(user, 'leaderprofile'):
+        organization_labels = user.leaderprofile.organization.labels
+    elif hasattr(user, 'facultyprofile'):
+        organization_labels = user.facultyprofile.organization.labels
 
     labels = {
         'attendee_label': 'Attendee',

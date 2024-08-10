@@ -1,7 +1,0 @@
-{% extends 'base/menu.html' %}
-
-{% block menu_items %}
-<li><a href="{% url 'my_schedule' %}">My Schedule</a></li>
-<li><a href="{% url 'attendee_index_by_faction' faction_slug=active_enrollment.faction_enrollment.faction.slug %}">Manage Attendees</a></li>
-<li><a href="{% url 'faction_enrollment_index_by_faction' faction_slug=active_enrollment.faction_enrollment.faction.slug %}">Faction Enrollments</a></li>
-{% endblock menu_items %}

@@ -17,3 +17,6 @@ class AttendeeManager(models.Manager):
 
     def by_organization(self, organization):
         return self.get_queryset().by_organization(organization)
+
+    def for_faction(self, faction):
+        return self.get_queryset().for_faction(faction)

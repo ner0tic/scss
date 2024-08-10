@@ -9,7 +9,17 @@ from pages.mixins import models as mixins
 from .managers import OrganizationManager, OrganizationLabelsManager
 
 
-class Organization(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, mixins.AuditMixin, mixins.SlugMixin, mixins.ActiveMixin, mixins.ParentChildMixin, mixins.ImageMixin, models.Model):
+class Organization(
+    mixins.NameDescriptionMixin,
+    mixins.TimestampMixin,
+    mixins.SoftDeleteMixin,
+    mixins.AuditMixin,
+    mixins.SlugMixin,
+    mixins.ActiveMixin,
+    mixins.ParentChildMixin,
+    mixins.ImageMixin,
+    models.Model,
+):
     """Organization Model."""
 
     abbreviation = models.CharField(max_length=25, null=True, blank=True)
@@ -77,28 +87,38 @@ class Organization(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.So
 
 class OrganizationLabels(models.Model):
     organization = models.OneToOneField(
-        Organization,
-        on_delete=models.CASCADE,
-        related_name='labels'
+        Organization, on_delete=models.CASCADE, related_name="labels"
     )
-    attendee_label = models.CharField(max_length=50, default='Attendee')
-    facility_label = models.CharField(max_length=50, default='Facility')
-    faction_label = models.CharField(max_length=50, default='Faction')
-    sub_faction_label = models.CharField(max_length=50, default='Sub-Faction')
-    faculty_label = models.CharField(max_length=50, default='Faculty')
-    leader_label = models.CharField(max_length=50, default='Leader')
-    faculty_quarters_label = models.CharField(max_length=50, default='Faculty Quarters')
-    faction_quarters_label = models.CharField(max_length=50, default='Faction Quarters')
-    leader_quarters_label = models.CharField(max_length=50, default='Leader Quarters')
-    attendee_quarters_label = models.CharField(max_length=50, default='Attendee Quarters')
-    course_label = models.CharField(max_length=50, default='Course')
-    facility_enrollment_label = models.CharField(max_length=50, default='Facility Enrollment')
-    faction_enrollment_label = models.CharField(max_length=50, default='Faction Enrollment')
-    leader_enrollment_label = models.CharField(max_length=50, default='Leader Enrollment')
-    attendee_enrollment_label = models.CharField(max_length=50, default='Attendee Enrollment')
-    attendee_class_enrollment_label = models.CharField(max_length=50, default='Attendee Class Enrollment')
-    week_label = models.CharField(max_length=50, default='Week')
-    period_label = models.CharField(max_length=50, default='Period')
+    attendee_label = models.CharField(max_length=50, default="Attendee")
+    facility_label = models.CharField(max_length=50, default="Facility")
+    faction_label = models.CharField(max_length=50, default="Faction")
+    sub_faction_label = models.CharField(max_length=50, default="Sub-Faction")
+    faculty_label = models.CharField(max_length=50, default="Faculty")
+    leader_label = models.CharField(max_length=50, default="Leader")
+    faculty_quarters_label = models.CharField(max_length=50, default="Faculty Quarters")
+    faction_quarters_label = models.CharField(max_length=50, default="Faction Quarters")
+    leader_quarters_label = models.CharField(max_length=50, default="Leader Quarters")
+    attendee_quarters_label = models.CharField(
+        max_length=50, default="Attendee Quarters"
+    )
+    course_label = models.CharField(max_length=50, default="Course")
+    facility_enrollment_label = models.CharField(
+        max_length=50, default="Facility Enrollment"
+    )
+    faction_enrollment_label = models.CharField(
+        max_length=50, default="Faction Enrollment"
+    )
+    leader_enrollment_label = models.CharField(
+        max_length=50, default="Leader Enrollment"
+    )
+    attendee_enrollment_label = models.CharField(
+        max_length=50, default="Attendee Enrollment"
+    )
+    attendee_class_enrollment_label = models.CharField(
+        max_length=50, default="Attendee Class Enrollment"
+    )
+    week_label = models.CharField(max_length=50, default="Week")
+    period_label = models.CharField(max_length=50, default="Period")
 
     objects = OrganizationLabelsManager()
 
@@ -122,24 +142,24 @@ class OrganizationLabels(models.Model):
         Add default labels if they are not set.
         """
         default_labels = {
-            'attendee_label': 'Attendee',
-            'facility_label': 'Facility',
-            'faction_label': 'Faction',
-            'sub_faction_label': 'Sub-Faction',
-            'faculty_label': 'Faculty',
-            'leader_label': 'Leader',
-            'faculty_quarters_label': 'Faculty Quarters',
-            'faction_quarters_label': 'Faction Quarters',
-            'leader_quarters_label': 'Leader Quarters',
-            'attendee_quarters_label': 'Attendee Quarters',
-            'course_label': 'Course',
-            'facility_enrollment_label': 'Facility Enrollment',
-            'faction_enrollment_label': 'Faction Enrollment',
-            'leader_enrollment_label': 'Leader Enrollment',
-            'attendee_enrollment_label': 'Attendee Enrollment',
-            'attendee_class_enrollment_label': 'Attendee Class Enrollment',
-            'week_label': 'Week',
-            'period_label': 'Period'
+            "attendee_label": "Attendee",
+            "facility_label": "Facility",
+            "faction_label": "Faction",
+            "sub_faction_label": "Sub-Faction",
+            "faculty_label": "Faculty",
+            "leader_label": "Leader",
+            "faculty_quarters_label": "Faculty Quarters",
+            "faction_quarters_label": "Faction Quarters",
+            "leader_quarters_label": "Leader Quarters",
+            "attendee_quarters_label": "Attendee Quarters",
+            "course_label": "Course",
+            "facility_enrollment_label": "Facility Enrollment",
+            "faction_enrollment_label": "Faction Enrollment",
+            "leader_enrollment_label": "Leader Enrollment",
+            "attendee_enrollment_label": "Attendee Enrollment",
+            "attendee_class_enrollment_label": "Attendee Class Enrollment",
+            "week_label": "Week",
+            "period_label": "Period",
         }
 
         for key, value in default_labels.items():
@@ -151,9 +171,8 @@ class OrganizationLabels(models.Model):
 @receiver(post_save, sender=Organization)
 def create_organization_labels(sender, instance, created, **kwargs):
     if created:
-        OrganizationLabels.objects.create(
-            organization=instance
-        )
+        OrganizationLabels.objects.create(organization=instance)
+
 
 @receiver(post_save, sender=Organization)
 def save_organization_labels(sender, instance, **kwargs):
@@ -161,8 +180,12 @@ def save_organization_labels(sender, instance, **kwargs):
 
 
 class OrganizationSettings(models.Model):
-    organization = models.OneToOneField('Organization', on_delete=models.CASCADE, related_name='settings')
-    labels = models.OneToOneField('OrganizationLabels', on_delete=models.CASCADE, related_name='settings')
+    organization = models.OneToOneField(
+        "Organization", on_delete=models.CASCADE, related_name="settings"
+    )
+    labels = models.OneToOneField(
+        "OrganizationLabels", on_delete=models.CASCADE, related_name="settings"
+    )
     max_depth = models.PositiveIntegerField(default=3)
     max_faction_depth = models.PositiveIntegerField(default=2)
 

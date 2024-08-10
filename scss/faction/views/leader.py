@@ -2,19 +2,84 @@
 
 from rest_framework import viewsets
 
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import (
+    CreateView as _CreateView,
+    UpdateView as _UpdateView,
+    DeleteView as _DeleteView,
+    DetailView as _DetailView,
+)
+from django.urls import reverse_lazy
 
 from user.models import User
+from user.mixins import AdminRequiredMixin
 from organization.models import Organization, OrganizationSettings, OrganizationLabels
 
-from ..models import Faction
+from ..models.faction import Faction
+from ..models.leader import LeaderProfile
 from ..serializers import LeaderSerializer
+from ..forms.leader import LeaderForm
+
+
+class CreateView(AdminRequiredMixin, _CreateView):
+    model = LeaderProfile
+    form_class = LeaderForm
+    template_name = "leader/form.html"
+    success_url = reverse_lazy("leader_index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Create"
+        return context
+
+
+class EditView(AdminRequiredMixin, _UpdateView):
+    model = LeaderProfile
+    form_class = LeaderForm
+    template_name = "leader/form.html"
+    success_url = reverse_lazy("leader_index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Edit"
+        return context
+
+
+class PromoteView(AdminRequiredMixin, _UpdateView):
+    model = LeaderProfile
+    form_class = LeaderForm
+    template_name = "leader/promote.html"
+    success_url = reverse_lazy("leader_index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Promote"
+        return context
+
+
+class DeleteView(AdminRequiredMixin, _DeleteView):
+    model = LeaderProfile
+    template_name = "leader/confirm_delete.html"
+    success_url = reverse_lazy("leader_index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Delete"
+        return context
+
+
+class ShowView(_DetailView):
+    model = LeaderProfile
+    template_name = "leader/show.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["action"] = "Details"
+        return context
 
 
 class LeaderViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.filter(user_type='leader')
+    queryset = User.objects.filter(user_type="leader")
     serializer_class = LeaderSerializer
 
 
@@ -40,9 +105,7 @@ def leader_index_by_faction(request, faction_id=None, faction_slug=None):
     )
 
 
-def leader_index_by_organization(
-    request, organization_id=None, organization_slug=None
-):
+def leader_index_by_organization(request, organization_id=None, organization_slug=None):
     """Leader list by Organizaton view."""
 
     if organization_id:

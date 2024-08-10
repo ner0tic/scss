@@ -1,0 +1,37 @@
+<!-- partials/table.html -->
+{% load static %}
+{% load my_filters %}
+
+<table>
+    <thead>
+        <tr>
+            {% for header in table.headers %}
+                <th>{{ header }}</th>
+            {% endfor %}
+                <th class="actions">Actions|{{table.headers.count}}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if table.rows %}
+        {% for row in table.rows %}
+        <tr>
+            {% for cell in row %}
+                <td>{{ cell }}</td>
+            {% endfor %}
+
+            <td class="actions">
+                {% for action in table.actions %}
+                <a href="#" alt="{{action.name}}"><i class="{{ action.icon }}"></i></a>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="{{ table.headers|length }}">
+                <i>None found.</i>
+            </td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

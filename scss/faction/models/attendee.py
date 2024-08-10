@@ -1,3 +1,4 @@
+# faction/models/attendee.py
 """ Attendee Related Models. """
 
 from django.contrib.contenttypes.fields import GenericRelation
@@ -57,6 +58,8 @@ class AttendeeProfile(UserProfile):
     faction = models.ForeignKey(
         "faction.Faction", on_delete=models.SET_NULL, null=True, blank=True
     )
+    
+    objects = AttendeeManager()
 
 
 @receiver(post_save, sender=Attendee)

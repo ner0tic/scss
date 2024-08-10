@@ -1,5 +1,15 @@
+# user/forms.py
 """ User Related Forms. """
+
 from django import forms
+
+from .models import User
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["username", "email", "first_name", "last_name"]
 
 
 class RegistrationForm(forms.Form):
@@ -9,6 +19,10 @@ class RegistrationForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()
     user_type = forms.ChoiceField(
-        choices=[("", "Select A Type"), ("Leader", "Leader"), ("Attendee", "Attendee"), ("Faculty", "Faculty")]
+        choices=[
+            ("", "Select A Type"),
+            ("Leader", "Leader"),
+            ("Attendee", "Attendee"),
+            ("Faculty", "Faculty"),
+        ]
     )
-

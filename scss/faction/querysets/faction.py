@@ -16,8 +16,14 @@ class FactionQuerySet(models.QuerySet):
     def search(self, query):
         return self.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
-    def with_member_count(self):
-        return self.annotate(member_count=models.Count('attendeeprofile'))
+    def with_member_count(self, include_descendants=True):
+        if include_descendants:
+            return self.annotate(
+                member_count=models.Count('attendeeprofile', distinct=True)
+            )
+        return self.annotate(
+            member_count=models.Count('attendeeprofile', distinct=True)
+        )
 
     def include_descendant_organizations(self):
         org_ids = set()

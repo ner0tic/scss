@@ -30,16 +30,7 @@ class FactionManager(AbstractBaseManager):
         return self.get_queryset().by_faction(faction_id)
 
     def with_member_count(self, include_descendants=True):
-        """
-        Utilizes the custom `with_member_count` method from FactionQuerySet.
-        """
-        if include_descendants:
-            return (
-                self.get_queryset()
-                .include_descendant_organizations()
-                .with_member_count()
-            )
-        return self.get_queryset().with_member_count()
+        return self.get_queryset().with_member_count(include_descendants)
 
     def with_sub_faction_count(self):
         return self.get_queryset().with_sub_faction_count()

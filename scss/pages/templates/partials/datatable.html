@@ -1,0 +1,47 @@
+<!-- partials/datatable.html -->
+{% load static %}
+<table id="{{ table_id }}-table" class="display" style="width:100%">
+    <thead>
+        <tr>
+            {% for header in table.headers %}
+                <th>{{ header }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% if table.rows %}
+            {% for row in table.rows %}
+            <tr>
+                {% for cell in row %}
+                    <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="{{table.headers.count}}">
+                    <i>None found.</i>
+                </td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('#{{ table_id }}-table').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            {% if table.column_defs %}
+            "columnDefs": {{ table.column_defs|safe }},
+            {% endif %}
+            "language": {
+                "search": "Filter:",
+                "lengthMenu": "Display _MENU_ records per page",
+                "info": "Showing _START_ to _END_ of _TOTAL_ records"
+            }
+        });
+    });
+</script>

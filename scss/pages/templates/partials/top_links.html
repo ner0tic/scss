@@ -1,15 +1,20 @@
+<!-- partials/top_links.html -->
 {% load menu_filters %}
 <ul id="top-links">
 {% for item in toplinks %}
     {% if item|is_visible:user %}
+        {% if item.icon %}
+    <li class="icon"><a href="{% url item.url_name %}" alt="{{ item.title }}"><i class="fas {{ item.icon }}"></i></a></li>
+        {% else %}
     <li><a href="{% url item.url_name %}">{{ item.title }}</a></li>
+        {% endif %}
     {% endif %}
 {% endfor %}
 {% if user.is_authenticated %}
     <form method="post" action="{% url 'logout' %}" id="logout-form">
         {% csrf_token %}
         <!--<button type="submit" class="btn btn-primary">Logout</button>-->
-        <li><a href="#" id="logout-btn">Signout</a></li>
+        <li class="icon"><a href="#" id="logout-btn"><i class="fas fa-arrow-right-from-bracket"></i></a></li>
     </form>
 {% endif %}
 </ul>

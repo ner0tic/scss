@@ -17,7 +17,8 @@ from django.views.generic.edit import FormView
 # from address.forms import AddressForm
 # from facility.forms import FacultyProfileForm
 from facility.models.faculty import Faculty, FacultyProfile
-from faction.forms import AttendeeProfileForm, LeaderProfileForm
+from faction.forms.attendee import AttendeeProfileForm
+from faction.forms.leader import LeaderProfileForm
 from facility.forms import FacultyProfileForm
 from faction.models.faction import Faction
 from faction.models.leader import LeaderProfile
@@ -28,6 +29,7 @@ from .models import User
 
 
 logger = logging.getLogger(__name__)
+
 
 class LoginView(_LoginView):
     template_name = "auth/signin.html"
@@ -112,7 +114,6 @@ class LogoutView(_LogoutView):
     next_page = reverse_lazy("home")
 
 
-
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = None
 
@@ -127,11 +128,9 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         user = self.request.user
 
         if user.is_superuser:
-            return redirect(reverse_lazy('admin:index'))
+            return redirect(reverse_lazy("admin:index"))
 
-        context['breadcrumbs'] = [
-            {'name': 'Dashboard', 'url': '/dashboard'}
-        ]
+        context["breadcrumbs"] = [{"name": "Dashboard", "url": "/dashboard"}]
 
         try:
             # Log the context for debugging
@@ -141,7 +140,6 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             raise
 
         return context
-
 
 
 class SettingsView(LoginRequiredMixin, TemplateView):

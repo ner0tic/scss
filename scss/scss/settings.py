@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'address',
     'tailwind',
     'django_browser_reload',
+#    "django_static_fontawesome",
     "course",
     "enrollment",
     "facility",
@@ -92,9 +93,10 @@ TEMPLATES = [
                 "pages.context_processors.dynamic_menu",
                 "pages.context_processors.top_links_menu",
                 #'pages.context_processors.user_type',
-                #'pages.context_processors.user_profile',
+                'pages.context_processors.user_profile',
                 #'pages.context_processors.active_enrollment',
-                'organization.context_processors.organization_labels'
+                'organization.context_processors.organization_labels',
+                'faction.context_processors.faction_counts'
             ],
         },
     },
