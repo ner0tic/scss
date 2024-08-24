@@ -3,9 +3,15 @@
 <div class="sidebar">
     <div class="custom-ui-stats user-stats module clearfix">
         {% block user_stats %}
+            {% block user_stat_1 %}
         {% include 'partials/user_stat.html' with url='#' url_class='count first' title='Members' value_class='attendees count' value=user_faction_attendee_count %}
+            {% endblock user_stat_1 %}
+            {% block user_stat_2 %}
         {% include 'partials/user_stat.html' with url='#' url_class='messages' title='Messages' value_class='messages count' value='0' %}
+            {% endblock user_stat_2 %}
+            {% block user_stat_3 %}
         {% include 'partials/user_stat.html' with url='#' url_class='count last' title='Groups' value_class='count' value=user_faction_sub_faction_count.count  %}
+            {% endblock user_stat_3 %}
         {% endblock user_stats %}
     </div>
 </div>

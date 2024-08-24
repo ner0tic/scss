@@ -1,3 +1,5 @@
+# organization/models/organization.py
+
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.core.exceptions import ValidationError
@@ -6,7 +8,8 @@ from django.urls import reverse
 from django.utils import timezone
 
 from pages.mixins import models as mixins
-from .managers import OrganizationManager, OrganizationLabelsManager
+
+from ..managers.organization import OrganizationManager, OrganizationLabelsManager
 
 
 class Organization(

@@ -1,0 +1,54 @@
+{% extends 'base/layout.html' %}
+
+{% block title_text %}{{ title or 'Index' }}{% endblock title_text %}
+
+{% block stylesheets_local %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.2/css/dataTables.bootstrap4.min.css">
+{% endblock stylesheets_local %}
+
+{% block javascripts_local %}
+{{ block.super }}
+<script src="https://cdn.datatables.net/2.1.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.2/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+</script>
+{% endblock javascripts_local %}
+
+{% block content %}
+    <h1>{{ title or 'Index' }}</h1>
+
+    {% if object_list %}
+        <table id="datatable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    {% for field in object_list.first._meta.fields %}
+                        <th>{{ field.verbose_name }}</th>
+                    {% endfor %}
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        {% for field in object._meta.fields %}
+                            <td>{{ object|getattr:field.name }}</td>
+                        {% endfor %}
+                        <td>
+                            <a href="{% url show_url_name object.pk %}" class="btn btn-info btn-sm">Show</a>
+                            <a href="{% url update_url_name object.pk %}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{% url delete_url_name object.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No items available.</p>
+    {% endif %}
+
+    <a href="{% url create_url_name %}" class="btn btn-success">Create New</a>
+{% endblock %}

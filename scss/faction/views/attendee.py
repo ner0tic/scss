@@ -13,7 +13,7 @@ from django.urls import reverse_lazy
 
 from user.models import User
 from user.mixins import AdminRequiredMixin
-from organization.models import Organization, OrganizationSettings, OrganizationLabels
+from organization.models.organization import Organization, OrganizationSettings, OrganizationLabels
 
 from ..models.faction import Faction
 from ..models.attendee import AttendeeProfile

@@ -59,3 +59,8 @@ def int_filter(value):
         return int(value)
     except (ValueError, TypeError):
         return 0
+
+
+@register.filter(name='spacify')
+def spacify(value):
+    return value.replace('_', ' ')

@@ -3,39 +3,64 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
-from . import views
+from .views.organization import (
+    ListView,
+    RootListView,
+    CreateView,
+    DetailView,
+    ListByParentView,
+    SubOrganizationCreateView,
+    OrganizationViewSet,
+)
 
 router = DefaultRouter()
-router.register(r'organizations', views.OrganizationViewSet)
+router.register(r"organizations", OrganizationViewSet)
 
 urlpatterns = [
     #############################
     # Organization Related URLs #
     #############################
-    path("organizations/", views.organization_index, name="organization_index"),
+
+    # Index
+    path("organizations/", ListView.as_view(), name="organization_index"),
     path(
-        "organizations/root",
-        views.organization_index_root,
+        "organizations/root/",
+        RootListView.as_view(),
         name="organization_index_root",
     ),
     path(
-        "organizations/<int:organization_id>/", views.organization_show, name="organization_show"
+        "organizations/<int:organization_id>/children/",
+        ListByParentView.as_view(),
+        name="organization_index_by_parent_id",
+    ),
+    path(
+        "organizations/<slug:organization_slug>/children/",
+        ListByParentView.as_view(),
+        name="organization_index_by_parent_slug",
+    ),
+
+    # New
+    path(
+        "organizations/new/", CreateView.as_view(), name="organization_new"
+    ),
+    path(
+        "organiations/<slug:organization_slug>/children/new/",
+        SubOrganizationCreateView.as_view(),
+        name="sub_organization_create",
+    ),
+
+    # Show
+    path(
+        "organizations/<int:organization_id>/",
+        DetailView.as_view(),
+        name="organization_show_by_id",
     ),
     path(
         "organizations/<slug:organization_slug>/",
-        views.organization_show,
-        name="organization_show",
+        DetailView.as_view(),
+        name="organization_show_by_slug",
     ),
-    path(
-        "organizations/<int:organization_id>/children",
-        views.organization_index_by_parent,
-        name="organization_index_by_parent",
-    ),
-    path(
-        "organizations/<slug:organization_slug>/children",
-        views.organization_index_by_parent,
-        name="organization_index_by_parent",
-    ),
-    
-    path(r'', include(router.urls)),
+
+    # API
+    path(r"", include(router.urls)),
 ]

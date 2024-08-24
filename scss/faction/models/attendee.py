@@ -52,9 +52,6 @@ class Attendee(
 
 
 class AttendeeProfile(UserProfile):
-    organization = models.ForeignKey(
-        "organization.Organization", on_delete=models.SET_NULL, null=True, blank=True
-    )
     faction = models.ForeignKey(
         "faction.Faction", on_delete=models.SET_NULL, null=True, blank=True
     )

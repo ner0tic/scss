@@ -1,8 +1,11 @@
 {% extends 'auth/dashboard.html' %}
 
+{% load my_filters %}
+
 {% block title_text %}Faculty Dashboard{% endblock %}
 
 {% block menu %}
+<!--
 <nav>
     <ul>
         {% block menu_items %}
@@ -12,113 +15,28 @@
         <li><a href="#">Notifications</a></li>
         {% endblock menu_items %}
     </ul>
-</nav>
+</nav> -->
+{{ block.super}}
 {% endblock menu %}
 
+{% block user_stat_1 %}
+{% include 'partials/user_stat.html' with url='#' url_class='count first' title='Classes' value_class='classes count' value=user_faculty_class_count %}
+{% endblock user_stat_1 %}
+
 {%block cards %}
-    {% block upcoming_card %}
+    {% for key, item in dashboard_items.items %}
     <section class="card">
-        <h2>Upcoming Activities</h2>
-        {% if upcoming_activities %}
+        <h2>{{ key|title|spacify }}</h2>
+        {% if item.data %}
             <ul>
-                {% for activity in upcoming_activities %}
-                    <li>
-                        <strong>{{ activity.name }}</strong><br>
-                        {{ activity.description }}<br>
-                        Time: {{ activity.start_time }} - {{ activity.end_time }}<br>
-                        Location: {{ activity.facility.name }}
-                    </li>
+                {% for i in item.data %}
+                <li>{{ i }}</li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No upcoming activities.</p>
+            <p>No {{ key | pluralize }}.</p>
         {% endif %}
     </section>
-    {% endblock upcoming_card %}
+    {% endfor %}
 
-    {% block today_schedule_card %}
-    <section class="card">
-        <h2>Today's Schedule</h2>
-        {% if todays_schedule %}
-            <ul>
-                {% for activity in todays_schedule %}
-                    <li>
-                        <strong>{{ activity.name }}</strong><br>
-                        Time: {{ activity.start_time }} - {{ activity.end_time }}<br>
-                        Location: {{ activity.facility.name }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No activities scheduled for today.</p>
-        {% endif %}
-    </section>
-    {% endblock today_schedule_card %}
-
-    {% block notification_card %}
-    <section class="card">
-        <h2>Announcements and Notifications</h2>
-        {% if notifications %}
-            <ul>
-                {% for notification in notifications %}
-                    <li>{{ notification.message }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No new notifications.</p>
-        {% endif %}
-    </section>
-    {% endblock notification_card %}
-
-    {% block messages_card %}
-    <section class="card">
-        <h2>Recent Messages</h2>
-        {% if recent_messages %}
-            <ul>
-                {% for message in recent_messages %}
-                    <li>{{ message.content }}<br>
-                    <small>From: {{ message.sender.first_name }} {{ message.sender.last_name }}</small></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No new messages.</p>
-        {% endif %}
-    </section>
-    {% endblock messages_card %}
-
-    {% block suggestion_card %}
-    <section class="card">
-        <h2>Activity Suggestions</h2>
-        {% if suggested_activities %}
-            <ul>
-                {% for activity in suggested_activities %}
-                    <li>
-                        <strong>{{ activity.name }}</strong><br>
-                        {{ activity.description }}<br>
-                        <a href="#">Register</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No suggestions at the moment.</p>
-        {% endif %}
-    </section>
-    {% endblock suggestion_card %}
-
-    {% block profile_card %}
-    <section class="card">
-        <h2>Profile Summary</h2>
-        <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
-        <p>Email: {{ user.email }}</p>
-        <a href="#">Edit Profile</a>
-    </section>
-    {% endblock profile_card %}
-
-    {% block feedback_card %}
-    <section class="card">
-        <h2>Feedback</h2>
-        <p>We value your feedback. Please let us know how we can improve your camp experience.</p>
-        <a href="#">Provide Feedback</a>
-    </section>
-    {% endblock feedback_card %}
 {% endblock cards %}

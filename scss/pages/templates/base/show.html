@@ -1,22 +1,20 @@
 {% extends 'base/layout.html' %}
 
-{% block title %}
-[CampfireConnections] - {% block title_text %}{% endblock title_text %}
-{% endblock title %}
+{% block title_text %}{{ title or 'Details' }}{% endblock title_text %}
 
 {% block content %}
-    <div class="container">
-        {% block content_header %}
-        <h1>{% block content_header_text %}Details{% endblock content_header_text %}</h1>
-        {% endblock content_header %}
+    <h1>{{ title or 'Details' }}</h1>
 
-        {% block content_content %}
-        <table id="showTable" class="table table-striped table-bordered">
-            <tbody>
-            {% block content_list %}{% endblock content_list %}
-            </tbody>
-        </table>
-        {% block content_footer %}<a href="{% url 'home' %}">Back Home</a>{% endblock content_footer %}
-        {% endblock content_content%}
-    </div>
-{% endblock content %}
+    <table class="table table-bordered">
+        {% for field in object._meta.fields %}
+            <tr>
+                <th>{{ field.verbose_name }}</th>
+                <td>{{ object|getattr:field.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{% url update_url_name object.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url delete_url_name object.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url index_url_name %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}

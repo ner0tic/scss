@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import os
 from django.contrib.messages import constants as messages
 from pathlib import Path
 
@@ -47,11 +48,11 @@ INSTALLED_APPS = [
     'tailwind',
     'django_browser_reload',
 #    "django_static_fontawesome",
+    "organization",
     "course",
     "enrollment",
     "facility",
     "faction",
-    "organization",
     "user",
     'pages',
     'taggit',
@@ -90,13 +91,11 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "pages.context_processors.dynamic_menu",
-                "pages.context_processors.top_links_menu",
-                #'pages.context_processors.user_type',
+                'pages.context_processors.dynamic_menu',
+                'pages.context_processors.top_links_menu',
                 'pages.context_processors.user_profile',
-                #'pages.context_processors.active_enrollment',
                 'organization.context_processors.organization_labels',
-                'faction.context_processors.faction_counts'
+                'faction.context_processors.faction_counts',
             ],
         },
     },
@@ -218,4 +217,44 @@ ERROR_PAGES = {
     '401': 'errors/401.html',
     '404': 'errors/404.html',
     '500': 'errors/500.html',
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        # 'django': {
+        #     'handlers': ['console', 'file'],
+        #     'level': 'DEBUG',
+        #     'propagate': True,
+        # },
+        'scss': {  
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }

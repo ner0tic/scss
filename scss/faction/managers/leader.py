@@ -1,4 +1,4 @@
-""" Leader Related Managers. """
+# faction/managers/leader.py
 
 from django.db import models
 

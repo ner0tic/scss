@@ -29,7 +29,7 @@ class ActiveEnrollmentMiddleware:
 
 class BreadcrumbMiddleware(MiddlewareMixin):
     def process_template_response(self, request, response):
-        if hasattr(response, 'context_data'):
+        if hasattr(response, 'context_data') and isinstance(response.context_data, dict):
             breadcrumbs = self.generate_breadcrumbs(request)
             response.context_data['breadcrumbs'] = breadcrumbs
         return response
@@ -38,7 +38,7 @@ class BreadcrumbMiddleware(MiddlewareMixin):
         breadcrumbs = [{'name': 'Home', 'url': '/'}]
         path = request.path.strip('/').split('/')
         url = ''
-        
+
         for segment in path:
             url += f'/{segment}'
             breadcrumbs.append({'name': segment.capitalize(), 'url': url})

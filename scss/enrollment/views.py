@@ -13,7 +13,7 @@ from facility.models.faculty import Faculty
 from faction.models.attendee import Attendee
 from faction.models.faction import Faction
 from faction.models.leader import Leader
-from organization.models import Organization
+from organization.models.organization import Organization
 
 from .models.enrollment import *
 from .models.facility import *

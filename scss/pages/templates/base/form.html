@@ -1,0 +1,14 @@
+{% extends 'base/layout.html' %}
+
+{% block title_text %}{{ title or 'Form' }}{% endblock title_text %}
+
+{% block content %}
+    <h1>{{ title or 'Form' }}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">{{ button_text or 'Save' }}</button>
+        <a href="{% url index_url_name %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

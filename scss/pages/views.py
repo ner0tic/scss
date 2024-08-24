@@ -89,7 +89,7 @@ def dynamic_dropdown_options(request, app_label, model_name, field_name, filter_
 def index(request):
     if request.user.is_authenticated:
         return redirect("dashboard")
-    return render(request, "index.html")
+    return render(request, "index.html", context={})
 
 
 def help(request, section=None):

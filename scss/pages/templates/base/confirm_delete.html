@@ -1,0 +1,15 @@
+{% extends 'base/layout.html' %}
+
+{% block title_text %}{{ title or 'Confirm Delete' }}{% endblock title_text %}
+
+{% block content %}
+    <h1>{{ title or 'Confirm Delete' }}</h1>
+
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url index_url_name %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

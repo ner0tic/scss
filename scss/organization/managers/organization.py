@@ -1,7 +1,8 @@
-""" Organization Related Managers. """
+# organization/managers/organization.py
+
 from django.db import models
 
-from .querysets import OrganizationQuerySet, OrganizationLabelsQuerySet
+from ..querysets.organization import OrganizationQuerySet, OrganizationLabelsQuerySet
 
 class OrganizationManager(models.Manager):
     """

@@ -95,7 +95,9 @@
     {% block menu_wrapper %}
     <nav>
         {% block menu %}
-        {% include 'partials/menu.html' %}
+      {#  {% include 'partials/menu.html' %} #}
+        {% load menu_tags %}
+        {% render_menu menu_items %}
         {% endblock menu %}
     </nav>
     {% endblock menu_wrapper %}

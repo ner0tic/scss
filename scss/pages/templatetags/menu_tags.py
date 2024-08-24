@@ -36,29 +36,11 @@ def dynamic_url(context, url_name, *args, **kwargs):
     return reverse(url_name, kwargs=url_kwargs)
 
 
-@register.simple_tag(takes_context=True)
-def render_menu(context, menu_name, template_name="menu/base_menu.html"):
-    request = context["request"]
-    user = request.user
-    # profile = user.get_profile()
-    menu = get_object_or_None(Menu, name=menu_name)
-    if menu:
-        menu_items = menu.items.all()
-    else:
-        menu_items = []
-        
-    filtered_items = []
-    for item in menu_items:
-        if (
-            item.visible_to == "all"
-            or (item.visible_to == "authenticated" and user.is_authenticated)
-            or (item.visible_to == "guest" and not user.is_authenticated)
-        ):
-            filtered_items.append(item)
-        item.url = dynamic_url(context, item.url_name)
-    return mark_safe(
-        render_to_string(template_name, {"menu_items": filtered_items}, request)
-    )
+register = template.Library()
+
+@register.inclusion_tag('partials/menu.html')
+def render_menu(menu_items):
+    return {"menu_items": menu_items}
 
 
 @register.simple_tag(takes_context=True)

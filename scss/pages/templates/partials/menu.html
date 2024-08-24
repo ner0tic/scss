@@ -1,7 +1,7 @@
 <!-- partials/menu.html -->
 <ul>
 {% load static %}
-{% for item in menu %}
+{% for item in menu_items %}
     <li class="{{ item.css_class }}">
         {% if item.image %}
             <img src="{{ item.image.url }}" alt="{{ item.title }}">

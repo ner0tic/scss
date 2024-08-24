@@ -1,3 +1,4 @@
+# course/models.py
 """ Course Related Models. """
 
 from django.db import models

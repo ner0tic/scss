@@ -1,19 +1,28 @@
-""" Facility Related Models. """
+# facility/models/facility.py
 
-from django.contrib.auth.models import BaseUserManager
-from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.urls import reverse
+from address.models import AddressField
 
 from pages.mixins import models as mixins
 
-class Facility(mixins.NameDescriptionMixin, mixins.TimestampMixin, mixins.SoftDeleteMixin, mixins.AuditMixin, mixins.SlugMixin, mixins.ActiveMixin, mixins.ImageMixin, mixins.ParentChildMixin, models.Model):
+
+class Facility(
+    mixins.NameDescriptionMixin,
+    mixins.TimestampMixin,
+    mixins.SoftDeleteMixin,
+    mixins.AuditMixin,
+    mixins.SlugMixin,
+    mixins.ActiveMixin,
+    mixins.ImageMixin,
+    mixins.ParentChildMixin,
+    models.Model,
+):
     """Facility Model."""
 
-    #address = GenericRelation("address.Address", null=True, blank=True)
-    address = models.CharField(max_length=255, null=True, blank=True)
+    # address = GenericRelation("address.Address", null=True, blank=True)
+    # address = models.CharField(max_length=255, null=True, blank=True)
+    address = AddressField(blank=True, null=True)
     organization = models.ForeignKey(
         "organization.Organization", on_delete=models.CASCADE, related_name="facilities"
     )

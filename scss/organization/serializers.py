@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from .models import Organization
+from .models.organization import Organization
 
 
 class OrganizationSerializer(serializers.ModelSerializer):

@@ -1,0 +1,75 @@
+{% extends 'base/manage.html' %}
+
+{% block title_text %}Manage Facility{% endblock %}
+
+{% block content %}
+    <h1>Manage {{ facility.name }}</h1>
+    
+    <h2>Facility Details</h2>
+    <p>{{ facility.description }}</p>
+    <a href="{% url 'facility:facility_show' facility.pk %}">View Details</a>
+
+    <h2>Departments</h2>
+    <ul>
+        {% for department in departments %}
+            <li>{{ department.name }} - <a href="{% url 'facility:department_show' department.pk %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'facility:department_index' %}">Manage Departments</a>
+
+    <h2>Quarters</h2>
+    <ul>
+        {% for quarter in quarters %}
+            <li>{{ quarter.name }} - <a href="{% url 'facility:quarters_show' quarter.pk %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'facility:quarters_index' %}">Manage Quarters</a>
+
+    <h2>Classes</h2>
+    <ul>
+        {% for facility_class in classes %}
+            <li>{{ facility_class.name }} - <a href="{% url 'facility:facilityclass_show' facility_class.pk %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'facility:facilityclass_index' %}">Manage Classes</a>
+
+    <h2>Enrollments</h2>
+    <ul>
+        {% for enrollment in enrollments %}
+            <li>{{ enrollment.organization_enrollment.name }} - <a href="{% url 'enrollment:facilityenrollment_show' enrollment.pk %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'enrollment:facilityenrollment_index' %}">Manage Enrollments</a>
+
+    <h2>Courses</h2>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.course.name }} - <a href="{% url 'course:course_show' course.course.pk %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'course:course_index' %}">Manage Courses</a>
+
+    <h2>Seasons</h2>
+    <ul>
+        {% for season in seasons %}
+            <li>{{ season.name }} - <a href="{% url 'enrollment:organizationenrollment_show' enrollments.pk %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'enrollment:organizationenrollment_index' %}">Manage Seasons</a>
+
+    <h2>Weeks</h2>
+    <ul>
+        {% for week in weeks %}
+            <li>{{ week.name }} - <a href="{% url 'enrollment:week_show' week.pk %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'enrollment:week_index' %}">Manage Weeks</a>
+
+    <h2>Periods</h2>
+    <ul>
+        {% for period in periods %}
+            <li>{{ period.name }} - <a href="{% url 'enrollment:period_show' period.pk %}">View</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'enrollment:period_index' %}">Manage Periods</a>
+{% endblock %}

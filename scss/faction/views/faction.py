@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 
 from user.models import User
 from user.mixins import AdminRequiredMixin
-from organization.models import Organization
+from organization.models.organization import Organization
 from organization.utils import get_user_organization_labels
 
 from ..models.faction import Faction

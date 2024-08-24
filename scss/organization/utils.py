@@ -1,6 +1,6 @@
 # organization/utils.py
 
-from .models import OrganizationLabels
+from .models.organization import OrganizationLabels
 
 def get_user_organization_labels(user):
     organization_labels = None

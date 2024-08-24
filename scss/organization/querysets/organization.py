@@ -1,8 +1,8 @@
-""" Organization Related QuerySets. """
+# organization/querysets/organization.py
 
 from django.db import models
 
-from faction.models import Faction
+from faction.models.faction import Faction
 
 
 class OrganizationLabelsQuerySet(models.QuerySet):

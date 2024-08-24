@@ -1,6 +1,6 @@
-""" Faculty Related Models. """
+# facility/models/faculty.py
 
-from django.contrib.contenttypes.fields import GenericRelation
+# from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -14,7 +14,7 @@ from user.models import User, UserProfile
 #from organization.models import Organization
 
 from .facility import Facility
-from ..managers import FacultyManager
+from ..managers.faculty import FacultyManager
 
 
 class Faculty(
@@ -57,9 +57,6 @@ class Faculty(
 
 
 class FacultyProfile(UserProfile):
-    organization = models.ForeignKey(
-        "organization.Organization", on_delete=models.SET_NULL, null=True, blank=True
-    )
     facility = models.ForeignKey(
         "facility.Facility", on_delete=models.SET_NULL, null=True, blank=True
     )
